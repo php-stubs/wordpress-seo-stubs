@@ -20,6 +20,8 @@ test -d "source/wordpress-seo"
     --traits \
     --out="$FILE"
 
+printf '\nnamespace Yoast\\WP\\Free\\Loggers { class Migration_Logger {} }\n' >>"$FILE"
+
 # There are no WC functions to read these constants.
 # See define_constants() in includes/class-woocommerce.php
 printf '\nnamespace {\n    %s\n}\n' "define('WPSEO_VERSION', '0.0.0');" >>"$FILE"

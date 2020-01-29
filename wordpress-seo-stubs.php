@@ -7,6 +7,19288 @@
 
 namespace {
     /**
+     * An interface for registering integrations with WordPress.
+     */
+    interface WPSEO_WordPress_Integration
+    {
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * A WordPress integration that listens for whether the SEO changes have been saved successfully.
+     */
+    class WPSEO_Admin_Settings_Changed_Listener implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Have the Yoast SEO settings been saved.
+         *
+         * @var bool
+         */
+        private static $settings_saved = \false;
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Checks and overwrites the wp_settings_errors global to determine whether the Yoast SEO settings have been saved.
+         */
+        public function intercept_save_update_notification()
+        {
+        }
+        /**
+         * Checks whether the settings notification is a settings_updated notification.
+         *
+         * @param array $wp_settings_error The settings object.
+         *
+         * @return bool Whether this is a settings updated settings notification.
+         */
+        public function is_settings_updated_notification($wp_settings_error)
+        {
+        }
+        /**
+         * Get whether the settings have successfully been saved
+         *
+         * @return bool Whether the settings have successfully been saved.
+         */
+        public function have_settings_been_saved()
+        {
+        }
+        /**
+         * Renders a success message if the Yoast SEO settings have been saved.
+         */
+        public function show_success_message()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Ajax
+     */
+    /**
+     * Class WPSEO_Recalculate_Scores.
+     *
+     * This class handles the SEO score recalculation for all posts with a filled focus keyword.
+     */
+    class WPSEO_Recalculate_Scores_Ajax
+    {
+        /**
+         * Initialize the AJAX hooks.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Get the totals for the posts and the terms.
+         */
+        public function get_total()
+        {
+        }
+        /**
+         * Start recalculation.
+         */
+        public function recalculate_scores()
+        {
+        }
+        /**
+         * Saves the new linkdex score for given post.
+         */
+        public function save_score()
+        {
+        }
+        /**
+         * Returns the needed object for recalculating scores.
+         *
+         * @return WPSEO_Recalculate_Posts|WPSEO_Recalculate_Terms
+         */
+        private function get_fetch_object()
+        {
+        }
+        /**
+         * Gets the total number of posts.
+         *
+         * @return int
+         */
+        private function calculate_posts()
+        {
+        }
+        /**
+         * Get the total number of terms.
+         *
+         * @return int
+         */
+        private function calculate_terms()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Ajax
+     */
+    /**
+     * Class WPSEO_Shortcode_Filter.
+     *
+     * Used for parsing WP shortcodes with AJAX.
+     */
+    class WPSEO_Shortcode_Filter
+    {
+        /**
+         * Initialize the AJAX hooks.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Parse the shortcodes.
+         */
+        public function do_filter()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Ajax
+     */
+    /**
+     * This class will catch the request to dismiss the target notice (set by notice_name)
+     * and will store the dismiss status as an user meta in the database.
+     */
+    class Yoast_Dismissable_Notice_Ajax
+    {
+        /**
+         * Notice type toggle value for user notices.
+         *
+         * @var string
+         */
+        const FOR_USER = 'user_meta';
+        /**
+         * Notice type toggle value for network notices.
+         *
+         * @var string
+         */
+        const FOR_NETWORK = 'site_option';
+        /**
+         * Notice type toggle value for site notices.
+         *
+         * @var string
+         */
+        const FOR_SITE = 'option';
+        /**
+         * Name of the notice that will be dismissed.
+         *
+         * @var string
+         */
+        private $notice_name;
+        /**
+         * The type of the current notice.
+         *
+         * @var string
+         */
+        private $notice_type;
+        /**
+         * Initialize the hooks for the AJAX request.
+         *
+         * @param string $notice_name The name for the hook to catch the notice.
+         * @param string $notice_type The notice type.
+         */
+        public function __construct($notice_name, $notice_type = self::FOR_USER)
+        {
+        }
+        /**
+         * Handles the dismiss notice request.
+         */
+        public function dismiss_notice()
+        {
+        }
+        /**
+         * Storing the dismissed value in the database. The target location is based on the set notification type.
+         */
+        private function save_dismissed()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Ajax
+     */
+    /**
+     * Class Yoast_OnPage_Ajax.
+     *
+     * This class will catch the request to dismiss the Ryte notice and will store
+     * the dismiss status as an user meta in the database.
+     */
+    class Yoast_OnPage_Ajax
+    {
+        /**
+         * Initialize the hooks for the AJAX request.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Handles the dismiss notice request.
+         */
+        public function dismiss_notice()
+        {
+        }
+        /**
+         * Storing the dismissed value as an user option in the database.
+         */
+        private function save_dismissed()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Ajax
+     */
+    /**
+     * Class Yoast_Plugin_Conflict_Ajax.
+     */
+    class Yoast_Plugin_Conflict_Ajax
+    {
+        /**
+         * Option identifier where dismissed conflicts are stored.
+         *
+         * @var string
+         */
+        private $option_name = 'wpseo_dismissed_conflicts';
+        /**
+         * List of notification identifiers that have been dismissed.
+         *
+         * @var array
+         */
+        private $dismissed_conflicts = [];
+        /**
+         * Initialize the hooks for the AJAX request.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Handles the dismiss notice request.
+         */
+        public function dismiss_notice()
+        {
+        }
+        /**
+         * Getting the user option from the database.
+         *
+         * @return bool|array
+         */
+        private function get_dismissed_option()
+        {
+        }
+        /**
+         * Getting the dismissed conflicts from the database
+         *
+         * @param string $plugin_section Type of conflict group (such as Open Graph or sitemap).
+         *
+         * @return array
+         */
+        private function get_dismissed_conflicts($plugin_section)
+        {
+        }
+        /**
+         * Storing the conflicting plugins as an user option in the database.
+         *
+         * @param string $plugin_section Plugin conflict type (such as Open Graph or sitemap).
+         */
+        private function save_dismissed_conflicts($plugin_section)
+        {
+        }
+        /**
+         * Loop through the plugins to compare them with the already stored dismissed plugin conflicts.
+         *
+         * @param array $posted_plugins Plugin set to check.
+         */
+        public function compare_plugins(array $posted_plugins)
+        {
+        }
+        /**
+         * Check if plugin is already dismissed, if not store it in the array that will be saved later.
+         *
+         * @param string $posted_plugin Plugin to check against dismissed conflicts.
+         */
+        private function compare_plugin($posted_plugin)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * Capability Manager interface.
+     */
+    interface WPSEO_Capability_Manager
+    {
+        /**
+         * Registers a capability.
+         *
+         * @param string $capability Capability to register.
+         * @param array  $roles      Roles to add the capability to.
+         * @param bool   $overwrite  Optional. Use add or overwrite as registration method.
+         */
+        public function register($capability, array $roles, $overwrite = \false);
+        /**
+         * Adds the registerd capabilities to the system.
+         */
+        public function add();
+        /**
+         * Removes the registered capabilities from the system.
+         */
+        public function remove();
+        /**
+         * Returns the list of registered capabilities.
+         *
+         * @return string[] List of registered capabilities.
+         */
+        public function get_capabilities();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * Abstract Capability Manager shared code.
+     */
+    abstract class WPSEO_Abstract_Capability_Manager implements \WPSEO_Capability_Manager
+    {
+        /**
+         * Registered capabilities.
+         *
+         * @var array
+         */
+        protected $capabilities = [];
+        /**
+         * Registers a capability.
+         *
+         * @param string $capability Capability to register.
+         * @param array  $roles      Roles to add the capability to.
+         * @param bool   $overwrite  Optional. Use add or overwrite as registration method.
+         */
+        public function register($capability, array $roles, $overwrite = \false)
+        {
+        }
+        /**
+         * Returns the list of registered capabilitities.
+         *
+         * @return string[] Registered capabilities.
+         */
+        public function get_capabilities()
+        {
+        }
+        /**
+         * Returns a list of WP_Role roles.
+         *
+         * The string array of role names are converted to actual WP_Role objects.
+         * These are needed to be able to use the API on them.
+         *
+         * @param array $roles Roles to retrieve the objects for.
+         *
+         * @return WP_Role[] List of WP_Role objects.
+         */
+        protected function get_wp_roles(array $roles)
+        {
+        }
+        /**
+         * Filter capability roles.
+         *
+         * @param string $capability Capability to filter roles for.
+         * @param array  $roles      List of roles which can be filtered.
+         *
+         * @return array Filtered list of roles for the capability.
+         */
+        protected function filter_roles($capability, array $roles)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * Capability Manager Factory.
+     */
+    class WPSEO_Capability_Manager_Factory
+    {
+        /**
+         * Returns the Manager to use.
+         *
+         * @return WPSEO_Capability_Manager Manager to use.
+         */
+        public static function get()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * Integrates Yoast SEO capabilities with third party role manager plugins.
+     *
+     * Integrates with: Members
+     * Integrates with: User Role Editor
+     */
+    class WPSEO_Capability_Manager_Integration implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Capability manager to use.
+         *
+         * @var WPSEO_Capability_Manager
+         */
+        public $manager;
+        /**
+         * WPSEO_Capability_Manager_Integration constructor.
+         *
+         * @param WPSEO_Capability_Manager $manager The capability manager to use.
+         */
+        public function __construct(\WPSEO_Capability_Manager $manager)
+        {
+        }
+        /**
+         * Registers the hooks.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Get the Yoast SEO capabilities.
+         * Optionally append them to an existing array.
+         *
+         * @param  array $caps Optional existing capability list.
+         * @return array
+         */
+        public function get_capabilities(array $caps = [])
+        {
+        }
+        /**
+         * Add capabilities to its own group in the Members plugin.
+         *
+         * @see members_register_cap_group()
+         */
+        public function action_members_register_cap_group()
+        {
+        }
+        /**
+         * Adds Yoast SEO capability group in the User Role Editor plugin.
+         *
+         * @see URE_Capabilities_Groups_Manager::get_groups_tree()
+         *
+         * @param array $groups Current groups.
+         *
+         * @return array Filtered list of capabilty groups.
+         */
+        public function filter_ure_capabilities_groups_tree($groups = [])
+        {
+        }
+        /**
+         * Adds capabilities to the Yoast SEO group in the User Role Editor plugin.
+         *
+         * @see URE_Capabilities_Groups_Manager::get_cap_groups()
+         *
+         * @param array  $groups Current capability groups.
+         * @param string $cap_id Capability identifier.
+         *
+         * @return array List of filtered groups.
+         */
+        public function filter_ure_custom_capability_groups($groups = [], $cap_id = '')
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * VIP implementation of the Capability Manager.
+     */
+    final class WPSEO_Capability_Manager_VIP extends \WPSEO_Abstract_Capability_Manager
+    {
+        /**
+         * Adds the registered capabilities to the system.
+         *
+         * @return void
+         */
+        public function add()
+        {
+        }
+        /**
+         * Removes the registered capabilities from the system
+         *
+         * @return void
+         */
+        public function remove()
+        {
+        }
+        /**
+         * Returns the roles which the capability is registered on.
+         *
+         * @param array  $role_capabilities List of all roles with their capabilities.
+         * @param string $capability        Capability to filter roles for.
+         * @param array  $roles             List of default roles.
+         *
+         * @return array List of capabilities.
+         */
+        protected function get_role_capabilities($role_capabilities, $capability, $roles)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * Default WordPress capability manager implementation.
+     */
+    final class WPSEO_Capability_Manager_WP extends \WPSEO_Abstract_Capability_Manager
+    {
+        /**
+         * Adds the capabilities to the roles.
+         *
+         * @return void
+         */
+        public function add()
+        {
+        }
+        /**
+         * Unregisters the capabilities from the system.
+         *
+         * @return void
+         */
+        public function remove()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * Capability Utils collection.
+     */
+    class WPSEO_Capability_Utils
+    {
+        /**
+         * Checks if the user has the proper capabilities.
+         *
+         * @param string $capability Capability to check.
+         *
+         * @return bool True if the user has the proper rights.
+         */
+        public static function current_user_can($capability)
+        {
+        }
+        /**
+         * Retrieves the users that have the specified capability.
+         *
+         * @param string $capability The name of the capability.
+         *
+         * @return array The users that have the capability.
+         */
+        public static function get_applicable_users($capability)
+        {
+        }
+        /**
+         * Retrieves the roles that have the specified capability.
+         *
+         * @param string $capability The name of the capability.
+         *
+         * @return array The names of the roles that have the capability.
+         */
+        public static function get_applicable_roles($capability)
+        {
+        }
+        /**
+         * Checks if the current user has at least one of the supplied capabilities.
+         *
+         * @param array $capabilities Capabilities to check against.
+         *
+         * @return bool True if the user has at least one capability.
+         */
+        protected static function has_any(array $capabilities)
+        {
+        }
+        /**
+         * Checks if the user has a certain capability.
+         *
+         * @param string $capability Capability to check against.
+         *
+         * @return bool True if the user has the capability.
+         */
+        protected static function has($capability)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Capabilities
+     */
+    /**
+     * Capabilities registration class.
+     */
+    class WPSEO_Register_Capabilities implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Registers the hooks.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Registers the capabilities.
+         *
+         * @return void
+         */
+        public function register()
+        {
+        }
+        /**
+         * Revokes the 'wpseo_manage_options' capability from administrator users if it should only
+         * only be granted to network administrators.
+         *
+         * @param array   $allcaps An array of all the user's capabilities.
+         * @param array   $caps    Actual capabilities being checked.
+         * @param array   $args    Optional parameters passed to has_cap(), typically object ID.
+         * @param WP_User $user    The user object.
+         *
+         * @return array Possibly modified array of the user's capabilities.
+         */
+        public function filter_user_has_wpseo_manage_options_cap($allcaps, $caps, $args, $user)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class to print out the translatable strings for the Add Keyword modal.
+     */
+    class WPSEO_Add_Keyword_Modal
+    {
+        /**
+         * Returns the translations for the Add Keyword modal.
+         *
+         * These strings are not escaped because they're meant to be used with React
+         * which already takes care of that. If used in PHP, they should be escaped.
+         *
+         * @return array Translated text strings for the Add Keyword modal.
+         */
+        public function get_translations()
+        {
+        }
+        /**
+         * Passes translations to JS for the Add Keyword modal component.
+         *
+         * @return array Translated text strings for the Add Keyword modal component.
+         */
+        public function get_translations_for_js()
+        {
+        }
+        /**
+         * Prints the localized Add Keyword modal translations for JS.
+         */
+        public function enqueue_translations()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents a way to determine an assets location.
+     */
+    interface WPSEO_Admin_Asset_Location
+    {
+        /**
+         * Determines the URL of the asset on the dev server.
+         *
+         * @param WPSEO_Admin_Asset $asset The asset to determine the URL for.
+         * @param string            $type  The type of asset. Usually JS or CSS.
+         *
+         * @return string The URL of the asset.
+         */
+        public function get_url(\WPSEO_Admin_Asset $asset, $type);
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents a way to determine the analysis worker asset location.
+     */
+    final class WPSEO_Admin_Asset_Analysis_Worker_Location implements \WPSEO_Admin_Asset_Location
+    {
+        /**
+         * Holds the asset's location.
+         *
+         * @var WPSEO_Admin_Asset_Location $asset_location.
+         */
+        private $asset_location;
+        /**
+         * Holds the asset itself.
+         *
+         * @var WPSEO_Admin_Asset $asset.
+         */
+        private $asset;
+        /**
+         * Constructs the location of the analysis worker asset.
+         *
+         * @param string $flat_version The flat version of the asset.
+         * @param string $name         The name of the analysis worker asset.
+         */
+        public function __construct($flat_version = '', $name = 'analysis-worker')
+        {
+        }
+        /**
+         * Retrieves the analysis worker asset.
+         *
+         * @return WPSEO_Admin_Asset The analysis worker asset.
+         */
+        public function get_asset()
+        {
+        }
+        /**
+         * Determines the URL of the asset on the dev server.
+         *
+         * @param WPSEO_Admin_Asset $asset The asset to determine the URL for.
+         * @param string            $type  The type of asset. Usually JS or CSS.
+         *
+         * @return string The URL of the asset.
+         */
+        public function get_url(\WPSEO_Admin_Asset $asset, $type)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Changes the asset paths to dev server paths.
+     */
+    final class WPSEO_Admin_Asset_Dev_Server_Location implements \WPSEO_Admin_Asset_Location
+    {
+        /**
+         * Holds the dev server's default URL.
+         *
+         * @var string
+         */
+        const DEFAULT_URL = 'http://localhost:8080';
+        /**
+         * Holds the url where the server is located.
+         *
+         * @var string
+         */
+        private $url;
+        /**
+         * Class constructor.
+         *
+         * @param string $url Where the dev server is located.
+         */
+        public function __construct($url = \null)
+        {
+        }
+        /**
+         * Determines the URL of the asset on the dev server.
+         *
+         * @param WPSEO_Admin_Asset $asset The asset to determine the URL for.
+         * @param string            $type  The type of asset. Usually JS or CSS.
+         *
+         * @return string The URL of the asset.
+         */
+        public function get_url(\WPSEO_Admin_Asset $asset, $type)
+        {
+        }
+        /**
+         * Determines the URL of the asset not using the dev server.
+         *
+         * @param WPSEO_Admin_Asset $asset The asset to determine the URL for.
+         * @param string            $type  The type of asset.
+         *
+         * @return string The URL of the asset file.
+         */
+        public function get_default_url(\WPSEO_Admin_Asset $asset, $type)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class registers all the necessary styles and scripts.
+     *
+     * Also has methods for the enqueing of scripts and styles.
+     * It automatically adds a prefix to the handle.
+     */
+    class WPSEO_Admin_Asset_Manager
+    {
+        /**
+         * Class that manages the assets' location.
+         *
+         * @var WPSEO_Admin_Asset_Location
+         */
+        protected $asset_location;
+        /**
+         * Prefix for naming the assets.
+         *
+         * @var string
+         */
+        const PREFIX = 'yoast-seo-';
+        /**
+         * Prefix for naming the assets.
+         *
+         * @var string
+         */
+        private $prefix;
+        /**
+         * Constructs a manager of assets. Needs a location to know where to register assets at.
+         *
+         * @param WPSEO_Admin_Asset_Location $asset_location The provider of the asset location.
+         * @param string                     $prefix         The prefix for naming assets.
+         */
+        public function __construct(\WPSEO_Admin_Asset_Location $asset_location = \null, $prefix = self::PREFIX)
+        {
+        }
+        /**
+         * Enqueues scripts.
+         *
+         * @param string $script The name of the script to enqueue.
+         */
+        public function enqueue_script($script)
+        {
+        }
+        /**
+         * Enqueues styles.
+         *
+         * @param string $style The name of the style to enqueue.
+         */
+        public function enqueue_style($style)
+        {
+        }
+        /**
+         * Registers scripts based on it's parameters.
+         *
+         * @param WPSEO_Admin_Asset $script The script to register.
+         */
+        public function register_script(\WPSEO_Admin_Asset $script)
+        {
+        }
+        /**
+         * Registers styles based on it's parameters.
+         *
+         * @param WPSEO_Admin_Asset $style The style to register.
+         */
+        public function register_style(\WPSEO_Admin_Asset $style)
+        {
+        }
+        /**
+         * Calls the functions that register scripts and styles with the scripts and styles to be registered as arguments.
+         */
+        public function register_assets()
+        {
+        }
+        /**
+         * Registers all the scripts passed to it.
+         *
+         * @param array $scripts The scripts passed to it.
+         */
+        public function register_scripts($scripts)
+        {
+        }
+        /**
+         * Registers all the styles it receives.
+         *
+         * @param array $styles Styles that need to be registered.
+         */
+        public function register_styles($styles)
+        {
+        }
+        /**
+         * A list of styles that shouldn't be registered but are needed in other locations in the plugin.
+         *
+         * @return array
+         */
+        public function special_styles()
+        {
+        }
+        /**
+         * Flattens a version number for use in a filename.
+         *
+         * @param string $version The original version number.
+         *
+         * @return string The flattened version number.
+         */
+        public function flatten_version($version)
+        {
+        }
+        /**
+         * Creates a default location object for use in the admin asset manager.
+         *
+         * @return WPSEO_Admin_Asset_Location The location to use in the asset manager.
+         */
+        public static function create_default_location()
+        {
+        }
+        /**
+         * Returns the scripts that need to be registered.
+         *
+         * @todo Data format is not self-documenting. Needs explanation inline. R.
+         *
+         * @return array The scripts that need to be registered.
+         */
+        protected function scripts_to_be_registered()
+        {
+        }
+        /**
+         * Returns the styles that need to be registered.
+         *
+         * @todo Data format is not self-documenting. Needs explanation inline. R.
+         *
+         * @return array Styles that need to be registered.
+         */
+        protected function styles_to_be_registered()
+        {
+        }
+        /**
+         * Determines the URL of the asset.
+         *
+         * @param WPSEO_Admin_Asset $asset The asset to determine the URL for.
+         * @param string            $type  The type of asset. Usually JS or CSS.
+         *
+         * @return string The URL of the asset.
+         */
+        protected function get_url(\WPSEO_Admin_Asset $asset, $type)
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * This function is needed for backwards compatibility with Local SEO 12.5.
+         *
+         * @deprecated 12.8
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function register_wp_assets()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Determines the location of an asset within the SEO plugin.
+     */
+    final class WPSEO_Admin_Asset_SEO_Location implements \WPSEO_Admin_Asset_Location
+    {
+        /**
+         * Path to the plugin file.
+         *
+         * @var string
+         */
+        protected $plugin_file;
+        /**
+         * The plugin file to base the asset location upon.
+         *
+         * @param string $plugin_file The plugin file string.
+         */
+        public function __construct($plugin_file)
+        {
+        }
+        /**
+         * Determines the URL of the asset on the dev server.
+         *
+         * @param WPSEO_Admin_Asset $asset The asset to determine the URL for.
+         * @param string            $type  The type of asset. Usually JS or CSS.
+         *
+         * @return string The URL of the asset.
+         */
+        public function get_url(\WPSEO_Admin_Asset $asset, $type)
+        {
+        }
+        /**
+         * Determines the path relative to the plugin folder of an asset.
+         *
+         * @param WPSEO_Admin_Asset $asset        The asset to determine the path
+         *                                        for.
+         * @param string            $type         The type of asset.
+         *
+         * @return string The path to the asset file.
+         */
+        protected function get_path(\WPSEO_Admin_Asset $asset, $type)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Localizes JavaScript files.
+     */
+    final class WPSEO_Admin_Asset_Yoast_Components_L10n
+    {
+        /**
+         * Localizes the given script with the JavaScript translations.
+         *
+         * @param string $script_handle The script handle to localize for.
+         *
+         * @return void
+         */
+        public function localize_script($script_handle)
+        {
+        }
+        /**
+         * Returns translations necessary for JS files.
+         *
+         * @param string $component The component to retrieve the translations for.
+         * @return object The translations in a Jed format for JS files.
+         */
+        protected function get_translations($component)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Determines the editor specific replacement variables.
+     */
+    class WPSEO_Admin_Editor_Specific_Replace_Vars
+    {
+        /**
+         * Holds the editor specific replacements variables.
+         *
+         * @var array The editor specific replacement variables.
+         */
+        protected $replacement_variables = [
+            // Posts types.
+            'page' => ['id', 'pt_single', 'pt_plural', 'parent_title'],
+            'post' => ['id', 'term404', 'pt_single', 'pt_plural'],
+            // Custom post type.
+            'custom_post_type' => ['id', 'term404', 'pt_single', 'pt_plural', 'parent_title'],
+            // Settings - archive pages.
+            'custom-post-type_archive' => ['pt_single', 'pt_plural'],
+            // Taxonomies.
+            'category' => ['term_title', 'term_description', 'category_description', 'parent_title'],
+            'post_tag' => ['term_title', 'term_description', 'tag_description'],
+            'post_format' => [],
+            // Custom taxonomy.
+            'term-in-custom-taxonomy' => ['term_title', 'term_description', 'category_description', 'parent_title'],
+            // Settings - special pages.
+            'search' => ['searchphrase'],
+        ];
+        /**
+         * WPSEO_Admin_Editor_Specific_Replace_Vars constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Retrieves the editor specific replacement variables.
+         *
+         * @return array The editor specific replacement variables.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Retrieves the generic replacement variable names.
+         *
+         * Which are the replacement variables without the editor specific ones.
+         *
+         * @param array $replacement_variables Possibly generic replacement variables.
+         *
+         * @return array The generic replacement variable names.
+         */
+        public function get_generic($replacement_variables)
+        {
+        }
+        /**
+         * Determines the page type of the current term.
+         *
+         * @param string $taxonomy The taxonomy name.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_term($taxonomy)
+        {
+        }
+        /**
+         * Determines the page type of the current post.
+         *
+         * @param WP_Post $post A WordPress post instance.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_post($post)
+        {
+        }
+        /**
+         * Determines the page type for a post type.
+         *
+         * @param string $post_type The name of the post_type.
+         * @param string $fallback  The page type to fall back to.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_post_type($post_type, $fallback = 'custom_post_type')
+        {
+        }
+        /**
+         * Determines the page type for an archive page.
+         *
+         * @param string $name     The name of the archive.
+         * @param string $fallback The page type to fall back to.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_archive($name, $fallback = 'custom-post-type_archive')
+        {
+        }
+        /**
+         * Adds the replavement variables for the given page types.
+         *
+         * @param array $page_types                   Page types to add variables for.
+         * @param array $replacement_variables_to_add The variables to add.
+         *
+         * @return void
+         */
+        protected function add_for_page_types(array $page_types, array $replacement_variables_to_add)
+        {
+        }
+        /**
+         * Extracts the names from the given replacements variables.
+         *
+         * @param array $replacement_variables Replacement variables to extract the name from.
+         *
+         * @return array Extracted names.
+         */
+        protected function extract_names($replacement_variables)
+        {
+        }
+        /**
+         * Returns whether the given page type has editor specific replace vars.
+         *
+         * @param string $page_type The page type to check.
+         *
+         * @return bool True if there are associated editor specific replace vars.
+         */
+        protected function has_for_page_type($page_type)
+        {
+        }
+        /**
+         * Merges all editor specific replacement variables into one array and removes duplicates.
+         *
+         * @return array The list of unique editor specific replacement variables.
+         */
+        protected function get_unique_replacement_variables()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Handles the Gutenberg Compatibility notification showing and hiding.
+     */
+    class WPSEO_Admin_Gutenberg_Compatibility_Notification implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Notification ID to use.
+         *
+         * @var string
+         */
+        private $notification_id = 'wpseo-outdated-gutenberg-plugin';
+        /**
+         * Instance of gutenberg compatibility checker.
+         *
+         * @var WPSEO_Gutenberg_Compatibility
+         */
+        private $compatibility_checker;
+        /**
+         * Instance of Yoast Notification Center.
+         *
+         * @var Yoast_Notification_Center
+         */
+        private $notification_center;
+        /**
+         * WPSEO_Admin_Gutenberg_Compatibility_Notification constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Manages if the notification should be shown or removed.
+         *
+         * @return void
+         */
+        public function manage_notification()
+        {
+        }
+        /**
+         * Adds the notification to the notificaton center.
+         *
+         * @return void
+         */
+        private function add_notification()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates the HTML for an inline Help Button and Panel.
+     */
+    class WPSEO_Admin_Help_Panel
+    {
+        /**
+         * Unique identifier of the element the inline help refers to, used as an identifier in the html.
+         *
+         * @var string
+         */
+        private $id;
+        /**
+         * The Help Button text. Needs a properly escaped string.
+         *
+         * @var string
+         */
+        private $help_button_text;
+        /**
+         * The Help Panel content. Needs a properly escaped string (might contain HTML).
+         *
+         * @var string
+         */
+        private $help_content;
+        /**
+         * Optional Whether to print out a container div element for the Help Panel, used for styling.
+         *
+         * @var string
+         */
+        private $wrapper;
+        /**
+         * Constructor.
+         *
+         * @param string $id               Unique identifier of the element the inline help refers to, used as
+         *                                 an identifier in the html.
+         * @param string $help_button_text The Help Button text. Needs a properly escaped string.
+         * @param string $help_content     The Help Panel content. Needs a properly escaped string (might contain HTML).
+         * @param string $wrapper          Optional Whether to print out a container div element for the Help Panel,
+         *                                 used for styling.
+         *                                 Pass a `has-wrapper` value to print out the container. Default: no container.
+         */
+        public function __construct($id, $help_button_text, $help_content, $wrapper = '')
+        {
+        }
+        /**
+         * Returns the html for the Help Button.
+         *
+         * @return string
+         */
+        public function get_button_html()
+        {
+        }
+        /**
+         * Returns the html for the Help Panel.
+         *
+         * @return string
+         */
+        public function get_panel_html()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Performs the load on admin side.
+     */
+    class WPSEO_Admin_Init
+    {
+        /**
+         * Holds the global `$pagenow` variable's value.
+         *
+         * @var string
+         */
+        private $pagenow;
+        /**
+         * Holds the asset manager.
+         *
+         * @var WPSEO_Admin_Asset_Manager
+         */
+        private $asset_manager;
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Handles the notifiers for the dashboard page.
+         *
+         * @return void
+         */
+        public function handle_notifications()
+        {
+        }
+        /**
+         * Enqueue our styling for dismissible yoast notifications.
+         */
+        public function enqueue_dismissible()
+        {
+        }
+        /**
+         * Notify about the default tagline if the user hasn't changed it.
+         */
+        public function tagline_notice()
+        {
+        }
+        /**
+         * Add an alert if the blog is not publicly visible.
+         */
+        public function blog_public_notice()
+        {
+        }
+        /**
+         * Returns whether or not the site has the default tagline.
+         *
+         * @return bool
+         */
+        public function has_default_tagline()
+        {
+        }
+        /**
+         * Show alert when the permalink doesn't contain %postname%.
+         */
+        public function permalink_notice()
+        {
+        }
+        /**
+         * Determines whether a suggested plugins notification needs to be displayed.
+         *
+         * @return void
+         */
+        public function yoast_plugin_suggestions_notification()
+        {
+        }
+        /**
+         * Build Yoast SEO suggested plugins notification.
+         *
+         * @param string $name            The plugin name to use for the unique ID.
+         * @param array  $plugin          The plugin to retrieve the data from.
+         * @param string $dependency_name The name of the dependency.
+         *
+         * @return Yoast_Notification The notification containing the suggested plugin.
+         */
+        private function get_yoast_seo_suggested_plugins_notification($name, $plugin, $dependency_name)
+        {
+        }
+        /**
+         * Shows the notice for recalculating the post. the Notice will only be shown if the user hasn't dismissed it before.
+         */
+        public function recalculate_notice()
+        {
+        }
+        /**
+         * Creates an unsupported PHP version notification in the notification center.
+         *
+         * @return void
+         */
+        public function unsupported_php_notice()
+        {
+        }
+        /**
+         * Gets the latest released major WordPress version from the WordPress stable-check api.
+         *
+         * @return float The latest released major WordPress version. 0 The stable-check api doesn't respond.
+         */
+        private function get_latest_major_wordpress_version()
+        {
+        }
+        /**
+         * Check if the user has dismissed the given notice (by $notice_name).
+         *
+         * @param string $notice_name The name of the notice that might be dismissed.
+         *
+         * @return bool
+         */
+        private function is_site_notice_dismissed($notice_name)
+        {
+        }
+        /**
+         * Helper to verify if the user is currently visiting one of our admin pages.
+         *
+         * @return bool
+         */
+        private function on_wpseo_admin_page()
+        {
+        }
+        /**
+         * Determine whether we should load the meta box class and if so, load it.
+         */
+        private function load_meta_boxes()
+        {
+        }
+        /**
+         * Determine if we should load our taxonomy edit class and if so, load it.
+         */
+        private function load_taxonomy_class()
+        {
+        }
+        /**
+         * Determine if we should load our admin pages class and if so, load it.
+         *
+         * Loads admin page class for all admin pages starting with `wpseo_`.
+         */
+        private function load_admin_user_class()
+        {
+        }
+        /**
+         * Determine if we should load our admin pages class and if so, load it.
+         *
+         * Loads admin page class for all admin pages starting with `wpseo_`.
+         */
+        private function load_admin_page_class()
+        {
+        }
+        /**
+         * Loads the plugin suggestions.
+         */
+        private function load_plugin_suggestions()
+        {
+        }
+        /**
+         * Registers the Premium Upsell Admin Block.
+         *
+         * @return void
+         */
+        private function register_premium_upsell_admin_block()
+        {
+        }
+        /**
+         * Registers the promotion class for our GlotPress instance, then creates a notification with the i18n promo.
+         *
+         * @link https://github.com/Yoast/i18n-module
+         */
+        private function register_i18n_promo_class()
+        {
+        }
+        /**
+         * See if we should start our XML Sitemaps Admin class.
+         */
+        private function load_xml_sitemaps_admin()
+        {
+        }
+        /**
+         * Check if the site is set to be publicly visible.
+         *
+         * @return bool
+         */
+        private function is_blog_public()
+        {
+        }
+        /**
+         * Shows deprecation warnings to the user if a plugin has registered a filter we have deprecated.
+         */
+        public function show_hook_deprecation_warnings()
+        {
+        }
+        /**
+         * Check if the permalink uses %postname%.
+         *
+         * @return bool
+         */
+        private function has_postname_in_permalink()
+        {
+        }
+        /**
+         * Shows a notice on the permalink settings page.
+         */
+        public function permalink_settings_notice()
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Add an alert if outdated versions of Yoast SEO plugins are running.
+         *
+         * @deprecated 12.3
+         * @codeCoverageIgnore
+         */
+        public function yoast_plugin_compatibility_notification()
+        {
+        }
+        /**
+         * Creates a WordPress upgrade notification in the notification center.
+         *
+         * @deprecated 12.5
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function wordpress_upgrade_notice()
+        {
+        }
+        /**
+         * Shows a notice to the user if they have Google Analytics for WordPress 5.4.3 installed because it causes an error
+         * on the google search console page.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         */
+        public function ga_compatibility_notice()
+        {
+        }
+        /**
+         * Display notice to disable comment pagination.
+         *
+         * @deprecated 12.8
+         * @codeCoverageIgnore
+         */
+        public function page_comments_notice()
+        {
+        }
+        /**
+         * Are page comments enabled.
+         *
+         * @deprecated 12.8
+         * @codeCoverageIgnore
+         *
+         * @return bool
+         */
+        public function has_page_comments()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Handles the media purge notification showing and hiding.
+     */
+    class WPSEO_Admin_Media_Purge_Notification implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Notification ID to use.
+         *
+         * @var string
+         */
+        private $notification_id = 'wpseo_media_purge';
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds a hidden setting to the media tab.
+         *
+         * To make sure the setting is not reverted to the default when -anything-
+         * is saved on the entire page (not just the media tab).
+         *
+         * @param string|null $input Current filter value.
+         *
+         * @return string|null
+         */
+        public function output_hidden_setting($input)
+        {
+        }
+        /**
+         * Manages if the notification should be shown or removed.
+         *
+         * @return void
+         */
+        public function manage_notification()
+        {
+        }
+        /**
+         * Retrieves the notification that should be shown or removed.
+         *
+         * @return Yoast_Notification The notification to use.
+         */
+        private function get_notification()
+        {
+        }
+        /**
+         * Adds the notification to the notificaton center.
+         *
+         * @return void
+         */
+        private function add_notification()
+        {
+        }
+        /**
+         * Removes the notification from the notification center.
+         *
+         * @return void
+         */
+        private function remove_notification()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Determines the recommended replacement variables based on the context.
+     */
+    class WPSEO_Admin_Recommended_Replace_Vars
+    {
+        /**
+         * The recommended replacement variables.
+         *
+         * @var array
+         */
+        protected $recommended_replace_vars = [
+            // Posts types.
+            'page' => ['sitename', 'title', 'sep', 'primary_category'],
+            'post' => ['sitename', 'title', 'sep', 'primary_category'],
+            // Homepage.
+            'homepage' => ['sitename', 'sitedesc', 'sep'],
+            // Custom post type.
+            'custom_post_type' => ['sitename', 'title', 'sep'],
+            // Taxonomies.
+            'category' => ['sitename', 'term_title', 'sep'],
+            'post_tag' => ['sitename', 'term_title', 'sep'],
+            'post_format' => ['sitename', 'term_title', 'sep', 'page'],
+            // Custom taxonomy.
+            'term-in-custom-taxomomy' => ['sitename', 'term_title', 'sep'],
+            // Settings - archive pages.
+            'author_archive' => ['sitename', 'title', 'sep', 'page'],
+            'date_archive' => ['sitename', 'sep', 'date', 'page'],
+            'custom-post-type_archive' => ['sitename', 'title', 'sep', 'page'],
+            // Settings - special pages.
+            'search' => ['sitename', 'searchphrase', 'sep', 'page'],
+            '404' => ['sitename', 'sep'],
+        ];
+        /**
+         * Determines the page type of the current term.
+         *
+         * @param string $taxonomy The taxonomy name.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_term($taxonomy)
+        {
+        }
+        /**
+         * Determines the page type of the current post.
+         *
+         * @param WP_Post $post A WordPress post instance.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_post($post)
+        {
+        }
+        /**
+         * Determines the page type for a post type.
+         *
+         * @param string $post_type The name of the post_type.
+         * @param string $fallback  The page type to fall back to.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_post_type($post_type, $fallback = 'custom_post_type')
+        {
+        }
+        /**
+         * Determines the page type for an archive page.
+         *
+         * @param string $name     The name of the archive.
+         * @param string $fallback The page type to fall back to.
+         *
+         * @return string The page type.
+         */
+        public function determine_for_archive($name, $fallback = 'custom-post-type_archive')
+        {
+        }
+        /**
+         * Retrieves the recommended replacement variables for the given page type.
+         *
+         * @param string $page_type The page type.
+         *
+         * @return array The recommended replacement variables.
+         */
+        public function get_recommended_replacevars_for($page_type)
+        {
+        }
+        /**
+         * Retrieves the recommended replacement variables.
+         *
+         * @return array The recommended replacement variables.
+         */
+        public function get_recommended_replacevars()
+        {
+        }
+        /**
+         * Returns whether the given page type has recommended replace vars.
+         *
+         * @param array  $recommended_replace_vars The recommended replace vars
+         *                                         to check in.
+         * @param string $page_type                The page type to check.
+         *
+         * @return bool True if there are associated recommended replace vars.
+         */
+        private function has_recommended_replace_vars($recommended_replace_vars, $page_type)
+        {
+        }
+        /**
+         * Determines whether or not a post is the homepage.
+         *
+         * @param WP_Post $post The WordPress global post object.
+         *
+         * @return bool True if the given post is the homepage.
+         */
+        private function is_homepage($post)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     * @since   1.8.0
+     */
+    /**
+     * Customizes user profile.
+     */
+    class WPSEO_Admin_User_Profile
+    {
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Clear author sitemap cache when settings are changed.
+         *
+         * @since 3.1
+         *
+         * @param int    $meta_id   The ID of the meta option changed.
+         * @param int    $object_id The ID of the user.
+         * @param string $meta_key  The key of the meta field changed.
+         */
+        public function clear_author_sitemap_cache($meta_id, $object_id, $meta_key)
+        {
+        }
+        /**
+         * Filter POST variables.
+         *
+         * @param string $var_name Name of the variable to filter.
+         *
+         * @return mixed
+         */
+        private function filter_input_post($var_name)
+        {
+        }
+        /**
+         * Updates the user metas that (might) have been set on the user profile page.
+         *
+         * @param int $user_id User ID of the updated user.
+         */
+        public function process_user_option_update($user_id)
+        {
+        }
+        /**
+         * Add the inputs needed for SEO values to the User Profile page.
+         *
+         * @param WP_User $user User instance to output for.
+         */
+        public function user_profile($user)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the utils for the admin.
+     */
+    class WPSEO_Admin_Utils
+    {
+        /**
+         * Gets the install URL for the passed plugin slug.
+         *
+         * @param string $slug The slug to create an install link for.
+         *
+         * @return string The install URL. Empty string if the current user doesn't have the proper capabilities.
+         */
+        public static function get_install_url($slug)
+        {
+        }
+        /**
+         * Gets the activation URL for the passed plugin slug.
+         *
+         * @param string $slug The slug to create an activation link for.
+         *
+         * @return string The activation URL. Empty string if the current user doesn't have the proper capabilities.
+         */
+        public static function get_activation_url($slug)
+        {
+        }
+        /**
+         * Creates a link if the passed plugin is deemend a directly-installable plugin.
+         *
+         * @param array $plugin The plugin to create the link for.
+         *
+         * @return string The link to the plugin install. Returns the title if the plugin is deemed a Premium product.
+         */
+        public static function get_install_link($plugin)
+        {
+        }
+        /**
+         * Gets a visually hidden accessible message for links that open in a new browser tab.
+         *
+         * @return string The visually hidden accessible message.
+         */
+        public static function get_new_tab_message()
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Determines whether or not the user has an invalid version of PHP installed.
+         *
+         * @deprecated 8.1
+         * @codeCoverageIgnore
+         *
+         * @return bool Whether or not PHP 5.2 or lower is installed.
+         */
+        public static function is_supported_php_version_installed()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class that holds most of the admin functionality for Yoast SEO.
+     */
+    class WPSEO_Admin
+    {
+        /**
+         * The page identifier used in WordPress to register the admin page.
+         *
+         * !DO NOT CHANGE THIS!
+         *
+         * @var string
+         */
+        const PAGE_IDENTIFIER = 'wpseo_dashboard';
+        /**
+         * Array of classes that add admin functionality.
+         *
+         * @var array
+         */
+        protected $admin_features;
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Schedules a rewrite flush to happen at shutdown.
+         */
+        public function schedule_rewrite_flush()
+        {
+        }
+        /**
+         * Returns all the classes for the admin features.
+         *
+         * @return array
+         */
+        public function get_admin_features()
+        {
+        }
+        /**
+         * Register assets needed on admin pages.
+         */
+        public function enqueue_assets()
+        {
+        }
+        /**
+         * Returns the manage_options capability.
+         *
+         * @return string The capability to use.
+         */
+        public function get_manage_options_cap()
+        {
+        }
+        /**
+         * Maps the manage_options cap on saving an options page to wpseo_manage_options.
+         */
+        public function map_manage_options_cap()
+        {
+        }
+        /**
+         * Adds the ability to choose how many posts are displayed per page
+         * on the bulk edit pages.
+         */
+        public function bulk_edit_options()
+        {
+        }
+        /**
+         * Saves the posts per page limit for bulk edit pages.
+         *
+         * @param int    $status Status value to pass through.
+         * @param string $option Option name.
+         * @param int    $value  Count value to check.
+         *
+         * @return int
+         */
+        public function save_bulk_edit_options($status, $option, $value)
+        {
+        }
+        /**
+         * Adds links to Premium Support and FAQ under the plugin in the plugin overview page.
+         *
+         * @staticvar string $this_plugin Holds the directory & filename for the plugin.
+         *
+         * @param array  $links Array of links for the plugins, adapted when the current plugin is found.
+         * @param string $file  The filename for the current plugin, which the filter loops through.
+         *
+         * @return array $links
+         */
+        public function add_action_link($links, $file)
+        {
+        }
+        /**
+         * Enqueues the (tiny) global JS needed for the plugin.
+         */
+        public function config_page_scripts()
+        {
+        }
+        /**
+         * Enqueues the (tiny) global stylesheet needed for the plugin.
+         */
+        public function enqueue_global_style()
+        {
+        }
+        /**
+         * Filter the $contactmethods array and add a set of social profiles.
+         *
+         * These are used with the Facebook author, rel="author" and Twitter cards implementation.
+         *
+         * @link https://developers.google.com/search/docs/data-types/social-profile
+         *
+         * @param array $contactmethods Currently set contactmethods.
+         *
+         * @return array $contactmethods with added contactmethods.
+         */
+        public function update_contactmethods($contactmethods)
+        {
+        }
+        /**
+         * Log the updated timestamp for user profiles when theme is changed.
+         */
+        public function switch_theme()
+        {
+        }
+        /**
+         * Localization for the dismiss urls.
+         *
+         * @return array
+         */
+        private function localize_admin_global_script()
+        {
+        }
+        /**
+         * Extending the current page URL with two params to be able to ignore the notice.
+         *
+         * @param string $dismiss_param The param used to dismiss the notification.
+         *
+         * @return string
+         */
+        private function get_dismiss_url($dismiss_param)
+        {
+        }
+        /**
+         * Sets the upsell notice.
+         */
+        protected function set_upsell_notice()
+        {
+        }
+        /**
+         * Whether we are on the admin dashboard page.
+         *
+         * @returns bool
+         */
+        protected function on_dashboard_page()
+        {
+        }
+        /**
+         * Loads the cornerstone filter.
+         *
+         * @return WPSEO_WordPress_Integration[] The integrations to initialize.
+         */
+        protected function initialize_cornerstone_content()
+        {
+        }
+        /**
+         * Initializes the seo link watcher.
+         *
+         * @returns WPSEO_WordPress_Integration[]
+         */
+        protected function initialize_seo_links()
+        {
+        }
+        /**
+         * Retrieves an instance of the HelpScout beacon class for Yoast SEO.
+         *
+         * @return WPSEO_HelpScout The instance of the HelpScout beacon.
+         */
+        private function get_helpscout_beacon()
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Cleans stopwords out of the slug, if the slug hasn't been set yet.
+         *
+         * @deprecated 7.0
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function remove_stopwords_from_slug()
+        {
+        }
+        /**
+         * Filter the stopwords from the slug.
+         *
+         * @deprecated 7.0
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function filter_stopwords_from_slug()
+        {
+        }
+        /**
+         * Initializes WHIP to show a notice for outdated PHP versions.
+         *
+         * @deprecated 8.1
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function check_php_version()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents a WPSEO asset
+     */
+    class WPSEO_Admin_Asset
+    {
+        /**
+         * Constant used to identify file type as a JS file.
+         *
+         * @var string
+         */
+        const TYPE_JS = 'js';
+        /**
+         * Constant used to identify file type as a CSS file.
+         *
+         * @var string
+         */
+        const TYPE_CSS = 'css';
+        /**
+         * The name option identifier.
+         *
+         * @var string
+         */
+        const NAME = 'name';
+        /**
+         * The source option identifier.
+         *
+         * @var string
+         */
+        const SRC = 'src';
+        /**
+         * The dependencies option identifier.
+         *
+         * @var string
+         */
+        const DEPS = 'deps';
+        /**
+         * The version option identifier.
+         *
+         * @var string
+         */
+        const VERSION = 'version';
+        /* Style specific. */
+        /**
+         * The media option identifier.
+         *
+         * @var string
+         */
+        const MEDIA = 'media';
+        /**
+         * The rtl option identifier.
+         *
+         * @var string
+         */
+        const RTL = 'rtl';
+        /* Script specific. */
+        /**
+         * The "in footer" option identifier.
+         *
+         * @var string
+         */
+        const IN_FOOTER = 'in_footer';
+        /**
+         * Asset identifier.
+         *
+         * @var string
+         */
+        protected $name;
+        /**
+         * Path to the asset.
+         *
+         * @var string
+         */
+        protected $src;
+        /**
+         * Asset dependencies.
+         *
+         * @var string|array
+         */
+        protected $deps;
+        /**
+         * Asset version.
+         *
+         * @var string
+         */
+        protected $version;
+        /**
+         * For CSS Assets. The type of media for which this stylesheet has been defined.
+         *
+         * See https://www.w3.org/TR/CSS2/media.html#media-types.
+         *
+         * @var string
+         */
+        protected $media;
+        /**
+         * For JS Assets. Whether or not the script should be loaded in the footer.
+         *
+         * @var boolean
+         */
+        protected $in_footer;
+        /**
+         * For CSS Assets. Whether this stylesheet is a right-to-left stylesheet.
+         *
+         * @var boolean
+         */
+        protected $rtl;
+        /**
+         * File suffix.
+         *
+         * @var string
+         */
+        protected $suffix;
+        /**
+         * Default asset arguments.
+         *
+         * @var array
+         */
+        private $defaults = ['deps' => [], 'version' => \WPSEO_VERSION, 'in_footer' => \true, 'rtl' => \true, 'media' => 'all'];
+        /**
+         * Constructs an instance of the WPSEO_Admin_Asset class.
+         *
+         * @param array $args The arguments for this asset.
+         *
+         * @throws InvalidArgumentException Throws when no name or src has been provided.
+         */
+        public function __construct(array $args)
+        {
+        }
+        /**
+         * Returns the asset identifier.
+         *
+         * @return string
+         */
+        public function get_name()
+        {
+        }
+        /**
+         * Returns the path to the asset.
+         *
+         * @return string
+         */
+        public function get_src()
+        {
+        }
+        /**
+         * Returns the asset dependencies.
+         *
+         * @return array|string
+         */
+        public function get_deps()
+        {
+        }
+        /**
+         * Returns the asset version.
+         *
+         * @return string
+         */
+        public function get_version()
+        {
+        }
+        /**
+         * Returns the media type for CSS assets.
+         *
+         * @return string
+         */
+        public function get_media()
+        {
+        }
+        /**
+         * Returns whether a script asset should be loaded in the footer of the page.
+         *
+         * @return boolean
+         */
+        public function is_in_footer()
+        {
+        }
+        /**
+         * Returns whether this CSS has a RTL counterpart.
+         *
+         * @return boolean
+         */
+        public function has_rtl()
+        {
+        }
+        /**
+         * Returns the file suffix.
+         *
+         * @return string
+         */
+        public function get_suffix()
+        {
+        }
+        /**
+         * Returns the full URL for this asset based on the path to the plugin file.
+         *
+         * @deprecated 6.2
+         * @codeCoverageIgnore
+         *
+         * @param string $type        Type of asset.
+         * @param string $plugin_file Absolute path to the plugin file.
+         *
+         * @return string The full URL to the asset.
+         */
+        public function get_url($type, $plugin_file)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Bulk Editor
+     * @since   1.5.0
+     */
+    /**
+     * Implements table for bulk editing.
+     */
+    class WPSEO_Bulk_List_Table extends \WP_List_Table
+    {
+        /**
+         * The nonce that was passed with the request.
+         *
+         * @var string
+         */
+        private $nonce;
+        /**
+         * Array of post types for which the current user has `edit_others_posts` capabilities.
+         *
+         * @var array
+         */
+        private $all_posts;
+        /**
+         * Array of post types for which the current user has `edit_posts` capabilities, but not `edit_others_posts`.
+         *
+         * @var array
+         */
+        private $own_posts;
+        /**
+         * Saves all the metadata into this array.
+         *
+         * @var array
+         */
+        protected $meta_data = [];
+        /**
+         * The current requested page_url.
+         *
+         * @var string
+         */
+        private $request_url = '';
+        /**
+         * The current page (depending on $_GET['paged']) if current tab is for current page_type, else it will be 1.
+         *
+         * @var integer
+         */
+        private $current_page;
+        /**
+         * The current post filter, if is used (depending on $_GET['post_type_filter']).
+         *
+         * @var string
+         */
+        private $current_filter;
+        /**
+         * The current post status, if is used (depending on $_GET['post_status']).
+         *
+         * @var string
+         */
+        private $current_status;
+        /**
+         * The current sorting, if used (depending on $_GET['order'] and $_GET['orderby']).
+         *
+         * @var string
+         */
+        private $current_order;
+        /**
+         * The page_type for current class instance (for example: title / description).
+         *
+         * @var string
+         */
+        protected $page_type;
+        /**
+         * Based on the page_type ($this->page_type) there will be constructed an url part, for subpages and
+         * navigation.
+         *
+         * @var string
+         */
+        protected $page_url;
+        /**
+         * The settings which will be used in the __construct.
+         *
+         * @var array
+         */
+        protected $settings;
+        /**
+         * Holds the pagination config.
+         *
+         * @var array
+         */
+        protected $pagination = [];
+        /**
+         * Holds the sanitized data from the user input.
+         *
+         * @var array
+         */
+        protected $input_fields = [];
+        /**
+         * Class constructor.
+         *
+         * @param array $args The arguments.
+         */
+        public function __construct($args = [])
+        {
+        }
+        /**
+         * Prepares the data and renders the page.
+         */
+        public function show_page()
+        {
+        }
+        /**
+         * Used in the constructor to build a reference list of post types the current user can edit.
+         */
+        protected function populate_editable_post_types()
+        {
+        }
+        /**
+         * Will show the navigation for the table like pagenavigation and pagefilter.
+         *
+         * @param string $which Table nav location (such as top).
+         */
+        public function display_tablenav($which)
+        {
+        }
+        /**
+         * This function builds the base sql subquery used in this class.
+         *
+         * This function takes into account the post types in which the current user can
+         * edit all posts, and the ones the current user can only edit his/her own.
+         *
+         * @return string The subquery, which should always be used in $wpdb->prepare(),
+         *                passing the current user_id in as the first parameter.
+         */
+        public function get_base_subquery()
+        {
+        }
+        /**
+         * Gets the views.
+         *
+         * @return array The views.
+         */
+        public function get_views()
+        {
+        }
+        /**
+         * Outputs extra table navigation.
+         *
+         * @param string $which Table nav location (such as top).
+         */
+        public function extra_tablenav($which)
+        {
+        }
+        /**
+         * Gets a list of sortable columns.
+         *
+         * The format is: 'internal-name' => array( 'orderby', bool ).
+         *
+         * @return array
+         */
+        public function get_sortable_columns()
+        {
+        }
+        /**
+         * Sets the correct pagenumber and pageurl for the navigation.
+         */
+        public function prepare_page_navigation()
+        {
+        }
+        /**
+         * Preparing the requested pagerows and setting the needed variables.
+         */
+        public function prepare_items()
+        {
+        }
+        /**
+         * Getting the columns for first row.
+         *
+         * @return array
+         */
+        public function get_columns()
+        {
+        }
+        /**
+         * Setting the column headers.
+         */
+        protected function set_column_headers()
+        {
+        }
+        /**
+         * Counting total items.
+         *
+         * @param string $subquery         SQL FROM part.
+         * @param string $all_states       SQL IN part.
+         * @param string $post_type_clause SQL post type part.
+         *
+         * @return mixed
+         */
+        protected function count_items($subquery, $all_states, $post_type_clause)
+        {
+        }
+        /**
+         * Getting the post_type_clause filter.
+         *
+         * @return string
+         */
+        protected function get_post_type_clause()
+        {
+        }
+        /**
+         * Setting the pagination.
+         *
+         * Total items is the number of all visible items.
+         *
+         * @param int $total_items Total items counts.
+         */
+        protected function set_pagination($total_items)
+        {
+        }
+        /**
+         * Parse the query to get items from database.
+         *
+         * Based on given parameters there will be parse a query which will get all the pages/posts and other post_types
+         * from the database.
+         *
+         * @param string $subquery         SQL FROM part.
+         * @param string $all_states       SQL IN part.
+         * @param string $post_type_clause SQL post type part.
+         *
+         * @return string
+         */
+        protected function parse_item_query($subquery, $all_states, $post_type_clause)
+        {
+        }
+        /**
+         * Heavily restricts the possible columns by which a user can order the table
+         * in the bulk editor, thereby preventing a possible CSRF vulnerability.
+         *
+         * @param string $orderby The column by which we want to order.
+         *
+         * @return string $orderby
+         */
+        protected function sanitize_orderby($orderby)
+        {
+        }
+        /**
+         * Makes sure the order clause is always ASC or DESC for the bulk editor table,
+         * thereby preventing a possible CSRF vulnerability.
+         *
+         * @param string $order Whether we want to sort ascending or descending.
+         *
+         * @return string $order SQL order string (ASC, DESC).
+         */
+        protected function sanitize_order($order)
+        {
+        }
+        /**
+         * Getting all the items.
+         *
+         * @param string $query SQL query to use.
+         */
+        protected function get_items($query)
+        {
+        }
+        /**
+         * Getting all the states.
+         *
+         * @return string
+         */
+        protected function get_all_states()
+        {
+        }
+        /**
+         * Based on $this->items and the defined columns, the table rows will be displayed.
+         */
+        public function display_rows()
+        {
+        }
+        /**
+         * Getting the attributes for each table cell.
+         *
+         * @param string $column_name         Column name string.
+         * @param array  $hidden              Set of hidden columns.
+         * @param string $classes             Additional CSS classes.
+         * @param string $column_display_name Column display name string.
+         *
+         * @return string
+         */
+        protected function column_attributes($column_name, $hidden, $classes, $column_display_name)
+        {
+        }
+        /**
+         * Parsing the title.
+         *
+         * @param WP_Post $rec Post object.
+         *
+         * @return string
+         */
+        protected function parse_page_title_column($rec)
+        {
+        }
+        /**
+         * Parsing the column based on the $column_name.
+         *
+         * @param string  $column_name Column name.
+         * @param WP_Post $rec         Post object.
+         *
+         * @return string
+         */
+        protected function parse_column($column_name, $rec)
+        {
+        }
+        /**
+         * Parse the field where the existing meta-data value is displayed.
+         *
+         * @param integer    $record_id  Record ID.
+         * @param string     $attributes HTML attributes.
+         * @param bool|array $values     Optional values data array.
+         *
+         * @return string
+         */
+        protected function parse_meta_data_field($record_id, $attributes, $values = \false)
+        {
+        }
+        /**
+         * Method for setting the meta data, which belongs to the records that will be shown on the current page.
+         *
+         * This method will loop through the current items ($this->items) for getting the post_id. With this data
+         * ($needed_ids) the method will query the meta-data table for getting the title.
+         */
+        protected function get_meta_data()
+        {
+        }
+        /**
+         * Getting all post_ids from to $this->items.
+         *
+         * @return string
+         */
+        protected function get_post_ids()
+        {
+        }
+        /**
+         * Getting the meta_data from database.
+         *
+         * @param string $post_ids Post IDs string for SQL IN part.
+         *
+         * @return mixed
+         */
+        protected function get_meta_data_result($post_ids)
+        {
+        }
+        /**
+         * Setting $this->meta_data.
+         *
+         * @param array $meta_data Meta data set.
+         */
+        protected function parse_meta_data($meta_data)
+        {
+        }
+        /**
+         * This method will merge general array with given parameter $columns.
+         *
+         * @param array $columns Optional columns set.
+         *
+         * @return array
+         */
+        protected function merge_columns($columns = [])
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Bulk Editor
+     * @since   1.5.0
+     */
+    /**
+     * Implements table for bulk description editing.
+     */
+    class WPSEO_Bulk_Description_List_Table extends \WPSEO_Bulk_List_Table
+    {
+        /**
+         * Current type for this class will be (meta) description.
+         *
+         * @var string
+         */
+        protected $page_type = 'description';
+        /**
+         * Settings with are used in __construct.
+         *
+         * @var array
+         */
+        protected $settings = ['singular' => 'wpseo_bulk_description', 'plural' => 'wpseo_bulk_descriptions', 'ajax' => \true];
+        /**
+         * The field in the database where meta field is saved.
+         *
+         * @var string
+         */
+        protected $target_db_field = 'metadesc';
+        /**
+         * The columns shown on the table.
+         *
+         * @return array
+         */
+        public function get_columns()
+        {
+        }
+        /**
+         * Parse the metadescription.
+         *
+         * @param string $column_name Column name.
+         * @param object $record      Data object.
+         * @param string $attributes  HTML attributes.
+         *
+         * @return string
+         */
+        protected function parse_page_specific_column($column_name, $record, $attributes)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Bulk Editor
+     * @since   1.5.0
+     */
+    /**
+     * Implements table for bulk title editing.
+     */
+    class WPSEO_Bulk_Title_Editor_List_Table extends \WPSEO_Bulk_List_Table
+    {
+        /**
+         * Current type for this class will be title.
+         *
+         * @var string
+         */
+        protected $page_type = 'title';
+        /**
+         * Settings with are used in __construct.
+         *
+         * @var array
+         */
+        protected $settings = ['singular' => 'wpseo_bulk_title', 'plural' => 'wpseo_bulk_titles', 'ajax' => \true];
+        /**
+         * The field in the database where meta field is saved.
+         *
+         * @var string
+         */
+        protected $target_db_field = 'title';
+        /**
+         * The columns shown on the table.
+         *
+         * @return array
+         */
+        public function get_columns()
+        {
+        }
+        /**
+         * Parse the title columns.
+         *
+         * @param string $column_name Column name.
+         * @param object $record      Data object.
+         * @param string $attributes  HTML attributes.
+         *
+         * @return string
+         */
+        protected function parse_page_specific_column($column_name, $record, $attributes)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Collects the data from the added collection objects.
+     */
+    class WPSEO_Collector
+    {
+        /**
+         * Holds the collections.
+         *
+         * @var WPSEO_Collection[]
+         */
+        protected $collections = [];
+        /**
+         * Adds a collection object to the collections.
+         *
+         * @param WPSEO_Collection $collection The collection object to add.
+         */
+        public function add_collection(\WPSEO_Collection $collection)
+        {
+        }
+        /**
+         * Collects the data from the collection objects.
+         *
+         * @return array The collected data.
+         */
+        public function collect()
+        {
+        }
+        /**
+         * Returns the collected data as a JSON encoded string.
+         *
+         * @return false|string The encode string.
+         */
+        public function get_as_json()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_Admin_Pages.
+     *
+     * Class with functionality for the Yoast SEO admin pages.
+     */
+    class WPSEO_Admin_Pages
+    {
+        /**
+         * The option in use for the current admin page.
+         *
+         * @var string
+         */
+        public $currentoption = 'wpseo';
+        /**
+         * Holds the asset manager.
+         *
+         * @var WPSEO_Admin_Asset_Manager
+         */
+        private $asset_manager;
+        /**
+         * Class constructor, which basically only hooks the init function on the init hook.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Make sure the needed scripts are loaded for admin pages.
+         */
+        public function init()
+        {
+        }
+        /**
+         * Loads the required styles for the config page.
+         */
+        public function config_page_styles()
+        {
+        }
+        /**
+         * Loads the required scripts for the config page.
+         */
+        public function config_page_scripts()
+        {
+        }
+        /**
+         * Retrieves some variables that are needed for the upload module in JS.
+         *
+         * @return array The upload module variables.
+         */
+        public function localize_media_script()
+        {
+        }
+        /**
+         * Retrieves some variables that are needed for replacing variables in JS.
+         *
+         * @return array The replacement and recommended replacement variables.
+         */
+        public function localize_replace_vars_script()
+        {
+        }
+        /**
+         * Retrieves some variables that are needed for the search appearance in JS.
+         *
+         * @return array The search appearance variables.
+         */
+        public function localize_search_appearance_script()
+        {
+        }
+        /**
+         * Determines whether the Local SEO upsell should be shown.
+         *
+         * The Local SEO upsell should:
+         * - Only be shown in Free, not when Premium is active.
+         * - Not be shown when Local SEO is active.
+         *
+         * @return bool Whether the Local SEO upsell should be shown.
+         */
+        private function should_show_local_seo_upsell()
+        {
+        }
+        /**
+         * Enqueues and handles all the tool dependencies.
+         */
+        private function enqueue_tools_scripts()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Customizer
+     */
+    /**
+     * Class with functionality to support WP SEO settings in WordPress Customizer.
+     */
+    class WPSEO_Customizer
+    {
+        /**
+         * Holds the customize manager.
+         *
+         * @var WP_Customize_Manager
+         */
+        protected $wp_customize;
+        /**
+         * Template for the setting IDs used for the customizer.
+         *
+         * @var string
+         */
+        private $setting_template = 'wpseo_titles[%s]';
+        /**
+         * Default arguments for the breadcrumbs customizer settings object.
+         *
+         * @var array
+         */
+        private $default_setting_args = ['default' => '', 'type' => 'option', 'transport' => 'refresh'];
+        /**
+         * Default arguments for the breadcrumbs customizer control object.
+         *
+         * @var array
+         */
+        private $default_control_args = ['label' => '', 'type' => 'text', 'section' => 'wpseo_breadcrumbs_customizer_section', 'settings' => '', 'context' => ''];
+        /**
+         * Construct Method.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Function to support WordPress Customizer.
+         *
+         * @param WP_Customize_Manager $wp_customize Manager class instance.
+         */
+        public function wpseo_customize_register($wp_customize)
+        {
+        }
+        /**
+         * Add the breadcrumbs section to the customizer.
+         */
+        private function breadcrumbs_section()
+        {
+        }
+        /**
+         * Returns whether or not the breadcrumbs are active.
+         *
+         * @return bool
+         */
+        public function breadcrumbs_active_callback()
+        {
+        }
+        /**
+         * Adds the breadcrumbs show blog checkbox.
+         */
+        private function breadcrumbs_blog_show_setting()
+        {
+        }
+        /**
+         * Returns whether or not to show the breadcrumbs blog show option.
+         *
+         * @return bool
+         */
+        public function breadcrumbs_blog_show_active_cb()
+        {
+        }
+        /**
+         * Adds the breadcrumbs separator text field.
+         */
+        private function breadcrumbs_separator_setting()
+        {
+        }
+        /**
+         * Adds the breadcrumbs home anchor text field.
+         */
+        private function breadcrumbs_home_setting()
+        {
+        }
+        /**
+         * Adds the breadcrumbs prefix text field.
+         */
+        private function breadcrumbs_prefix_setting()
+        {
+        }
+        /**
+         * Adds the breadcrumbs archive prefix text field.
+         */
+        private function breadcrumbs_archiveprefix_setting()
+        {
+        }
+        /**
+         * Adds the breadcrumbs search prefix text field.
+         */
+        private function breadcrumbs_searchprefix_setting()
+        {
+        }
+        /**
+         * Adds the breadcrumb 404 prefix text field.
+         */
+        private function breadcrumbs_404_setting()
+        {
+        }
+        /**
+         * Adds the customizer setting and control.
+         *
+         * @param string $index           Array key index to use for the customizer setting.
+         * @param array  $control_args    Customizer control object arguments.
+         *                                Only those different from the default need to be passed.
+         * @param string $id              Optional. Customizer control object ID.
+         *                                Will default to 'wpseo-' . $index.
+         * @param array  $custom_settings Optional. Customizer setting arguments.
+         *                                Only those different from the default need to be passed.
+         */
+        private function add_setting_and_control($index, $control_args, $id = \null, $custom_settings = [])
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the proxy for communicating with the database.
+     */
+    class WPSEO_Database_Proxy
+    {
+        /**
+         * Holds the table name.
+         *
+         * @var string
+         */
+        protected $table_name;
+        /**
+         * Determines whether to suppress errors or not.
+         *
+         * @var bool
+         */
+        protected $suppress_errors = \true;
+        /**
+         * Determines if this table is multisite.
+         *
+         * @var bool
+         */
+        protected $is_multisite_table = \false;
+        /**
+         * Holds the last suppressed state.
+         *
+         * @var bool
+         */
+        protected $last_suppressed_state;
+        /**
+         * Holds the WordPress database object.
+         *
+         * @var wpdb
+         */
+        protected $database;
+        /**
+         * Sets the class attributes and registers the table.
+         *
+         * @param wpdb   $database           The database object.
+         * @param string $table_name         The table name that is represented.
+         * @param bool   $suppress_errors    Should the errors be suppressed.
+         * @param bool   $is_multisite_table Should the table be global in multisite.
+         */
+        public function __construct($database, $table_name, $suppress_errors = \true, $is_multisite_table = \false)
+        {
+        }
+        /**
+         * Inserts data into the database.
+         *
+         * @param array $data   Data to insert.
+         * @param null  $format Formats for the data.
+         *
+         * @return false|int Total amount of inserted rows or false on error.
+         */
+        public function insert(array $data, $format = \null)
+        {
+        }
+        /**
+         * Updates data in the database.
+         *
+         * @param array $data         Data to update on the table.
+         * @param array $where        Where condition as key => value array.
+         * @param null  $format       Optional. data prepare format.
+         * @param null  $where_format Optional. Where prepare format.
+         *
+         * @return false|int False when the update request is invalid, int on number of rows changed.
+         */
+        public function update(array $data, array $where, $format = \null, $where_format = \null)
+        {
+        }
+        /**
+         * Upserts data in the database.
+         *
+         * Performs an insert into and if key is duplicate it will update the existing record.
+         *
+         * @param array $data         Data to update on the table.
+         * @param array $where        Unused. Where condition as key => value array.
+         * @param null  $format       Optional. Data prepare format.
+         * @param null  $where_format Deprecated. Where prepare format.
+         *
+         * @return false|int False when the upsert request is invalid, int on number of rows changed.
+         */
+        public function upsert(array $data, array $where = \null, $format = \null, $where_format = \null)
+        {
+        }
+        /**
+         * Deletes a record from the database.
+         *
+         * @param array      $where  Where clauses for the query.
+         * @param null|array $format Formats for the data.
+         *
+         * @return false|int
+         */
+        public function delete(array $where, $format = \null)
+        {
+        }
+        /**
+         * Executes the given query and returns the results.
+         *
+         * @param string $query The query to execute.
+         *
+         * @return array|null|object The resultset
+         */
+        public function get_results($query)
+        {
+        }
+        /**
+         * Creates a table to the database.
+         *
+         * @param array $columns The columns to create.
+         * @param array $indexes The indexes to use.
+         *
+         * @return bool True when creation is successful.
+         */
+        public function create_table(array $columns, array $indexes = [])
+        {
+        }
+        /**
+         * Checks if there is an error.
+         *
+         * @return bool Returns true when there is an error.
+         */
+        public function has_error()
+        {
+        }
+        /**
+         * Executed before a query will be ran.
+         */
+        protected function pre_execution()
+        {
+        }
+        /**
+         * Executed after a query has been ran.
+         */
+        protected function post_execution()
+        {
+        }
+        /**
+         * Returns the full table name.
+         *
+         * @return string Full table name including prefix.
+         */
+        public function get_table_name()
+        {
+        }
+        /**
+         * Returns the prefix to use for the table.
+         *
+         * @return string The table prefix depending on the database context.
+         */
+        protected function get_table_prefix()
+        {
+        }
+        /**
+         * Registers the table with WordPress.
+         *
+         * @return void
+         */
+        protected function register_table()
+        {
+        }
+        /**
+         * Checks if the table has been registered with WordPress.
+         *
+         * @return bool True if the table is registered, false otherwise.
+         */
+        protected function is_table_registered()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Export
+     */
+    /**
+     * Class WPSEO_Export.
+     *
+     * Class with functionality to export the WP SEO settings.
+     */
+    class WPSEO_Export
+    {
+        /**
+         * Holds the nonce action.
+         *
+         * @var string
+         */
+        const NONCE_ACTION = 'wpseo_export';
+        /**
+         * Holds the export data.
+         *
+         * @var string
+         */
+        private $export = '';
+        /**
+         * Holds whether the export was a success.
+         *
+         * @var boolean
+         */
+        public $success;
+        /**
+         * Handles the export request.
+         */
+        public function export()
+        {
+        }
+        /**
+         * Outputs the export.
+         */
+        public function output()
+        {
+        }
+        /**
+         * Exports the current site's WP SEO settings.
+         */
+        private function export_settings()
+        {
+        }
+        /**
+         * Writes the header of the export.
+         */
+        private function export_header()
+        {
+        }
+        /**
+         * Writes a line to the export.
+         *
+         * @param string  $line          Line string.
+         * @param boolean $newline_first Boolean flag whether to prepend with new line.
+         */
+        private function write_line($line, $newline_first = \false)
+        {
+        }
+        /**
+         * Writes an entire option group to the export.
+         *
+         * @param string $opt_group Option group name.
+         */
+        private function write_opt_group($opt_group)
+        {
+        }
+        /**
+         * Writes a settings line to the export.
+         *
+         * @param string $key Key string.
+         * @param string $val Value string.
+         */
+        private function write_setting($key, $val)
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Returns true when the property error has a value.
+         *
+         * @deprecated 11.9 Obsolete since the export setting refactor in 9.2.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return bool
+         */
+        public function has_error()
+        {
+        }
+        /**
+         * Sets the error hook, to display the error to the user.
+         *
+         * @deprecated 11.9 Obsolete since the export setting refactor in 9.2.
+         *
+         * @codeCoverageIgnore
+         */
+        public function set_error_hook()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Exposes shortlinks in a global, so that we can pass them to our Javascript components.
+     */
+    class WPSEO_Expose_Shortlinks implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Array containing the keys and shortlinks.
+         *
+         * @var array
+         */
+        private $shortlinks = ['shortlinks.focus_keyword_info' => 'https://yoa.st/focus-keyword', 'shortlinks.snippet_preview_info' => 'https://yoa.st/snippet-preview', 'shortlinks.cornerstone_content_info' => 'https://yoa.st/1i9', 'shortlinks.upsell.sidebar.focus_keyword_synonyms_link' => 'https://yoa.st/textlink-synonyms-popup-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_synonyms_button' => 'https://yoa.st/keyword-synonyms-popup-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_additional_link' => 'https://yoa.st/textlink-keywords-popup-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_additional_button' => 'https://yoa.st/add-keywords-popup-sidebar', 'shortlinks.upsell.sidebar.additional_link' => 'https://yoa.st/textlink-keywords-sidebar', 'shortlinks.upsell.sidebar.additional_button' => 'https://yoa.st/add-keywords-sidebar', 'shortlinks.upsell.metabox.go_premium' => 'https://yoa.st/pe-premium-page', 'shortlinks.upsell.metabox.focus_keyword_synonyms_link' => 'https://yoa.st/textlink-synonyms-popup-metabox', 'shortlinks.upsell.metabox.focus_keyword_synonyms_button' => 'https://yoa.st/keyword-synonyms-popup', 'shortlinks.upsell.metabox.focus_keyword_additional_link' => 'https://yoa.st/textlink-keywords-popup-metabox', 'shortlinks.upsell.metabox.focus_keyword_additional_button' => 'https://yoa.st/add-keywords-popup', 'shortlinks.upsell.metabox.additional_link' => 'https://yoa.st/textlink-keywords-metabox', 'shortlinks.upsell.metabox.additional_button' => 'https://yoa.st/add-keywords-metabox', 'shortlinks.upsell.gsc.create_redirect_button' => 'https://yoa.st/redirects', 'shortlinks.readability_analysis_info' => 'https://yoa.st/readability-analysis', 'shortlinks.activate_premium_info' => 'https://yoa.st/activate-subscription', 'shortlinks.upsell.sidebar.morphology_upsell_metabox' => 'https://yoa.st/morphology-upsell-metabox', 'shortlinks.upsell.sidebar.morphology_upsell_sidebar' => 'https://yoa.st/morphology-upsell-sidebar'];
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds shortlinks to the passed array.
+         *
+         * @param array $input The array to add shortlinks to.
+         *
+         * @return array The passed array with the additional shortlinks.
+         */
+        public function expose_shortlinks($input)
+        {
+        }
+        /**
+         * Retrieves the shortlinks.
+         *
+         * @return array The shortlinks.
+         */
+        private function get_shortlinks()
+        {
+        }
+        /**
+         * Checks if the current page is a term edit page.
+         *
+         * @return bool True when page is term edit.
+         */
+        private function is_term_edit()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the class that contains the available extensions for Yoast SEO.
+     */
+    class WPSEO_Extension_Manager
+    {
+        /**
+         * The transient key to save the cache in.
+         *
+         * @var string
+         */
+        const TRANSIENT_CACHE_KEY = 'wpseo_license_active_extensions';
+        /**
+         * Holds the extensions to manage.
+         *
+         * @var WPSEO_Extension[]
+         */
+        protected $extensions = [];
+        /**
+         * List of active plugins.
+         *
+         * @var array
+         */
+        protected static $active_extensions;
+        /**
+         * Adds an extension to the manager.
+         *
+         * @param string          $extension_name The extension name.
+         * @param WPSEO_Extension $extension      The extension value object.
+         *
+         * @return void
+         */
+        public function add($extension_name, \WPSEO_Extension $extension = \null)
+        {
+        }
+        /**
+         * Removes an extension from the manager.
+         *
+         * @param string $extension_name The name of the extension to remove.
+         *
+         * @return void
+         */
+        public function remove($extension_name)
+        {
+        }
+        /**
+         * Returns the extension for the given extension name.
+         *
+         * @param string $extension_name The name of the extension to get.
+         *
+         * @return null|WPSEO_Extension The extension object or null when it doesn't exist.
+         */
+        public function get($extension_name)
+        {
+        }
+        /**
+         * Returns all set extension.
+         *
+         * @return WPSEO_Extension[] Array with the extensions.
+         */
+        public function get_all()
+        {
+        }
+        /**
+         * Checks if the plugin is activated within My Yoast.
+         *
+         * @param string $extension_name The extension name to check.
+         *
+         * @return bool True when the plugin is activated.
+         */
+        public function is_activated($extension_name)
+        {
+        }
+        /**
+         * Retrieves the active extensions via an external request.
+         *
+         * @return array Array containing the active extensions.
+         */
+        protected function retrieve_active_extensions()
+        {
+        }
+        /**
+         * Returns the current page.
+         *
+         * @return string The current page.
+         */
+        protected function get_current_page()
+        {
+        }
+        /**
+         * Gets a cached list of active extensions.
+         *
+         * @return boolean|array The cached extensions.
+         */
+        protected function get_cached_extensions()
+        {
+        }
+        /**
+         * Sets the active extensions transient for the set duration.
+         *
+         * @param array $extensions The extensions to add.
+         * @param int   $duration   The duration that the list of extensions needs to remain cached.
+         *
+         * @return void
+         */
+        protected function set_cached_extensions($extensions, $duration = \DAY_IN_SECONDS)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the values for a single Yoast Premium extension plugin.
+     */
+    class WPSEO_Extension
+    {
+        /**
+         * Holds the extension config.
+         *
+         * @var array
+         */
+        protected $config = [];
+        /**
+         * WPSEO_Extension constructor.
+         *
+         * @param array $config The config to use.
+         */
+        public function __construct(array $config)
+        {
+        }
+        /**
+         * Returns the product title.
+         *
+         * @return string The set title.
+         */
+        public function get_title()
+        {
+        }
+        /**
+         * Returns the product title to display.
+         *
+         * @return string The title to display on the license page.
+         */
+        public function get_display_title()
+        {
+        }
+        /**
+         * Returns URL to the page where the product can be bought.
+         *
+         * @return string The buy url.
+         */
+        public function get_buy_url()
+        {
+        }
+        /**
+         * Returns URL to the page with more info.
+         *
+         * @return string The url to the info page.
+         */
+        public function get_info_url()
+        {
+        }
+        /**
+         * Returns the image.
+         *
+         * @return string The image.
+         */
+        public function get_image()
+        {
+        }
+        /**
+         * Returns the buy button value if set, otherwise fallback to the title.
+         *
+         * @return string The buy button.
+         */
+        public function get_buy_button()
+        {
+        }
+        /**
+         * Returns the benefits.
+         *
+         * @return array The array with benefits.
+         */
+        public function get_benefits()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the class that contains the list of possible extensions for Yoast SEO.
+     */
+    class WPSEO_Extensions
+    {
+        /**
+         * Array with the Yoast extensions.
+         *
+         * @var array
+         */
+        protected $extensions = ['Yoast SEO Premium' => ['slug' => 'yoast-seo-premium', 'identifier' => 'wordpress-seo-premium', 'classname' => 'WPSEO_Premium', 'my-yoast-slug' => \WPSEO_Addon_Manager::PREMIUM_SLUG], 'News SEO' => ['slug' => 'news-seo', 'identifier' => 'wpseo-news', 'classname' => 'WPSEO_News', 'my-yoast-slug' => \WPSEO_Addon_Manager::NEWS_SLUG], 'Yoast WooCommerce SEO' => ['slug' => 'woocommerce-yoast-seo', 'identifier' => 'wpseo-woocommerce', 'classname' => 'Yoast_WooCommerce_SEO', 'my-yoast-slug' => \WPSEO_Addon_Manager::WOOCOMMERCE_SLUG], 'Video SEO' => ['slug' => 'video-seo-for-wordpress', 'identifier' => 'wpseo-video', 'classname' => 'WPSEO_Video_Sitemap', 'my-yoast-slug' => \WPSEO_Addon_Manager::VIDEO_SLUG], 'Local SEO' => ['slug' => 'local-seo-for-wordpress', 'identifier' => 'wpseo-local', 'classname' => 'WPSEO_Local_Core', 'my-yoast-slug' => \WPSEO_Addon_Manager::LOCAL_SLUG]];
+        /**
+         * Returns the set extensions.
+         *
+         * @return array All the extension names.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Checks if the extension is valid.
+         *
+         * @param string $extension The extension to get the name for.
+         *
+         * @return bool Returns true when valid.
+         */
+        public function is_valid($extension)
+        {
+        }
+        /**
+         * Invalidates the extension by removing its option.
+         *
+         * @param string $extension The extension to invalidate.
+         */
+        public function invalidate($extension)
+        {
+        }
+        /**
+         * Checks if the plugin has been installed.
+         *
+         * @param string $extension The name of the plugin to check.
+         *
+         * @return bool Returns true when installed.
+         */
+        public function is_installed($extension)
+        {
+        }
+        /**
+         * Converts the extension to the required option name.
+         *
+         * @param string $extension The extension name to convert.
+         *
+         * @return string Returns the option name.
+         */
+        protected function get_option_name($extension)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Gutenberg_Compatibility
+     */
+    /**
+     * Class WPSEO_Gutenberg_Compatibility
+     */
+    class WPSEO_Gutenberg_Compatibility
+    {
+        /**
+         * The currently released version of Gutenberg.
+         *
+         * @var string
+         */
+        const CURRENT_RELEASE = '7.2.0';
+        /**
+         * The minimally supported version of Gutenberg by the plugin.
+         *
+         * @var string
+         */
+        const MINIMUM_SUPPORTED = '7.2.0';
+        /**
+         * Holds the current version.
+         *
+         * @var string
+         */
+        protected $current_version;
+        /**
+         * WPSEO_Gutenberg_Compatibility constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Determines whether or not Gutenberg is installed.
+         *
+         * @return bool Whether or not Gutenberg is installed.
+         */
+        public function is_installed()
+        {
+        }
+        /**
+         * Determines whether or not the currently installed version of Gutenberg is below the minimum supported version.
+         *
+         * @return bool True if the currently installed version is below the minimum supported version. False otherwise.
+         */
+        public function is_below_minimum()
+        {
+        }
+        /**
+         * Gets the currently installed version.
+         *
+         * @return string The currently installed version.
+         */
+        public function get_installed_version()
+        {
+        }
+        /**
+         * Determines whether or not the currently installed version of Gutenberg is the latest, fully compatible version.
+         *
+         * @return bool Whether or not the currently installed version is fully compatible.
+         */
+        public function is_fully_compatible()
+        {
+        }
+        /**
+         * Gets the latest released version of Gutenberg.
+         *
+         * @return string The latest release.
+         */
+        protected function get_latest_release()
+        {
+        }
+        /**
+         * Gets the minimum supported version of Gutenberg.
+         *
+         * @return string The minumum supported release.
+         */
+        protected function get_minimum_supported_version()
+        {
+        }
+        /**
+         * Detects the currently installed Gutenberg version.
+         *
+         * @return string The currently installed Gutenberg version. Empty if the version couldn't be detected.
+         */
+        protected function detect_installed_gutenberg_version()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_HelpScout
+     */
+    class WPSEO_HelpScout implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The id for the beacon.
+         *
+         * @var string
+         */
+        protected $beacon_id;
+        /**
+         * The pages where the beacon is loaded.
+         *
+         * @var array
+         */
+        protected $pages;
+        /**
+         * The products the beacon is loaded for.
+         *
+         * @var array
+         */
+        protected $products;
+        /**
+         * Whether to asks the user's consent before loading in HelpScout.
+         *
+         * @var bool
+         */
+        protected $ask_consent;
+        /**
+         * WPSEO_HelpScout constructor.
+         *
+         * @param string $beacon_id   The beacon id.
+         * @param array  $pages       The pages where the beacon is loaded.
+         * @param array  $products    The products the beacon is loaded for.
+         * @param bool   $ask_consent Optional. Whether to ask for consent before loading in HelpScout.
+         */
+        public function __construct($beacon_id, array $pages, array $products, $ask_consent = \false)
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Enqueues the HelpScout script.
+         */
+        public function enqueue_help_scout_script()
+        {
+        }
+        /**
+         * Outputs a small piece of javascript for the beacon.
+         */
+        public function output_beacon_js()
+        {
+        }
+        /**
+         * Checks if the current page is a page containing the beacon.
+         */
+        private function is_beacon_page()
+        {
+        }
+        /**
+         * Retrieves the value of the current page.
+         *
+         * @return string The current page.
+         */
+        private function get_current_page()
+        {
+        }
+        /**
+         * Retrieves the identifying data.
+         *
+         * @return string The data to pass as identifying data.
+         */
+        protected function get_session_data()
+        {
+        }
+        /**
+         * Returns basic info about the server software.
+         *
+         * @return string
+         */
+        private function get_server_info()
+        {
+        }
+        /**
+         * Returns info about the Yoast SEO plugin version and license.
+         *
+         * @param object $plugin The plugin.
+         *
+         * @return string The product info.
+         */
+        private function get_product_info($plugin)
+        {
+        }
+        /**
+         * Returns the WordPress version + a suffix if current WP is multi site.
+         *
+         * @return string The WordPress version string.
+         */
+        private function get_wordpress_version()
+        {
+        }
+        /**
+         * Returns a formatted HTML string for the current theme.
+         *
+         * @return string The theme info as string.
+         */
+        private function get_theme_info()
+        {
+        }
+        /**
+         * Returns a formatted HTML list of all active plugins.
+         *
+         * @return string The active plugins.
+         */
+        private function get_active_plugins()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class to print out the translatable strings for the Keyword Synonyms modal.
+     */
+    class WPSEO_Keyword_Synonyms_Modal
+    {
+        /**
+         * Returns the translations for the Keyword Synonyms modal.
+         *
+         * These strings are not escaped because they're meant to be used with React
+         * which already takes care of that. If used in PHP, they should be escaped.
+         *
+         * @return array Translated text strings for the Keyword Synonyms modal.
+         */
+        public function get_translations()
+        {
+        }
+        /**
+         * Passes translations to JS for the Keyword Synonyms modal component.
+         *
+         * @return array Translated text strings for the Keyword Synonyms modal component.
+         */
+        public function get_translations_for_js()
+        {
+        }
+        /**
+         * Prints the localized Keyword Synonyms modal translations for JS.
+         *
+         * @return void
+         */
+        public function enqueue_translations()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the values for a single Yoast Premium extension plugin.
+     */
+    class WPSEO_License_Page_Manager implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Version number for License Page Manager.
+         *
+         * @var string
+         */
+        const VERSION_LEGACY = '1';
+        /**
+         * Version number for License Page Manager.
+         *
+         * @var string
+         */
+        const VERSION_BACKWARDS_COMPATIBILITY = '2';
+        /**
+         * Registers all hooks to WordPress.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Validates the extensions and show a notice for the invalid extensions.
+         */
+        public function validate_extensions()
+        {
+        }
+        /**
+         * Removes the faulty set notifications.
+         */
+        public function remove_faulty_notifications()
+        {
+        }
+        /**
+         * Handles the response.
+         *
+         * @param array  $response          HTTP response.
+         * @param array  $request_arguments HTTP request arguments. Unused.
+         * @param string $url               The request URL.
+         *
+         * @return array The response array.
+         */
+        public function handle_response(array $response, $request_arguments, $url)
+        {
+        }
+        /**
+         * Returns the license page to use based on the version number.
+         *
+         * @return string The page to use.
+         */
+        public function get_license_page()
+        {
+        }
+        /**
+         * Returns the version number of the license server.
+         *
+         * @return int The version number
+         */
+        protected function get_version()
+        {
+        }
+        /**
+         * Returns the option name.
+         *
+         * @return string The option name.
+         */
+        protected function get_option_name()
+        {
+        }
+        /**
+         * Sets the version when there is a value in the response.
+         *
+         * @param array $response The response to extract the version from.
+         */
+        protected function detect_version($response)
+        {
+        }
+        /**
+         * Sets the version.
+         *
+         * @param string $server_version The version number to save.
+         */
+        protected function set_version($server_version)
+        {
+        }
+        /**
+         * Parses the response by getting its body and do a unserialize of it.
+         *
+         * @param array $response The response to parse.
+         *
+         * @return mixed|string|false The parsed response.
+         */
+        protected function parse_response($response)
+        {
+        }
+        /**
+         * Checks if the given url matches the expected endpoint.
+         *
+         * @param string $url The url to check.
+         *
+         * @return bool True when url matches the endpoint.
+         */
+        protected function is_expected_endpoint($url)
+        {
+        }
+        /**
+         * Creates an instance of Yoast_Notification.
+         *
+         * @param string $product_name The product to create the notification for.
+         *
+         * @return Yoast_Notification The created notification.
+         */
+        protected function create_notification($product_name)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_Meta_Columns.
+     */
+    class WPSEO_Meta_Columns
+    {
+        /**
+         * Holds the SEO analysis.
+         *
+         * @var WPSEO_Metabox_Analysis_SEO
+         */
+        private $analysis_seo;
+        /**
+         * Holds the readability analysis.
+         *
+         * @var WPSEO_Metabox_Analysis_Readability
+         */
+        private $analysis_readability;
+        /**
+         * When page analysis is enabled, just initialize the hooks.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Sets up up the hooks.
+         */
+        public function setup_hooks()
+        {
+        }
+        /**
+         * Adds the column headings for the SEO plugin for edit posts / pages overview.
+         *
+         * @param array $columns Already existing columns.
+         *
+         * @return array Array containing the column headings.
+         */
+        public function column_heading($columns)
+        {
+        }
+        /**
+         * Displays the column content for the given column.
+         *
+         * @param string $column_name Column to display the content for.
+         * @param int    $post_id     Post to display the column content for.
+         */
+        public function column_content($column_name, $post_id)
+        {
+        }
+        /**
+         * Indicates which of the SEO columns are sortable.
+         *
+         * @param array $columns Appended with their orderby variable.
+         *
+         * @return array Array containing the sortable columns.
+         */
+        public function column_sort($columns)
+        {
+        }
+        /**
+         * Hides the SEO title, meta description and focus keyword columns if the user hasn't chosen which columns to hide.
+         *
+         * @param array|false $result The hidden columns.
+         * @param string      $option The option name used to set which columns should be hidden.
+         * @param WP_User     $user   The User.
+         *
+         * @return array      $result Array containing the columns to hide.
+         */
+        public function column_hidden($result, $option, $user)
+        {
+        }
+        /**
+         * Adds a dropdown that allows filtering on the posts SEO Quality.
+         */
+        public function posts_filter_dropdown()
+        {
+        }
+        /**
+         * Adds a dropdown that allows filtering on the posts Readability Quality.
+         *
+         * @return void
+         */
+        public function posts_filter_dropdown_readability()
+        {
+        }
+        /**
+         * Generates an <option> element.
+         *
+         * @param string $value    The option's value.
+         * @param string $label    The option's label.
+         * @param string $selected HTML selected attribute for an option.
+         *
+         * @return string The generated <option> element.
+         */
+        protected function generate_option($value, $label, $selected = '')
+        {
+        }
+        /**
+         * Determines the SEO score filter to be later used in the meta query, based on the passed SEO filter.
+         *
+         * @param string $seo_filter The SEO filter to use to determine what further filter to apply.
+         *
+         * @return array The SEO score filter.
+         */
+        protected function determine_seo_filters($seo_filter)
+        {
+        }
+        /**
+         * Determines the Readability score filter to the meta query, based on the passed Readability filter.
+         *
+         * @param string $readability_filter The Readability filter to use to determine what further filter to apply.
+         *
+         * @return array The Readability score filter.
+         */
+        protected function determine_readability_filters($readability_filter)
+        {
+        }
+        /**
+         * Creates a keyword filter for the meta query, based on the passed Keyword filter.
+         *
+         * @param string $keyword_filter The keyword filter to use.
+         *
+         * @return array The keyword filter.
+         */
+        protected function get_keyword_filter($keyword_filter)
+        {
+        }
+        /**
+         * Determines whether the passed filter is considered to be valid.
+         *
+         * @param mixed $filter The filter to check against.
+         *
+         * @return bool Whether or not the filter is considered valid.
+         */
+        protected function is_valid_filter($filter)
+        {
+        }
+        /**
+         * Collects the filters and merges them into a single array.
+         *
+         * @return array Array containing all the applicable filters.
+         */
+        protected function collect_filters()
+        {
+        }
+        /**
+         * Modify the query based on the filters that are being passed.
+         *
+         * @param array $vars Query variables that need to be modified based on the filters.
+         *
+         * @return array Array containing the meta query to use for filtering the posts overview.
+         */
+        public function column_sort_orderby($vars)
+        {
+        }
+        /**
+         * Retrieves the meta robots query values to be used within the meta query.
+         *
+         * @return array Array containing the query parameters regarding meta robots.
+         */
+        protected function get_meta_robots_query_values()
+        {
+        }
+        /**
+         * Determines the score filters to be used. If more than one is passed, it created an AND statement for the query.
+         *
+         * @param array $score_filters Array containing the score filters.
+         *
+         * @return array Array containing the score filters that need to be applied to the meta query.
+         */
+        protected function determine_score_filters($score_filters)
+        {
+        }
+        /**
+         * Retrieves the post type from the $_GET variable.
+         *
+         * @return string The current post type.
+         */
+        public function get_current_post_type()
+        {
+        }
+        /**
+         * Retrieves the SEO filter from the $_GET variable.
+         *
+         * @return string The current post type.
+         */
+        public function get_current_seo_filter()
+        {
+        }
+        /**
+         * Retrieves the Readability filter from the $_GET variable.
+         *
+         * @return string The current post type.
+         */
+        public function get_current_readability_filter()
+        {
+        }
+        /**
+         * Retrieves the keyword filter from the $_GET variable.
+         *
+         * @return string The current post type.
+         */
+        public function get_current_keyword_filter()
+        {
+        }
+        /**
+         * Uses the vars to create a complete filter query that can later be executed to filter out posts.
+         *
+         * @param array $vars    Array containing the variables that will be used in the meta query.
+         * @param array $filters Array containing the filters that we need to apply in the meta query.
+         *
+         * @return array Array containing the complete filter query.
+         */
+        protected function build_filter_query($vars, $filters)
+        {
+        }
+        /**
+         * Creates a Readability score filter.
+         *
+         * @param number $low  The lower boundary of the score.
+         * @param number $high The higher boundary of the score.
+         *
+         * @return array The Readability Score filter.
+         */
+        protected function create_readability_score_filter($low, $high)
+        {
+        }
+        /**
+         * Creates an SEO score filter.
+         *
+         * @param number $low  The lower boundary of the score.
+         * @param number $high The higher boundary of the score.
+         *
+         * @return array The SEO score filter.
+         */
+        protected function create_seo_score_filter($low, $high)
+        {
+        }
+        /**
+         * Creates a filter to retrieve posts that were set to no-index.
+         *
+         * @return array Array containin the no-index filter.
+         */
+        protected function create_no_index_filter()
+        {
+        }
+        /**
+         * Creates a filter to retrieve posts that have no keyword set.
+         *
+         * @return array Array containing the no focus keyword filter.
+         */
+        protected function create_no_focus_keyword_filter()
+        {
+        }
+        /**
+         * Determines whether a particular post_id is of an indexable post type.
+         *
+         * @param string $post_id The post ID to check.
+         *
+         * @return bool Whether or not it is indexable.
+         */
+        protected function is_indexable($post_id)
+        {
+        }
+        /**
+         * Determines whether the given post ID uses the default indexing settings.
+         *
+         * @param integer $post_id The post ID to check.
+         *
+         * @return bool Whether or not the default indexing is being used for the post.
+         */
+        protected function uses_default_indexing($post_id)
+        {
+        }
+        /**
+         * Returns filters when $order_by is matched in the if-statement.
+         *
+         * @param string $order_by The ID of the column by which to order the posts.
+         *
+         * @return array Array containing the order filters.
+         */
+        private function filter_order_by($order_by)
+        {
+        }
+        /**
+         * Parses the score column.
+         *
+         * @param integer $post_id The ID of the post for which to show the score.
+         *
+         * @return string The HTML for the SEO score indicator.
+         */
+        private function parse_column_score($post_id)
+        {
+        }
+        /**
+         * Parsing the readability score column.
+         *
+         * @param int $post_id The ID of the post for which to show the readability score.
+         *
+         * @return string The HTML for the readability score indicator.
+         */
+        private function parse_column_score_readability($post_id)
+        {
+        }
+        /**
+         * Sets up the hooks for the post_types.
+         */
+        private function set_post_type_hooks()
+        {
+        }
+        /**
+         * Wraps the WPSEO_Metabox check to determine whether the metabox should be displayed either by
+         * choice of the admin or because the post type is not a public post type.
+         *
+         * @since 7.0
+         *
+         * @param string $post_type Optional. The post type to test, defaults to the current post post_type.
+         *
+         * @return bool Whether or not the meta box (and associated columns etc) should be hidden.
+         */
+        private function display_metabox($post_type = \null)
+        {
+        }
+        /**
+         * Retrieve the page title.
+         *
+         * @param int $post_id Post to retrieve the title for.
+         *
+         * @return string
+         */
+        private function page_title($post_id)
+        {
+        }
+        /**
+         * Renders the score indicator.
+         *
+         * @param WPSEO_Rank $rank  The rank this indicator should have.
+         * @param string     $title Optional. The title for this rank, defaults to the title of the rank.
+         *
+         * @return string The HTML for a score indicator.
+         */
+        private function render_score_indicator($rank, $title = '')
+        {
+        }
+        /**
+         * Determines whether or not filter dropdowns should be displayed.
+         *
+         * @return bool Whether or the current page can display the filter drop downs.
+         */
+        public function can_display_filter()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the interface for an installable object.
+     */
+    interface WPSEO_Installable
+    {
+        /**
+         * Runs the installation routine.
+         *
+         * @return void
+         */
+        public function install();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the link count storage.
+     */
+    class WPSEO_Meta_Storage implements \WPSEO_Installable
+    {
+        /**
+         * Table name for the meta storage.
+         *
+         * @var string
+         */
+        const TABLE_NAME = 'yoast_seo_meta';
+        /**
+         * Holds the database's proxy.
+         *
+         * @var WPSEO_Database_Proxy
+         */
+        protected $database_proxy;
+        /**
+         * Holds the prefix of the table.
+         *
+         * @deprecated 7.4
+         *
+         * @var null|string
+         */
+        protected $table_prefix;
+        /**
+         * Initializes the database table.
+         *
+         * @param string $table_prefix Optional. Deprecated argument.
+         */
+        public function __construct($table_prefix = \null)
+        {
+        }
+        /**
+         * Returns the table name to use.
+         *
+         * @return string The table name.
+         */
+        public function get_table_name()
+        {
+        }
+        /**
+         * Creates the database table.
+         *
+         * @return boolean True if the table was created, false if something went wrong.
+         */
+        public function install()
+        {
+        }
+        /**
+         * Saves the link count to the database.
+         *
+         * @param int   $meta_id   The id to save the link count for.
+         * @param array $meta_data The total amount of links.
+         */
+        public function save_meta_data($meta_id, array $meta_data)
+        {
+        }
+        /**
+         * Updates the incoming link count.
+         *
+         * @param array              $post_ids The posts to update the incoming link count for.
+         * @param WPSEO_Link_Storage $storage  The link storage object.
+         */
+        public function update_incoming_link_count(array $post_ids, \WPSEO_Link_Storage $storage)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the state of the table being accessible.
+     */
+    class WPSEO_Meta_Table_Accessible
+    {
+        /**
+         * Indicates that the table is accessible.
+         *
+         * @var string
+         */
+        const ACCESSIBLE = '0';
+        /**
+         * Indicates that the table is inaccessible.
+         *
+         * @var string
+         */
+        const INACCESSBILE = '1';
+        /**
+         * Checks if the given table name exists.
+         *
+         * @return bool True when table is accessible.
+         */
+        public static function is_accessible()
+        {
+        }
+        /**
+         * Sets the transient value to 1, to indicate the table is not accessible.
+         *
+         * @return void
+         */
+        public static function set_inaccessible()
+        {
+        }
+        /**
+         * Removes the transient.
+         *
+         * @return void
+         */
+        public static function cleanup()
+        {
+        }
+        /**
+         * Sets the transient value to 0, to indicate the table is accessible.
+         *
+         * @return void
+         */
+        protected static function set_accessible()
+        {
+        }
+        /**
+         * Checks if the table exists if not, set the transient to indicate the inaccessible table.
+         *
+         * @return bool True if table is accessible.
+         */
+        protected static function check_table()
+        {
+        }
+        /**
+         * Returns the name of the transient.
+         *
+         * @return string The name of the transient to use.
+         */
+        protected static function transient_name()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class to print out the translatable strings for the Multiple Keywords modal.
+     */
+    class WPSEO_Multiple_Keywords_Modal
+    {
+        /**
+         * Returns the translations for the Multiple Keywords modal.
+         *
+         * These strings are not escaped because they're meant to be used with React
+         * which already takes care of that. If used in PHP, they should be escaped.
+         *
+         * @return array Translated text strings for the Multiple Keywords modal.
+         */
+        public function get_translations()
+        {
+        }
+        /**
+         * Passes translations to JS for the Multiple Keywords modal component.
+         *
+         * @return array Translated text strings for the Multiple Keywords modal component.
+         */
+        public function get_translations_for_js()
+        {
+        }
+        /**
+         * Prints the localized Multiple Keywords modal translations for JS.
+         *
+         * @return void
+         */
+        public function enqueue_translations()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Loads the MyYoast proxy.
+     *
+     * This class registers a proxy page on `admin.php`. Which is reached with the `page=PAGE_IDENTIFIER` parameter.
+     * It will read external files and serves them like they are located locally.
+     */
+    class WPSEO_MyYoast_Proxy implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The page identifier used in WordPress to register the MyYoast proxy page.
+         *
+         * @var string
+         */
+        const PAGE_IDENTIFIER = 'wpseo_myyoast_proxy';
+        /**
+         * The cache control's max age. Used in the header of a successful proxy response.
+         *
+         * @var int
+         */
+        const CACHE_CONTROL_MAX_AGE = \DAY_IN_SECONDS;
+        /**
+         * Registers the hooks when the user is on the right page.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Registers the proxy page. It does not actually add a link to the dashboard.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function add_proxy_page()
+        {
+        }
+        /**
+         * Renders the requested proxy page and exits to prevent the WordPress UI from loading.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function handle_proxy_page()
+        {
+        }
+        /**
+         * Renders the requested proxy page.
+         *
+         * This is separated from the exits to be able to test it.
+         *
+         * @return void
+         */
+        public function render_proxy_page()
+        {
+        }
+        /**
+         * Tries to load the given url via `wp_remote_get`.
+         *
+         * @codeCoverageIgnore
+         *
+         * @param string $url The url to load.
+         *
+         * @throws Exception When `wp_remote_get` returned an error.
+         * @throws Exception When the response code is not 200.
+         *
+         * @return string The body of the response.
+         */
+        protected function get_remote_url_body($url)
+        {
+        }
+        /**
+         * Tries to load the given url.
+         *
+         * @link https://php.net/manual/en/function.readfile.php
+         *
+         * @codeCoverageIgnore
+         *
+         * @param string $url The url to load.
+         *
+         * @return bool False if an error occurred.
+         */
+        protected function load_url($url)
+        {
+        }
+        /**
+         * Determines the proxy options based on the file and plugin version arguments.
+         *
+         * When the file is known it returns an array like this:
+         * <code>
+         * $array = array(
+         *  'content_type' => 'the content type'
+         *  'url'          => 'the url, possibly with the plugin version'
+         * )
+         * </code>
+         *
+         * @return array Empty for an unknown file. See format above for known files.
+         */
+        protected function determine_proxy_options()
+        {
+        }
+        /**
+         * Checks the PHP configuration of allow_url_fopen.
+         *
+         * @codeCoverageIgnore
+         *
+         * @link https://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
+         *
+         * @return bool True when the PHP configuration allows for url loading via readfile.
+         */
+        protected function should_load_url_directly()
+        {
+        }
+        /**
+         * Checks if the current page is the MyYoast proxy page.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return bool True when the page request parameter equals the proxy page.
+         */
+        protected function is_proxy_page()
+        {
+        }
+        /**
+         * Returns the proxy file from the HTTP request parameters.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return string The sanitized file request parameter.
+         */
+        protected function get_proxy_file()
+        {
+        }
+        /**
+         * Returns the plugin version from the HTTP request parameters.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return string The sanitized plugin_version request parameter.
+         */
+        protected function get_plugin_version()
+        {
+        }
+        /**
+         * Sets the HTTP header.
+         *
+         * This is a tiny helper function to enable better testing.
+         *
+         * @codeCoverageIgnore
+         *
+         * @param string $header The header to set.
+         *
+         * @return void
+         */
+        protected function set_header($header)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the route for MyYoast.
+     */
+    class WPSEO_MyYoast_Route implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The identifier of the page in the My Yoast route.
+         *
+         * @var string
+         */
+        const PAGE_IDENTIFIER = 'wpseo_myyoast';
+        /**
+         * The instance of the MyYoast client.
+         *
+         * @var WPSEO_MyYoast_Client
+         */
+        protected $client;
+        /**
+         * The actions that are supported.
+         *
+         * Each action should have a method named equally to the action.
+         *
+         * For example:
+         * The connect action is handled by a method named 'connect'.
+         *
+         * @var array
+         */
+        protected static $allowed_actions = ['connect', 'authorize', 'complete'];
+        /**
+         * Sets the hooks when the user has enough rights and is on the right page.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Registers the page for the MyYoast route.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function register_route()
+        {
+        }
+        /**
+         * Abstracts the action from the URL and follows the appropriate route.
+         *
+         * @return void
+         */
+        public function handle_route()
+        {
+        }
+        /**
+         * Checks if the current page is the MyYoast route.
+         *
+         * @param string $route The MyYoast route.
+         *
+         * @return bool True when url is the MyYoast route.
+         */
+        protected function is_myyoast_route($route)
+        {
+        }
+        /**
+         * Compares an action to a list of allowed actions to see if it is valid.
+         *
+         * @param string $action The action to check.
+         *
+         * @return bool True if the action is valid.
+         */
+        protected function is_valid_action($action)
+        {
+        }
+        /**
+         * Connects to MyYoast and generates a new clientId.
+         *
+         * @return void
+         */
+        protected function connect()
+        {
+        }
+        /**
+         * Redirects the user to the oAuth authorization page.
+         *
+         * @return void
+         */
+        protected function authorize()
+        {
+        }
+        /**
+         * Completes the oAuth connection flow.
+         *
+         * @return void
+         */
+        protected function complete()
+        {
+        }
+        /**
+         * Saves the client id.
+         *
+         * @codeCoverageIgnore
+         *
+         * @param string $client_id The client id to save.
+         *
+         * @return void
+         */
+        protected function save_client_id($client_id)
+        {
+        }
+        /**
+         * Creates a new MyYoast Client instance.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return WPSEO_MyYoast_Client Instance of the myyoast client.
+         */
+        protected function get_client()
+        {
+        }
+        /**
+         * Abstracts the action from the url.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return string The action from the url.
+         */
+        protected function get_action()
+        {
+        }
+        /**
+         * Abstracts the authorization code from the url.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return string The action from the url.
+         */
+        protected function get_authorization_code()
+        {
+        }
+        /**
+         * Retrieves a list of activated extensions slugs.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return array The extensions slugs.
+         */
+        protected function get_extensions()
+        {
+        }
+        /**
+         * Generates an URL-encoded query string, redirects there.
+         *
+         * @codeCoverageIgnore
+         *
+         * @param string $url        The url to redirect to.
+         * @param array  $query_args The additional arguments to build the url from.
+         *
+         * @return void
+         */
+        protected function redirect($url, $query_args = [])
+        {
+        }
+        /**
+         * Checks if current user is allowed to access the route.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return bool True when current user has rights to manage options.
+         */
+        protected function can_access_route()
+        {
+        }
+        /**
+         * Generates an unique user id.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return string The generated unique user id.
+         */
+        protected function generate_uuid()
+        {
+        }
+        /**
+         * Retrieves the current user id.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return int The user id.
+         */
+        protected function get_current_user_id()
+        {
+        }
+        /**
+         * Redirects to the premium page.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        protected function redirect_to_premium_page()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Options\Tabs
+     */
+    /**
+     * Class WPSEO_Option_Tab.
+     */
+    class WPSEO_Option_Tab
+    {
+        /**
+         * Name of the tab.
+         *
+         * @var string
+         */
+        private $name;
+        /**
+         * Label of the tab.
+         *
+         * @var string
+         */
+        private $label;
+        /**
+         * Optional arguments.
+         *
+         * @var array
+         */
+        private $arguments;
+        /**
+         * WPSEO_Option_Tab constructor.
+         *
+         * @param string $name      Name of the tab.
+         * @param string $label     Localized label of the tab.
+         * @param array  $arguments Optional arguments.
+         */
+        public function __construct($name, $label, array $arguments = [])
+        {
+        }
+        /**
+         * Gets the name.
+         *
+         * @return string The name.
+         */
+        public function get_name()
+        {
+        }
+        /**
+         * Gets the label.
+         *
+         * @return string The label.
+         */
+        public function get_label()
+        {
+        }
+        /**
+         * Retrieves whether the tab needs a save button.
+         *
+         * @return bool True whether the tabs needs a save button.
+         */
+        public function has_save_button()
+        {
+        }
+        /**
+         * Gets the option group.
+         *
+         * @return string The option group.
+         */
+        public function get_opt_group()
+        {
+        }
+        /**
+         * Retrieves the variable from the supplied arguments.
+         *
+         * @param string       $variable Variable to retrieve.
+         * @param string|mixed $default  Default to use when variable not found.
+         *
+         * @return mixed|string The retrieved variable.
+         */
+        protected function get_argument($variable, $default = '')
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Options\Tabs
+     */
+    /**
+     * Class WPSEO_Option_Tabs_Formatter.
+     */
+    class WPSEO_Option_Tabs_Formatter
+    {
+        /**
+         * Retrieves the path to the view of the tab.
+         *
+         * @param WPSEO_Option_Tabs $option_tabs Option Tabs to get base from.
+         * @param WPSEO_Option_Tab  $tab         Tab to get name from.
+         *
+         * @return string
+         */
+        public function get_tab_view(\WPSEO_Option_Tabs $option_tabs, \WPSEO_Option_Tab $tab)
+        {
+        }
+        /**
+         * Outputs the option tabs.
+         *
+         * @param WPSEO_Option_Tabs $option_tabs Option Tabs to get tabs from.
+         */
+        public function run(\WPSEO_Option_Tabs $option_tabs)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Options\Tabs
+     */
+    /**
+     * Class WPSEO_Option_Tabs.
+     */
+    class WPSEO_Option_Tabs
+    {
+        /**
+         * Tabs base.
+         *
+         * @var string
+         */
+        private $base;
+        /**
+         * The tabs in this group.
+         *
+         * @var array
+         */
+        private $tabs = [];
+        /**
+         * Name of the active tab.
+         *
+         * @var string
+         */
+        private $active_tab = '';
+        /**
+         * WPSEO_Option_Tabs constructor.
+         *
+         * @codeCoverageIgnore
+         *
+         * @param string $base       Base of the tabs.
+         * @param string $active_tab Currently active tab.
+         */
+        public function __construct($base, $active_tab = '')
+        {
+        }
+        /**
+         * Get the base.
+         *
+         * @return string
+         */
+        public function get_base()
+        {
+        }
+        /**
+         * Add a tab.
+         *
+         * @param WPSEO_Option_Tab $tab Tab to add.
+         *
+         * @return $this
+         */
+        public function add_tab(\WPSEO_Option_Tab $tab)
+        {
+        }
+        /**
+         * Get active tab.
+         *
+         * @return null|WPSEO_Option_Tab Get the active tab.
+         */
+        public function get_active_tab()
+        {
+        }
+        /**
+         * Is the tab the active tab.
+         *
+         * @param WPSEO_Option_Tab $tab Tab to check for active tab.
+         *
+         * @return bool
+         */
+        public function is_active_tab(\WPSEO_Option_Tab $tab)
+        {
+        }
+        /**
+         * Get all tabs.
+         *
+         * @return WPSEO_Option_Tab[]
+         */
+        public function get_tabs()
+        {
+        }
+        /**
+         * Display the tabs.
+         *
+         * @param Yoast_Form $yform Yoast Form needed in the views.
+         */
+        public function display(\Yoast_Form $yform)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_presenter_paper.
+     */
+    class WPSEO_Paper_Presenter
+    {
+        /**
+         * Title of the paper.
+         *
+         * @var string
+         */
+        private $title;
+        /**
+         * The view variables.
+         *
+         * @var array
+         */
+        private $settings;
+        /**
+         * The path to the view file.
+         *
+         * @var string
+         */
+        private $view_file;
+        /**
+         * WPSEO_presenter_paper constructor.
+         *
+         * @param string $title     The title of the paper.
+         * @param string $view_file Optional. The path to the view file. Use the content setting if you do not wish to use
+         *                          a view file.
+         * @param array  $settings  Optional. Settings for the paper.
+         */
+        public function __construct($title, $view_file = \null, array $settings = [])
+        {
+        }
+        /**
+         * Renders the collapsible paper and returns it as a string.
+         *
+         * @return string The rendered paper.
+         */
+        public function get_output()
+        {
+        }
+        /**
+         * Retrieves the view variables.
+         *
+         * @return array The view variables.
+         */
+        private function get_view_variables()
+        {
+        }
+        /**
+         * Retrieves the collapsible config based on the settings.
+         *
+         * @return array The config.
+         */
+        protected function collapsible_config()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Plugin_Availability
+     */
+    /**
+     * Class WPSEO_Plugin_Availability
+     */
+    class WPSEO_Plugin_Availability
+    {
+        /**
+         * Holds the plugins.
+         *
+         * @var array
+         */
+        protected $plugins = [];
+        /**
+         * Registers the plugins so we can access them.
+         */
+        public function register()
+        {
+        }
+        /**
+         * Registers all the available Yoast SEO plugins.
+         */
+        protected function register_yoast_plugins()
+        {
+        }
+        /**
+         * Sets certain plugin properties based on WordPress' status.
+         */
+        protected function register_yoast_plugins_status()
+        {
+        }
+        /**
+         * Checks whether or not a plugin is known within the Yoast SEO collection.
+         *
+         * @param string $plugin The plugin to search for.
+         *
+         * @return bool Whether or not the plugin is exists.
+         */
+        protected function plugin_exists($plugin)
+        {
+        }
+        /**
+         * Gets all the possibly available plugins.
+         *
+         * @return array Array containing the information about the plugins.
+         */
+        public function get_plugins()
+        {
+        }
+        /**
+         * Gets a specific plugin. Returns an empty array if it cannot be found.
+         *
+         * @param string $plugin The plugin to search for.
+         *
+         * @return array The plugin properties.
+         */
+        public function get_plugin($plugin)
+        {
+        }
+        /**
+         * Gets the version of the plugin.
+         *
+         * @param array $plugin The information available about the plugin.
+         *
+         * @return string The version associated with the plugin.
+         */
+        public function get_version($plugin)
+        {
+        }
+        /**
+         * Checks if there are dependencies available for the plugin.
+         *
+         * @param array $plugin The information available about the plugin.
+         *
+         * @return bool Whether or not there is a dependency present.
+         */
+        public function has_dependencies($plugin)
+        {
+        }
+        /**
+         * Gets the dependencies for the plugin.
+         *
+         * @param array $plugin The information available about the plugin.
+         *
+         * @return array Array containing all the dependencies associated with the plugin.
+         */
+        public function get_dependencies($plugin)
+        {
+        }
+        /**
+         * Checks if all dependencies are satisfied.
+         *
+         * @param array $plugin The information available about the plugin.
+         *
+         * @return bool Whether or not the dependencies are satisfied.
+         */
+        public function dependencies_are_satisfied($plugin)
+        {
+        }
+        /**
+         * Checks whether or not one of the plugins is properly installed and usable.
+         *
+         * @param array $plugin The information available about the plugin.
+         *
+         * @return bool Whether or not the plugin is properly installed.
+         */
+        public function is_installed($plugin)
+        {
+        }
+        /**
+         * Gets all installed plugins.
+         *
+         * @return array The installed plugins.
+         */
+        public function get_installed_plugins()
+        {
+        }
+        /**
+         * Checks for the availability of the plugin.
+         *
+         * @param array $plugin The information available about the plugin.
+         *
+         * @return bool Whether or not the plugin is available.
+         */
+        public function is_available($plugin)
+        {
+        }
+        /**
+         * Checks whether a dependency is available.
+         *
+         * @param array $dependency The information about the dependency to look for.
+         *
+         * @return bool Whether or not the dependency is available.
+         */
+        public function is_dependency_available($dependency)
+        {
+        }
+        /**
+         * Gets the names of the dependencies.
+         *
+         * @param array $plugin The plugin to get the dependency names from.
+         *
+         * @return array Array containing the names of the associated dependencies.
+         */
+        public function get_dependency_names($plugin)
+        {
+        }
+        /**
+         * Gets an array of plugins that have defined dependencies.
+         *
+         * @return array Array of the plugins that have dependencies.
+         */
+        public function get_plugins_with_dependencies()
+        {
+        }
+        /**
+         * Determines whether or not a plugin is active.
+         *
+         * @param string $plugin The plugin slug to check.
+         *
+         * @return bool Whether or not the plugin is active.
+         */
+        public function is_active($plugin)
+        {
+        }
+        /**
+         * Determines whether or not a plugin is a Premium product.
+         *
+         * @param array $plugin The plugin to check.
+         *
+         * @return bool Whether or not the plugin is a Premium product.
+         */
+        public function is_premium($plugin)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Plugin_Compatibility
+     */
+    /**
+     * Class WPSEO_Plugin_Compatibility.
+     *
+     * @codeCoverageIgnore
+     * @deprecated 12.3
+     */
+    class WPSEO_Plugin_Compatibility
+    {
+        /**
+         * Holds the current WPSEO version.
+         *
+         * @var string
+         */
+        protected $current_wpseo_version;
+        /**
+         * Holds the availability checker.
+         *
+         * @var WPSEO_Plugin_Availability
+         */
+        protected $availability_checker;
+        /**
+         * Holds the installed plugins.
+         *
+         * @var array
+         */
+        protected $installed_plugins;
+        /**
+         * WPSEO_Plugin_Compatibility constructor.
+         *
+         * @deprecated 12.3
+         * @codeCoverageIgnore
+         *
+         * @param string     $version              The version to check against.
+         * @param null|class $availability_checker The checker to use.
+         */
+        public function __construct($version, $availability_checker = \null)
+        {
+        }
+        /**
+         * Retrieves the availability checker.
+         *
+         * @deprecated 12.3
+         * @codeCoverageIgnore
+         *
+         * @param null|object $checker The checker to set.
+         *
+         * @return WPSEO_Plugin_Availability The checker to use.
+         */
+        private function retrieve_availability_checker($checker)
+        {
+        }
+        /**
+         * Wraps the availability checker's get_installed_plugins method.
+         *
+         * @deprecated 12.3
+         * @codeCoverageIgnore
+         *
+         * @return array Array containing all the installed plugins.
+         */
+        public function get_installed_plugins()
+        {
+        }
+        /**
+         * Creates a list of installed plugins and whether or not they are compatible.
+         *
+         * @deprecated 12.3
+         * @codeCoverageIgnore
+         *
+         * @return array Array containing the installed plugins and compatibility.
+         */
+        public function get_installed_plugins_compatibility()
+        {
+        }
+        /**
+         * Checks whether or not a plugin is compatible.
+         *
+         * @deprecated 12.3
+         * @codeCoverageIgnore
+         *
+         * @param string $plugin The plugin to look for and match.
+         *
+         * @return bool Whether or not the plugin is compatible.
+         */
+        public function is_compatible($plugin)
+        {
+        }
+        /**
+         * Gets the major/minor version of the plugin for easier comparing.
+         *
+         * @deprecated 12.3
+         * @codeCoverageIgnore
+         *
+         * @param string $version The version to trim.
+         *
+         * @return string The major/minor version of the plugin.
+         */
+        protected function get_major_minor_version($version)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     * @since   1.7.0
+     */
+    /**
+     * Base class for handling plugin conflicts.
+     */
+    class Yoast_Plugin_Conflict
+    {
+        /**
+         * The plugins must be grouped per section.
+         *
+         * It's possible to check for each section if there are conflicting plugins.
+         *
+         * @var array
+         */
+        protected $plugins = [];
+        /**
+         * All the current active plugins will be stored in this private var.
+         *
+         * @var array
+         */
+        protected $all_active_plugins = [];
+        /**
+         * After searching for active plugins that are in $this->plugins the active plugins will be stored in this
+         * property.
+         *
+         * @var array
+         */
+        protected $active_plugins = [];
+        /**
+         * Property for holding instance of itself.
+         *
+         * @var Yoast_Plugin_Conflict
+         */
+        protected static $instance;
+        /**
+         * For the use of singleton pattern. Create instance of itself and return this instance.
+         *
+         * @param string $class_name Give the classname to initialize. If classname is
+         *                           false (empty) it will use it's own __CLASS__.
+         *
+         * @return Yoast_Plugin_Conflict
+         */
+        public static function get_instance($class_name = '')
+        {
+        }
+        /**
+         * Setting instance, all active plugins and search for active plugins.
+         *
+         * Protected constructor to prevent creating a new instance of the
+         * *Singleton* via the `new` operator from outside of this class.
+         */
+        protected function __construct()
+        {
+        }
+        /**
+         * Check if there are conflicting plugins for given $plugin_section.
+         *
+         * @param string $plugin_section Type of plugin conflict (such as Open Graph or sitemap).
+         *
+         * @return bool
+         */
+        public function check_for_conflicts($plugin_section)
+        {
+        }
+        /**
+         * Getting all the conflicting plugins and return them as a string.
+         *
+         * This method will loop through all conflicting plugins to get the details of each plugin. The plugin name
+         * will be taken from the details to parse a comma separated string, which can be use for by example a notice
+         *
+         * @param string $plugin_section Plugin conflict type (such as Open Graph or sitemap).
+         *
+         * @return string
+         */
+        public function get_conflicting_plugins_as_string($plugin_section)
+        {
+        }
+        /**
+         * Checks for given $plugin_sections for conflicts.
+         *
+         * @param array $plugin_sections Set of sections.
+         */
+        public function check_plugin_conflicts($plugin_sections)
+        {
+        }
+        /**
+         * Setting an error on the screen.
+         *
+         * @param string $plugin_section          Type of conflict group (such as Open Graph or sitemap).
+         * @param string $readable_plugin_section This is the value for the translation.
+         */
+        protected function set_error($plugin_section, $readable_plugin_section)
+        {
+        }
+        /**
+         * Clear the notification for a plugin.
+         *
+         * @param string $plugin_file Clear the optional notification for this plugin.
+         */
+        public function clear_error($plugin_file)
+        {
+        }
+        /**
+         * Loop through the $this->plugins to check if one of the plugins is active.
+         *
+         * This method will store the active plugins in $this->active_plugins.
+         */
+        protected function search_active_plugins()
+        {
+        }
+        /**
+         * Loop through plugins and check if each plugin is active.
+         *
+         * @param array  $plugins        Set of plugins.
+         * @param string $plugin_section Type of conflict group (such as Open Graph or sitemap).
+         */
+        protected function check_plugins_active($plugins, $plugin_section)
+        {
+        }
+        /**
+         * Check if given plugin exists in array with all_active_plugins.
+         *
+         * @param string $plugin Plugin basename string.
+         *
+         * @return bool
+         */
+        protected function check_plugin_is_active($plugin)
+        {
+        }
+        /**
+         * Add plugin to the list of active plugins.
+         *
+         * This method will check first if key $plugin_section exists, if not it will create an empty array
+         * If $plugin itself doesn't exist it will be added.
+         *
+         * @param string $plugin_section Type of conflict group (such as Open Graph or sitemap).
+         * @param string $plugin         Plugin basename string.
+         */
+        protected function add_active_plugin($plugin_section, $plugin)
+        {
+        }
+        /**
+         * Search in $this->plugins for the given $plugin.
+         *
+         * If there is a result it will return the plugin category.
+         *
+         * @param string $plugin Plugin basename string.
+         *
+         * @return int|string
+         */
+        protected function find_plugin_category($plugin)
+        {
+        }
+        /**
+         * When being in the deactivation process the currently deactivated plugin has to be removed.
+         */
+        private function remove_deactivated_plugin()
+        {
+        }
+        /**
+         * Get the identifier from the plugin file.
+         *
+         * @param string $plugin_file Plugin file to get Identifier from.
+         *
+         * @return string
+         */
+        private function get_notification_identifier($plugin_file)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     * @since   1.7.0
+     */
+    /**
+     * Contains list of conflicting plugins.
+     */
+    class WPSEO_Plugin_Conflict extends \Yoast_Plugin_Conflict
+    {
+        /**
+         * The plugins must be grouped per section.
+         *
+         * It's possible to check for each section if there are conflicting plugin
+         *
+         * @var array
+         */
+        protected $plugins = [
+            // The plugin which are writing OG metadata.
+            'open_graph' => [
+                '2-click-socialmedia-buttons/2-click-socialmedia-buttons.php',
+                // 2 Click Social Media Buttons.
+                'add-link-to-facebook/add-link-to-facebook.php',
+                // Add Link to Facebook.
+                'add-meta-tags/add-meta-tags.php',
+                // Add Meta Tags.
+                'easy-facebook-share-thumbnails/esft.php',
+                // Easy Facebook Share Thumbnail.
+                'facebook/facebook.php',
+                // Facebook (official plugin).
+                'facebook-awd/AWD_facebook.php',
+                // Facebook AWD All in one.
+                'facebook-featured-image-and-open-graph-meta-tags/fb-featured-image.php',
+                // Facebook Featured Image & OG Meta Tags.
+                'facebook-meta-tags/facebook-metatags.php',
+                // Facebook Meta Tags.
+                'wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php',
+                // Facebook Open Graph Meta Tags for WordPress.
+                'facebook-revised-open-graph-meta-tag/index.php',
+                // Facebook Revised Open Graph Meta Tag.
+                'facebook-thumb-fixer/_facebook-thumb-fixer.php',
+                // Facebook Thumb Fixer.
+                'facebook-and-digg-thumbnail-generator/facebook-and-digg-thumbnail-generator.php',
+                // Fedmich's Facebook Open Graph Meta.
+                'network-publisher/networkpub.php',
+                // Network Publisher.
+                'nextgen-facebook/nextgen-facebook.php',
+                // NextGEN Facebook OG.
+                'opengraph/opengraph.php',
+                // Open Graph.
+                'open-graph-protocol-framework/open-graph-protocol-framework.php',
+                // Open Graph Protocol Framework.
+                'seo-facebook-comments/seofacebook.php',
+                // SEO Facebook Comments.
+                'sexybookmarks/sexy-bookmarks.php',
+                // Shareaholic.
+                'shareaholic/sexy-bookmarks.php',
+                // Shareaholic.
+                'sharepress/sharepress.php',
+                // SharePress.
+                'simple-facebook-connect/sfc.php',
+                // Simple Facebook Connect.
+                'social-discussions/social-discussions.php',
+                // Social Discussions.
+                'social-sharing-toolkit/social_sharing_toolkit.php',
+                // Social Sharing Toolkit.
+                'socialize/socialize.php',
+                // Socialize.
+                'only-tweet-like-share-and-google-1/tweet-like-plusone.php',
+                // Tweet, Like, Google +1 and Share.
+                'wordbooker/wordbooker.php',
+                // Wordbooker.
+                'wpsso/wpsso.php',
+                // WordPress Social Sharing Optimization.
+                'wp-caregiver/wp-caregiver.php',
+                // WP Caregiver.
+                'wp-facebook-like-send-open-graph-meta/wp-facebook-like-send-open-graph-meta.php',
+                // WP Facebook Like Send & Open Graph Meta.
+                'wp-facebook-open-graph-protocol/wp-facebook-ogp.php',
+                // WP Facebook Open Graph protocol.
+                'wp-ogp/wp-ogp.php',
+                // WP-OGP.
+                'zoltonorg-social-plugin/zosp.php',
+            ],
+            'xml_sitemaps' => [
+                'google-sitemap-plugin/google-sitemap-plugin.php',
+                // Google Sitemap (BestWebSoft).
+                'xml-sitemaps/xml-sitemaps.php',
+                // XML Sitemaps (Denis de Bernardy and Mike Koepke).
+                'bwp-google-xml-sitemaps/bwp-simple-gxs.php',
+                // Better WordPress Google XML Sitemaps (Khang Minh).
+                'google-sitemap-generator/sitemap.php',
+                // Google XML Sitemaps (Arne Brachhold).
+                'xml-sitemap-feed/xml-sitemap.php',
+                // XML Sitemap & Google News feeds (RavanH).
+                'google-monthly-xml-sitemap/monthly-xml-sitemap.php',
+                // Google Monthly XML Sitemap (Andrea Pernici).
+                'simple-google-sitemap-xml/simple-google-sitemap-xml.php',
+                // Simple Google Sitemap XML (iTx Technologies).
+                'another-simple-xml-sitemap/another-simple-xml-sitemap.php',
+                // Another Simple XML Sitemap.
+                'xml-maps/google-sitemap.php',
+                // Xml Sitemap (Jason Martens).
+                'google-xml-sitemap-generator-by-anton-dachauer/adachauer-google-xml-sitemap.php',
+                // Google XML Sitemap Generator by Anton Dachauer (Anton Dachauer).
+                'wp-xml-sitemap/wp-xml-sitemap.php',
+                // WP XML Sitemap (Team Vivacity).
+                'sitemap-generator-for-webmasters/sitemap.php',
+                // Sitemap Generator for Webmasters (iwebslogtech).
+                'xml-sitemap-xml-sitemapcouk/xmls.php',
+                // XML Sitemap - XML-Sitemap.co.uk (Simon Hancox).
+                'sewn-in-xml-sitemap/sewn-xml-sitemap.php',
+                // Sewn In XML Sitemap (jcow).
+                'rps-sitemap-generator/rps-sitemap-generator.php',
+            ],
+            'cloaking' => [
+                'rs-head-cleaner/rs-head-cleaner.php',
+                // RS Head Cleaner Plus https://wordpress.org/plugins/rs-head-cleaner/.
+                'rs-head-cleaner-lite/rs-head-cleaner-lite.php',
+            ],
+            'seo' => [
+                'all-in-one-seo-pack/all_in_one_seo_pack.php',
+                // All in One SEO Pack.
+                'seo-ultimate/seo-ultimate.php',
+            ],
+        ];
+        /**
+         * Overrides instance to set with this class as class.
+         *
+         * @param string $class_name Optional class name.
+         *
+         * @return Yoast_Plugin_Conflict
+         */
+        public static function get_instance($class_name = __CLASS__)
+        {
+        }
+        /**
+         * After activating any plugin, this method will be executed by a hook.
+         *
+         * If the activated plugin is conflicting with ours a notice will be shown.
+         *
+         * @param string|bool $plugin Optional plugin basename to check.
+         */
+        public static function hook_check_for_plugin_conflicts($plugin = \false)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_Premium_popup.
+     */
+    class WPSEO_Premium_Popup
+    {
+        /**
+         * An unique identifier for the popup
+         *
+         * @var string
+         */
+        private $identifier = '';
+        /**
+         * The heading level of the title of the popup.
+         *
+         * @var String
+         */
+        private $heading_level = '';
+        /**
+         * The title of the popup.
+         *
+         * @var String
+         */
+        private $title = '';
+        /**
+         * The content of the popup.
+         *
+         * @var String
+         */
+        private $content = '';
+        /**
+         * The URL for where the button should link to.
+         *
+         * @var String
+         */
+        private $url = '';
+        /**
+         * Wpseo_Premium_Popup constructor.
+         *
+         * @param String $identifier    An unique identifier for the popup.
+         * @param String $heading_level The heading level for the title of the popup.
+         * @param String $title         The title of the popup.
+         * @param String $content       The content of the popup.
+         * @param String $url           The URL for where the button should link to.
+         */
+        public function __construct($identifier, $heading_level, $title, $content, $url)
+        {
+        }
+        /**
+         * Returns the premium popup as an HTML string.
+         *
+         * @param bool $popup Show this message as a popup show it straight away.
+         *
+         * @return string
+         */
+        public function get_premium_message($popup = \true)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_Premium_Upsell_Admin_Block
+     */
+    class WPSEO_Premium_Upsell_Admin_Block
+    {
+        /**
+         * Hook to display the block on.
+         *
+         * @var string
+         */
+        protected $hook;
+        /**
+         * Identifier to use in the dismissal functionality.
+         *
+         * @var string
+         */
+        protected $identifier = 'premium_upsell';
+        /**
+         * Registers which hook the block will be displayed on.
+         *
+         * @param string $hook Hook to display the block on.
+         */
+        public function __construct($hook)
+        {
+        }
+        /**
+         * Registers WordPress hooks.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Renders the upsell block.
+         *
+         * @return void
+         */
+        public function render()
+        {
+        }
+        /**
+         * Formats the argument to a HTML list item.
+         *
+         * @param string $argument The argument to format.
+         *
+         * @return string Formatted argument in HTML.
+         */
+        protected function get_argument_html($argument)
+        {
+        }
+        /**
+         * Returns the HTML base class to use.
+         *
+         * @return string The HTML base class.
+         */
+        protected function get_html_class()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Adds the UI to change the primary term for a post.
+     */
+    class WPSEO_Primary_Term_Admin implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Constructor.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Gets the current post ID.
+         *
+         * @return integer The post ID.
+         */
+        protected function get_current_id()
+        {
+        }
+        /**
+         * Adds hidden fields for primary taxonomies.
+         *
+         * @param string $content The metabox content.
+         *
+         * @return string The HTML content.
+         */
+        public function add_input_fields($content)
+        {
+        }
+        /**
+         * Generates the HTML for a hidden field for a primary taxonomy.
+         *
+         * @param string $taxonomy_name The taxonomy's slug.
+         *
+         * @return string The HTML for a hidden primary taxonomy field.
+         */
+        protected function primary_term_field($taxonomy_name)
+        {
+        }
+        /**
+         * Generates an id for a primary taxonomy's hidden field.
+         *
+         * @param string $taxonomy_name The taxonomy's slug.
+         *
+         * @return string The field id.
+         */
+        protected function generate_field_id($taxonomy_name)
+        {
+        }
+        /**
+         * Generates a name for a primary taxonomy's hidden field.
+         *
+         * @param string $taxonomy_name The taxonomy's slug.
+         *
+         * @return string The field id.
+         */
+        protected function generate_field_name($taxonomy_name)
+        {
+        }
+        /**
+         * Adds primary term templates.
+         */
+        public function wp_footer()
+        {
+        }
+        /**
+         * Enqueues all the assets needed for the primary term interface.
+         *
+         * @return void
+         */
+        public function enqueue_assets()
+        {
+        }
+        /**
+         * Saves all selected primary terms.
+         *
+         * @param int $post_id Post ID to save primary terms for.
+         */
+        public function save_primary_terms($post_id)
+        {
+        }
+        /**
+         * Gets the id of the primary term.
+         *
+         * @param string $taxonomy_name Taxonomy name for the term.
+         *
+         * @return int primary term id
+         */
+        protected function get_primary_term($taxonomy_name)
+        {
+        }
+        /**
+         * Returns all the taxonomies for which the primary term selection is enabled.
+         *
+         * @param int $post_id Default current post ID.
+         * @return array
+         */
+        protected function get_primary_term_taxonomies($post_id = \null)
+        {
+        }
+        /**
+         * Includes templates file.
+         */
+        protected function include_js_templates()
+        {
+        }
+        /**
+         * Saves the primary term for a specific taxonomy.
+         *
+         * @param int     $post_id  Post ID to save primary term for.
+         * @param WP_Term $taxonomy Taxonomy to save primary term for.
+         */
+        protected function save_primary_term($post_id, $taxonomy)
+        {
+        }
+        /**
+         * Generates the primary term taxonomies.
+         *
+         * @param int $post_id ID of the post.
+         *
+         * @return array
+         */
+        protected function generate_primary_term_taxonomies($post_id)
+        {
+        }
+        /**
+         * Creates a map of taxonomies for localization.
+         *
+         * @param array $taxonomies The taxononmies that should be mapped.
+         *
+         * @return array The mapped taxonomies.
+         */
+        protected function get_mapped_taxonomies_for_js($taxonomies)
+        {
+        }
+        /**
+         * Returns an array suitable for use in the javascript.
+         *
+         * @param stdClass $taxonomy The taxonomy to map.
+         *
+         * @return array The mapped taxonomy.
+         */
+        private function map_taxonomies_for_js($taxonomy)
+        {
+        }
+        /**
+         * Returns an array suitable for use in the javascript.
+         *
+         * @param stdClass $term The term to map.
+         *
+         * @return array The mapped terms.
+         */
+        private function map_terms_for_js($term)
+        {
+        }
+        /**
+         * Returns whether or not a taxonomy is hierarchical.
+         *
+         * @param stdClass $taxonomy Taxonomy object.
+         *
+         * @return bool
+         */
+        private function filter_hierarchical_taxonomies($taxonomy)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the upsell notice.
+     */
+    class WPSEO_Product_Upsell_Notice
+    {
+        /**
+         * Holds the name of the user meta key.
+         *
+         * The value of this database field holds whether the user has dismissed this notice or not.
+         *
+         * @var string
+         */
+        const USER_META_DISMISSED = 'wpseo-remove-upsell-notice';
+        /**
+         * Holds the option name.
+         *
+         * @var string
+         */
+        const OPTION_NAME = 'wpseo';
+        /**
+         * Holds the options.
+         *
+         * @var array
+         */
+        protected $options;
+        /**
+         * Sets the options, because they always have to be there on instance.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Checks if the notice should be added or removed.
+         */
+        public function initialize()
+        {
+        }
+        /**
+         * Sets the upgrade notice.
+         */
+        public function set_upgrade_notice()
+        {
+        }
+        /**
+         * Listener for the upsell notice.
+         */
+        public function dismiss_notice_listener()
+        {
+        }
+        /**
+         * When the notice should be shown.
+         *
+         * @return bool
+         */
+        protected function should_add_notification()
+        {
+        }
+        /**
+         * Checks if the options has a first activated on date value.
+         */
+        protected function has_first_activated_on()
+        {
+        }
+        /**
+         * Sets the first activated on.
+         */
+        protected function set_first_activated_on()
+        {
+        }
+        /**
+         * Adds a notification to the notification center.
+         */
+        protected function add_notification()
+        {
+        }
+        /**
+         * Removes a notification to the notification center.
+         */
+        protected function remove_notification()
+        {
+        }
+        /**
+         * Returns a premium upsell section if using the free plugin.
+         *
+         * @return string
+         */
+        protected function get_premium_upsell_section()
+        {
+        }
+        /**
+         * Gets the notification value.
+         *
+         * @return Yoast_Notification
+         */
+        protected function get_notification()
+        {
+        }
+        /**
+         * Dismisses the notice.
+         *
+         * @return string
+         */
+        protected function is_notice_dismissed()
+        {
+        }
+        /**
+         * Dismisses the notice.
+         */
+        protected function dismiss_notice()
+        {
+        }
+        /**
+         * Returns the set options.
+         *
+         * @return mixed|void
+         */
+        protected function get_options()
+        {
+        }
+        /**
+         * Saves the options to the database.
+         */
+        protected function save_options()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_Recalculate_Scores.
+     *
+     * This class handles the SEO score recalculation for all posts with a filled focus keyword.
+     */
+    class WPSEO_Recalculate_Scores
+    {
+        /**
+         * Constructing the object by modalbox, the localization and the totals.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Run the localize script.
+         */
+        public function recalculate_assets()
+        {
+        }
+        /**
+         * Initialize the modal box to be displayed when needed.
+         */
+        public function modal_box()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class handles a post request being send to a given endpoint.
+     */
+    class WPSEO_Remote_Request
+    {
+        /**
+         * Holds the post method.
+         *
+         * @var string
+         */
+        const METHOD_POST = 'post';
+        /**
+         * Holds the get method.
+         *
+         * @var string
+         */
+        const METHOD_GET = 'get';
+        /**
+         * Holds the endpoint to send the request to.
+         *
+         * @var string
+         */
+        protected $endpoint = '';
+        /**
+         * Holds the arguments to use in this request.
+         *
+         * @var array
+         */
+        protected $args = ['blocking' => \false, 'timeout' => 2];
+        /**
+         * Holds the response error.
+         *
+         * @var WP_Error|null
+         */
+        protected $response_error;
+        /**
+         * Holds the response body.
+         *
+         * @var mixed
+         */
+        protected $response_body;
+        /**
+         * Sets the endpoint and arguments.
+         *
+         * @param string $endpoint The endpoint to send the request to.
+         * @param array  $args     The arguments to use in this request.
+         */
+        public function __construct($endpoint, array $args = [])
+        {
+        }
+        /**
+         * Sets the request body.
+         *
+         * @param mixed $body The body to set.
+         */
+        public function set_body($body)
+        {
+        }
+        /**
+         * Sends the data to the given endpoint.
+         *
+         * @param string $method The type of request to send.
+         *
+         * @return bool True when sending data has been successful.
+         */
+        public function send($method = self::METHOD_POST)
+        {
+        }
+        /**
+         * Returns the value of the response error.
+         *
+         * @return null|WP_Error The response error.
+         */
+        public function get_response_error()
+        {
+        }
+        /**
+         * Returns the response body.
+         *
+         * @return mixed The response body.
+         */
+        public function get_response_body()
+        {
+        }
+        /**
+         * Processes the given response.
+         *
+         * @param mixed $response The response to process.
+         *
+         * @return bool True when response is valid.
+         */
+        protected function process_response($response)
+        {
+        }
+        /**
+         * Performs a post request to the specified endpoint with set arguments.
+         *
+         * @return WP_Error|array The response or WP_Error on failure.
+         */
+        protected function post()
+        {
+        }
+        /**
+         * Performs a post request to the specified endpoint with set arguments.
+         *
+         * @return WP_Error|array The response or WP_Error on failure.
+         */
+        protected function get()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Notifies the user to update the Person on the publish entity in the Configuration Wizard.
+     */
+    class WPSEO_Schema_Person_Upgrade_Notification implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Registers all hooks to WordPress
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Handles if the notification should be added or removed.
+         */
+        public function handle_notification()
+        {
+        }
+        /**
+         * Adds a notification to the notification center.
+         */
+        protected function add_notification()
+        {
+        }
+        /**
+         * Removes a notification to the notification center.
+         */
+        protected function remove_notification()
+        {
+        }
+        /**
+         * Gets the notification object.
+         *
+         * @return Yoast_Notification
+         */
+        protected function get_notification()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Internals
+     * @since   1.5.0
+     */
+    /**
+     * This class implements defaults and value validation for all WPSEO Post Meta values.
+     *
+     * Some guidelines:
+     * - To update a meta value, you can just use update_post_meta() with the full (prefixed) meta key
+     *   or the convenience method WPSEO_Meta::set_value() with the internal key.
+     *   All updates will be automatically validated.
+     *   Meta values will only be saved to the database if they are *not* the same as the default to
+     *   keep database load low.
+     * - To retrieve a WPSEO meta value, you **must** use WPSEO_Meta::get_value() which will always return a
+     *   string value, either the saved value or the default.
+     *   This method can also retrieve a complete set of WPSEO meta values for one specific post, see
+     *   the method documentation for the parameters.
+     *
+     * {@internal Unfortunately there isn't a filter available to hook into before returning the results
+     *            for get_post_meta(), get_post_custom() and the likes. That would have been the
+     *            preferred solution.}}
+     *
+     * {@internal All WP native get_meta() results get cached internally, so no need to cache locally.}}
+     * {@internal Use $key when the key is the WPSEO internal name (without prefix), $meta_key when it
+     *            includes the prefix.}}
+     */
+    class WPSEO_Meta
+    {
+        /**
+         * Prefix for all WPSEO meta values in the database.
+         *
+         * {@internal If at any point this would change, quite apart from an upgrade routine,
+         *            this also will need to be changed in the wpml-config.xml file.}}
+         *
+         * @var string
+         */
+        public static $meta_prefix = '_yoast_wpseo_';
+        /**
+         * Prefix for all WPSEO meta value form field names and ids.
+         *
+         * @var string
+         */
+        public static $form_prefix = 'yoast_wpseo_';
+        /**
+         * Allowed length of the meta description.
+         *
+         * @var int
+         */
+        public static $meta_length = 156;
+        /**
+         * Reason the meta description is not the default length.
+         *
+         * @var string
+         */
+        public static $meta_length_reason = '';
+        /**
+         * Meta box field definitions for the meta box form.
+         *
+         * {@internal
+         * - Titles, help texts, description text and option labels are added via a translate_meta_boxes() method
+         *   in the relevant child classes (WPSEO_Metabox and WPSEO_Social_admin) as they are only needed there.
+         * - Beware: even though the meta keys are divided into subsets, they still have to be uniquely named!}}
+         *
+         * @var array $meta_fields
+         *            Array format:
+         *                (required)       'type'          => (string) field type. i.e. text / textarea / checkbox /
+         *                                                    radio / select / multiselect / upload etc.
+         *                (required)       'title'         => (string) table row title.
+         *                (recommended)    'default_value' => (string|array) default value for the field.
+         *                                                    IMPORTANT:
+         *                                                    - if the field has options, the default has to be the
+         *                                                      key of one of the options.
+         *                                                    - if the field is a text field, the default **has** to be
+         *                                                      an empty string as otherwise the user can't save
+         *                                                      an empty value/delete the meta value.
+         *                                                    - if the field is a checkbox, the only valid values
+         *                                                      are 'on' or 'off'.
+         *                (semi-required)   'options'      => (array) options for used with (multi-)select and radio
+         *                                                    fields, required if that's the field type.
+         *                                                    key = (string) value which will be saved to db.
+         *                                                    value = (string) text label for the option.
+         *                (optional)        'autocomplete' => (bool) whether autocomplete is on for text fields,
+         *                                                    defaults to true.
+         *                (optional)        'class'        => (string) classname(s) to add to the actual <input> tag.
+         *                (optional)        'description'  => (string) description to show underneath the field.
+         *                (optional)        'expl'         => (string) label for a checkbox.
+         *                (optional)        'help'         => (string) help text to show on mouse over ? image.
+         *                (optional)        'rows'         => (int) number of rows for a textarea, defaults to 3.
+         *                (optional)        'placeholder'  => (string) Currently only used by add-on plugins.
+         *                (optional)        'serialized'   => (bool) whether the value is expected to be serialized,
+         *                                                     i.e. an array or object, defaults to false.
+         *                                                     Currently only used by add-on plugins.
+         */
+        public static $meta_fields = [
+            'general' => ['focuskw' => ['type' => 'hidden', 'title' => ''], 'title' => [
+                'type' => 'hidden',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '',
+                'description' => '',
+                // Translation added later.
+                'help' => '',
+            ], 'metadesc' => [
+                'type' => 'hidden',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '',
+                'class' => 'metadesc',
+                'rows' => 2,
+                'description' => '',
+                // Translation added later.
+                'help' => '',
+            ], 'linkdex' => ['type' => 'hidden', 'title' => 'linkdex', 'default_value' => '0', 'description' => ''], 'content_score' => ['type' => 'hidden', 'title' => 'content_score', 'default_value' => '0', 'description' => ''], 'is_cornerstone' => ['type' => 'hidden', 'title' => 'is_cornerstone', 'default_value' => 'false', 'description' => '']],
+            'advanced' => ['meta-robots-noindex' => [
+                'type' => 'select',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '0',
+                // = post-type default.
+                'options' => [
+                    '0' => '',
+                    // Post type default - translation added later.
+                    '2' => '',
+                    // Index - translation added later.
+                    '1' => '',
+                ],
+            ], 'meta-robots-nofollow' => [
+                'type' => 'radio',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '0',
+                // = follow.
+                'options' => [
+                    '0' => '',
+                    // Follow - translation added later.
+                    '1' => '',
+                ],
+            ], 'meta-robots-adv' => [
+                'type' => 'multiselect',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '',
+                'description' => '',
+                // Translation added later.
+                'options' => [
+                    'noimageindex' => '',
+                    // Translation added later.
+                    'noarchive' => '',
+                    // Translation added later.
+                    'nosnippet' => '',
+                ],
+            ], 'bctitle' => [
+                'type' => 'text',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '',
+                'description' => '',
+            ], 'canonical' => [
+                'type' => 'text',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '',
+                'description' => '',
+            ], 'redirect' => [
+                'type' => 'text',
+                'title' => '',
+                // Translation added later.
+                'default_value' => '',
+                'description' => '',
+            ]],
+            'social' => [],
+            /* Fields we should validate & save, but not show on any form. */
+            'non_form' => ['linkdex' => ['type' => \null, 'default_value' => '0']],
+        ];
+        /**
+         * Helper property - reverse index of the definition array.
+         *
+         * Format: [full meta key including prefix]    => array
+         *         ['subset']    => (string) primary index
+         *         ['key']       => (string) internal key
+         *
+         * @var array
+         */
+        public static $fields_index = [];
+        /**
+         * Helper property - array containing only the defaults in the format:
+         * [full meta key including prefix]    => (string) default value
+         *
+         * @var array
+         */
+        public static $defaults = [];
+        /**
+         * Helper property to define the social network meta field definitions - networks.
+         *
+         * @var array
+         */
+        private static $social_networks = ['opengraph' => 'opengraph', 'twitter' => 'twitter'];
+        /**
+         * Helper property to define the social network meta field definitions - fields and their type.
+         *
+         * @var array
+         */
+        private static $social_fields = ['title' => 'text', 'description' => 'textarea', 'image' => 'upload', 'image-id' => 'hidden'];
+        /**
+         * Register our actions and filters.
+         *
+         * @return void
+         */
+        public static function init()
+        {
+        }
+        /**
+         * Retrieve the meta box form field definitions for the given tab and post type.
+         *
+         * @param string $tab       Tab for which to retrieve the field definitions.
+         * @param string $post_type Post type of the current post.
+         *
+         * @return array Array containing the meta box field definitions.
+         */
+        public static function get_meta_field_defs($tab, $post_type = 'post')
+        {
+        }
+        /**
+         * Validate the post meta values.
+         *
+         * @param mixed  $meta_value The new value.
+         * @param string $meta_key   The full meta key (including prefix).
+         *
+         * @return string Validated meta value.
+         */
+        public static function sanitize_post_meta($meta_value, $meta_key)
+        {
+        }
+        /**
+         * Validate a meta-robots-adv meta value.
+         *
+         * @todo [JRF => Yoast] Verify that this logic for the prioritisation is correct.
+         *
+         * @param array|string $meta_value The value to validate.
+         *
+         * @return string Clean value.
+         */
+        public static function validate_meta_robots_adv($meta_value)
+        {
+        }
+        /**
+         * Prevent saving of default values and remove potential old value from the database if replaced by a default.
+         *
+         * @param bool   $check      The current status to allow updating metadata for the given type.
+         * @param int    $object_id  ID of the current object for which the meta is being updated.
+         * @param string $meta_key   The full meta key (including prefix).
+         * @param string $meta_value New meta value.
+         * @param string $prev_value The old meta value.
+         *
+         * @return null|bool True = stop saving, null = continue saving.
+         */
+        public static function remove_meta_if_default($check, $object_id, $meta_key, $meta_value, $prev_value = '')
+        {
+        }
+        /**
+         * Prevent adding of default values to the database.
+         *
+         * @param bool   $check      The current status to allow adding metadata for the given type.
+         * @param int    $object_id  ID of the current object for which the meta is being added.
+         * @param string $meta_key   The full meta key (including prefix).
+         * @param string $meta_value New meta value.
+         *
+         * @return null|bool True = stop saving, null = continue saving.
+         */
+        public static function dont_save_meta_if_default($check, $object_id, $meta_key, $meta_value)
+        {
+        }
+        /**
+         * Is the given meta value the same as the default value ?
+         *
+         * @param string $meta_key   The full meta key (including prefix).
+         * @param mixed  $meta_value The value to check.
+         *
+         * @return bool
+         */
+        public static function meta_value_is_default($meta_key, $meta_value)
+        {
+        }
+        /**
+         * Get a custom post meta value.
+         *
+         * Returns the default value if the meta value has not been set.
+         *
+         * {@internal Unfortunately there isn't a filter available to hook into before returning
+         *            the results for get_post_meta(), get_post_custom() and the likes. That
+         *            would have been the preferred solution.}}
+         *
+         * @param string $key    Internal key of the value to get (without prefix).
+         * @param int    $postid Post ID of the post to get the value for.
+         *
+         * @return string All 'normal' values returned from get_post_meta() are strings.
+         *                Objects and arrays are possible, but not used by this plugin
+         *                and therefore discarted (except when the special 'serialized' field def
+         *                value is set to true - only used by add-on plugins for now).
+         *                Will return the default value if no value was found.
+         *                Will return empty string if no default was found (not one of our keys) or
+         *                if the post does not exist.
+         */
+        public static function get_value($key, $postid = 0)
+        {
+        }
+        /**
+         * Update a meta value for a post.
+         *
+         * @param string $key        The internal key of the meta value to change (without prefix).
+         * @param mixed  $meta_value The value to set the meta to.
+         * @param int    $post_id    The ID of the post to change the meta for.
+         *
+         * @return bool Whether the value was changed.
+         */
+        public static function set_value($key, $meta_value, $post_id)
+        {
+        }
+        /**
+         * Deletes a meta value for a post.
+         *
+         * @param string $key     The internal key of the meta value to change (without prefix).
+         * @param int    $post_id The ID of the post to change the meta for.
+         *
+         * @return bool Whether the value was changed.
+         */
+        public static function delete($key, $post_id)
+        {
+        }
+        /**
+         * Used for imports, this functions imports the value of $old_metakey into $new_metakey for those post
+         * where no WPSEO meta data has been set.
+         * Optionally deletes the $old_metakey values.
+         *
+         * @param string $old_metakey The old key of the meta value.
+         * @param string $new_metakey The new key, usually the WPSEO meta key (including prefix).
+         * @param bool   $delete_old  Whether to delete the old meta key/value-sets.
+         *
+         * @return void
+         */
+        public static function replace_meta($old_metakey, $new_metakey, $delete_old = \false)
+        {
+        }
+        /**
+         * General clean-up of the saved meta values.
+         * - Remove potentially lingering old meta keys;
+         * - Remove all default and invalid values.
+         *
+         * @return void
+         */
+        public static function clean_up()
+        {
+        }
+        /**
+         * Recursively merge a variable number of arrays, using the left array as base,
+         * giving priority to the right array.
+         *
+         * Difference with native array_merge_recursive():
+         * array_merge_recursive converts values with duplicate keys to arrays rather than
+         * overwriting the value in the first array with the duplicate value in the second array.
+         *
+         * array_merge_recursive_distinct does not change the data types of the values in the arrays.
+         * Matching keys' values in the second array overwrite those in the first array, as is the
+         * case with array_merge.
+         *
+         * Freely based on information found on http://www.php.net/manual/en/function.array-merge-recursive.php
+         *
+         * {@internal Should be moved to a general utility class.}}
+         *
+         * @return array
+         */
+        public static function array_merge_recursive_distinct()
+        {
+        }
+        /**
+         * Counts the total of all the keywords being used for posts except the given one.
+         *
+         * @param string  $keyword The keyword to be counted.
+         * @param integer $post_id The is of the post to which the keyword belongs.
+         *
+         * @return array
+         */
+        public static function keyword_usage($keyword, $post_id)
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Get a value from $_POST for a given key.
+         *
+         * Returns the $_POST value if exists, returns an empty string if key does not exist.
+         *
+         * @deprecated 9.6
+         * @codeCoverageIgnore
+         *
+         * @param string $key Key of the value to get from $_POST.
+         *
+         * @return string Returns $_POST value, which will be a string the majority of the time.
+         *                Will return empty string if key does not exists in $_POST.
+         */
+        public static function get_post_value($key)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class generates the metabox on the edit post / page as well as contains all page analysis functionality.
+     */
+    class WPSEO_Metabox extends \WPSEO_Meta
+    {
+        /**
+         * An instance of the Social Admin class.
+         *
+         * @var WPSEO_Social_Admin
+         */
+        protected $social_admin;
+        /**
+         * An instance of the Metabox Analysis SEO class.
+         *
+         * @var WPSEO_Metabox_Analysis_SEO
+         */
+        protected $analysis_seo;
+        /**
+         * An instance of the Metabox Analysis Readability class.
+         *
+         * @var WPSEO_Metabox_Analysis_Readability
+         */
+        protected $analysis_readability;
+        /**
+         * The metabox editor object.
+         *
+         * @var WPSEO_Metabox_Editor
+         */
+        protected $editor;
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Checks whether the request comes from an IE 11 browser.
+         *
+         * @return bool Whether the request comes from an IE 11 browser.
+         */
+        public static function is_internet_explorer()
+        {
+        }
+        /**
+         * Adds an alternative metabox for internet explorer users.
+         */
+        public function internet_explorer_metabox()
+        {
+        }
+        /**
+         * Renders the content for the internet explorer metabox.
+         */
+        public function render_internet_explorer_notice()
+        {
+        }
+        /**
+         * Translates text strings for use in the meta box.
+         *
+         * IMPORTANT: if you want to add a new string (option) somewhere, make sure you add that array key to
+         * the main meta box definition array in the class WPSEO_Meta() as well!!!!
+         */
+        public static function translate_meta_boxes()
+        {
+        }
+        /**
+         * Determines whether the metabox should be shown for the passed identifier.
+         *
+         * By default the check is done for post types, but can also be used for taxonomies.
+         *
+         * @param string|null $identifier The identifier to check.
+         * @param string      $type       The type of object to check. Defaults to post_type.
+         *
+         * @return bool Whether or not the metabox should be displayed.
+         */
+        public function display_metabox($identifier = \null, $type = 'post_type')
+        {
+        }
+        /**
+         * Adds the Yoast SEO meta box to the edit boxes in the edit post, page,
+         * attachment, and custom post types pages.
+         *
+         * @return void
+         */
+        public function add_meta_box()
+        {
+        }
+        /**
+         * Adds CSS classes to the meta box.
+         *
+         * @param array $classes An array of postbox CSS classes.
+         *
+         * @return array List of classes that will be applied to the editbox container.
+         */
+        public function wpseo_metabox_class($classes)
+        {
+        }
+        /**
+         * Passes variables to js for use with the post-scraper.
+         *
+         * @return array
+         */
+        public function localize_post_scraper_script()
+        {
+        }
+        /**
+         * Passes some variables to js for replacing variables.
+         */
+        public function localize_replace_vars_script()
+        {
+        }
+        /**
+         * Determines whether or not the current post type has registered taxonomies.
+         *
+         * @return bool Whether the current post type has taxonomies.
+         */
+        private function current_post_type_has_taxonomies()
+        {
+        }
+        /**
+         * Determines the scope based on the post type.
+         * This can be used by the replacevar plugin to determine if a replacement needs to be executed.
+         *
+         * @return string String describing the current scope.
+         */
+        private function determine_scope()
+        {
+        }
+        /**
+         * Passes some variables to js for the edit / post page overview, etc.
+         *
+         * @return array
+         */
+        public function localize_shortcode_plugin_script()
+        {
+        }
+        /**
+         * Outputs the meta box.
+         */
+        public function meta_box()
+        {
+        }
+        /**
+         * Returns the relevant metabox sections for the current view.
+         *
+         * @return WPSEO_Metabox_Section[]
+         */
+        private function get_content_sections()
+        {
+        }
+        /**
+         * Returns the metabox section for the seo analysis.
+         *
+         * @return WPSEO_Metabox_Section
+         */
+        private function get_seo_meta_section()
+        {
+        }
+        /**
+         * Returns the metabox section for the readability analysis.
+         *
+         * @return WPSEO_Metabox_Section
+         */
+        private function get_readability_meta_section()
+        {
+        }
+        /**
+         * Returns the metabox sections that have been added by other plugins.
+         *
+         * @return WPSEO_Metabox_Section_Additional[]
+         */
+        protected function get_additional_meta_sections()
+        {
+        }
+        /**
+         * Retrieves the contents for the metabox tab.
+         *
+         * @param string $tab_name Tab for which to retrieve the field definitions.
+         *
+         * @return string
+         */
+        private function get_tab_content($tab_name)
+        {
+        }
+        /**
+         * Adds a line in the meta box.
+         *
+         * @todo [JRF] Check if $class is added appropriately everywhere.
+         *
+         * @param array  $meta_field_def Contains the vars based on which output is generated.
+         * @param string $key            Internal key (without prefix).
+         *
+         * @return string
+         */
+        public function do_meta_box($meta_field_def, $key = '')
+        {
+        }
+        /**
+         * Saves the WP SEO metadata for posts.
+         *
+         * {@internal $_POST parameters are validated via sanitize_post_meta().}}
+         *
+         * @param int $post_id Post ID.
+         *
+         * @return bool|void Boolean false if invalid save post request.
+         */
+        public function save_postdata($post_id)
+        {
+        }
+        /**
+         * Determines if the given meta value key is disabled.
+         *
+         * @param string $key The key of the meta value.
+         *
+         * @return bool Whether the given meta value key is disabled.
+         */
+        public function is_meta_value_disabled($key)
+        {
+        }
+        /**
+         * Enqueues all the needed JS and CSS.
+         *
+         * @todo [JRF => whomever] Create css/metabox-mp6.css file and add it to the below allowed colors array when done.
+         */
+        public function enqueue()
+        {
+        }
+        /**
+         * Passes some variables to js for upload module.
+         *
+         * @return array
+         */
+        public function localize_media_script()
+        {
+        }
+        /**
+         * Returns post in metabox context.
+         *
+         * @returns WP_Post|array
+         */
+        protected function get_metabox_post()
+        {
+        }
+        /**
+         * Returns an array with shortcode tags for all registered shortcodes.
+         *
+         * @return array
+         */
+        private function get_valid_shortcode_tags()
+        {
+        }
+        /**
+         * Prepares the replace vars for localization.
+         *
+         * @return array Replace vars.
+         */
+        private function get_replace_vars()
+        {
+        }
+        /**
+         * Prepares the recommended replace vars for localization.
+         *
+         * @return array Recommended replacement variables.
+         */
+        private function get_recommended_replace_vars()
+        {
+        }
+        /**
+         * Gets the custom replace variables for custom taxonomies and fields.
+         *
+         * @param WP_Post $post The post to check for custom taxonomies and fields.
+         *
+         * @return array Array containing all the replacement variables.
+         */
+        private function get_custom_replace_vars($post)
+        {
+        }
+        /**
+         * Gets the custom replace variables for custom taxonomies.
+         *
+         * @param WP_Post $post The post to check for custom taxonomies.
+         *
+         * @return array Array containing all the replacement variables.
+         */
+        private function get_custom_taxonomies_replace_vars($post)
+        {
+        }
+        /**
+         * Gets the custom replace variables for custom fields.
+         *
+         * @param WP_Post $post The post to check for custom fields.
+         *
+         * @return array Array containing all the replacement variables.
+         */
+        private function get_custom_fields_replace_vars($post)
+        {
+        }
+        /**
+         * Checks if the page is the post overview page.
+         *
+         * @param string $page The page to check for the post overview page.
+         *
+         * @return bool Whether or not the given page is the post overview page.
+         */
+        public static function is_post_overview($page)
+        {
+        }
+        /**
+         * Checks if the page is the post edit page.
+         *
+         * @param string $page The page to check for the post edit page.
+         *
+         * @return bool Whether or not the given page is the post edit page.
+         */
+        public static function is_post_edit($page)
+        {
+        }
+        /**
+         * Retrieves the product title.
+         *
+         * @return string The product title.
+         */
+        protected function get_product_title()
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Outputs the page analysis score in the Publish Box.
+         *
+         * @deprecated 9.6
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function publish_box()
+        {
+        }
+        /**
+         * Sets up all the functionality related to the prominence of the page analysis functionality.
+         *
+         * @deprecated 9.6
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function setup_page_analysis()
+        {
+        }
+        /**
+         * Outputs a tab in the Yoast SEO Metabox.
+         *
+         * @deprecated         12.2
+         * @codeCoverageIgnore
+         *
+         * @param string $id      CSS ID of the tab.
+         * @param string $heading Heading for the tab.
+         * @param string $content Content of the tab. This content should be escaped.
+         */
+        public function do_tab($id, $heading, $content)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class adds the Social tab to the Yoast SEO metabox and makes sure the settings are saved.
+     */
+    class WPSEO_Social_Admin extends \WPSEO_Metabox
+    {
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Translate text strings for use in the meta box.
+         *
+         * IMPORTANT: if you want to add a new string (option) somewhere, make sure you add that array key to
+         * the main meta box definition array in the class WPSEO_Meta() as well!!!!
+         */
+        public static function translate_meta_boxes()
+        {
+        }
+        /**
+         * Returns the metabox section for the social settings.
+         *
+         * @return WPSEO_Metabox_Collapsibles_Sections
+         */
+        public function get_meta_section()
+        {
+        }
+        /**
+         * Generates the html for a social settings tab for one of the supported social media.
+         *
+         * @param string $medium          Medium. Can be 'opengraph' or 'twitter'.
+         * @param array  $meta_field_defs The social meta field definitions.
+         *
+         * @return string
+         */
+        private function get_social_tab_content($medium, $meta_field_defs)
+        {
+        }
+        /**
+         * Hides the given output when rendered to HTML.
+         *
+         * @param string $tab_content The social tab content.
+         *
+         * @return string The content.
+         */
+        private function hide_form($tab_content)
+        {
+        }
+        /**
+         * Returns the Upgrade to Premium notice.
+         *
+         * @param string $network The social network.
+         *
+         * @return string The notice HTML on the free version, empty string on premium.
+         */
+        public function get_premium_notice($network)
+        {
+        }
+        /**
+         * Filter over the meta boxes to save, this function adds the Social meta boxes.
+         *
+         * @param array $field_defs Array of metaboxes to save.
+         *
+         * @return array
+         */
+        public function save_meta_boxes($field_defs)
+        {
+        }
+        /**
+         * This method will compare opengraph fields with the posted values.
+         *
+         * When fields are changed, the facebook cache will be purged.
+         *
+         * @param WP_Post $post Post instance.
+         */
+        public function og_data_compare($post)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Suggested_Plugins
+     */
+    /**
+     * Class WPSEO_Suggested_Plugins
+     */
+    class WPSEO_Suggested_Plugins implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Holds the availability checker.
+         *
+         * @var WPSEO_Plugin_Availability
+         */
+        protected $availability_checker;
+        /**
+         * Holds the notification center.
+         *
+         * @var Yoast_Notification_Center
+         */
+        protected $notification_center;
+        /**
+         * WPSEO_Suggested_Plugins constructor.
+         *
+         * @param WPSEO_Plugin_Availability $availability_checker The availability checker to use.
+         * @param Yoast_Notification_Center $notification_center  The notification center to add notifications to.
+         */
+        public function __construct(\WPSEO_Plugin_Availability $availability_checker, \Yoast_Notification_Center $notification_center)
+        {
+        }
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds notifications (when necessary).
+         *
+         * @return void
+         */
+        public function add_notifications()
+        {
+        }
+        /**
+         * Build Yoast SEO suggested plugins notification.
+         *
+         * @param string $name            The plugin name to use for the unique ID.
+         * @param array  $plugin          The plugin to retrieve the data from.
+         * @param string $dependency_name The name of the dependency.
+         *
+         * @return Yoast_Notification The notification containing the suggested plugin.
+         */
+        protected function get_yoast_seo_suggested_plugins_notification($name, $plugin, $dependency_name)
+        {
+        }
+        /**
+         * Creates a message to suggest the installation of a particular plugin.
+         *
+         * @param array $suggested_plugin   The suggested plugin.
+         * @param array $third_party_plugin The third party plugin that we have a suggested plugin for.
+         *
+         * @return string The install suggested plugin message.
+         */
+        protected function create_install_suggested_plugin_message($suggested_plugin, $third_party_plugin)
+        {
+        }
+        /**
+         * Creates a more information link that directs the user to WordPress.org Plugin repository.
+         *
+         * @param string $url  The URL to the plugin's page.
+         * @param string $name The name of the plugin.
+         *
+         * @return string The more information link.
+         */
+        protected function create_more_information_link($url, $name)
+        {
+        }
+        /**
+         * Creates a message to suggest the activation of a particular plugin.
+         *
+         * @param array $suggested_plugin   The suggested plugin.
+         * @param array $third_party_plugin The third party plugin that we have a suggested plugin for.
+         *
+         * @return string The activate suggested plugin message.
+         */
+        protected function create_activate_suggested_plugin_message($suggested_plugin, $third_party_plugin)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Notifications
+     */
+    /**
+     * Class Yoast_Alerts.
+     */
+    class Yoast_Alerts
+    {
+        /**
+         * Holds the admin page's ID.
+         *
+         * @var string
+         */
+        const ADMIN_PAGE = 'wpseo_dashboard';
+        /**
+         * Total notifications count.
+         *
+         * @var int
+         */
+        private static $notification_count = 0;
+        /**
+         * All error notifications.
+         *
+         * @var array
+         */
+        private static $errors = [];
+        /**
+         * Active errors.
+         *
+         * @var array
+         */
+        private static $active_errors = [];
+        /**
+         * Dismissed errors.
+         *
+         * @var array
+         */
+        private static $dismissed_errors = [];
+        /**
+         * All warning notifications.
+         *
+         * @var array
+         */
+        private static $warnings = [];
+        /**
+         * Active warnings.
+         *
+         * @var array
+         */
+        private static $active_warnings = [];
+        /**
+         * Dismissed warnings.
+         *
+         * @var array
+         */
+        private static $dismissed_warnings = [];
+        /**
+         * Yoast_Alerts constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Add hooks
+         */
+        private function add_hooks()
+        {
+        }
+        /**
+         * Enqueue assets.
+         */
+        public function enqueue_assets()
+        {
+        }
+        /**
+         * Handle ajax request to dismiss an alert.
+         */
+        public function ajax_dismiss_alert()
+        {
+        }
+        /**
+         * Handle ajax request to restore an alert.
+         */
+        public function ajax_restore_alert()
+        {
+        }
+        /**
+         * Create AJAX response data.
+         *
+         * @param string $type Alert type.
+         */
+        private function output_ajax_response($type)
+        {
+        }
+        /**
+         * Get the HTML to return in the AJAX request.
+         *
+         * @param string $type Alert type.
+         *
+         * @return bool|string
+         */
+        private function get_view_html($type)
+        {
+        }
+        /**
+         * Extract the Yoast Notification from the AJAX request.
+         *
+         * @return null|Yoast_Notification
+         */
+        private function get_notification_from_ajax_request()
+        {
+        }
+        /**
+         * Show the alerts overview page.
+         */
+        public static function show_overview_page()
+        {
+        }
+        /**
+         * Collect the alerts and group them together.
+         */
+        public static function collect_alerts()
+        {
+        }
+        /**
+         * Get the variables needed in the views.
+         *
+         * @return array
+         */
+        public static function get_template_variables()
+        {
+        }
+        /**
+         * Get the number of active alerts.
+         *
+         * @return int
+         */
+        public static function get_active_alert_count()
+        {
+        }
+        /**
+         * Filter out any non-errors.
+         *
+         * @param Yoast_Notification $notification Notification to test.
+         *
+         * @return bool
+         */
+        private static function filter_error_alerts(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Filter out any non-warnings.
+         *
+         * @param Yoast_Notification $notification Notification to test.
+         *
+         * @return bool
+         */
+        private static function filter_warning_alerts(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Filter out any dismissed notifications.
+         *
+         * @param Yoast_Notification $notification Notification to test.
+         *
+         * @return bool
+         */
+        private static function filter_dismissed_alerts(\Yoast_Notification $notification)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the yoast columns.
+     */
+    class WPSEO_Yoast_Columns implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Registers all hooks to WordPress.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds the help tab to the help center for current screen.
+         */
+        public function add_help_tab()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class to change or add WordPress dashboard widgets.
+     */
+    class Yoast_Dashboard_Widget implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Holds the cache transient key.
+         *
+         * @var string
+         */
+        const CACHE_TRANSIENT_KEY = 'wpseo-dashboard-totals';
+        /**
+         * Holds an instance of the admin asset manager.
+         *
+         * @var WPSEO_Admin_Asset_Manager
+         */
+        protected $asset_manager;
+        /**
+         * Holds the dashboard statistics.
+         *
+         * @var WPSEO_Statistics
+         */
+        protected $statistics;
+        /**
+         * Yoast_Dashboard_Widget constructor.
+         *
+         * @param WPSEO_Statistics|null $statistics WPSEO_Statistics instance.
+         */
+        public function __construct(\WPSEO_Statistics $statistics = \null)
+        {
+        }
+        /**
+         * Register WordPress hooks.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds the dashboard widget if it should be shown.
+         *
+         * @return void
+         */
+        public function queue_dashboard_widget()
+        {
+        }
+        /**
+         * Adds dashboard widget to WordPress.
+         */
+        public function add_dashboard_widget()
+        {
+        }
+        /**
+         * Adds CSS classes to the dashboard widget.
+         *
+         * @param array $classes An array of postbox CSS classes.
+         *
+         * @return array
+         */
+        public function wpseo_dashboard_overview_class($classes)
+        {
+        }
+        /**
+         * Displays the dashboard widget.
+         */
+        public function display_dashboard_widget()
+        {
+        }
+        /**
+         * Enqueues assets for the dashboard if the current page is the dashboard.
+         */
+        public function enqueue_dashboard_assets()
+        {
+        }
+        /**
+         * Translates strings used in the dashboard widget.
+         *
+         * @return array The translated strings.
+         */
+        public function localize_dashboard_script()
+        {
+        }
+        /**
+         * Checks if the current screen is the dashboard screen.
+         *
+         * @return bool Whether or not this is the dashboard screen.
+         */
+        private function is_dashboard_screen()
+        {
+        }
+        /**
+         * Returns true when the dashboard widget should be shown.
+         *
+         * @return bool
+         */
+        private function show_widget()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Admin form class.
+     *
+     * @since 2.0
+     */
+    class Yoast_Form
+    {
+        /**
+         * Instance of this class
+         *
+         * @var object
+         * @since 2.0
+         */
+        public static $instance;
+        /**
+         * The short name of the option to use for the current page.
+         *
+         * @var string
+         * @since 2.0
+         */
+        public $option_name;
+        /**
+         * Option instance.
+         *
+         * @since 8.4
+         * @var WPSEO_Option|null
+         */
+        protected $option_instance = \null;
+        /**
+         * Get the singleton instance of this class.
+         *
+         * @since 2.0
+         *
+         * @return Yoast_Form
+         */
+        public static function get_instance()
+        {
+        }
+        /**
+         * Generates the header for admin pages.
+         *
+         * @since 2.0
+         *
+         * @param bool   $form             Whether or not the form start tag should be included.
+         * @param string $option           The short name of the option to use for the current page.
+         * @param bool   $contains_files   Whether the form should allow for file uploads.
+         * @param bool   $option_long_name Group name of the option.
+         */
+        public function admin_header($form = \true, $option = 'wpseo', $contains_files = \false, $option_long_name = \false)
+        {
+        }
+        /**
+         * Set the option used in output for form elements.
+         *
+         * @since 2.0
+         *
+         * @param string $option_name Option key.
+         */
+        public function set_option($option_name)
+        {
+        }
+        /**
+         * Generates the footer for admin pages.
+         *
+         * @since 2.0
+         *
+         * @param bool $submit       Whether or not a submit button and form end tag should be shown.
+         * @param bool $show_sidebar Whether or not to show the banner sidebar - used by premium plugins to disable it.
+         */
+        public function admin_footer($submit = \true, $show_sidebar = \true)
+        {
+        }
+        /**
+         * Generates the sidebar for admin pages.
+         *
+         * @since 2.0
+         */
+        public function admin_sidebar()
+        {
+        }
+        /**
+         * Output a label element.
+         *
+         * @since 2.0
+         *
+         * @param string $text Label text string.
+         * @param array  $attr HTML attributes set.
+         */
+        public function label($text, $attr)
+        {
+        }
+        /**
+         * Output a legend element.
+         *
+         * @since 3.4
+         *
+         * @param string $text Legend text string.
+         * @param array  $attr HTML attributes set.
+         */
+        public function legend($text, $attr)
+        {
+        }
+        /**
+         * Create a Checkbox input field.
+         *
+         * @since 2.0
+         *
+         * @param string $var        The variable within the option to create the checkbox for.
+         * @param string $label      The label to show for the variable.
+         * @param bool   $label_left Whether the label should be left (true) or right (false).
+         */
+        public function checkbox($var, $label, $label_left = \false)
+        {
+        }
+        /**
+         * Creates a Checkbox input field list.
+         *
+         * @since 12.8
+         *
+         * @param string $variable The variables within the option to create the checkbox list for.
+         * @param string $labels   The labels to show for the variable.
+         */
+        public function checkbox_list($variable, $labels)
+        {
+        }
+        /**
+         * Create a light switch input field using a single checkbox.
+         *
+         * @since 3.1
+         *
+         * @param string $var     The variable within the option to create the checkbox for.
+         * @param string $label   The label element text for the checkbox.
+         * @param array  $buttons Array of two visual labels for the buttons (defaults Disabled/Enabled).
+         * @param bool   $reverse Reverse order of buttons (default true).
+         * @param string $help    Inline Help that will be printed out before the visible toggles text.
+         * @param bool   $strong  Whether the visual label is displayed in strong text. Default is false.
+         */
+        public function light_switch($var, $label, $buttons = [], $reverse = \true, $help = '', $strong = \false)
+        {
+        }
+        /**
+         * Create a Text input field.
+         *
+         * @since 2.0
+         * @since 2.1 Introduced the `$attr` parameter.
+         *
+         * @param string       $var   The variable within the option to create the text input field for.
+         * @param string       $label The label to show for the variable.
+         * @param array|string $attr  Extra attributes to add to the input field. Can be class, disabled, autocomplete.
+         */
+        public function textinput($var, $label, $attr = [])
+        {
+        }
+        /**
+         * Create a textarea.
+         *
+         * @since 2.0
+         *
+         * @param string       $var   The variable within the option to create the textarea for.
+         * @param string       $label The label to show for the variable.
+         * @param string|array $attr  The CSS class or an array of attributes to assign to the textarea.
+         */
+        public function textarea($var, $label, $attr = [])
+        {
+        }
+        /**
+         * Create a hidden input field.
+         *
+         * @since 2.0
+         *
+         * @param string $var The variable within the option to create the hidden input for.
+         * @param string $id  The ID of the element.
+         */
+        public function hidden($var, $id = '')
+        {
+        }
+        /**
+         * Create a Select Box.
+         *
+         * @since 2.0
+         *
+         * @param string $var            The variable within the option to create the select for.
+         * @param string $label          The label to show for the variable.
+         * @param array  $select_options The select options to choose from.
+         * @param string $styled         The select style. Use 'styled' to get a styled select. Default 'unstyled'.
+         * @param bool   $show_label     Whether or not to show the label, if not, it will be applied as an aria-label.
+         */
+        public function select($var, $label, array $select_options, $styled = 'unstyled', $show_label = \true)
+        {
+        }
+        /**
+         * Create a File upload field.
+         *
+         * @since 2.0
+         *
+         * @param string $var   The variable within the option to create the file upload field for.
+         * @param string $label The label to show for the variable.
+         */
+        public function file_upload($var, $label)
+        {
+        }
+        /**
+         * Media input.
+         *
+         * @since 2.0
+         *
+         * @param string $var   Option name.
+         * @param string $label Label message.
+         */
+        public function media_input($var, $label)
+        {
+        }
+        /**
+         * Create a Radio input field.
+         *
+         * @since 2.0
+         *
+         * @param string $var         The variable within the option to create the radio button for.
+         * @param array  $values      The radio options to choose from.
+         * @param string $legend      Optional. The legend to show for the field set, if any.
+         * @param array  $legend_attr Optional. The attributes for the legend, if any.
+         */
+        public function radio($var, $values, $legend = '', $legend_attr = [])
+        {
+        }
+        /**
+         * Create a toggle switch input field using two radio buttons.
+         *
+         * @since 3.1
+         *
+         * @param string $var    The variable within the option to create the radio buttons for.
+         * @param array  $values Associative array of on/off keys and their values to be used as
+         *                       the label elements text for the radio buttons. Optionally, each
+         *                       value can be an array of visible label text and screen reader text.
+         * @param string $label  The visual label for the radio buttons group, used as the fieldset legend.
+         * @param string $help   Inline Help that will be printed out before the visible toggles text.
+         */
+        public function toggle_switch($var, $values, $label, $help = '')
+        {
+        }
+        /**
+         * Creates a toggle switch to define whether an indexable should be indexed or not.
+         *
+         * @param string $var   The variable within the option to create the radio buttons for.
+         * @param string $label The visual label for the radio buttons group, used as the fieldset legend.
+         * @param string $help  Inline Help that will be printed out before the visible toggles text.
+         *
+         * @return void
+         */
+        public function index_switch($var, $label, $help = '')
+        {
+        }
+        /**
+         * Creates a toggle switch to show hide certain options.
+         *
+         * @param string $var          The variable within the option to create the radio buttons for.
+         * @param string $label        The visual label for the radio buttons group, used as the fieldset legend.
+         * @param bool   $inverse_keys Whether or not the option keys need to be inverted to support older functions.
+         * @param string $help         Inline Help that will be printed out before the visible toggles text.
+         *
+         * @return void
+         */
+        public function show_hide_switch($var, $label, $inverse_keys = \false, $help = '')
+        {
+        }
+        /**
+         * Checks whether a given control should be disabled.
+         *
+         * @param string $var The variable within the option to check whether its control should be disabled.
+         *
+         * @return bool True if control should be disabled, false otherwise.
+         */
+        protected function is_control_disabled($var)
+        {
+        }
+        /**
+         * Gets the explanation note to print if a given control is disabled.
+         *
+         * @param string $var The variable within the option to print a disabled note for.
+         *
+         * @return string Explanation note HTML string, or empty string if no note necessary.
+         */
+        protected function get_disabled_note($var)
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Retrieve options based on whether we're on multisite or not.
+         *
+         * @since 1.2.4
+         * @since 2.0   Moved to this class.
+         * @deprecated 8.4
+         * @codeCoverageIgnore
+         *
+         * @return array The option's value.
+         */
+        public function get_option()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Implements server-side user input validation.
+     *
+     * @since 12.0
+     */
+    class Yoast_Input_Validation
+    {
+        /**
+         * The error descriptions.
+         *
+         * @since 12.1
+         *
+         * @var array
+         */
+        private static $error_descriptions = [];
+        /**
+         * Check whether an option group is a Yoast SEO setting.
+         *
+         * The normal pattern is 'yoast' . $option_name . 'options'.
+         *
+         * @since 12.0
+         *
+         * @param string $group_name The option group name.
+         *
+         * @return bool Whether or not it's an Yoast SEO option group.
+         */
+        public static function is_yoast_option_group_name($group_name)
+        {
+        }
+        /**
+         * Adds an error message to the document title when submitting a settings
+         * form and errors are returned.
+         *
+         * Uses the WordPress `admin_title` filter in the WPSEO_Option subclasses.
+         *
+         * @since 12.0
+         *
+         * @param string $admin_title The page title, with extra context added.
+         *
+         * @return string $admin_title The modified or original admin title.
+         */
+        public static function add_yoast_admin_document_title_errors($admin_title)
+        {
+        }
+        /**
+         * Checks whether a specific form input field was submitted with an invalid value.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code Must be the same slug-name used for the field variable and for `add_settings_error()`.
+         *
+         * @return bool Whether or not the submitted input field contained an invalid value.
+         */
+        public static function yoast_form_control_has_error($error_code)
+        {
+        }
+        /**
+         * Sets the error descriptions.
+         *
+         * @since 12.1
+         *
+         * @param array $descriptions An associative array of error descriptions. For
+         *                            each entry, the key must be the setting variable.
+         */
+        public static function set_error_descriptions($descriptions = [])
+        {
+        }
+        /**
+         * Gets all the error descriptions.
+         *
+         * @since 12.1
+         *
+         * @return array An associative array of error descriptions.
+         */
+        public static function get_error_descriptions()
+        {
+        }
+        /**
+         * Gets a specific error description.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code Code of the error set via `add_settings_error()`, normally the variable name.
+         * @return string The error description.
+         */
+        public static function get_error_description($error_code)
+        {
+        }
+        /**
+         * Gets the aria-invalid HTML attribute based on the submitted invalid value.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code Code of the error set via `add_settings_error()`, normally the variable name.
+         * @return string The aria-invalid HTML attribute or empty string.
+         */
+        public static function get_the_aria_invalid_attribute($error_code)
+        {
+        }
+        /**
+         * Gets the aria-describedby HTML attribute based on the submitted invalid value.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code Code of the error set via `add_settings_error()`, normally the variable name.
+         * @return string The aria-describedby HTML attribute or empty string.
+         */
+        public static function get_the_aria_describedby_attribute($error_code)
+        {
+        }
+        /**
+         * Gets the error description wrapped in a HTML paragraph.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code Code of the error set via `add_settings_error()`, normally the variable name.
+         * @return string The error description HTML or empty string.
+         */
+        public static function get_the_error_description($error_code)
+        {
+        }
+        /**
+         * Adds the submitted invalid value to the WordPress `$wp_settings_errors` global.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code  Code of the error set via `add_settings_error()`, normally the variable name.
+         * @param string $dirty_value The submitted invalid value.
+         * @return void
+         */
+        public static function add_dirty_value_to_settings_errors($error_code, $dirty_value)
+        {
+        }
+        /**
+         * Gets an invalid submitted value.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code Code of the error set via `add_settings_error()`, normally the variable name.
+         * @return string The submitted invalid input field value.
+         */
+        public static function get_dirty_value($error_code)
+        {
+        }
+        /**
+         * Gets a specific invalid value message.
+         *
+         * @since 12.1
+         *
+         * @param string $error_code Code of the error set via `add_settings_error()`, normally the variable name.
+         * @return string The error invalid value message or empty string.
+         */
+        public static function get_dirty_value_message($error_code)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO
+     */
+    /**
+     * An interface for registering AJAX integrations with WordPress.
+     */
+    interface WPSEO_WordPress_AJAX_Integration
+    {
+        /**
+         * Registers all AJAX hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_ajax_hooks();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Internals
+     */
+    /**
+     * Multisite utility class for network admin functionality.
+     */
+    class Yoast_Network_Admin implements \WPSEO_WordPress_Integration, \WPSEO_WordPress_AJAX_Integration
+    {
+        /**
+         * Action identifier for updating plugin network options.
+         *
+         * @var string
+         */
+        const UPDATE_OPTIONS_ACTION = 'yoast_handle_network_options';
+        /**
+         * Action identifier for restoring a site.
+         *
+         * @var string
+         */
+        const RESTORE_SITE_ACTION = 'yoast_restore_site';
+        /**
+         * Gets the available sites as choices, e.g. for a dropdown.
+         *
+         * @param bool $include_empty Optional. Whether to include an initial placeholder choice.
+         *                            Default false.
+         * @param bool $show_title    Optional. Whether to show the title for each site. This requires
+         *                            switching through the sites, so has performance implications for
+         *                            sites that do not use a persistent cache.
+         *                            Default false.
+         *
+         * @return array Choices as $site_id => $site_label pairs.
+         */
+        public function get_site_choices($include_empty = \false, $show_title = \false)
+        {
+        }
+        /**
+         * Gets the states of a site.
+         *
+         * @param WP_Site $site Site object.
+         *
+         * @return array Array of $state_slug => $state_label pairs.
+         */
+        public function get_site_states($site)
+        {
+        }
+        /**
+         * Handles a request to update plugin network options.
+         *
+         * This method works similar to how option updates are handled in `wp-admin/options.php` and
+         * `wp-admin/network/settings.php`.
+         *
+         * @return void
+         */
+        public function handle_update_options_request()
+        {
+        }
+        /**
+         * Handles a request to restore a site's default settings.
+         *
+         * @return void
+         */
+        public function handle_restore_site_request()
+        {
+        }
+        /**
+         * Outputs nonce, action and option group fields for a network settings page in the plugin.
+         *
+         * @param string $option_group Option group name for the current page.
+         *
+         * @return void
+         */
+        public function settings_fields($option_group)
+        {
+        }
+        /**
+         * Enqueues network admin assets.
+         *
+         * @return void
+         */
+        public function enqueue_assets()
+        {
+        }
+        /**
+         * Hooks in the necessary actions and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Hooks in the necessary AJAX actions.
+         *
+         * @return void
+         */
+        public function register_ajax_hooks()
+        {
+        }
+        /**
+         * Checks whether the requirements to use this class are met.
+         *
+         * @return bool True if requirements are met, false otherwise.
+         */
+        public function meets_requirements()
+        {
+        }
+        /**
+         * Verifies that the current request is valid.
+         *
+         * @param string $action    Nonce action.
+         * @param string $query_arg Optional. Nonce query argument. Default '_wpnonce'.
+         *
+         * @return void
+         */
+        public function verify_request($action, $query_arg = '_wpnonce')
+        {
+        }
+        /**
+         * Terminates the current request by either redirecting back or sending an AJAX response.
+         *
+         * @return void
+         */
+        public function terminate_request()
+        {
+        }
+        /**
+         * Persists settings errors.
+         *
+         * Settings errors are stored in a transient for 30 seconds so that this transient
+         * can be retrieved on the next page load.
+         *
+         * @return void
+         */
+        protected function persist_settings_errors()
+        {
+        }
+        /**
+         * Redirects back to the referer URL, with optional query arguments.
+         *
+         * @param array $query_args Optional. Query arguments to add to the redirect URL. Default none.
+         *
+         * @return void
+         */
+        protected function redirect_back($query_args = [])
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Network
+     */
+    /**
+     * Implements a network settings API for the plugin's multisite settings.
+     */
+    class Yoast_Network_Settings_API
+    {
+        /**
+         * Registered network settings.
+         *
+         * @var array
+         */
+        private $registered_settings = [];
+        /**
+         * Options whitelist, keyed by option group.
+         *
+         * @var array
+         */
+        private $whitelist_options = [];
+        /**
+         * The singleton instance of this class.
+         *
+         * @var Yoast_Network_Settings_API
+         */
+        private static $instance = \null;
+        /**
+         * Registers a network setting and its data.
+         *
+         * @param string $option_group The group the network option is part of.
+         * @param string $option_name  The name of the network option to sanitize and save.
+         * @param array  $args         {
+         *     Optional. Data used to describe the network setting when registered.
+         *
+         *     @type callable $sanitize_callback A callback function that sanitizes the network option's value.
+         *     @type mixed    $default           Default value when calling `get_network_option()`.
+         * }
+         *
+         * @return void
+         */
+        public function register_setting($option_group, $option_name, $args = [])
+        {
+        }
+        /**
+         * Gets the registered settings and their data.
+         *
+         * @return array Array of $option_name => $data pairs.
+         */
+        public function get_registered_settings()
+        {
+        }
+        /**
+         * Gets the whitelisted options for a given option group.
+         *
+         * @param string $option_group Option group.
+         *
+         * @return array List of option names, or empty array if unknown option group.
+         */
+        public function get_whitelist_options($option_group)
+        {
+        }
+        /**
+         * Filters sanitization for a network option value.
+         *
+         * This method is added as a filter to `sanitize_option_{$option}` for network options that are
+         * registered with a sanitize callback.
+         *
+         * @param string $value  The sanitized option value.
+         * @param string $option The option name.
+         *
+         * @return string The filtered sanitized option value.
+         */
+        public function filter_sanitize_option($value, $option)
+        {
+        }
+        /**
+         * Filters the default value for a network option.
+         *
+         * This function is added as a filter to `default_site_option_{$option}` for network options that
+         * are registered with a default.
+         *
+         * @param mixed  $default Existing default value to return.
+         * @param string $option  The option name.
+         *
+         * @return mixed The filtered default value.
+         */
+        public function filter_default_option($default, $option)
+        {
+        }
+        /**
+         * Checks whether the requirements to use this class are met.
+         *
+         * @return bool True if requirements are met, false otherwise.
+         */
+        public function meets_requirements()
+        {
+        }
+        /**
+         * Gets the singleton instance of this class.
+         *
+         * @return Yoast_Network_Settings_API The singleton instance.
+         */
+        public static function get()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Notifications
+     */
+    /**
+     * Handles notifications storage and display.
+     */
+    class Yoast_Notification_Center
+    {
+        /**
+         * Option name to store notifications on.
+         *
+         * @var string
+         */
+        const STORAGE_KEY = 'yoast_notifications';
+        /**
+         * The singleton instance of this object.
+         *
+         * @var \Yoast_Notification_Center
+         */
+        private static $instance = \null;
+        /**
+         * Holds the notifications.
+         *
+         * @var \Yoast_Notification[][]
+         */
+        private $notifications = [];
+        /**
+         * Notifications there are newly added.
+         *
+         * @var array
+         */
+        private $new = [];
+        /**
+         * Notifications that were resolved this execution.
+         *
+         * @var int
+         */
+        private $resolved = 0;
+        /**
+         * Internal storage for transaction before notifications have been retrieved from storage.
+         *
+         * @var array
+         */
+        private $queued_transactions = [];
+        /**
+         * Internal flag for whether notifications have been retrieved from storage.
+         *
+         * @var bool
+         */
+        private $notifications_retrieved = \false;
+        /**
+         * Construct.
+         */
+        private function __construct()
+        {
+        }
+        /**
+         * Singleton getter.
+         *
+         * @return Yoast_Notification_Center
+         */
+        public static function get()
+        {
+        }
+        /**
+         * Dismiss a notification.
+         */
+        public static function ajax_dismiss_notification()
+        {
+        }
+        /**
+         * Check if the user has dismissed a notification.
+         *
+         * @param Yoast_Notification $notification The notification to check for dismissal.
+         * @param null|int           $user_id      User ID to check on.
+         *
+         * @return bool
+         */
+        public static function is_notification_dismissed(\Yoast_Notification $notification, $user_id = \null)
+        {
+        }
+        /**
+         * Checks if the notification is being dismissed.
+         *
+         * @param string|Yoast_Notification $notification Notification to check dismissal of.
+         * @param string                    $meta_value   Value to set the meta value to if dismissed.
+         *
+         * @return bool True if dismissed.
+         */
+        public static function maybe_dismiss_notification(\Yoast_Notification $notification, $meta_value = 'seen')
+        {
+        }
+        /**
+         * Dismisses a notification.
+         *
+         * @param Yoast_Notification $notification Notification to dismiss.
+         * @param string             $meta_value   Value to save in the dismissal.
+         *
+         * @return bool True if dismissed, false otherwise.
+         */
+        public static function dismiss_notification(\Yoast_Notification $notification, $meta_value = 'seen')
+        {
+        }
+        /**
+         * Restores a notification.
+         *
+         * @param Yoast_Notification $notification Notification to restore.
+         *
+         * @return bool True if restored, false otherwise.
+         */
+        public static function restore_notification(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Clear dismissal information for the specified Notification.
+         *
+         * When a cause is resolved, the next time it is present we want to show
+         * the message again.
+         *
+         * @param string|Yoast_Notification $notification Notification to clear the dismissal of.
+         *
+         * @return bool
+         */
+        public function clear_dismissal($notification)
+        {
+        }
+        /**
+         * Retrieves notifications from the storage and merges in previous notification changes.
+         *
+         * The current user in WordPress is not loaded shortly before the 'init' hook, but the plugin
+         * sometimes needs to add or remove notifications before that. In such cases, the transactions
+         * are not actually executed, but added to a queue. That queue is then handled in this method,
+         * after notifications for the current user have been set up.
+         *
+         * @return void
+         */
+        public function setup_current_notifications()
+        {
+        }
+        /**
+         * Add notification to the cookie.
+         *
+         * @param Yoast_Notification $notification Notification object instance.
+         */
+        public function add_notification(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Get the notification by ID and user ID.
+         *
+         * @param string $notification_id The ID of the notification to search for.
+         * @param int    $user_id         The ID of the user.
+         *
+         * @return null|Yoast_Notification
+         */
+        public function get_notification_by_id($notification_id, $user_id = \null)
+        {
+        }
+        /**
+         * Display the notifications.
+         *
+         * @param bool $echo_as_json True when notifications should be printed directly.
+         *
+         * @return void
+         */
+        public function display_notifications($echo_as_json = \false)
+        {
+        }
+        /**
+         * Remove notification after it has been displayed.
+         *
+         * @param Yoast_Notification $notification Notification to remove.
+         * @param bool               $resolve      Resolve as fixed.
+         */
+        public function remove_notification(\Yoast_Notification $notification, $resolve = \true)
+        {
+        }
+        /**
+         * Removes a notification by its ID.
+         *
+         * @param string $notification_id The notification id.
+         * @param bool   $resolve         Resolve as fixed.
+         *
+         * @return void
+         */
+        public function remove_notification_by_id($notification_id, $resolve = \true)
+        {
+        }
+        /**
+         * Get the notification count.
+         *
+         * @param bool $dismissed Count dismissed notifications.
+         *
+         * @return int Number of notifications
+         */
+        public function get_notification_count($dismissed = \false)
+        {
+        }
+        /**
+         * Get the number of notifications resolved this execution.
+         *
+         * These notifications have been resolved and should be counted when active again.
+         *
+         * @return int
+         */
+        public function get_resolved_notification_count()
+        {
+        }
+        /**
+         * Return the notifications sorted on type and priority.
+         *
+         * @return array|Yoast_Notification[] Sorted Notifications
+         */
+        public function get_sorted_notifications()
+        {
+        }
+        /**
+         * AJAX display notifications.
+         */
+        public function ajax_get_notifications()
+        {
+        }
+        /**
+         * Remove storage when the plugin is deactivated.
+         */
+        public function deactivate_hook()
+        {
+        }
+        /**
+         * Returns the given user ID if it exists.
+         * Otherwise, this function returns the ID of the current user.
+         *
+         * @param int $user_id The user ID to check.
+         *
+         * @return int The user ID to use.
+         */
+        private static function get_user_id($user_id)
+        {
+        }
+        /**
+         * Splits the notifications on user ID.
+         *
+         * In other terms, it returns an associative array,
+         * mapping user ID to a list of notifications for this user.
+         *
+         * @param array|Yoast_Notification[] $notifications The notifications to split.
+         *
+         * @return array The notifications, split on user ID.
+         */
+        private function split_on_user_id($notifications)
+        {
+        }
+        /**
+         * Save persistent notifications to storage.
+         *
+         * We need to be able to retrieve these so they can be dismissed at any time during the execution.
+         *
+         * @since 3.2
+         *
+         * @return void
+         */
+        public function update_storage()
+        {
+        }
+        /**
+         * Stores the notifications to its respective user's storage.
+         *
+         * @param array|Yoast_Notification[] $notifications The notifications to store.
+         * @param int                        $user_id       The ID of the user for which to store the notifications.
+         *
+         * @return void
+         */
+        private function store_notifications_for_user($notifications, $user_id)
+        {
+        }
+        /**
+         * Provide a way to verify present notifications.
+         *
+         * @return array|Yoast_Notification[] Registered notifications.
+         */
+        public function get_notifications()
+        {
+        }
+        /**
+         * Returns the notifications for the given user.
+         *
+         * @param int $user_id The id of the user to check.
+         *
+         * @return Yoast_Notification[] The notifications for the user with the given ID.
+         */
+        public function get_notifications_for_user($user_id)
+        {
+        }
+        /**
+         * Get newly added notifications.
+         *
+         * @return array
+         */
+        public function get_new_notifications()
+        {
+        }
+        /**
+         * Get information from the User input.
+         *
+         * @param string $key Key to retrieve.
+         *
+         * @return mixed value of key if set.
+         */
+        private static function get_user_input($key)
+        {
+        }
+        /**
+         * Retrieve the notifications from storage.
+         *
+         * @param int $user_id The ID of the user to retrieve notifications for.
+         *
+         * @return array|void Yoast_Notification[] Notifications.
+         */
+        private function retrieve_notifications_from_storage($user_id)
+        {
+        }
+        /**
+         * Sort on type then priority.
+         *
+         * @param Yoast_Notification $a Compare with B.
+         * @param Yoast_Notification $b Compare with A.
+         *
+         * @return int 1, 0 or -1 for sorting offset.
+         */
+        private function sort_notifications(\Yoast_Notification $a, \Yoast_Notification $b)
+        {
+        }
+        /**
+         * Clear local stored notifications.
+         */
+        private function clear_notifications()
+        {
+        }
+        /**
+         * Filter out non-persistent notifications.
+         *
+         * @param Yoast_Notification $notification Notification to test for persistent.
+         *
+         * @since 3.2
+         *
+         * @return bool
+         */
+        private function filter_persistent_notifications(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Filter out dismissed notifications.
+         *
+         * @param Yoast_Notification $notification Notification to check.
+         *
+         * @return bool
+         */
+        private function filter_dismissed_notifications(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Convert Notification to array representation.
+         *
+         * @param Yoast_Notification $notification Notification to convert.
+         *
+         * @since 3.2
+         *
+         * @return array
+         */
+        private function notification_to_array(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Convert stored array to Notification.
+         *
+         * @param array $notification_data Array to convert to Notification.
+         *
+         * @return Yoast_Notification
+         */
+        private function array_to_notification($notification_data)
+        {
+        }
+        /**
+         * Filter notifications that should not be displayed for the current user.
+         *
+         * @param Yoast_Notification $notification Notification to test.
+         *
+         * @return bool
+         */
+        private function filter_notification_current_user(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Checks if given notification is persistent.
+         *
+         * @param Yoast_Notification $notification The notification to check.
+         *
+         * @return bool True when notification is not persistent.
+         */
+        private function is_notification_persistent(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Queues a notification transaction for later execution if notifications are not yet set up.
+         *
+         * @param callable $callback Callback that performs the transaction.
+         * @param array    $args     Arguments to pass to the callback.
+         *
+         * @return bool True if transaction was queued, false if it can be performed immediately.
+         */
+        private function queue_transaction($callback, $args)
+        {
+        }
+        /**
+         * Adds a notification transaction to the queue for later execution.
+         *
+         * @param callable $callback Callback that performs the transaction.
+         * @param array    $args     Arguments to pass to the callback.
+         */
+        private function add_transaction_to_queue($callback, $args)
+        {
+        }
+        /**
+         * Removes all notifications from storage.
+         *
+         * @return bool True when notifications got removed.
+         */
+        protected function remove_storage()
+        {
+        }
+        /**
+         * Checks if there are stored notifications.
+         *
+         * @return bool True when there are stored notifications.
+         */
+        protected function has_stored_notifications()
+        {
+        }
+        /**
+         * Retrieves the stored notifications.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return array|false Array with notifications or false when not set.
+         */
+        protected function get_stored_notifications()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Notifications
+     * @since   1.5.3
+     */
+    /**
+     * Implements individual notification.
+     */
+    class Yoast_Notification
+    {
+        /**
+         * Type of capability check.
+         *
+         * @var string
+         */
+        const MATCH_ALL = 'all';
+        /**
+         * Type of capability check.
+         *
+         * @var string
+         */
+        const MATCH_ANY = 'any';
+        /**
+         * Notification type.
+         *
+         * @var string
+         */
+        const ERROR = 'error';
+        /**
+         * Notification type.
+         *
+         * @var string
+         */
+        const WARNING = 'warning';
+        /**
+         * Notification type.
+         *
+         * @var string
+         */
+        const UPDATED = 'updated';
+        /**
+         * Options of this Notification.
+         *
+         * Contains optional arguments:
+         *
+         * -             type: The notification type, i.e. 'updated' or 'error'
+         * -               id: The ID of the notification
+         * -            nonce: Security nonce to use in case of dismissible notice.
+         * -         priority: From 0 to 1, determines the order of Notifications.
+         * -    dismissal_key: Option name to save dismissal information in, ID will be used if not supplied.
+         * -     capabilities: Capabilities that a user must have for this Notification to show.
+         * - capability_check: How to check capability pass: all or any.
+         * -  wpseo_page_only: Only display on wpseo page or on every page.
+         *
+         * @var array
+         */
+        private $options = [];
+        /**
+         * Contains default values for the optional arguments.
+         *
+         * @var array
+         */
+        private $defaults = ['type' => self::UPDATED, 'id' => '', 'user' => \null, 'nonce' => \null, 'priority' => 0.5, 'data_json' => [], 'dismissal_key' => \null, 'capabilities' => [], 'capability_check' => self::MATCH_ALL, 'yoast_branding' => \false];
+        /**
+         * The message for the notification.
+         *
+         * @var string
+         */
+        private $message;
+        /**
+         * Notification class constructor.
+         *
+         * @param string $message Message string.
+         * @param array  $options Set of options.
+         */
+        public function __construct($message, $options = [])
+        {
+        }
+        /**
+         * Retrieve notification ID string.
+         *
+         * @return string
+         */
+        public function get_id()
+        {
+        }
+        /**
+         * Retrieve the user to show the notification for.
+         *
+         * @return WP_User The user to show this notification for.
+         */
+        public function get_user()
+        {
+        }
+        /**
+         * Retrieve the is of the user to show the notification for.
+         *
+         * Returns the id of the current user if not user has been sent.
+         *
+         * @return integer The user id
+         */
+        public function get_user_id()
+        {
+        }
+        /**
+         * Retrieve nonce identifier.
+         *
+         * @return null|string Nonce for this Notification.
+         */
+        public function get_nonce()
+        {
+        }
+        /**
+         * Make sure the nonce is up to date.
+         */
+        public function refresh_nonce()
+        {
+        }
+        /**
+         * Get the type of the notification.
+         *
+         * @return string
+         */
+        public function get_type()
+        {
+        }
+        /**
+         * Priority of the notification.
+         *
+         * Relative to the type.
+         *
+         * @return float Returns the priority between 0 and 1.
+         */
+        public function get_priority()
+        {
+        }
+        /**
+         * Get the User Meta key to check for dismissal of notification.
+         *
+         * @return string User Meta Option key that registers dismissal.
+         */
+        public function get_dismissal_key()
+        {
+        }
+        /**
+         * Is this Notification persistent.
+         *
+         * @return bool True if persistent, False if fire and forget.
+         */
+        public function is_persistent()
+        {
+        }
+        /**
+         * Check if the notification is relevant for the current user.
+         *
+         * @return bool True if a user needs to see this notification, false if not.
+         */
+        public function display_for_current_user()
+        {
+        }
+        /**
+         * Does the current user match required capabilities.
+         *
+         * @return bool
+         */
+        public function match_capabilities()
+        {
+        }
+        /**
+         * Array filter function to find matched capabilities.
+         *
+         * @param string $capability Capability to test.
+         *
+         * @return bool
+         */
+        private function has_capability($capability)
+        {
+        }
+        /**
+         * Return the object properties as an array.
+         *
+         * @return array
+         */
+        public function to_array()
+        {
+        }
+        /**
+         * Adds string (view) behaviour to the notification.
+         *
+         * @return string
+         */
+        public function __toString()
+        {
+        }
+        /**
+         * Renders the notification as a string.
+         *
+         * @return string The rendered notification.
+         */
+        public function render()
+        {
+        }
+        /**
+         * Wraps the message with a Yoast SEO icon.
+         *
+         * @param string $message The message to wrap.
+         *
+         * @return string The wrapped message.
+         */
+        private function wrap_yoast_seo_icon($message)
+        {
+        }
+        /**
+         * Get the JSON if provided.
+         *
+         * @return false|string
+         */
+        public function get_json()
+        {
+        }
+        /**
+         * Make sure we only have values that we can work with.
+         *
+         * @param array $options Options to normalize.
+         *
+         * @return array
+         */
+        private function normalize_options($options)
+        {
+        }
+        /**
+         * Format HTML element attributes.
+         *
+         * @param string $value Attribute value.
+         * @param string $key   Attribute name.
+         */
+        private function parse_attributes(&$value, $key)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Configuration_Components.
+     */
+    class WPSEO_Configuration_Components
+    {
+        /**
+         * List of registered components.
+         *
+         * @var WPSEO_Config_Component[]
+         */
+        protected $components = [];
+        /**
+         * Adapter.
+         *
+         * @var WPSEO_Configuration_Options_Adapter
+         */
+        protected $adapter;
+        /**
+         * Add default components.
+         */
+        public function initialize()
+        {
+        }
+        /**
+         * Add a component.
+         *
+         * @param WPSEO_Config_Component $component Component to add.
+         */
+        public function add_component(\WPSEO_Config_Component $component)
+        {
+        }
+        /**
+         * Sets the storage to use.
+         *
+         * @param WPSEO_Configuration_Storage $storage Storage to use.
+         */
+        public function set_storage(\WPSEO_Configuration_Storage $storage)
+        {
+        }
+        /**
+         * Sets the adapter to use.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to use.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Configuration_Endpoint.
+     */
+    class WPSEO_Configuration_Endpoint
+    {
+        /**
+         * Holds the REST namespace.
+         *
+         * @var string
+         */
+        const REST_NAMESPACE = 'yoast/v1';
+        /**
+         * Holds the endpoint to retrieve from.
+         *
+         * @var string
+         */
+        const ENDPOINT_RETRIEVE = 'configurator';
+        /**
+         * Holds the endpoint to store to.
+         *
+         * @var string
+         */
+        const ENDPOINT_STORE = 'configurator';
+        /**
+         * Holds the capability that can retrieve from the endpoint.
+         *
+         * @var string
+         */
+        const CAPABILITY_RETRIEVE = 'wpseo_manage_options';
+        /**
+         * Holds the capability that can store to the endpoint.
+         *
+         * @var string
+         */
+        const CAPABILITY_STORE = 'wpseo_manage_options';
+        /**
+         * Service to use.
+         *
+         * @var WPSEO_Configuration_Service
+         */
+        protected $service;
+        /**
+         * Sets the service to use.
+         *
+         * @param WPSEO_Configuration_Service $service Service to use.
+         */
+        public function set_service(\WPSEO_Configuration_Service $service)
+        {
+        }
+        /**
+         * Register REST routes.
+         */
+        public function register()
+        {
+        }
+        /**
+         * Permission callback implementation.
+         *
+         * @return bool
+         */
+        public function can_retrieve_data()
+        {
+        }
+        /**
+         * Permission callback implementation.
+         *
+         * @return bool
+         */
+        public function can_save_data()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Configuration_Options_Adapter.
+     *
+     * Convert Configuration settings to WPSEO Options.
+     *
+     * @since 3.6
+     */
+    class WPSEO_Configuration_Options_Adapter
+    {
+        /**
+         * Holds the option type value that indicates: WordPress.
+         *
+         * @var string
+         */
+        const OPTION_TYPE_WORDPRESS = 'wordpress';
+        /**
+         * Holds the option type value that indicates: Yoast.
+         *
+         * @var string
+         */
+        const OPTION_TYPE_YOAST = 'yoast';
+        /**
+         * Holds the option type value that indicates: Custom.
+         *
+         * @var string
+         */
+        const OPTION_TYPE_CUSTOM = 'custom';
+        /**
+         * List of registered lookups.
+         *
+         * @var array
+         */
+        protected $lookup = [];
+        /**
+         * Add a lookup for a WordPress native option.
+         *
+         * @param string $class_name Class to bind to an option.
+         * @param string $option     Option name to use.
+         *
+         * @throws InvalidArgumentException Thrown when invalid input is provided.
+         */
+        public function add_wordpress_lookup($class_name, $option)
+        {
+        }
+        /**
+         * Add a lookup for a Yoast option.
+         *
+         * @param string $class_name Class to bind to the lookup.
+         * @param string $key        Key in the option group to bind to.
+         *
+         * @throws InvalidArgumentException Thrown when invalid input is provided.
+         */
+        public function add_option_lookup($class_name, $key)
+        {
+        }
+        /**
+         * Add a lookup for a custom implementation.
+         *
+         * @param string   $class_name   Class to bind to the lookup.
+         * @param callable $callback_get Callback to retrieve data.
+         * @param callable $callback_set Callback to save data.
+         *
+         * @throws InvalidArgumentException Thrown when invalid input is provided.
+         */
+        public function add_custom_lookup($class_name, $callback_get, $callback_set)
+        {
+        }
+        /**
+         * Add a field lookup.
+         *
+         * @param string       $class_name Class to add lookup for.
+         * @param string       $type       Type of lookup.
+         * @param string|array $option     Implementation of the lookup.
+         *
+         * @throws Exception Thrown when invalid input is provided.
+         */
+        protected function add_lookup($class_name, $type, $option)
+        {
+        }
+        /**
+         * Get the data for the provided field.
+         *
+         * @param WPSEO_Config_Field $field Field to get data for.
+         *
+         * @return mixed
+         */
+        public function get(\WPSEO_Config_Field $field)
+        {
+        }
+        /**
+         * Save data from a field.
+         *
+         * @param WPSEO_Config_Field $field Field to use for lookup.
+         * @param mixed              $value Value to save to the lookup of the field.
+         *
+         * @return bool
+         */
+        public function set(\WPSEO_Config_Field $field, $value)
+        {
+        }
+        /**
+         * Get the lookup type for a specific class.
+         *
+         * @param string $class_name Class to get the type of.
+         *
+         * @return null|string
+         */
+        protected function get_option_type($class_name)
+        {
+        }
+        /**
+         * Get the option for a specific class.
+         *
+         * @param string $class_name Class to get the option of.
+         *
+         * @return null|string|array
+         */
+        protected function get_option($class_name)
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Add a lookup for a Yoast option.
+         *
+         * @deprecated 7.0
+         * @codeCoverageIgnore
+         *
+         * @param string $class_name Class to bind to the lookup.
+         * @param string $option     Option group to use.
+         * @param string $key        Key in the option group to bind to.
+         *
+         * @throws InvalidArgumentException Thrown when invalid input is provided.
+         */
+        public function add_yoast_lookup($class_name, $option, $key)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Loads the Yoast configuration wizard.
+     */
+    class WPSEO_Configuration_Page
+    {
+        /**
+         * Admin page identifier.
+         *
+         * @var string
+         */
+        const PAGE_IDENTIFIER = 'wpseo_configurator';
+        /**
+         * Sets the hooks when the user has enough rights and is on the right page.
+         */
+        public function set_hooks()
+        {
+        }
+        /**
+         * Check if the configuration is finished. If so, just remove the notification.
+         */
+        public function catch_configuration_request()
+        {
+        }
+        /**
+         *  Registers the page for the wizard.
+         */
+        public function add_wizard_page()
+        {
+        }
+        /**
+         * Renders the wizard page and exits to prevent the WordPress UI from loading.
+         */
+        public function render_wizard_page()
+        {
+        }
+        /**
+         * Enqueues the assets needed for the wizard.
+         */
+        public function enqueue_assets()
+        {
+        }
+        /**
+         * Setup Wizard Header.
+         */
+        public function show_wizard()
+        {
+        }
+        /**
+         * Get the API config for the wizard.
+         *
+         * @return array The API endpoint config.
+         */
+        public function get_config()
+        {
+        }
+        /**
+         * Checks if the current page is the configuration page.
+         *
+         * @return bool
+         */
+        protected function is_config_page()
+        {
+        }
+        /**
+         * Adds a notification to the notification center.
+         */
+        private function add_notification()
+        {
+        }
+        /**
+         * Removes the notification from the notification center.
+         */
+        private function remove_notification()
+        {
+        }
+        /**
+         * Gets the notification.
+         *
+         * @return Yoast_Notification
+         */
+        private static function get_notification()
+        {
+        }
+        /**
+         * When the notice should be shown.
+         *
+         * @return bool
+         */
+        private function should_add_notification()
+        {
+        }
+        /**
+         * Remove the options that triggers the notice for the configuration wizard.
+         */
+        private function remove_notification_option()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Configuration_Service.
+     */
+    class WPSEO_Configuration_Service
+    {
+        /**
+         * Class holding the onboarding wizard configuration.
+         *
+         * @var WPSEO_Configuration_Structure
+         */
+        protected $structure;
+        /**
+         * Class holding the onboarding wizard components.
+         *
+         * @var WPSEO_Configuration_Components
+         */
+        protected $components;
+        /**
+         * Class handling the onboarding wizard persistence.
+         *
+         * @var WPSEO_Configuration_Storage
+         */
+        protected $storage;
+        /**
+         * Class handling the onboarding wizard endpoint.
+         *
+         * @var WPSEO_Configuration_Endpoint
+         */
+        protected $endpoint;
+        /**
+         * Adapter that converts onboarding wizard configuration to WordPress options.
+         *
+         * @var WPSEO_Configuration_Options_Adapter
+         */
+        protected $adapter;
+        /**
+         * Class handling the onboarding wizard endpoint.
+         *
+         * @var WPSEO_Configuration_Translations
+         */
+        protected $translations;
+        /**
+         * Hook into the REST API and switch language.
+         */
+        public function initialize()
+        {
+        }
+        /**
+         * Set default handlers.
+         */
+        public function set_default_providers()
+        {
+        }
+        /**
+         * Set storage handler.
+         *
+         * @param WPSEO_Configuration_Storage $storage Storage handler to use.
+         */
+        public function set_storage(\WPSEO_Configuration_Storage $storage)
+        {
+        }
+        /**
+         * Set endpoint handler.
+         *
+         * @param WPSEO_Configuration_Endpoint $endpoint Endpoint implementation to use.
+         */
+        public function set_endpoint(\WPSEO_Configuration_Endpoint $endpoint)
+        {
+        }
+        /**
+         * Set the options adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to use.
+         */
+        public function set_options_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+        /**
+         * Set components provider.
+         *
+         * @param WPSEO_Configuration_Components $components Component provider to use.
+         */
+        public function set_components(\WPSEO_Configuration_Components $components)
+        {
+        }
+        /**
+         * Set structure provider.
+         *
+         * @param WPSEO_Configuration_Structure $structure Structure provider to use.
+         */
+        public function set_structure(\WPSEO_Configuration_Structure $structure)
+        {
+        }
+        /**
+         * Sets the translations object.
+         *
+         * @param WPSEO_Configuration_Translations $translations The translations object.
+         */
+        public function set_translations(\WPSEO_Configuration_Translations $translations)
+        {
+        }
+        /**
+         * Populate the configuration.
+         */
+        protected function populate_configuration()
+        {
+        }
+        /**
+         * Used by endpoint to retrieve configuration.
+         *
+         * @return array List of settings.
+         */
+        public function get_configuration()
+        {
+        }
+        /**
+         * Used by endpoint to store changes.
+         *
+         * @param WP_REST_Request $request Request from the REST API.
+         *
+         * @return array List of feedback per option if saving succeeded.
+         */
+        public function set_configuration(\WP_REST_Request $request)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Configuration_Storage.
+     */
+    class WPSEO_Configuration_Storage
+    {
+        /**
+         * Holds the configuration options adapter.
+         *
+         * @var \WPSEO_Configuration_Options_Adapter
+         */
+        protected $adapter;
+        /**
+         * Holds the configuration fields.
+         *
+         * @var \WPSEO_Config_Field[]
+         */
+        protected $fields = [];
+        /**
+         * Add default fields.
+         */
+        public function add_default_fields()
+        {
+        }
+        /**
+         * Allow for field injections.
+         *
+         * @param WPSEO_Config_Field $field Field to add to the stack.
+         */
+        public function add_field(\WPSEO_Config_Field $field)
+        {
+        }
+        /**
+         * Set the adapter to use.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to use.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+        /**
+         * Retrieve the current adapter.
+         *
+         * @return WPSEO_Configuration_Options_Adapter
+         */
+        public function get_adapter()
+        {
+        }
+        /**
+         * Retrieve the registered fields.
+         *
+         * @returns array List of settings.
+         */
+        public function retrieve()
+        {
+        }
+        /**
+         * Save the data.
+         *
+         * @param array $data_to_store Data provided by the API which needs to be processed for saving.
+         *
+         * @return string Results
+         */
+        public function store($data_to_store)
+        {
+        }
+        /**
+         * Filter out null input values.
+         *
+         * @param mixed $input Input to test against.
+         *
+         * @return bool
+         */
+        protected function is_not_null($input)
+        {
+        }
+        /**
+         * Get data from a specific field.
+         *
+         * @param WPSEO_Config_Field $field Field to get data for.
+         *
+         * @return array|mixed
+         */
+        protected function get_field_data(\WPSEO_Config_Field $field)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Configuration_Structure
+     */
+    class WPSEO_Configuration_Structure
+    {
+        /**
+         * Registered steps.
+         *
+         * @var array
+         */
+        protected $steps = [];
+        /**
+         * List of fields for each configuration step.
+         *
+         * This list does not include the fields for the 'postTypeVisibility'
+         * step as that list will be generated on the fly.
+         *
+         * @var array
+         */
+        private $fields = ['environment_type' => ['environment_type'], 'siteType' => ['siteType'], 'publishingEntity' => ['publishingEntity', 'publishingEntityType', 'publishingEntityCompanyInfo', 'publishingEntityCompanyName', 'publishingEntityCompanyLogo', 'publishingEntityPersonId', 'profileUrlFacebook', 'profileUrlTwitter', 'profileUrlInstagram', 'profileUrlLinkedIn', 'profileUrlMySpace', 'profileUrlPinterest', 'profileUrlYouTube', 'profileUrlWikipedia'], 'multipleAuthors' => ['multipleAuthors'], 'titleTemplate' => ['titleIntro', 'siteName', 'separator'], 'newsletter' => ['mailchimpSignup', 'suggestions'], 'success' => ['successMessage']];
+        /**
+         * WPSEO_Configuration_Structure constructor.
+         */
+        public function initialize()
+        {
+        }
+        /**
+         * Add a step to the structure
+         *
+         * @param string $identifier Identifier for this step.
+         * @param string $title      Title to display for this step.
+         * @param array  $fields     Fields to use on the step.
+         * @param bool   $navigation Show navigation buttons.
+         * @param bool   $full_width Wheter the step content is full width or not.
+         */
+        protected function add_step($identifier, $title, $fields, $navigation = \true, $full_width = \false)
+        {
+        }
+        /**
+         * Retrieve the registered steps.
+         *
+         * @return array
+         */
+        public function retrieve()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Configuration_Structure.
+     */
+    class WPSEO_Configuration_Translations
+    {
+        /**
+         * Registered steps.
+         *
+         * @var array
+         */
+        protected $translations = [];
+        /**
+         * The locale.
+         *
+         * @var string
+         */
+        protected $locale;
+        /**
+         * Sets the translations based on the file.
+         *
+         * @param string $locale The locale to retreive the translations for.
+         */
+        public function __construct($locale)
+        {
+        }
+        /**
+         * Retrieve the translations.
+         *
+         * @return array
+         */
+        public function retrieve()
+        {
+        }
+        /**
+         * Retrieves the translations from the JSON-file.
+         *
+         * @return array Array with the translations.
+         */
+        protected function get_translations_from_file()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Config Component interface.
+     */
+    interface WPSEO_Config_Component
+    {
+        /**
+         * Get onboarding wizard component identifier.
+         *
+         * @return string
+         */
+        public function get_identifier();
+        /**
+         * Get onboarding wizard component data.
+         *
+         * @return mixed
+         */
+        public function get_data();
+        /**
+         * Save changes.
+         *
+         * @param array $data Data provided by the API.
+         *
+         * @return mixed
+         */
+        public function set_data($data);
+        /**
+         * Get onboarding wizard component field.
+         *
+         * @return WPSEO_Config_Field
+         */
+        public function get_field();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Represents the mailchimp signup components.
+     */
+    class WPSEO_Config_Component_Mailchimp_Signup implements \WPSEO_Config_Component
+    {
+        /**
+         * The name of the mailchimp signup meta key.
+         *
+         * @var string
+         */
+        const META_NAME = 'wpseo-has-mailchimp-signup';
+        /**
+         * Gets the component identifier.
+         *
+         * @return string
+         */
+        public function get_identifier()
+        {
+        }
+        /**
+         * Gets the field.
+         *
+         * @return WPSEO_Config_Field
+         */
+        public function get_field()
+        {
+        }
+        /**
+         * Get the data for the field.
+         *
+         * @return mixed
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Save data.
+         *
+         * @param array $data Data containing changes.
+         *
+         * @return mixed
+         */
+        public function set_data($data)
+        {
+        }
+        /**
+         * Checks if the user has entered their email for mailchimp already.
+         *
+         * @return bool
+         */
+        protected function has_mailchimp_signup()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Represents the configuration suggestions component.
+     */
+    class WPSEO_Config_Component_Suggestions implements \WPSEO_Config_Component
+    {
+        /**
+         * Gets the component identifier.
+         *
+         * @return string
+         */
+        public function get_identifier()
+        {
+        }
+        /**
+         * Gets the field.
+         *
+         * @return WPSEO_Config_Field
+         */
+        public function get_field()
+        {
+        }
+        /**
+         * Get the data for the field.
+         *
+         * @return array
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Save data.
+         *
+         * @param array $data Data containing changes.
+         *
+         * @return bool
+         */
+        public function set_data($data)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Configurator
+     */
+    /**
+     * Class WPSEO_Config_Factory_Post_Type.
+     */
+    class WPSEO_Config_Factory_Post_Type
+    {
+        /**
+         * List of fields.
+         *
+         * @var WPSEO_Config_Field_Choice_Post_Type[]
+         */
+        protected static $fields = [];
+        /**
+         * Retrieves a list of fields.
+         *
+         * @return WPSEO_Config_Field_Choice_Post_Type[] List of fields.
+         */
+        public function get_fields()
+        {
+        }
+        /**
+         * Add custom properties for specific post types.
+         *
+         * @param string             $post_type Post type of field that is being added.
+         * @param WPSEO_Config_Field $field     Field that corresponds to the post type.
+         */
+        private function add_custom_properties($post_type, $field)
+        {
+        }
+        /**
+         * Replaces the HTML entity with it's actual symbol.
+         *
+         * Because we do not not know what consequences it will have if we convert every HTML entity,
+         * we will only replace the characters that we have known problems with in text's.
+         *
+         * @param string $text The text to decode.
+         *
+         * @return string String with decoded HTML entities.
+         */
+        private function decode_html_entities($text)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field.
+     */
+    class WPSEO_Config_Field
+    {
+        /**
+         * Field name.
+         *
+         * @var string
+         */
+        protected $field;
+        /**
+         * Component to use.
+         *
+         * @var string
+         */
+        protected $component;
+        /**
+         * Properties of this field.
+         *
+         * @var array
+         */
+        protected $properties = [];
+        /**
+         * Field requirements.
+         *
+         * @var array
+         */
+        protected $requires = [];
+        /**
+         * Value of this field.
+         *
+         * @var array|mixed
+         */
+        protected $data = [];
+        /**
+         * WPSEO_Config_Field constructor.
+         *
+         * @param string $field     The field name.
+         * @param string $component The component to use.
+         */
+        public function __construct($field, $component)
+        {
+        }
+        /**
+         * Get the identifier.
+         *
+         * @return string
+         */
+        public function get_identifier()
+        {
+        }
+        /**
+         * Get the component.
+         *
+         * @return string
+         */
+        public function get_component()
+        {
+        }
+        /**
+         * Set a property value.
+         *
+         * @param string $name  Property to set.
+         * @param mixed  $value Value to apply.
+         */
+        public function set_property($name, $value)
+        {
+        }
+        /**
+         * Get all the properties.
+         *
+         * @return array
+         */
+        public function get_properties()
+        {
+        }
+        /**
+         * Get the data.
+         *
+         * @return mixed
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Array representation of this object.
+         *
+         * @return array
+         */
+        public function to_array()
+        {
+        }
+        /**
+         * Set the adapter to use.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+        /**
+         * Requires another field to have a certain value.
+         *
+         * @param string $field Field to check for a certain value.
+         * @param mixed  $value Value of the field.
+         */
+        public function set_requires($field, $value)
+        {
+        }
+        /**
+         * Get the required field settings (if present).
+         *
+         * @return array
+         */
+        public function get_requires()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Choice.
+     */
+    class WPSEO_Config_Field_Choice extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Choice constructor.
+         *
+         * @param string $field Field name to use.
+         */
+        public function __construct($field)
+        {
+        }
+        /**
+         * Add a choice to the properties.
+         *
+         * @param string $value      Value op the option.
+         * @param string $label      Label to display for the value.
+         * @param string $aria_label Optional. Aria label text to use.
+         */
+        public function add_choice($value, $label, $aria_label = '')
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Choice_Post_Type.
+     */
+    class WPSEO_Config_Field_Choice_Post_Type extends \WPSEO_Config_Field_Choice
+    {
+        /**
+         * Post type.
+         *
+         * @var string
+         */
+        protected $post_type;
+        /**
+         * WPSEO_Config_Field_Choice_Post_Type constructor.
+         *
+         * @param string $post_type The post type to add.
+         * @param string $label     Label to show (translated post type).
+         */
+        public function __construct($post_type, $label)
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+        /**
+         * Get the post type of this field.
+         *
+         * @return string Post type.
+         */
+        public function get_post_type()
+        {
+        }
+        /**
+         * Retrieves the data.
+         *
+         * @return bool
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Set new data.
+         *
+         * @param string $visible Visible (true) or hidden (false).
+         *
+         * @return bool
+         */
+        public function set_data($visible)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Configurator
+     */
+    /**
+     * Class WPSEO_Config_Field_Company_Info_Missing.
+     */
+    class WPSEO_Config_Field_Company_Info_Missing extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Company_Info_Missing constructor.
+         *
+         * @codeCoverageIgnore This is only using WPSEO_Config_Field and WPSEO_Utils functionality.
+         */
+        public function __construct()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Configurator
+     */
+    /**
+     * Class WPSEO_Config_Field_Company_Logo.
+     */
+    class WPSEO_Config_Field_Company_Logo extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Company_Logo constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Sets the adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Configurator
+     */
+    /**
+     * Class WPSEO_Config_Field_Company_Name.
+     */
+    class WPSEO_Config_Field_Company_Name extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Company_Name constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Sets the adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Configurator
+     */
+    /**
+     * Class WPSEO_Config_Field_Company_Or_Person.
+     */
+    class WPSEO_Config_Field_Company_Or_Person extends \WPSEO_Config_Field_Choice
+    {
+        /**
+         * WPSEO_Config_Field_Company_Or_Person constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Sets the adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Environment.
+     */
+    class WPSEO_Config_Field_Environment extends \WPSEO_Config_Field_Choice
+    {
+        /**
+         * WPSEO_Config_Field_Environment constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+        /**
+         * Gets the option that is set for this field.
+         *
+         * @return string The value for the environment_type wpseo option.
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Set new data.
+         *
+         * @param string $environment_type The site's environment type.
+         *
+         * @return bool Returns whether the value is successfully set.
+         */
+        public function set_data($environment_type)
+        {
+        }
+        /**
+         * Set the WordPress Search Engine Visibility option based on the environment type.
+         *
+         * @param string $environment_type The environment the site is running in.
+         *
+         * @return bool Returns if the options is set successfully.
+         */
+        protected function set_indexation($environment_type)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Mailchimp_Signup.
+     */
+    class WPSEO_Config_Field_Mailchimp_Signup extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Mailchimp_Signup constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Get the data.
+         *
+         * @return array
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Checks if the user has entered their email for mailchimp already.
+         *
+         * @return bool
+         */
+        protected function has_mailchimp_signup()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Multiple_Authors.
+     */
+    class WPSEO_Config_Field_Multiple_Authors extends \WPSEO_Config_Field_Choice
+    {
+        /**
+         * WPSEO_Config_Field_Multiple_Authors constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+        /**
+         * Get the data from the stored options.
+         *
+         * @return null|string
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Set the data in the options.
+         *
+         * @param string $data The data to set for the field.
+         *
+         * @return bool Returns true or false for successful storing the data.
+         */
+        public function set_data($data)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Configurator
+     */
+    /**
+     * Class WPSEO_Config_Field_Person_Name.
+     */
+    class WPSEO_Config_Field_Person extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Company_Or_Person constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Sets the adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Post_Type_Visibility.
+     */
+    class WPSEO_Config_Field_Post_Type_Visibility extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Post_Type_Visibility constructor.
+         */
+        public function __construct()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_Facebook.
+     */
+    class WPSEO_Config_Field_Profile_URL_Facebook extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_Facebook constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_Instagram.
+     */
+    class WPSEO_Config_Field_Profile_URL_Instagram extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_Instagram constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_LinkedIn.
+     */
+    class WPSEO_Config_Field_Profile_URL_LinkedIn extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_LinkedIn constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_MySpace.
+     */
+    class WPSEO_Config_Field_Profile_URL_MySpace extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_MySpace constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_Pinterest.
+     */
+    class WPSEO_Config_Field_Profile_URL_Pinterest extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_Pinterest constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_Twitter.
+     */
+    class WPSEO_Config_Field_Profile_URL_Twitter extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_Twitter constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_YouTube
+     */
+    class WPSEO_Config_Field_Profile_URL_Wikipedia extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_YouTube constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Sets the adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         *
+         * @return void
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Profile_URL_YouTube.
+     */
+    class WPSEO_Config_Field_Profile_URL_YouTube extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Profile_URL_YouTube constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Separator.
+     */
+    class WPSEO_Config_Field_Separator extends \WPSEO_Config_Field_Choice
+    {
+        /**
+         * WPSEO_Config_Field_Separator constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Adds the title separator choices.
+         */
+        protected function add_choices()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Site_Name.
+     */
+    class WPSEO_Config_Field_Site_Name extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Site_Name constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+        /**
+         * Get the data from the stored options.
+         *
+         * @return null|string
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Set the data in the options.
+         *
+         * @param string $data The data to set for the field.
+         *
+         * @return bool Returns true or false for successful storing the data.
+         */
+        public function set_data($data)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Site_Type.
+     */
+    class WPSEO_Config_Field_Site_Type extends \WPSEO_Config_Field_Choice
+    {
+        /**
+         * WPSEO_Config_Field_Site_Type constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set adapter.
+         *
+         * @param WPSEO_Configuration_Options_Adapter $adapter Adapter to register lookup on.
+         */
+        public function set_adapter(\WPSEO_Configuration_Options_Adapter $adapter)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Success_Message.
+     */
+    class WPSEO_Config_Field_Success_Message extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Success_Message constructor.
+         */
+        public function __construct()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Holds the suggestions for the 'You might also like' page in the wizard.
+     */
+    class WPSEO_Config_Field_Suggestions extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Suggestions constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Adds a suggestion to the properties.
+         *
+         * @param string $title  The title of the choice.
+         * @param string $copy   The text explaining the choice.
+         * @param array  $button The button details.
+         * @param array  $video  URL and title of the video accompanying the choice.
+         */
+        public function add_suggestion($title, $copy, $button, array $video = [])
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Title_Intro.
+     */
+    class WPSEO_Config_Field_Title_Intro extends \WPSEO_Config_Field
+    {
+        /**
+         * WPSEO_Config_Field_Social_Profiles_Intro constructor.
+         */
+        public function __construct()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Upsell_Configuration_Service.
+     */
+    class WPSEO_Config_Field_Upsell_Configuration_Service extends \WPSEO_Config_Field
+    {
+        /**
+         * HTML tags allowed in the upsell text.
+         *
+         * @var array
+         */
+        private $allowed_html = ['a' => ['href' => [], 'target' => ['_blank']]];
+        /**
+         * WPSEO_Config_Field_Upsell_Configuration_Service constructor.
+         */
+        public function __construct()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\ConfigurationUI
+     */
+    /**
+     * Class WPSEO_Config_Field_Upsell_Site_Review.
+     */
+    class WPSEO_Config_Field_Upsell_Site_Review extends \WPSEO_Config_Field
+    {
+        /**
+         * HTML tags allowed in the upsell site review text.
+         *
+         * @var array
+         */
+        private $allowed_html = ['a' => ['href' => [], 'target' => ['_blank']]];
+        /**
+         * WPSEO_Config_Field_Upsell_Site_Review constructor.
+         */
+        public function __construct()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Endpoints
+     */
+    /**
+     * Dictates the required methods for an Endpoint implementation.
+     */
+    interface WPSEO_Endpoint
+    {
+        /**
+         * Registers the routes for the endpoints.
+         *
+         * @return void
+         */
+        public function register();
+        /**
+         * Determines whether or not data can be retrieved for the registered endpoints.
+         *
+         * @return bool Whether or not data can be retrieved.
+         */
+        public function can_retrieve_data();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Endpoints
+     */
+    /**
+     * Represents an implementation of the WPSEO_Endpoint interface to register one or multiple endpoints.
+     */
+    class WPSEO_Endpoint_File_Size implements \WPSEO_Endpoint
+    {
+        /**
+         * The namespace of the REST route.
+         *
+         * @var string
+         */
+        const REST_NAMESPACE = 'yoast/v1';
+        /**
+         * The route of the endpoint to retrieve the file size.
+         *
+         * @var string
+         */
+        const ENDPOINT_SINGULAR = 'file_size';
+        /**
+         * The name of the capability needed to retrieve data using the endpoints.
+         *
+         * @var string
+         */
+        const CAPABILITY_RETRIEVE = 'manage_options';
+        /**
+         * The service provider.
+         *
+         * @var WPSEO_File_Size_Service
+         */
+        private $service;
+        /**
+         * Sets the service provider.
+         *
+         * @param WPSEO_File_Size_Service $service The service provider.
+         */
+        public function __construct(\WPSEO_File_Size_Service $service)
+        {
+        }
+        /**
+         * Registers the routes for the endpoints.
+         *
+         * @return void
+         */
+        public function register()
+        {
+        }
+        /**
+         * Determines whether or not data can be retrieved for the registered endpoints.
+         *
+         * @return bool Whether or not data can be retrieved.
+         */
+        public function can_retrieve_data()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Endpoints
+     */
+    /**
+     * Dictates the required methods for a storable implementation.
+     */
+    interface WPSEO_Endpoint_Storable
+    {
+        /**
+         * Determines whether or not data can be stored for the registered endpoints.
+         *
+         * @return bool Whether or not data can be stored.
+         */
+        public function can_store_data();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Endpoints
+     */
+    /**
+     * Represents an implementation of the WPSEO_Endpoint interface to register one or multiple endpoints.
+     */
+    class WPSEO_Endpoint_Indexable implements \WPSEO_Endpoint, \WPSEO_Endpoint_Storable
+    {
+        /**
+         * The namespace of the REST route.
+         *
+         * @var string
+         */
+        const REST_NAMESPACE = 'yoast/v1';
+        /**
+         * The route of the endpoint to retrieve or patch the indexable.
+         *
+         * @var string
+         */
+        const ENDPOINT_SINGULAR = 'indexables/(?P<object_type>\\w+)/(?P<object_id>\\d+)';
+        /**
+         * The name of the capability needed to retrieve data using the endpoints.
+         *
+         * @var string
+         */
+        const CAPABILITY_RETRIEVE = 'manage_options';
+        /**
+         * The name of the capability needed to store data using the endpoints.
+         *
+         * @var string
+         */
+        const CAPABILITY_STORE = 'manage_options';
+        /**
+         * The indexable service.
+         *
+         * @var WPSEO_Indexable_Service
+         */
+        private $service;
+        /**
+         * Sets the service provider.
+         *
+         * @param WPSEO_Indexable_Service $service The service provider.
+         */
+        public function __construct(\WPSEO_Indexable_Service $service)
+        {
+        }
+        /**
+         * Registers the routes for the endpoints.
+         *
+         * @return void
+         */
+        public function register()
+        {
+        }
+        /**
+         * Determines whether or not data can be retrieved for the registered endpoints.
+         *
+         * @return bool Whether or not data can be retrieved.
+         */
+        public function can_retrieve_data()
+        {
+        }
+        /**
+         * Determines whether or not data can be stored for the registered endpoints.
+         *
+         * @return bool Whether or not data can be stored.
+         */
+        public function can_store_data()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\OnPage
+     */
+    /**
+     * Represents an implementation of the WPSEO_Endpoint interface to register one or multiple endpoints.
+     */
+    class WPSEO_Endpoint_Ryte implements \WPSEO_Endpoint
+    {
+        /**
+         * The namespace of the REST route.
+         *
+         * @var string
+         */
+        const REST_NAMESPACE = 'yoast/v1';
+        /**
+         * The route of the ryte endpoint.
+         *
+         * @var string
+         */
+        const ENDPOINT_RETRIEVE = 'ryte';
+        /**
+         * The name of the capability needed to retrieve data using the endpoints.
+         *
+         * @var string
+         */
+        const CAPABILITY_RETRIEVE = 'manage_options';
+        /**
+         * Service to use.
+         *
+         * @var WPSEO_Ryte_Service
+         */
+        protected $service;
+        /**
+         * Constructs the WPSEO_Endpoint_Ryte class and sets the service to use.
+         *
+         * @param WPSEO_Ryte_Service $service Service to use.
+         */
+        public function __construct(\WPSEO_Ryte_Service $service)
+        {
+        }
+        /**
+         * Registers the REST routes that are available on the endpoint.
+         */
+        public function register()
+        {
+        }
+        /**
+         * Determines whether or not data can be retrieved for the registered endpoints.
+         *
+         * @return bool Whether or not data can be retrieved.
+         */
+        public function can_retrieve_data()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Statistics
+     */
+    /**
+     * Represents an implementation of the WPSEO_Endpoint interface to register one or multiple endpoints.
+     */
+    class WPSEO_Endpoint_Statistics implements \WPSEO_Endpoint
+    {
+        /**
+         * The namespace of the REST route.
+         *
+         * @var string
+         */
+        const REST_NAMESPACE = 'yoast/v1';
+        /**
+         * The route of the statistics endpoint.
+         *
+         * @var string
+         */
+        const ENDPOINT_RETRIEVE = 'statistics';
+        /**
+         * The name of the capability needed to retrieve data using the endpoints.
+         *
+         * @var string
+         */
+        const CAPABILITY_RETRIEVE = 'read';
+        /**
+         * Service to use.
+         *
+         * @var WPSEO_Statistics_Service
+         */
+        protected $service;
+        /**
+         * Constructs the WPSEO_Endpoint_Statistics class and sets the service to use.
+         *
+         * @param WPSEO_Statistics_Service $service Service to use.
+         */
+        public function __construct(\WPSEO_Statistics_Service $service)
+        {
+        }
+        /**
+         * Registers the REST routes that are available on the endpoint.
+         */
+        public function register()
+        {
+        }
+        /**
+         * Determines whether or not data can be retrieved for the registered endpoints.
+         *
+         * @return bool Whether or not data can be retrieved.
+         */
+        public function can_retrieve_data()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Exceptions
+     */
+    /**
+     * Represents named methods for exceptions.
+     */
+    class WPSEO_File_Size_Exception extends \Exception
+    {
+        /**
+         * Gets the exception for an externally hosted file.
+         *
+         * @param string $file_url The file url.
+         *
+         * @return WPSEO_File_Size_Exception Instance of the exception.
+         */
+        public static function externally_hosted($file_url)
+        {
+        }
+        /**
+         * Gets the exception for when a unknown error occurs.
+         *
+         * @param string $file_url The file url.
+         *
+         * @return WPSEO_File_Size_Exception Instance of the exception.
+         */
+        public static function unknown_error($file_url)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Filters
+     */
+    /**
+     * Class WPSEO_Abstract_Post_Filter.
+     */
+    abstract class WPSEO_Abstract_Post_Filter implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The filter's query argument.
+         *
+         * @var string
+         */
+        const FILTER_QUERY_ARG = 'yoast_filter';
+        /**
+         * Modify the query based on the FILTER_QUERY_ARG variable in $_GET.
+         *
+         * @param string $where Query variables.
+         *
+         * @return string The modified query.
+         */
+        public abstract function filter_posts($where);
+        /**
+         * Returns the query value this filter uses.
+         *
+         * @return string The query value this filter uses.
+         */
+        public abstract function get_query_val();
+        /**
+         * Returns the total number of posts that match this filter.
+         *
+         * @return int The total number of posts that match this filter.
+         */
+        protected abstract function get_post_total();
+        /**
+         * Returns the label for this filter.
+         *
+         * @return string The label for this filter.
+         */
+        protected abstract function get_label();
+        /**
+         * Registers the hooks.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds the filter links to the view_edit screens to give the user a filter link.
+         *
+         * @return void
+         */
+        public function add_filter_links()
+        {
+        }
+        /**
+         * Enqueues the necessary assets to display a filter explanation.
+         *
+         * @return void
+         */
+        public function enqueue_explanation_assets()
+        {
+        }
+        /**
+         * Adds a filter link to the views.
+         *
+         * @param array $views Array with the views.
+         *
+         * @return array Array of views including the added view.
+         */
+        public function add_filter_link(array $views)
+        {
+        }
+        /**
+         * Returns a text explaining this filter. Null if no explanation is necessary.
+         *
+         * @return string|null The explanation or null.
+         */
+        protected function get_explanation()
+        {
+        }
+        /**
+         * Renders a hidden input to preserve this filter's state when using sub-filters.
+         *
+         * @return void
+         */
+        public function render_hidden_input()
+        {
+        }
+        /**
+         * Returns an url to edit.php with post_type and this filter as the query arguments.
+         *
+         * @return string The url to activate this filter.
+         */
+        protected function get_filter_url()
+        {
+        }
+        /**
+         * Returns true when the filter is active.
+         *
+         * @return bool Whether or not the filter is active.
+         */
+        protected function is_filter_active()
+        {
+        }
+        /**
+         * Returns the current post type.
+         *
+         * @return string The current post type.
+         */
+        protected function get_current_post_type()
+        {
+        }
+        /**
+         * Returns the post types to which this filter should be added.
+         *
+         * @return array The post types to which this filter should be added.
+         */
+        protected function get_post_types()
+        {
+        }
+        /**
+         * Checks if the post type is supported.
+         *
+         * @param string $post_type Post type to check against.
+         *
+         * @return bool True when it is supported.
+         */
+        protected function is_supported_post_type($post_type)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Registers the filter for filtering posts by cornerstone content.
+     */
+    class WPSEO_Cornerstone_Filter extends \WPSEO_Abstract_Post_Filter
+    {
+        /**
+         * Name of the meta value.
+         *
+         * @var string
+         */
+        const META_NAME = 'is_cornerstone';
+        /**
+         * Registers the hooks.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Returns the query value this filter uses.
+         *
+         * @return string The query value this filter uses.
+         */
+        public function get_query_val()
+        {
+        }
+        /**
+         * Modify the query based on the seo_filter variable in $_GET.
+         *
+         * @param string $where Query variables.
+         *
+         * @return string The modified query.
+         */
+        public function filter_posts($where)
+        {
+        }
+        /**
+         * Filters the post types that have the metabox disabled.
+         *
+         * @param array $post_types The post types to filter.
+         *
+         * @return array The filtered post types.
+         */
+        public function filter_metabox_disabled($post_types)
+        {
+        }
+        /**
+         * Returns the label for this filter.
+         *
+         * @return string The label for this filter.
+         */
+        protected function get_label()
+        {
+        }
+        /**
+         * Returns a text explaining this filter.
+         *
+         * @return string The explanation.
+         */
+        protected function get_explanation()
+        {
+        }
+        /**
+         * Returns the total amount of articles marked as cornerstone content.
+         *
+         * @return integer
+         */
+        protected function get_post_total()
+        {
+        }
+        /**
+         * Returns the post types to which this filter should be added.
+         *
+         * @return array The post types to which this filter should be added.
+         */
+        protected function get_post_types()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Formatter
+     */
+    /**
+     * This class forces needed methods for the metabox localization.
+     */
+    class WPSEO_Metabox_Formatter
+    {
+        /**
+         * Object that provides formatted values.
+         *
+         * @var WPSEO_Metabox_Formatter_Interface
+         */
+        private $formatter;
+        /**
+         * Setting the formatter property.
+         *
+         * @param WPSEO_Metabox_Formatter_Interface $formatter Object that provides the formatted values.
+         */
+        public function __construct(\WPSEO_Metabox_Formatter_Interface $formatter)
+        {
+        }
+        /**
+         * Returns the values.
+         *
+         * @return array
+         */
+        public function get_values()
+        {
+        }
+        /**
+         * Returns array with all the values always needed by a scraper object.
+         *
+         * @return array Default settings for the metabox.
+         */
+        private function get_defaults()
+        {
+        }
+        /**
+         * Returns a link to the settings page, if the user has the right capabilities.
+         * Returns an empty string otherwise.
+         *
+         * @return string The settings link.
+         */
+        private function get_settings_link()
+        {
+        }
+        /**
+         * Returns required yoast-component translations.
+         *
+         * @return array
+         */
+        private function get_content_analysis_component_translations()
+        {
+        }
+        /**
+         * Returns the translations for the Add Keyword modal.
+         *
+         * These strings are not escaped because they're meant to be used with React
+         * which already takes care of that. If used in PHP, they should be escaped.
+         *
+         * @return array Translated text strings for the Add Keyword modal.
+         */
+        public function get_add_keyword_upsell_translations()
+        {
+        }
+        /**
+         * Returns Jed compatible YoastSEO.js translations.
+         *
+         * @return array
+         */
+        private function get_translations()
+        {
+        }
+        /**
+         * Checks if Jetpack's markdown module is enabled.
+         * Can be extended to work with other plugins that parse markdown in the content.
+         *
+         * @return boolean
+         */
+        private function is_markdown_enabled()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Formatter
+     */
+    /**
+     * Interface to force get_values.
+     */
+    interface WPSEO_Metabox_Formatter_Interface
+    {
+        /**
+         * Returns formatter values.
+         *
+         * @return array
+         */
+        public function get_values();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Formatter
+     */
+    /**
+     * This class provides data for the post metabox by return its values for localization.
+     */
+    class WPSEO_Post_Metabox_Formatter implements \WPSEO_Metabox_Formatter_Interface
+    {
+        /**
+         * Holds the WordPress Post.
+         *
+         * @var WP_Post
+         */
+        private $post;
+        /**
+         * The permalink to follow.
+         *
+         * @var string
+         */
+        private $permalink;
+        /**
+         * The date helper.
+         *
+         * @var WPSEO_Date_Helper
+         */
+        protected $date;
+        /**
+         * Constructor.
+         *
+         * @param WP_Post|array $post      Post object.
+         * @param array         $options   Title options to use.
+         * @param string        $structure The permalink to follow.
+         */
+        public function __construct($post, array $options, $structure)
+        {
+        }
+        /**
+         * Returns the translated values.
+         *
+         * @return array
+         */
+        public function get_values()
+        {
+        }
+        /**
+         * Gets the image URL for the post's social preview.
+         *
+         * @return string|null The image URL for the social preview.
+         */
+        protected function get_image_url()
+        {
+        }
+        /**
+         * Returns the url to search for keyword for the post.
+         *
+         * @return string
+         */
+        private function search_url()
+        {
+        }
+        /**
+         * Returns the url to edit the taxonomy.
+         *
+         * @return string
+         */
+        private function edit_url()
+        {
+        }
+        /**
+         * Returns a base URL for use in the JS, takes permalink structure into account.
+         *
+         * @return string
+         */
+        private function base_url_for_js()
+        {
+        }
+        /**
+         * Counts the number of given keywords used for other posts other than the given post_id.
+         *
+         * @return array The keyword and the associated posts that use it.
+         */
+        private function get_focus_keyword_usage()
+        {
+        }
+        /**
+         * Retrieves the additional keywords from Premium, that are associated with the post.
+         *
+         * @param array $usage The original keyword usage for the main keyword.
+         *
+         * @return array The keyword usage, including the additional keywords.
+         */
+        protected function get_premium_keywords($usage)
+        {
+        }
+        /**
+         * Gets the keyword usage for the current post and the specified keyword.
+         *
+         * @param string $keyword The keyword to check the usage of.
+         *
+         * @return array The post IDs which use the passed keyword.
+         */
+        protected function get_keyword_usage_for_current_post($keyword)
+        {
+        }
+        /**
+         * Retrieves the title template.
+         *
+         * @return string The title template.
+         */
+        private function get_title_template()
+        {
+        }
+        /**
+         * Retrieves the metadesc template.
+         *
+         * @return string
+         */
+        private function get_metadesc_template()
+        {
+        }
+        /**
+         * Retrieves a template.
+         *
+         * @param String $template_option_name The name of the option in which the template you want to get is saved.
+         *
+         * @return string
+         */
+        private function get_template($template_option_name)
+        {
+        }
+        /**
+         * Determines the date to be displayed in the snippet preview.
+         *
+         * @return string
+         */
+        private function get_metadesc_date()
+        {
+        }
+        /**
+         * Returns whether or not showing the date in the snippet preview is enabled.
+         *
+         * @return bool
+         */
+        private function is_show_date_enabled()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Formatter
+     */
+    /**
+     * This class provides data for the term metabox by return its values for localization.
+     */
+    class WPSEO_Term_Metabox_Formatter implements \WPSEO_Metabox_Formatter_Interface
+    {
+        /**
+         * The term the metabox formatter is for.
+         *
+         * @var WP_Term|stdClass
+         */
+        private $term;
+        /**
+         * The term's taxonomy.
+         *
+         * @var stdClass
+         */
+        private $taxonomy;
+        /**
+         * Array with the WPSEO_Titles options.
+         *
+         * @var array
+         */
+        protected $options;
+        /**
+         * WPSEO_Taxonomy_Scraper constructor.
+         *
+         * @param stdClass         $taxonomy Taxonomy.
+         * @param WP_Term|stdClass $term     Term.
+         */
+        public function __construct($taxonomy, $term)
+        {
+        }
+        /**
+         * Returns the translated values.
+         *
+         * @return array
+         */
+        public function get_values()
+        {
+        }
+        /**
+         * Gets the image URL for the term's social preview.
+         *
+         * @return string|null The image URL for the social preview.
+         */
+        protected function get_image_url()
+        {
+        }
+        /**
+         * Returns the url to search for keyword for the taxonomy.
+         *
+         * @return string
+         */
+        private function search_url()
+        {
+        }
+        /**
+         * Returns the url to edit the taxonomy.
+         *
+         * @return string
+         */
+        private function edit_url()
+        {
+        }
+        /**
+         * Returns a base URL for use in the JS, takes permalink structure into account.
+         *
+         * @return string
+         */
+        private function base_url_for_js()
+        {
+        }
+        /**
+         * Counting the number of given keyword used for other term than given term_id.
+         *
+         * @return array
+         */
+        private function get_focus_keyword_usage()
+        {
+        }
+        /**
+         * Retrieves the title template.
+         *
+         * @return string The title template.
+         */
+        private function get_title_template()
+        {
+        }
+        /**
+         * Retrieves the metadesc template.
+         *
+         * @return string
+         */
+        private function get_metadesc_template()
+        {
+        }
+        /**
+         * Retrieves a template.
+         *
+         * @param String $template_option_name The name of the option in which the template you want to get is saved.
+         *
+         * @return string
+         */
+        private function get_template($template_option_name)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\admin\google_search_console
+     */
+    /**
+     * Class WPSEO_GSC.
+     */
+    class WPSEO_GSC implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The option where data will be stored.
+         *
+         * @var string
+         */
+        const OPTION_WPSEO_GSC = 'wpseo-gsc';
+        /**
+         * Outputs the HTML for the redirect page.
+         *
+         * @return void
+         */
+        public function display()
+        {
+        }
+        /**
+         * Registers the hooks.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Handles the dashboard notification.
+         *
+         * If the Google Search Console has no credentials, show a notification
+         * for the user to give them a heads up. This message is dismissable.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function register_gsc_notification()
+        {
+        }
+        /**
+         * Makes sure the settings will be registered, so data can be stored.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function register_settings()
+        {
+        }
+        /**
+         * Displays the table.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function display_table()
+        {
+        }
+        /**
+         * Loads the admin redirects scripts.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function page_scripts()
+        {
+        }
+        /**
+         * Sets the screen options.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         *
+         * @param string $status Status string.
+         * @param string $option Option key.
+         * @param string $value  Value to return.
+         *
+         * @return mixed The screen option value. False when not errors_per_page.
+         */
+        public function set_screen_option($status, $option, $value)
+        {
+        }
+        /**
+         * Sets the tab help on top of the screen.
+         *
+         * @deprecated 12.5
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function set_help()
+        {
+        }
+        /**
+         * Run init logic.
+         *
+         * @codeCoverageIgnore
+         *
+         * @deprecated 9.5
+         *
+         * @return void
+         */
+        public function init()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Import_Plugins_Detector.
+     *
+     * Class with functionality to detect whether we should import from another SEO plugin.
+     */
+    class WPSEO_Import_Plugins_Detector
+    {
+        /**
+         * Plugins we need to import from.
+         *
+         * @var array
+         */
+        public $needs_import = [];
+        /**
+         * Detects whether we need to import anything.
+         */
+        public function detect()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Import_Plugin.
+     *
+     * Class with functionality to import Yoast SEO settings from other plugins.
+     */
+    class WPSEO_Import_Plugin
+    {
+        /**
+         * Holds the status of and message about imports.
+         *
+         * @var WPSEO_Import_Status
+         */
+        public $status;
+        /**
+         * Class with functionality to import meta data from other plugins.
+         *
+         * @var WPSEO_Plugin_Importer
+         */
+        protected $importer;
+        /**
+         * Import class constructor.
+         *
+         * @param WPSEO_Plugin_Importer $importer The importer that needs to perform this action.
+         * @param string                $action   The action to perform.
+         */
+        public function __construct(\WPSEO_Plugin_Importer $importer, $action)
+        {
+        }
+        /**
+         * Convenience function to replace %s with plugin name in import message.
+         *
+         * @param string $msg Message string.
+         *
+         * @return string Returns message with plugin name instead of replacement variables.
+         */
+        protected function complete_msg($msg)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Import
+     */
+    /**
+     * Class WPSEO_Import_Settings.
+     *
+     * Class with functionality to import the Yoast SEO settings.
+     */
+    class WPSEO_Import_Settings
+    {
+        /**
+         * Nonce action key.
+         *
+         * @var string
+         */
+        const NONCE_ACTION = 'wpseo-import-settings';
+        /**
+         * Holds the import status instance.
+         *
+         * @var WPSEO_Import_Status
+         */
+        public $status;
+        /**
+         * Holds the old WPSEO version.
+         *
+         * @var string
+         */
+        private $old_wpseo_version;
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Imports the data submitted by the user.
+         *
+         * @return void
+         */
+        public function import()
+        {
+        }
+        /**
+         * Parse the options.
+         *
+         * @param string $raw_options The content to parse.
+         *
+         * @return void
+         */
+        protected function parse_options($raw_options)
+        {
+        }
+        /**
+         * Parse the option group and import it.
+         *
+         * @param string $name         Name string.
+         * @param array  $option_group Option group data.
+         * @param array  $options      Options data.
+         */
+        protected function parse_option_group($name, $option_group, $options)
+        {
+        }
+        /**
+         * Imports the options if found.
+         *
+         * @param array $options The options parsed from the provided settings.
+         */
+        protected function import_options($options)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Import
+     */
+    /**
+     * Class WPSEO_ImportStatus.
+     *
+     * Holds the status of and message about imports.
+     */
+    class WPSEO_Import_Status
+    {
+        /**
+         * The import status.
+         *
+         * @var bool
+         */
+        public $status = \false;
+        /**
+         * The import message.
+         *
+         * @var string
+         */
+        private $msg = '';
+        /**
+         * The type of action performed.
+         *
+         * @var string
+         */
+        private $action;
+        /**
+         * WPSEO_Import_Status constructor.
+         *
+         * @param string $action The type of import action.
+         * @param bool   $status The status of the import.
+         * @param string $msg    Extra messages about the status.
+         */
+        public function __construct($action, $status, $msg = '')
+        {
+        }
+        /**
+         * Get the import message.
+         *
+         * @return string Message about current status.
+         */
+        public function get_msg()
+        {
+        }
+        /**
+         * Get the import action.
+         *
+         * @return string Import action type.
+         */
+        public function get_action()
+        {
+        }
+        /**
+         * Set the import action, set status to false.
+         *
+         * @param string $action The type of action to set as import action.
+         *
+         * @return void
+         */
+        public function set_action($action)
+        {
+        }
+        /**
+         * Sets the importer status message.
+         *
+         * @param string $msg The message to set.
+         *
+         * @return void
+         */
+        public function set_msg($msg)
+        {
+        }
+        /**
+         * Sets the importer status.
+         *
+         * @param bool $status The status to set.
+         *
+         * @return WPSEO_Import_Status The current object.
+         */
+        public function set_status($status)
+        {
+        }
+        /**
+         * Returns a success message depending on the action.
+         *
+         * @return string Returns a success message for the current action.
+         */
+        private function get_default_success_message()
+        {
+        }
+    }
+    /**
+     * This file holds the abstract class for dealing with imports from other plugins.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Plugin_Importer.
+     *
+     * Class with functionality to import meta data from other plugins.
+     */
+    abstract class WPSEO_Plugin_Importer
+    {
+        /**
+         * Holds the import status object.
+         *
+         * @var WPSEO_Import_Status
+         */
+        protected $status;
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name;
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key;
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys;
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Returns the string for the plugin we're importing from.
+         *
+         * @return string Plugin name.
+         */
+        public function get_plugin_name()
+        {
+        }
+        /**
+         * Imports the settings and post meta data from another SEO plugin.
+         *
+         * @return WPSEO_Import_Status Import status object.
+         */
+        public function run_import()
+        {
+        }
+        /**
+         * Handles post meta data to import.
+         *
+         * @return bool Import success status.
+         */
+        protected function import()
+        {
+        }
+        /**
+         * Removes the plugin data from the database.
+         *
+         * @return WPSEO_Import_Status Import status object.
+         */
+        public function run_cleanup()
+        {
+        }
+        /**
+         * Removes the plugin data from the database.
+         *
+         * @return bool Cleanup status.
+         */
+        protected function cleanup()
+        {
+        }
+        /**
+         * Sets the status message for when a cleanup has gone bad.
+         *
+         * @return void
+         */
+        protected function cleanup_error_msg()
+        {
+        }
+        /**
+         * Detects whether an import for this plugin is needed.
+         *
+         * @return WPSEO_Import_Status Import status object.
+         */
+        public function run_detect()
+        {
+        }
+        /**
+         * Detects whether there is post meta data to import.
+         *
+         * @return bool Boolean indicating whether there is something to import.
+         */
+        protected function detect()
+        {
+        }
+        /**
+         * Helper function to clone meta keys and (optionally) change their values in bulk.
+         *
+         * @param string $old_key        The existing meta key.
+         * @param string $new_key        The new meta key.
+         * @param array  $replace_values An array, keys old value, values new values.
+         *
+         * @return bool Clone status.
+         */
+        protected function meta_key_clone($old_key, $new_key, $replace_values = [])
+        {
+        }
+        /**
+         * Clones multiple meta keys.
+         *
+         * @param array $clone_keys The keys to clone.
+         *
+         * @return bool Success status.
+         */
+        protected function meta_keys_clone($clone_keys)
+        {
+        }
+        /**
+         * Sets the import status to false and returns a message about why it failed.
+         */
+        protected function set_missing_db_rights_status()
+        {
+        }
+        /**
+         * Helper function to search for a key in an array and maybe save it as a meta field.
+         *
+         * @param string $plugin_key The key in the $data array to check.
+         * @param string $yoast_key  The identifier we use in our meta settings.
+         * @param array  $data       The array of data for this post to sift through.
+         * @param int    $post_id    The post ID.
+         *
+         * @return void
+         */
+        protected function import_meta_helper($plugin_key, $yoast_key, $data, $post_id)
+        {
+        }
+        /**
+         * Saves a post meta value if it doesn't already exist.
+         *
+         * @param string $new_key The key to save.
+         * @param mixed  $value   The value to set the key to.
+         * @param int    $post_id The Post to save the meta for.
+         */
+        protected function maybe_save_post_meta($new_key, $value, $post_id)
+        {
+        }
+        /**
+         * Replaces values in our temporary table according to our settings.
+         *
+         * @param array $replace_values Key value pair of values to replace with other values.
+         *
+         * @return void
+         */
+        protected function meta_key_clone_replace($replace_values)
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from All in One SEO Pack.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean All in One SEO Pack post metadata.
+     */
+    class WPSEO_Import_AIOSEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'All In One SEO Pack';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_aioseop_%';
+        /**
+         * OpenGraph keys to import.
+         *
+         * @var array
+         */
+        protected $import_keys = ['aioseop_opengraph_settings_title' => 'opengraph-title', 'aioseop_opengraph_settings_desc' => 'opengraph-description', 'aioseop_opengraph_settings_customimg' => 'opengraph-image', 'aioseop_opengraph_settings_customimg_twitter' => 'twitter-image'];
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_aioseop_title', 'new_key' => 'title'], ['old_key' => '_aioseop_description', 'new_key' => 'metadesc'], ['old_key' => '_aioseop_noindex', 'new_key' => 'meta-robots-noindex', 'convert' => ['on' => 1]], ['old_key' => '_aioseop_nofollow', 'new_key' => 'meta-robots-nofollow', 'convert' => ['on' => 1]]];
+        /**
+         * Import All In One SEO meta values.
+         *
+         * @return bool Import success status.
+         */
+        protected function import()
+        {
+        }
+        /**
+         * Imports the OpenGraph and Twitter settings for all posts.
+         *
+         * @return bool
+         */
+        protected function import_opengraph()
+        {
+        }
+        /**
+         * Imports the OpenGraph and Twitter settings for a single post.
+         *
+         * @param int $post_id Post ID.
+         */
+        private function import_post_opengraph($post_id)
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from Ultimate SEO.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean Ultimate SEO post metadata.
+     */
+    class WPSEO_Import_Greg_SEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = "Greg's High Performance SEO";
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_ghpseo_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_ghpseo_alternative_description', 'new_key' => 'metadesc'], ['old_key' => '_ghpseo_secondary_title', 'new_key' => 'title']];
+    }
+    /**
+     * File with the class to handle data from HeadSpace.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Import_HeadSpace.
+     *
+     * Class with functionality to import & clean HeadSpace SEO post metadata.
+     */
+    class WPSEO_Import_HeadSpace extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'HeadSpace SEO';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_headspace_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_headspace_description', 'new_key' => 'metadesc'], ['old_key' => '_headspace_page_title', 'new_key' => 'title'], ['old_key' => '_headspace_noindex', 'new_key' => 'meta-robots-noindex', 'convert' => ['on' => 1]], ['old_key' => '_headspace_nofollow', 'new_key' => 'meta-robots-nofollow', 'convert' => ['on' => 1]]];
+    }
+    /**
+     * File with the class to handle data from Jetpack's Advanced SEO settings.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Import_Jetpack_SEO.
+     *
+     * Class with functionality to import & clean Jetpack SEO post metadata.
+     */
+    class WPSEO_Import_Jetpack_SEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'Jetpack';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = 'advanced_seo_description';
+        /**
+         *  Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => 'advanced_seo_description', 'new_key' => 'metadesc']];
+    }
+    /**
+     * File with the class to handle data from Platinum SEO Pack.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean Ultimate SEO post metadata.
+     */
+    class WPSEO_Import_Platinum_SEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'Platinum SEO Pack';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = 'title';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => 'description', 'new_key' => 'metadesc'], ['old_key' => 'title', 'new_key' => 'title']];
+        /**
+         * Runs the import of post meta keys stored by Platinum SEO Pack.
+         *
+         * @return bool
+         */
+        protected function import()
+        {
+        }
+        /**
+         * Cleans up all the meta values Platinum SEO pack creates.
+         *
+         * @return bool
+         */
+        protected function cleanup()
+        {
+        }
+        /**
+         * Finds all the robotsmeta fields to import and deals with them.
+         *
+         * There are four potential values that Platinum SEO stores:
+         * - index,folllow
+         * - index,nofollow
+         * - noindex,follow
+         * - noindex,nofollow
+         *
+         * We only have to deal with the latter 3, the first is our default.
+         *
+         * @return void
+         */
+        protected function import_robots_meta()
+        {
+        }
+        /**
+         * Imports the values for all index, nofollow posts.
+         *
+         * @param string $value The meta robots value to find posts for.
+         * @param array  $metas The meta field(s) to save.
+         *
+         * @return void
+         */
+        protected function import_by_meta_robots($value, $metas)
+        {
+        }
+        /**
+         * Finds posts by a given meta robots value.
+         *
+         * @param string $meta_value Robots meta value.
+         *
+         * @return array|bool Array of Post IDs on success, false on failure.
+         */
+        protected function find_posts_by_robots_meta($meta_value)
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from Squirrly.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean Squirrly post metadata.
+     */
+    class WPSEO_Import_Squirrly extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'Squirrly SEO';
+        /**
+         * Holds the name of the table Squirrly uses to store data.
+         *
+         * @var string
+         */
+        protected $table_name;
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_sq_post_keyword';
+        /**
+         * Data to import from (and the target to field) the serialized array stored in the SEO field in the Squirrly table.
+         *
+         * @var array
+         */
+        protected $seo_field_keys = ['noindex' => 'meta-robots-noindex', 'nofollow' => 'meta-robots-nofollow', 'title' => 'title', 'description' => 'metadesc', 'canonical' => 'canonical', 'cornerstone' => '_yst_is_cornerstone', 'tw_media' => 'twitter-image', 'tw_title' => 'twitter-title', 'tw_description' => 'twitter-description', 'og_title' => 'opengraph-title', 'og_description' => 'opengraph-description', 'og_media' => 'opengraph-image', 'focuskw' => 'focuskw'];
+        /**
+         * WPSEO_Import_Squirrly constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Imports the post meta values to Yoast SEO.
+         *
+         * @return bool Import success status.
+         */
+        protected function import()
+        {
+        }
+        /**
+         * Retrieve the posts from the Squirrly Database.
+         *
+         * @return array Array of post IDs from the DB.
+         */
+        protected function retrieve_posts()
+        {
+        }
+        /**
+         * Returns the query to return an identifier for the posts to import.
+         *
+         * @return string Query to get post ID's from the DB.
+         */
+        protected function retrieve_posts_query()
+        {
+        }
+        /**
+         * Removes the DB table and the post meta field Squirrly creates.
+         *
+         * @return bool Cleanup status.
+         */
+        protected function cleanup()
+        {
+        }
+        /**
+         * Detects whether there is post meta data to import.
+         *
+         * @return bool Boolean indicating whether there is something to import.
+         */
+        protected function detect()
+        {
+        }
+        /**
+         * Imports the data of a post out of Squirrly's DB table.
+         *
+         * @param mixed $post_identifier Post identifier, can be ID or string.
+         *
+         * @return bool Import status.
+         */
+        private function import_post_values($post_identifier)
+        {
+        }
+        /**
+         * Retrieves the Squirrly SEO data for a post from the DB.
+         *
+         * @param int $post_identifier Post ID.
+         *
+         * @return array|bool Array of data or false.
+         */
+        private function retrieve_post_data($post_identifier)
+        {
+        }
+        /**
+         * Squirrly stores the focus keyword in post meta.
+         *
+         * @param int $post_id Post ID.
+         *
+         * @return string The focus keyword.
+         */
+        private function maybe_add_focus_kw($post_id)
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from Premium SEO Pack.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean Premium SEO Pack post metadata.
+     */
+    class WPSEO_Import_Premium_SEO_Pack extends \WPSEO_Import_Squirrly
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'Premium SEO Pack';
+        /**
+         * WPSEO_Import_Premium_SEO_Pack constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Returns the query to return an identifier for the posts to import.
+         *
+         * @return string
+         */
+        protected function retrieve_posts_query()
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from RankMath.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import RankMath post metadata.
+     */
+    class WPSEO_Import_RankMath extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'RankMath';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = 'rank_math_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => 'rank_math_description', 'new_key' => 'metadesc'], ['old_key' => 'rank_math_title', 'new_key' => 'title'], ['old_key' => 'rank_math_canonical_url', 'new_key' => 'canonical'], ['old_key' => 'rank_math_primary_category', 'new_key' => 'primary_category'], ['old_key' => 'rank_math_facebook_title', 'new_key' => 'opengraph-title'], ['old_key' => 'rank_math_facebook_description', 'new_key' => 'opengraph-description'], ['old_key' => 'rank_math_facebook_image', 'new_key' => 'opengraph-image'], ['old_key' => 'rank_math_facebook_image_id', 'new_key' => 'opengraph-image-id'], ['old_key' => 'rank_math_twitter_title', 'new_key' => 'twitter-title'], ['old_key' => 'rank_math_twitter_description', 'new_key' => 'twitter-description'], ['old_key' => 'rank_math_twitter_image', 'new_key' => 'twitter-image'], ['old_key' => 'rank_math_twitter_image_id', 'new_key' => 'twitter-image-id'], ['old_key' => 'rank_math_focus_keyword', 'new_key' => 'focuskw']];
+        /**
+         * Handles post meta data to import.
+         *
+         * @return bool Import success status.
+         */
+        protected function import()
+        {
+        }
+        /**
+         * RankMath stores robots meta quite differently, so we have to parse it out.
+         */
+        private function import_meta_robots()
+        {
+        }
+        /**
+         * Imports some of the RankMath settings.
+         */
+        private function import_settings()
+        {
+        }
+        /**
+         * Removes the plugin data from the database.
+         *
+         * @return bool Cleanup status.
+         */
+        protected function cleanup()
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from SEO Framework.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean SEO Framework post metadata.
+     */
+    class WPSEO_Import_SEO_Framework extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'SEO Framework';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_genesis_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_genesis_description', 'new_key' => 'metadesc'], ['old_key' => '_genesis_title', 'new_key' => 'title'], ['old_key' => '_genesis_noindex', 'new_key' => 'meta-robots-noindex'], ['old_key' => '_genesis_nofollow', 'new_key' => 'meta-robots-nofollow'], ['old_key' => '_genesis_canonical_uri', 'new_key' => 'canonical'], ['old_key' => '_open_graph_title', 'new_key' => 'opengraph-title'], ['old_key' => '_open_graph_description', 'new_key' => 'opengraph-description'], ['old_key' => '_social_image_url', 'new_key' => 'opengraph-image'], ['old_key' => '_twitter_title', 'new_key' => 'twitter-title'], ['old_key' => '_twitter_description', 'new_key' => 'twitter-description']];
+        /**
+         * Removes all the metadata set by the SEO Framework plugin.
+         *
+         * @return bool
+         */
+        protected function cleanup()
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from SEOPressor.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Import_SEOPressor.
+     *
+     * Class with functionality to import & clean SEOPressor post metadata.
+     */
+    class WPSEO_Import_SEOPressor extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'SEOpressor';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_seop_settings';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_seop_settings']];
+        /**
+         * Imports the post meta values to Yoast SEO.
+         *
+         * @return bool Import success status.
+         */
+        protected function import()
+        {
+        }
+        /**
+         * Removes all the post meta fields SEOpressor creates.
+         *
+         * @return bool Cleanup status.
+         */
+        protected function cleanup()
+        {
+        }
+        /**
+         * Imports the data. SEOpressor stores most of the data in one post array, this loops over it.
+         *
+         * @param int $post_id Post ID.
+         *
+         * @return void
+         */
+        private function import_seopressor_post_settings($post_id)
+        {
+        }
+        /**
+         * Imports the focus keywords, and stores them for later use.
+         *
+         * @param integer $post_id Post ID.
+         *
+         * @return void
+         */
+        private function import_post_focus_keywords($post_id)
+        {
+        }
+        /**
+         * Retrieves the SEOpressor robot value and map this to Yoast SEO values.
+         *
+         * @param string  $meta_rules The meta rules taken from the SEOpressor settings array.
+         * @param integer $post_id    The post id of the current post.
+         *
+         * @return void
+         */
+        private function import_post_robots($meta_rules, $post_id)
+        {
+        }
+        /**
+         * Gets the robot config by given SEOpressor robots value.
+         *
+         * @param array $seopressor_robots The value in SEOpressor that needs to be converted to the Yoast format.
+         *
+         * @return array The robots values in Yoast format.
+         */
+        private function get_robot_value($seopressor_robots)
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from Smartcrawl SEO.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean Smartcrawl SEO post metadata.
+     */
+    class WPSEO_Import_Smartcrawl_SEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'Smartcrawl SEO';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_wds_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_wds_metadesc', 'new_key' => 'metadesc'], ['old_key' => '_wds_title', 'new_key' => 'title'], ['old_key' => '_wds_canonical', 'new_key' => 'canonical'], ['old_key' => '_wds_focus-keywords', 'new_key' => 'focuskw'], ['old_key' => '_wds_meta-robots-noindex', 'new_key' => 'meta-robots-noindex'], ['old_key' => '_wds_meta-robots-nofollow', 'new_key' => 'meta-robots-nofollow']];
+        /**
+         * Used for importing Twitter and Facebook meta's.
+         *
+         * @var array
+         */
+        protected $social_keys = [];
+        /**
+         * Handles post meta data to import.
+         *
+         * @return bool Import success status.
+         */
+        protected function import()
+        {
+        }
+        /**
+         * Imports the OpenGraph meta keys saved by Smartcrawl.
+         *
+         * @return bool Import status.
+         */
+        protected function import_opengraph()
+        {
+        }
+        /**
+         * Imports the Twitter meta keys saved by Smartcrawl.
+         *
+         * @return bool Import status.
+         */
+        protected function import_twitter()
+        {
+        }
+        /**
+         * Imports a post's serialized post meta values.
+         *
+         * @param int    $post_id Post ID.
+         * @param string $key     The meta key to import.
+         *
+         * @return void
+         */
+        protected function import_serialized_post_meta($post_id, $key)
+        {
+        }
+        /**
+         * Finds all the posts with a certain meta key and imports its values.
+         *
+         * @param string $key The meta key to search for.
+         *
+         * @return bool Import status.
+         */
+        protected function post_find_import($key)
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from Ultimate SEO.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean Ultimate SEO post metadata.
+     */
+    class WPSEO_Import_Ultimate_SEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'Ultimate SEO';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_su_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_su_description', 'new_key' => 'metadesc'], ['old_key' => '_su_title', 'new_key' => 'title'], ['old_key' => '_su_og_title', 'new_key' => 'opengraph-title'], ['old_key' => '_su_og_description', 'new_key' => 'opengraph-description'], ['old_key' => '_su_og_image', 'new_key' => 'opengraph-image'], ['old_key' => '_su_meta_robots_noindex', 'new_key' => 'meta-robots-noindex', 'convert' => ['on' => 1]], ['old_key' => '_su_meta_robots_nofollow', 'new_key' => 'meta-robots-nofollow', 'convert' => ['on' => 1]]];
+    }
+    /**
+     * File with the class to handle data from WooThemes SEO.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Import_WooThemes_SEO
+     *
+     * Class with functionality to import & clean WooThemes SEO post metadata.
+     */
+    class WPSEO_Import_WooThemes_SEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'WooThemes SEO';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = 'seo_title';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => 'seo_description', 'new_key' => 'metadesc'], ['old_key' => 'seo_title', 'new_key' => 'title'], ['old_key' => 'seo_noindex', 'new_key' => 'meta-robots-noindex'], ['old_key' => 'seo_follow', 'new_key' => 'meta-robots-nofollow']];
+        /**
+         * Holds the meta fields we can delete after import.
+         *
+         * @var array
+         */
+        protected $cleanup_metas = ['seo_follow', 'seo_noindex', 'seo_title', 'seo_description', 'seo_keywords'];
+        /**
+         * Holds the options we can delete after import.
+         *
+         * @var array
+         */
+        protected $cleanup_options = ['seo_woo_archive_layout', 'seo_woo_single_layout', 'seo_woo_page_layout', 'seo_woo_wp_title', 'seo_woo_meta_single_desc', 'seo_woo_meta_single_key', 'seo_woo_home_layout'];
+        /**
+         * Cleans up the WooThemes SEO settings.
+         *
+         * @return bool Cleanup status.
+         */
+        protected function cleanup()
+        {
+        }
+        /**
+         * Removes the Woo Options from the database.
+         *
+         * @return void
+         */
+        private function cleanup_options()
+        {
+        }
+        /**
+         * Removes the post meta fields from the database.
+         *
+         * @return bool Cleanup status.
+         */
+        private function cleanup_meta()
+        {
+        }
+        /**
+         * Removes a single meta field from the postmeta table in the database.
+         *
+         * @param string $key The meta_key to delete.
+         *
+         * @return bool Cleanup status.
+         */
+        private function cleanup_meta_key($key)
+        {
+        }
+    }
+    /**
+     * File with the class to handle data from WP Meta SEO.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class with functionality to import & clean WP Meta SEO post metadata.
+     */
+    class WPSEO_Import_WP_Meta_SEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'WP Meta SEO';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_metaseo_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_metaseo_metadesc', 'new_key' => 'metadesc'], ['old_key' => '_metaseo_metatitle', 'new_key' => 'title'], ['old_key' => '_metaseo_metaopengraph-title', 'new_key' => 'opengraph-title'], ['old_key' => '_metaseo_metaopengraph-desc', 'new_key' => 'opengraph-description'], ['old_key' => '_metaseo_metaopengraph-image', 'new_key' => 'opengraph-image'], ['old_key' => '_metaseo_metatwitter-title', 'new_key' => 'twitter-title'], ['old_key' => '_metaseo_metatwitter-desc', 'new_key' => 'twitter-description'], ['old_key' => '_metaseo_metatwitter-image', 'new_key' => 'twitter-image'], ['old_key' => '_metaseo_metaindex', 'new_key' => 'meta-robots-noindex', 'convert' => ['index' => 0, 'noindex' => 1]], ['old_key' => '_metaseo_metafollow', 'new_key' => 'meta-robots-nofollow', 'convert' => ['follow' => 0, 'nofollow' => 1]]];
+    }
+    /**
+     * File with the class to handle data from wpSEO.de.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Import_WPSEO.
+     *
+     * Class with functionality to import & clean wpSEO.de post metadata.
+     */
+    class WPSEO_Import_WPSEO extends \WPSEO_Plugin_Importer
+    {
+        /**
+         * The plugin name.
+         *
+         * @var string
+         */
+        protected $plugin_name = 'wpSEO.de';
+        /**
+         * Meta key, used in SQL LIKE clause for delete query.
+         *
+         * @var string
+         */
+        protected $meta_key = '_wpseo_edit_%';
+        /**
+         * Array of meta keys to detect and import.
+         *
+         * @var array
+         */
+        protected $clone_keys = [['old_key' => '_wpseo_edit_description', 'new_key' => 'metadesc'], ['old_key' => '_wpseo_edit_title', 'new_key' => 'title'], ['old_key' => '_wpseo_edit_canonical', 'new_key' => 'canonical'], ['old_key' => '_wpseo_edit_og_title', 'new_key' => 'opengraph-title'], ['old_key' => '_wpseo_edit_og_description', 'new_key' => 'opengraph-description'], ['old_key' => '_wpseo_edit_og_image', 'new_key' => 'opengraph-image'], ['old_key' => '_wpseo_edit_twittercard_title', 'new_key' => 'twitter-title'], ['old_key' => '_wpseo_edit_twittercard_description', 'new_key' => 'twitter-description'], ['old_key' => '_wpseo_edit_twittercard_image', 'new_key' => 'twitter-image']];
+        /**
+         * The values 1 - 6 are the configured values from wpSEO. This array will map the values of wpSEO to our values.
+         *
+         * There are some double array like 1-6 and 3-4. The reason is they only set the index value. The follow value is
+         * the default we use in the cases there isn't a follow value present.
+         *
+         * @var array
+         */
+        private $robot_values = [
+            // In wpSEO: index, follow.
+            1 => ['index' => 2, 'follow' => 0],
+            // In wpSEO: index, nofollow.
+            2 => ['index' => 2, 'follow' => 1],
+            // In wpSEO: noindex.
+            3 => ['index' => 1, 'follow' => 0],
+            // In wpSEO: noindex, follow.
+            4 => ['index' => 1, 'follow' => 0],
+            // In wpSEO: noindex, nofollow.
+            5 => ['index' => 1, 'follow' => 1],
+            // In wpSEO: index.
+            6 => ['index' => 2, 'follow' => 0],
+        ];
+        /**
+         * Imports wpSEO settings.
+         *
+         * @return bool Import success status.
+         */
+        protected function import()
+        {
+        }
+        /**
+         * Removes wpseo.de post meta's.
+         *
+         * @return bool Cleanup status.
+         */
+        protected function cleanup()
+        {
+        }
+        /**
+         * Detects whether there is post meta data to import.
+         *
+         * @return bool Boolean indicating whether there is something to import.
+         */
+        protected function detect()
+        {
+        }
+        /**
+         * Imports the robot values from WPSEO plugin. These have to be converted to the Yoast format.
+         *
+         * @return void
+         */
+        private function import_post_robots()
+        {
+        }
+        /**
+         * Gets the wpSEO robot value and map this to Yoast SEO values.
+         *
+         * @param integer $post_id The post id of the current post.
+         *
+         * @return void
+         */
+        private function import_post_robot($post_id)
+        {
+        }
+        /**
+         * Imports the taxonomy metas from wpSEO.
+         *
+         * @return void
+         */
+        private function import_taxonomy_metas()
+        {
+        }
+        /**
+         * Imports the meta description to Yoast SEO.
+         *
+         * @param array  $tax_meta The array with the current metadata.
+         * @param string $taxonomy String with the name of the taxonomy.
+         * @param string $term_id  The ID of the current term.
+         *
+         * @return void
+         */
+        private function import_taxonomy_description(&$tax_meta, $taxonomy, $term_id)
+        {
+        }
+        /**
+         * Imports the robot value to Yoast SEO.
+         *
+         * @param array  $tax_meta The array with the current metadata.
+         * @param string $taxonomy String with the name of the taxonomy.
+         * @param string $term_id  The ID of the current term.
+         *
+         * @return void
+         */
+        private function import_taxonomy_robots(&$tax_meta, $taxonomy, $term_id)
+        {
+        }
+        /**
+         * Deletes the wpSEO taxonomy meta data.
+         *
+         * @param string $taxonomy String with the name of the taxonomy.
+         * @param string $term_id  The ID of the current term.
+         *
+         * @return void
+         */
+        private function delete_taxonomy_metas($taxonomy, $term_id)
+        {
+        }
+        /**
+         * Gets the robot config by given wpSEO robots value.
+         *
+         * @param string $wpseo_robots The value in wpSEO that needs to be converted to the Yoast format.
+         *
+         * @return string The correct robot value.
+         */
+        private function get_robot_value($wpseo_robots)
+        {
+        }
+        /**
+         * Deletes wpSEO postmeta from the database.
+         *
+         * @return bool Cleanup status.
+         */
+        private function cleanup_post_meta()
+        {
+        }
+        /**
+         * Cleans up the wpSEO term meta.
+         *
+         * @return void
+         */
+        private function cleanup_term_meta()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Import\Plugins
+     */
+    /**
+     * Class WPSEO_Plugin_Importers.
+     *
+     * Object which contains all importers.
+     */
+    class WPSEO_Plugin_Importers
+    {
+        /**
+         * List of supported importers.
+         *
+         * @var array
+         */
+        private static $importers = ['WPSEO_Import_AIOSEO', 'WPSEO_Import_Greg_SEO', 'WPSEO_Import_HeadSpace', 'WPSEO_Import_Jetpack_SEO', 'WPSEO_Import_WP_Meta_SEO', 'WPSEO_Import_Platinum_SEO', 'WPSEO_Import_Premium_SEO_Pack', 'WPSEO_Import_RankMath', 'WPSEO_Import_SEOPressor', 'WPSEO_Import_SEO_Framework', 'WPSEO_Import_Smartcrawl_SEO', 'WPSEO_Import_Squirrly', 'WPSEO_Import_Ultimate_SEO', 'WPSEO_Import_WooThemes_SEO', 'WPSEO_Import_WPSEO'];
+        /**
+         * Returns an array of importers available.
+         *
+         * @return array Available importers.
+         */
+        public static function get()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Interface that represents a collection.
+     */
+    interface WPSEO_Collection
+    {
+        /**
+         * Returns the collection data.
+         *
+         * @return array The collection data.
+         */
+        public function get();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the cleanup logic when the text link counter features has been disabled.
+     */
+    class WPSEO_Link_Cleanup_Transient implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Registers the hooks.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Removes the transient when the option is updated.
+         *
+         * @param mixed $old_value The old value.
+         * @param mixed $value     The new value.
+         *
+         * @return void
+         */
+        public function remove_transients_on_updated_option($old_value, $value)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the link column count. This class contains the count for each post id on the current page.
+     */
+    class WPSEO_Link_Column_Count
+    {
+        /**
+         * The link counts for each post id on the current page.
+         *
+         * @var array
+         */
+        protected $count = [];
+        /**
+         * Sets the counts for the set target field.
+         *
+         * @param array $post_ids The posts to get the count for.
+         */
+        public function set($post_ids)
+        {
+        }
+        /**
+         * Gets the link count for given post id.
+         *
+         * @param int    $post_id      The post id.
+         * @param string $target_field The field to show.
+         *
+         * @return int|null The total amount of links or null if the target field
+         *                  does not exist for the given post id.
+         */
+        public function get($post_id, $target_field = 'internal_link_count')
+        {
+        }
+        /**
+         * Gets the link count for the given post ids.
+         *
+         * @param array $post_ids Array with post_ids.
+         *
+         * @return array
+         */
+        protected function get_results($post_ids)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the link columns. This class will add and handle the link columns.
+     */
+    class WPSEO_Link_Columns
+    {
+        /**
+         * Partial column name.
+         *
+         * @var string
+         */
+        const COLUMN_LINKED = 'linked';
+        /**
+         * Partial column name.
+         *
+         * @var string
+         */
+        const COLUMN_LINKS = 'links';
+        /**
+         * Holds the link column count instance.
+         *
+         * @var WPSEO_Link_Column_Count
+         */
+        protected $link_count;
+        /**
+         * Storage to use.
+         *
+         * @var WPSEO_Meta_Storage
+         */
+        protected $storage;
+        /**
+         * List of public post types.
+         *
+         * @var array
+         */
+        protected $public_post_types = [];
+        /**
+         * WPSEO_Link_Columns constructor.
+         *
+         * @param WPSEO_Meta_Storage $storage The storage object to use.
+         */
+        public function __construct(\WPSEO_Meta_Storage $storage)
+        {
+        }
+        /**
+         * Registers the hooks.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Register hooks that require to be registered after `init`.
+         */
+        public function register_init_hooks()
+        {
+        }
+        /**
+         * Modifies the query pieces to allow ordering column by links to post.
+         *
+         * @param array     $pieces Array of Query pieces.
+         * @param \WP_Query $query  The Query on which to apply.
+         *
+         * @return array
+         */
+        public function order_by_links($pieces, $query)
+        {
+        }
+        /**
+         * Modifies the query pieces to allow ordering column by links to post.
+         *
+         * @param array     $pieces Array of Query pieces.
+         * @param \WP_Query $query  The Query on which to apply.
+         *
+         * @return array
+         */
+        public function order_by_linked($pieces, $query)
+        {
+        }
+        /**
+         * Builds the pieces for a sorting query.
+         *
+         * @param array     $pieces Array of Query pieces.
+         * @param \WP_Query $query  The Query on which to apply.
+         * @param string    $field  The field in the table to JOIN on.
+         *
+         * @return array Modified Query pieces.
+         */
+        protected function build_sort_query_pieces($pieces, $query, $field)
+        {
+        }
+        /**
+         * Sets the hooks for each post type.
+         *
+         * @param string $post_type The post type.
+         */
+        public function set_post_type_hooks($post_type)
+        {
+        }
+        /**
+         * Adds the columns for the post overview.
+         *
+         * @param array $columns Array with columns.
+         *
+         * @return array The extended array with columns.
+         */
+        public function add_post_columns($columns)
+        {
+        }
+        /**
+         * Makes sure we calculate all values in one query.
+         *
+         * @param string $target Extra table navigation location which is triggered.
+         */
+        public function count_objects($target)
+        {
+        }
+        /**
+         * Sets the objects to use for the count.
+         */
+        public function set_count_objects()
+        {
+        }
+        /**
+         * Displays the column content for the given column.
+         *
+         * @param string $column_name Column to display the content for.
+         * @param int    $post_id     Post to display the column content for.
+         */
+        public function column_content($column_name, $post_id)
+        {
+        }
+        /**
+         * Sets the sortable columns.
+         *
+         * @param array $columns Array with sortable columns.
+         *
+         * @return array The extended array with sortable columns.
+         */
+        public function column_sort(array $columns)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents compatibility with php version 5.3.
+     */
+    class WPSEO_Link_Compatibility_Notifier
+    {
+        /**
+         * Notification id.
+         *
+         * @var string
+         */
+        const NOTIFICATION_ID = 'wpseo-links-compatibility';
+        /**
+         * Adds the notification to the notification center.
+         */
+        public function add_notification()
+        {
+        }
+        /**
+         * Removes the notification from the notification center.
+         */
+        public function remove_notification()
+        {
+        }
+        /**
+         * Returns the notification when the version is incompatible.
+         *
+         * @return Yoast_Notification The notification.
+         */
+        protected function get_notification()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the content processor. It will extract links from the content and
+     * saves them for the given post id.
+     */
+    class WPSEO_Link_Content_Processor
+    {
+        /**
+         * Holds the link storage instance.
+         *
+         * @var WPSEO_Link_Storage
+         */
+        protected $storage;
+        /**
+         * Holds the meta storage instance.
+         *
+         * @var WPSEO_Meta_Storage
+         */
+        private $count_storage;
+        /**
+         * Sets an instance of a storage object.
+         *
+         * @param WPSEO_Link_Storage $storage       The storage object to use.
+         * @param WPSEO_Meta_Storage $count_storage The storage object for the link
+         *                                          counts.
+         */
+        public function __construct(\WPSEO_Link_Storage $storage, \WPSEO_Meta_Storage $count_storage)
+        {
+        }
+        /**
+         * Process the content for the given post id.
+         *
+         * @param int    $post_id The post id.
+         * @param string $content The content to process.
+         */
+        public function process($post_id, $content)
+        {
+        }
+        /**
+         * Updates the link counts for the post and referenced posts.
+         *
+         * @param int      $post_id Post to update link counts for.
+         * @param int|null $count   Number of internal links.
+         * @param array    $links   Links to process for incoming link count update.
+         */
+        public function update_link_counts($post_id, $count, array $links)
+        {
+        }
+        /**
+         * Retrieves the stored internal links for the supplied post.
+         *
+         * @param int $post_id The post to fetch links for.
+         *
+         * @return WPSEO_Link[] List of internal links connected to the post.
+         */
+        public function get_stored_internal_links($post_id)
+        {
+        }
+        /**
+         * Filters on INTERNAL links.
+         *
+         * @param WPSEO_Link $link Link to test type of.
+         *
+         * @return bool True for internal link, false for external link.
+         */
+        protected function filter_internal_link(\WPSEO_Link $link)
+        {
+        }
+        /**
+         * Stores the total links for the post.
+         *
+         * @param int $post_id             The post id.
+         * @param int $internal_link_count Total amount of links in the post.
+         *
+         * @return void
+         */
+        protected function store_internal_link_count($post_id, $internal_link_count)
+        {
+        }
+        /**
+         * Updates the incoming link count.
+         *
+         * @param int          $post_id Post which is processed, this needs to be recalculated too.
+         * @param WPSEO_Link[] $links   Links to update the incoming link count of.
+         *
+         * @return void
+         */
+        protected function update_incoming_links($post_id, $links)
+        {
+        }
+        /**
+         * Extract the post IDs from the links.
+         *
+         * @param WPSEO_Link[] $links Links to update the incoming link count of.
+         *
+         * @return int[] List of post IDs.
+         */
+        protected function get_internal_post_ids($links)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the link extractor.
+     */
+    class WPSEO_Link_Extractor
+    {
+        /**
+         * The content to extract the links from.
+         *
+         * @var string
+         */
+        protected $content;
+        /**
+         * Sets the content.
+         *
+         * @param string $content The content to extract the links from.
+         */
+        public function __construct($content)
+        {
+        }
+        /**
+         * Extracts the hrefs from the content and returns them as an array.
+         *
+         * @return array All the extracted links
+         */
+        public function extract()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the conversion from array with string links into WPSEO_Link objects.
+     */
+    class WPSEO_Link_Factory
+    {
+        /**
+         * Represents the classifier for a link. Determines of a link is an outbound or internal one.
+         *
+         * @var WPSEO_Link_Type_Classifier
+         */
+        protected $classifier;
+        /**
+         * Represents the internal link lookup. This class tries get the postid for a given internal link.
+         *
+         * @var WPSEO_Link_Internal_Lookup
+         */
+        protected $internal_lookup;
+        /**
+         * Represents the filter for filtering links.
+         *
+         * @var WPSEO_Link_Filter
+         */
+        protected $filter;
+        /**
+         * Sets the dependencies for this object.
+         *
+         * @param WPSEO_Link_Type_Classifier $classifier      The classifier to use.
+         * @param WPSEO_Link_Internal_Lookup $internal_lookup The internal lookup to use.
+         * @param WPSEO_Link_Filter          $filter          The link filter.
+         */
+        public function __construct(\WPSEO_Link_Type_Classifier $classifier, \WPSEO_Link_Internal_Lookup $internal_lookup, \WPSEO_Link_Filter $filter)
+        {
+        }
+        /**
+         * Formats an array of links to WPSEO_Link object.
+         *
+         * @param array $extracted_links The links for format.
+         *
+         * @return WPSEO_Link[] The formatted links.
+         */
+        public function build(array $extracted_links)
+        {
+        }
+        /**
+         * Builds the link.
+         *
+         * @param string $link The link to build.
+         *
+         * @return WPSEO_Link The built link.
+         */
+        public function build_link($link)
+        {
+        }
+        /**
+         * Returns the link object.
+         *
+         * @param string $url            The URL of the link.
+         * @param int    $target_post_id The target post ID.
+         * @param string $type           The link type.
+         *
+         * @return WPSEO_Link Generated link object.
+         */
+        public static function get_link($url, $target_post_id, $type)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the filter for filtering links.
+     */
+    class WPSEO_Link_Filter
+    {
+        /**
+         * Path to the current page.
+         *
+         * @var string|null
+         */
+        protected $current_page_path;
+        /**
+         * Sets the current page path.
+         *
+         * @param string $current_page The current page.
+         */
+        public function __construct($current_page = '')
+        {
+        }
+        /**
+         * Filters all internal links that contains an fragment in the URL.
+         *
+         * @param WPSEO_Link $link The link that might be filtered.
+         *
+         * @return bool False when url contains a fragment.
+         */
+        public function internal_link_with_fragment_filter(\WPSEO_Link $link)
+        {
+        }
+        /**
+         * Is the url path the same as the current page path.
+         *
+         * @param string $url_path The url path.
+         *
+         * @return bool True when path is equal to the current page path.
+         */
+        protected function is_current_page($url_path)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents installer for the link module.
+     */
+    class WPSEO_Link_Installer
+    {
+        /**
+         * Installable objects.
+         *
+         * @var WPSEO_Installable[]
+         */
+        protected $installables = [];
+        /**
+         * Sets the installables.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Runs the installation of the link module.
+         */
+        public function install()
+        {
+        }
+        /**
+         * Adds a installable object to the installer.
+         *
+         * @param WPSEO_Installable $installable The installable object.
+         */
+        public function add_installable(\WPSEO_Installable $installable)
+        {
+        }
+        /**
+         * Returns the installable objects.
+         *
+         * @return WPSEO_Installable[] The installables to use.
+         */
+        protected function get_installables()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the internal link lookup. This class tries get the postid for a given internal link.
+     */
+    class WPSEO_Link_Internal_Lookup
+    {
+        /**
+         * Gets a post id for the given link for the given type. If type is outbound it returns 0 as post id.
+         *
+         * @param string $link The link to populate.
+         *
+         * @return int The post id belongs to given link if link is internal.
+         */
+        public function lookup($link)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Represents the notifier for adding link indexing notification to the dashboard.
+     */
+    class WPSEO_Link_Notifier
+    {
+        /**
+         * The ID of the link indexing notification.
+         *
+         * @var string
+         */
+        const NOTIFICATION_ID = 'wpseo-reindex-links';
+        /**
+         * Registers all hooks to WordPress.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Removes the notification when it is set and the amount of unindexed items is lower than the threshold.
+         */
+        public function cleanup_notification()
+        {
+        }
+        /**
+         * Adds the notification when it isn't set already and the amount of unindexed items is greater than the set
+         * threshold.
+         */
+        public function manage_notification()
+        {
+        }
+        /**
+         * Checks if the notification has been set already.
+         *
+         * @return bool True when there is a notification.
+         */
+        public function has_notification()
+        {
+        }
+        /**
+         * Adds a notification to the notification center.
+         *
+         * @param Yoast_Notification $notification The notification to add.
+         */
+        protected function add_notification(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Removes the notification from the notification center.
+         *
+         * @param Yoast_Notification $notification The notification to remove.
+         */
+        protected function remove_notification(\Yoast_Notification $notification)
+        {
+        }
+        /**
+         * Returns an instance of the notification.
+         *
+         * @return Yoast_Notification The notification to show.
+         */
+        protected function get_notification()
+        {
+        }
+        /**
+         * Checks if the unindexed threshold is exceeded.
+         *
+         * @return bool True when the threshold is exceeded.
+         */
+        protected function requires_notification()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Database helper class.
+     */
+    class WPSEO_Link_Query
+    {
+        /**
+         * Determine if there are any unprocessed public posts.
+         *
+         * @param array $post_types List of post types to check with.
+         *
+         * @return bool True if unprocessed posts are found, false if none are found.
+         */
+        public static function has_unprocessed_posts(array $post_types)
+        {
+        }
+        /**
+         * Filter out posts that have not been processed yet.
+         *
+         * @param array $post_ids Post IDs to filter.
+         *
+         * @return array
+         */
+        public static function filter_unprocessed_posts(array $post_ids)
+        {
+        }
+        /**
+         * Returns a limited set of unindexed posts.
+         *
+         * @param array $post_types The post type.
+         * @param int   $limit      The limit for the resultset.
+         *
+         * @return array|null|object The set of unindexed posts.
+         */
+        public static function get_unprocessed_posts(array $post_types, $limit = 5)
+        {
+        }
+        /**
+         * Returns the total amount of unindexed posts for given post type.
+         *
+         * @param array $post_types The post types.
+         *
+         * @return int The total of unindexed posts.
+         */
+        public static function get_unprocessed_count(array $post_types)
+        {
+        }
+        /**
+         * Returns the table name where the counts are stored.
+         *
+         * @return string
+         */
+        protected static function get_count_table_name()
+        {
+        }
+        /**
+         * Formats an array with post types as an SQL string.
+         *
+         * @param array $post_types The post types to format.
+         *
+         * @return string Post types formatted for use in SQL statement.
+         */
+        protected static function format_post_types(array $post_types)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links\Reindex
+     */
+    /**
+     * Handles the reindexing of links interface in the Dashboard.
+     */
+    class WPSEO_Link_Reindex_Dashboard
+    {
+        /**
+         * Public post types to scan for unprocessed items.
+         *
+         * @var array
+         */
+        protected $public_post_types = [];
+        /**
+         * Number of unprocessed items.
+         *
+         * @var int
+         */
+        protected $unprocessed = 0;
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Calculates the number of unprocessed items per post type.
+         *
+         * @return void
+         */
+        public function calculate_unprocessed()
+        {
+        }
+        /**
+         * Adds an item to the tools page overview list.
+         *
+         * @return void
+         */
+        public function show_tools_overview_item()
+        {
+        }
+        /**
+         * Generates the model box.
+         *
+         * @return void
+         */
+        public function modal_box()
+        {
+        }
+        /**
+         * Enqueues site wide analysis script.
+         *
+         * @return void
+         */
+        public function enqueue()
+        {
+        }
+        /**
+         * Checks if the current page is the dashboard page.
+         *
+         * @return bool True when current page is the dashboard page.
+         */
+        protected function is_dashboard_page()
+        {
+        }
+        /**
+         * Retrieves the string to display when everything has been indexed.
+         *
+         * @return string The message to show when everything has been indexed.
+         */
+        public function message_already_indexed()
+        {
+        }
+        /**
+         * Returns if there are unprocessed items.
+         *
+         * @return bool True if there are unprocessed items.
+         */
+        public function has_unprocessed()
+        {
+        }
+        /**
+         * Returns the number of unprocessed items.
+         *
+         * @return int Number of unprocessed items.
+         */
+        public function get_unprocessed_count()
+        {
+        }
+        /**
+         * Retrieves the message to show starting indexation.
+         *
+         * @return string The message.
+         */
+        public function message_start_indexing()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links\Reindex
+     */
+    /**
+     * Class WPSEO_Link_Reindex_Post_Endpoint.
+     */
+    class WPSEO_Link_Reindex_Post_Endpoint
+    {
+        /**
+         * Holds the namespace of the rest route.
+         *
+         * @var string
+         */
+        const REST_NAMESPACE = 'yoast/v1';
+        /**
+         * Holds the route of the endpoint to reindex the posts.
+         *
+         * @var string
+         */
+        const ENDPOINT_QUERY = 'reindex_posts';
+        /**
+         * Holds the name of the capability needed to reindex the posts.
+         *
+         * @var string
+         */
+        const CAPABILITY_RETRIEVE = 'edit_posts';
+        /**
+         * Holds the link reindex post service instance.
+         *
+         * @var WPSEO_Link_Reindex_Post_Service
+         */
+        protected $service;
+        /**
+         * WPSEO_Link_Reindex_Post_Endpoint constructor.
+         *
+         * @param WPSEO_Link_Reindex_Post_Service $service The service to handle the requests to the endpoint.
+         */
+        public function __construct(\WPSEO_Link_Reindex_Post_Service $service)
+        {
+        }
+        /**
+         * Register the REST endpoint to WordPress.
+         */
+        public function register()
+        {
+        }
+        /**
+         * Determines if the current user is allowed to use this endpoint.
+         *
+         * @return bool
+         */
+        public function can_retrieve_data()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links\Reindex
+     */
+    /**
+     * Class WPSEO_Link_Reindex_Post_Service.
+     */
+    class WPSEO_Link_Reindex_Post_Service
+    {
+        /**
+         * Reindexes the unprocessed posts by REST request.
+         *
+         * @return WP_REST_Response The response object.
+         */
+        public function reindex()
+        {
+        }
+        /**
+         * Returns the posts.
+         *
+         * @return int The total amount of unprocessed posts.
+         */
+        protected function process_posts()
+        {
+        }
+        /**
+         * Returns all unprocessed posts.
+         *
+         * @return array The unprocessed posts.
+         */
+        protected function get_unprocessed_posts()
+        {
+        }
+        /**
+         * Checks if the required tables are accessible.
+         *
+         * @return bool True when the tables are accessible.
+         */
+        protected function is_processable()
+        {
+        }
+        /**
+         * Processes the post.
+         *
+         * @param stdObject $post The post to process.
+         *
+         * @return void
+         */
+        protected function process_post($post)
+        {
+        }
+        /**
+         * Returns an instance of the content processor.
+         *
+         * @return WPSEO_Link_Content_Processor The instance of the link content processor.
+         */
+        protected function get_content_processor()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the storage of an seo link.
+     */
+    class WPSEO_Link_Storage implements \WPSEO_Installable
+    {
+        /**
+         * Table name for the link storage.
+         *
+         * @var string
+         */
+        const TABLE_NAME = 'yoast_seo_links';
+        /**
+         * An instance of the database proxy class.
+         *
+         * @var WPSEO_Database_Proxy
+         */
+        protected $database_proxy;
+        /**
+         * Holds the prefix of the database table.
+         *
+         * @deprecated 7.4
+         *
+         * @var null|string
+         */
+        protected $table_prefix;
+        /**
+         * Initializes the database table.
+         *
+         * @param string $table_prefix Optional. Deprecated argument.
+         */
+        public function __construct($table_prefix = \null)
+        {
+        }
+        /**
+         * Returns the table name to use.
+         *
+         * @return string The table name.
+         */
+        public function get_table_name()
+        {
+        }
+        /**
+         * Creates the database table.
+         *
+         * @return boolean True if the table was created, false if something went wrong.
+         */
+        public function install()
+        {
+        }
+        /**
+         * Returns an array of links from the database.
+         *
+         * @param int $post_id The post to get the links for.
+         *
+         * @return WPSEO_Link[] The links connected to the post.
+         */
+        public function get_links($post_id)
+        {
+        }
+        /**
+         * Walks the given links to save them.
+         *
+         * @param integer      $post_id The post id to save.
+         * @param WPSEO_Link[] $links   The link to save.
+         *
+         * @return void
+         */
+        public function save_links($post_id, array $links)
+        {
+        }
+        /**
+         * Removes all records for given post_id.
+         *
+         * @param int $post_id The post_id to remove the records for.
+         *
+         * @return int|false The number of rows updated, or false on error.
+         */
+        public function cleanup($post_id)
+        {
+        }
+        /**
+         * Inserts the link into the database.
+         *
+         * @param WPSEO_Link $link     The link to save.
+         * @param int        $link_key The link key. Unused.
+         * @param int        $post_id  The post id to save the link for.
+         *
+         * @return void
+         */
+        protected function save_link(\WPSEO_Link $link, $link_key, $post_id)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the notice when the table is not accessible.
+     */
+    class WPSEO_Link_Table_Accessible_Notifier
+    {
+        /**
+         * Notification id.
+         *
+         * @var string
+         */
+        const NOTIFICATION_ID = 'wpseo-links-table-not-accessible';
+        /**
+         * Adds the notification to the notification center.
+         */
+        public function add_notification()
+        {
+        }
+        /**
+         * Removes the notification from the notification center.
+         */
+        public function remove_notification()
+        {
+        }
+        /**
+         * Returns the notification when the table is not accessible.
+         *
+         * @return Yoast_Notification The notification.
+         */
+        protected function get_notification()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the state of the table being accessible.
+     */
+    class WPSEO_Link_Table_Accessible
+    {
+        /**
+         * Constant used to determine whether the link table is accessible.
+         *
+         * @var string
+         */
+        const ACCESSIBLE = '0';
+        /**
+         * Constant used to determine whether the link table is inaccessible.
+         *
+         * @var string
+         */
+        const INACCESSBILE = '1';
+        /**
+         * Checks if the given table name exists.
+         *
+         * @return bool True when table is accessible.
+         */
+        public static function is_accessible()
+        {
+        }
+        /**
+         * Sets the transient value to 1, to indicate the table is not accessible.
+         *
+         * @return void
+         */
+        public static function set_inaccessible()
+        {
+        }
+        /**
+         * Removes the transient.
+         *
+         * @return void
+         */
+        public static function cleanup()
+        {
+        }
+        /**
+         * Sets the transient value to 0, to indicate the table is accessible.
+         *
+         * @return void
+         */
+        protected static function set_accessible()
+        {
+        }
+        /**
+         * Checks if the table exists if not, set the transient to indicate the inaccessible table.
+         *
+         * @return bool True if table is accessible.
+         */
+        protected static function check_table()
+        {
+        }
+        /**
+         * Returns the name of the transient.
+         *
+         * @return string The name of the transient to use.
+         */
+        protected static function transient_name()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the classifier for a link. Determines of a link is an outbound or internal one.
+     */
+    class WPSEO_Link_Type_Classifier
+    {
+        /**
+         * Host of the URL.
+         *
+         * @var string
+         */
+        protected $base_host = '';
+        /**
+         * Path of the URL.
+         *
+         * @var string
+         */
+        protected $base_path = '';
+        /**
+         * Constructor setting the base url.
+         *
+         * @param string $base_url The base url to set.
+         */
+        public function __construct($base_url)
+        {
+        }
+        /**
+         * Determines if the given link is an outbound or an internal link.
+         *
+         * @param string $link The link to classify.
+         *
+         * @return string Returns outbound or internal.
+         */
+        public function classify($link)
+        {
+        }
+        /**
+         * Checks whether a link starts with an HTTP[S] protocol.
+         *
+         * @param array $url_parts The url parts to use.
+         *
+         * @return bool True if the url starts with an https:// or http:// protocol.
+         */
+        protected function contains_protocol(array $url_parts)
+        {
+        }
+        /**
+         * Checks if the link contains the home_url. Returns true if this isn't the case.
+         *
+         * @param array $url_parts The url parts to use.
+         *
+         * @return bool True when the link doesn't contain the home url.
+         */
+        protected function is_external_link(array $url_parts)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the utils for the links module.
+     */
+    class WPSEO_Link_Utils
+    {
+        /**
+         * Returns the value that is part of the given url.
+         *
+         * @param string $url  The url to parse.
+         * @param string $part The url part to use.
+         *
+         * @return string The value of the url part.
+         */
+        public static function get_url_part($url, $part)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the loader for link watcher.
+     */
+    class WPSEO_Link_Watcher_Loader
+    {
+        /**
+         * Loads the link watcher.
+         *
+         * @return void
+         */
+        public function load()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents the link watcher. This class will watch for the save_post hook being called.
+     */
+    class WPSEO_Link_Watcher
+    {
+        /**
+         * Represents the content processor. It will extract links from the content and saves them for the given post id.
+         *
+         * @var WPSEO_Link_Content_Processor
+         */
+        protected $content_processor;
+        /**
+         * WPSEO_Link_Watcher constructor.
+         *
+         * @param WPSEO_Link_Content_Processor $content_processor The processor to use.
+         */
+        public function __construct(\WPSEO_Link_Content_Processor $content_processor)
+        {
+        }
+        /**
+         * Registers the hooks.
+         *
+         * @returns void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Saves the links that are used in the post.
+         *
+         * @param int     $post_id The post id to.
+         * @param WP_Post $post    The post object.
+         *
+         * @return void
+         */
+        public function save_post($post_id, \WP_Post $post)
+        {
+        }
+        /**
+         * Removes the seo links when the post is deleted.
+         *
+         * @param int $post_id The post id.
+         *
+         * @return void
+         */
+        public function delete_post($post_id)
+        {
+        }
+        /**
+         * Checks if the post is processable.
+         *
+         * @param int $post_id The post id.
+         *
+         * @return bool True when the post is processable.
+         */
+        protected function is_processable($post_id)
+        {
+        }
+        /**
+         * Processes the content for the given post id.
+         *
+         * @param int    $post_id The post id to process.
+         * @param string $content The content to process.
+         *
+         * @return void
+         */
+        private function process($post_id, $content)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Links
+     */
+    /**
+     * Represents an seo link.
+     */
+    class WPSEO_Link
+    {
+        /**
+         * Indicates that the link is external.
+         *
+         * @var string
+         */
+        const TYPE_EXTERNAL = 'external';
+        /**
+         * Indicates that the link is internal.
+         *
+         * @var string
+         */
+        const TYPE_INTERNAL = 'internal';
+        /**
+         * Holds the url.
+         *
+         * @var string
+         */
+        protected $url;
+        /**
+         * Holds the post ID of the target.
+         *
+         * @var int
+         */
+        protected $target_post_id;
+        /**
+         * Holds the link type.
+         *
+         * @var string
+         */
+        protected $type;
+        /**
+         * Sets the properties for the object.
+         *
+         * @param string $url            The url.
+         * @param int    $target_post_id ID to the post where the link refers to.
+         * @param string $type           The url type: internal or outbound.
+         */
+        public function __construct($url, $target_post_id, $type)
+        {
+        }
+        /**
+         * Returns the set URL.
+         *
+         * @return string The set url.
+         */
+        public function get_url()
+        {
+        }
+        /**
+         * Returns the set target post id.
+         *
+         * @return int The set target post id.
+         */
+        public function get_target_post_id()
+        {
+        }
+        /**
+         * Return the set link type.
+         *
+         * @return string The set link type.
+         */
+        public function get_type()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Listeners
+     */
+    /**
+     * Dictates the required methods for a Listener implementation.
+     */
+    interface WPSEO_Listener
+    {
+        /**
+         * Listens to an argument in the request URL and triggers an action.
+         *
+         * @return void
+         */
+        public function listen();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Menu
+     */
+    /**
+     * Admin menu base class.
+     */
+    abstract class WPSEO_Base_Menu implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * A menu.
+         *
+         * @var WPSEO_Menu
+         */
+        protected $menu;
+        /**
+         * Constructs the Admin Menu.
+         *
+         * @param WPSEO_Menu $menu Menu to use.
+         */
+        public function __construct(\WPSEO_Menu $menu)
+        {
+        }
+        /**
+         * Returns the list of registered submenu pages.
+         *
+         * @return array List of registered submenu pages.
+         */
+        public abstract function get_submenu_pages();
+        /**
+         * Creates a submenu formatted array.
+         *
+         * @param string     $page_title Page title to use.
+         * @param string     $page_slug  Page slug to use.
+         * @param callable   $callback   Optional. Callback which handles the page request.
+         * @param callable[] $hook       Optional. Hook to trigger when the page is registered.
+         *
+         * @return array Formatted submenu.
+         */
+        protected function get_submenu_page($page_title, $page_slug, $callback = \null, $hook = \null)
+        {
+        }
+        /**
+         * Registers submenu pages as menu pages.
+         *
+         * This method should only be used if the user does not have the required capabilities
+         * to access the parent menu page.
+         *
+         * @param array $submenu_pages List of submenu pages to register.
+         *
+         * @return void
+         */
+        protected function register_menu_pages($submenu_pages)
+        {
+        }
+        /**
+         * Registers submenu pages.
+         *
+         * @param array $submenu_pages List of submenu pages to register.
+         *
+         * @return void
+         */
+        protected function register_submenu_pages($submenu_pages)
+        {
+        }
+        /**
+         * Registers a submenu page as a menu page.
+         *
+         * This method should only be used if the user does not have the required capabilities
+         * to access the parent menu page.
+         *
+         * @param array $submenu_page {
+         *     Submenu page definition.
+         *
+         *     @type string   $0 Parent menu page slug.
+         *     @type string   $1 Page title, currently unused.
+         *     @type string   $2 Title to display in the menu.
+         *     @type string   $3 Required capability to access the page.
+         *     @type string   $4 Page slug.
+         *     @type callable $5 Callback to run when the page is rendered.
+         *     @type array    $6 Optional. List of callbacks to run when the page is loaded.
+         * }
+         *
+         * @return void
+         */
+        protected function register_menu_page($submenu_page)
+        {
+        }
+        /**
+         * Registers a submenu page.
+         *
+         * This method will override the capability of the page to automatically use the
+         * general manage capability. Use the `register_menu_page()` method if the submenu
+         * page should actually use a different capability.
+         *
+         * @param array $submenu_page {
+         *     Submenu page definition.
+         *
+         *     @type string   $0 Parent menu page slug.
+         *     @type string   $1 Page title, currently unused.
+         *     @type string   $2 Title to display in the menu.
+         *     @type string   $3 Required capability to access the page.
+         *     @type string   $4 Page slug.
+         *     @type callable $5 Callback to run when the page is rendered.
+         *     @type array    $6 Optional. List of callbacks to run when the page is loaded.
+         * }
+         *
+         * @return void
+         */
+        protected function register_submenu_page($submenu_page)
+        {
+        }
+        /**
+         * Adds hook callbacks for a given admin page hook suffix.
+         *
+         * @param string $hook_suffix Admin page hook suffix, as returned by `add_menu_page()`
+         *                            or `add_submenu_page()`.
+         * @param array  $callbacks   Callbacks to add.
+         *
+         * @return void
+         */
+        protected function add_page_hooks($hook_suffix, array $callbacks)
+        {
+        }
+        /**
+         * Gets the main admin page identifier.
+         *
+         * @return string Admin page identifier.
+         */
+        protected function get_page_identifier()
+        {
+        }
+        /**
+         * Checks whether the current user has capabilities to manage all options.
+         *
+         * @return bool True if capabilities are sufficient, false otherwise.
+         */
+        protected function check_manage_capability()
+        {
+        }
+        /**
+         * Returns the capability that is required to manage all options.
+         *
+         * @return string Capability to check against.
+         */
+        protected abstract function get_manage_capability();
+        /**
+         * Returns the page handler callback.
+         *
+         * @return array Callback page handler.
+         */
+        protected function get_admin_page_callback()
+        {
+        }
+        /**
+         * Returns the page title to use for the licenses page.
+         *
+         * @return string The title for the license page.
+         */
+        protected function get_license_page_title()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Menu
+     */
+    /**
+     * Registers the admin menu on the left of the admin area.
+     */
+    class WPSEO_Admin_Menu extends \WPSEO_Base_Menu
+    {
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Registers the menu item submenus.
+         */
+        public function register_settings_page()
+        {
+        }
+        /**
+         * Returns the list of registered submenu pages.
+         *
+         * @return array List of registered submenu pages.
+         */
+        public function get_submenu_pages()
+        {
+        }
+        /**
+         * Returns the notification count in HTML format.
+         *
+         * @return string The notification count in HTML format.
+         */
+        protected function get_notification_counter()
+        {
+        }
+        /**
+         * Returns the capability that is required to manage all options.
+         *
+         * @return string Capability to check against.
+         */
+        protected function get_manage_capability()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Menu
+     */
+    /**
+     * Registers the regular admin menu and network admin menu implementations.
+     */
+    class WPSEO_Menu implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The page identifier used in WordPress to register the admin page.
+         *
+         * !DO NOT CHANGE THIS!
+         *
+         * @var string
+         */
+        const PAGE_IDENTIFIER = 'wpseo_dashboard';
+        /**
+         * List of classes that add admin functionality.
+         *
+         * @var array
+         */
+        protected $admin_features;
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Returns the main menu page identifier.
+         *
+         * @return string Page identifier to use.
+         */
+        public function get_page_identifier()
+        {
+        }
+        /**
+         * Loads the requested admin settings page.
+         *
+         * @return void
+         */
+        public function load_page()
+        {
+        }
+        /**
+         * Shows an admin settings page.
+         *
+         * @param string $page Page to display.
+         *
+         * @return void
+         */
+        protected function show_page($page)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Menu
+     */
+    /**
+     * Network Admin Menu handler.
+     */
+    class WPSEO_Network_Admin_Menu extends \WPSEO_Base_Menu
+    {
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Register the settings page for the Network settings.
+         *
+         * @return void
+         */
+        public function register_settings_page()
+        {
+        }
+        /**
+         * Returns the list of registered submenu pages.
+         *
+         * @return array List of registered submenu pages.
+         */
+        public function get_submenu_pages()
+        {
+        }
+        /**
+         * Loads the form for the network configuration page.
+         *
+         * @return void
+         */
+        public function network_config_page()
+        {
+        }
+        /**
+         * Checks whether the current user has capabilities to manage all options.
+         *
+         * @return bool True if capabilities are sufficient, false otherwise.
+         */
+        protected function check_manage_capability()
+        {
+        }
+        /**
+         * Returns the capability that is required to manage all options.
+         *
+         * @return string Capability to check against.
+         */
+        protected function get_manage_capability()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Menu
+     */
+    /**
+     * Renders a replacement variable editor.
+     */
+    class WPSEO_Replacevar_Editor
+    {
+        /**
+         * Yoast Forms instance.
+         *
+         * @var Yoast_Form
+         */
+        private $yform;
+        /**
+         * The arguments required for the div to render.
+         *
+         * @var array {
+         *      @type string $title                 The title field id.
+         *      @type string $description           The description field id.
+         *      @type string $page_type_recommended The page type for the context of the recommended replace vars.
+         *      @type string $page_type_specific    The page type for the context of the editor specific replace vars.
+         *      @type bool   $paper_style           Optional. Whether the editor has paper style.
+         * }
+         */
+        private $arguments;
+        /**
+         * Constructs the object.
+         *
+         * @param Yoast_Form $yform     Yoast forms.
+         * @param array      $arguments {
+         *      The arguments that can be given.
+         *
+         *      @type string $title                 The title field id.
+         *      @type string $description           The description field id.
+         *      @type string $page_type_recommended The page type for the context of the recommended replace vars.
+         *      @type string $page_type_specific    The page type for the context of the editor specific replace vars.
+         *      @type bool   $paper_style           Optional. Whether the editor has paper style.
+         * }
+         */
+        public function __construct(\Yoast_Form $yform, $arguments)
+        {
+        }
+        /**
+         * Renders a div for the react application to mount to, and hidden inputs where
+         * the app should store it's value so they will be properly saved when the form
+         * is submitted.
+         *
+         * @return void
+         */
+        public function render()
+        {
+        }
+        /**
+         * Validates the replacement variable editor arguments.
+         *
+         * @param array $arguments The arguments to validate.
+         *
+         * @throws InvalidArgumentException Thrown when not all required arguments are present.
+         */
+        protected function validate_arguments(array $arguments)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Menu
+     */
+    /**
+     * Renders a single replacement variable field.
+     */
+    class WPSEO_Replacevar_Field
+    {
+        /**
+         * Forms instance.
+         *
+         * @var Yoast_Form Yoast
+         */
+        private $yform;
+        /**
+         * The id for the hidden field.
+         *
+         * @var string
+         */
+        private $field_id;
+        /**
+         * The label for the field.
+         *
+         * @var string
+         */
+        private $label;
+        /**
+         * The page type for the context of the recommended replace vars.
+         *
+         * @var string
+         */
+        private $page_type_recommended;
+        /**
+         * The page type for the context of the editor specific replace vars.
+         *
+         * @var string
+         */
+        private $page_type_specific;
+        /**
+         * Constructs the object.
+         *
+         * @param Yoast_Form $yform                 Yoast forms.
+         * @param string     $field_id              The field id.
+         * @param string     $label                 The field label.
+         * @param string     $page_type_recommended The page type for the context of the recommended replace vars.
+         * @param string     $page_type_specific    The page type for the context of the editor specific replace vars.
+         */
+        public function __construct(\Yoast_Form $yform, $field_id, $label, $page_type_recommended, $page_type_specific)
+        {
+        }
+        /**
+         * Renders a div for the react application to mount to, and hidden inputs where
+         * the app should store it's value so they will be properly saved when the form
+         * is submitted.
+         *
+         * @return void
+         */
+        public function render()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Menu
+     */
+    /**
+     * Normalize submenu capabilities to `wpseo_manage_options`.
+     */
+    class WPSEO_Submenu_Capability_Normalize implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Normalizes any `manage_options` to `wpseo_manage_options`.
+         *
+         * This is needed as the module plugins are not updated with the new capabilities directly,
+         * but they should not be shown as main menu items.
+         *
+         * @param array $submenu_pages List of subpages to convert.
+         *
+         * @return array Converted subpages.
+         */
+        public function normalize_submenus_capability($submenu_pages)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates and displays the HTML for a metabox section.
+     */
+    interface WPSEO_Metabox_Section
+    {
+        /**
+         * Outputs the section link.
+         */
+        public function display_link();
+        /**
+         * Outputs the section content.
+         */
+        public function display_content();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Base class for metabox that consist of multiple sections.
+     */
+    abstract class WPSEO_Abstract_Metabox_Tab_With_Sections implements \WPSEO_Metabox_Section
+    {
+        /**
+         * Holds the name of the tab.
+         *
+         * @var string
+         */
+        public $name;
+        /**
+         * Holds the HTML of the tab header.
+         *
+         * @var string
+         */
+        protected $link_content;
+        /**
+         * Holds the name of the tab header.
+         *
+         * @var string
+         */
+        protected $link_title;
+        /**
+         * Holds the classname of the tab header.
+         *
+         * @var string
+         */
+        protected $link_class;
+        /**
+         * Holds the aria label of the tab header.
+         *
+         * @var string
+         */
+        protected $link_aria_label;
+        /**
+         * Constructor.
+         *
+         * @param string $name         The name of the section, used as an identifier in the html.
+         *                             Can only contain URL safe characters.
+         * @param string $link_content The text content of the section link.
+         * @param array  $options      Optional link attributes.
+         */
+        public function __construct($name, $link_content, array $options = [])
+        {
+        }
+        /**
+         * Outputs the section link if any section has been added.
+         */
+        public function display_link()
+        {
+        }
+        /**
+         * Checks whether the tab has any sections.
+         *
+         * @return bool Whether the tab has any sections
+         */
+        protected abstract function has_sections();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Metabox
+     */
+    /**
+     * Describes an interface for an analysis that can either be enabled or disabled.
+     */
+    interface WPSEO_Metabox_Analysis
+    {
+        /**
+         * Whether this analysis is enabled.
+         *
+         * @return bool Whether or not this analysis is enabled.
+         */
+        public function is_enabled();
+        /**
+         * Whether or not this analysis is enabled by the user.
+         *
+         * @return bool Whether or not this analysis is enabled by the user.
+         */
+        public function is_user_enabled();
+        /**
+         * Whether or not this analysis is enabled globally.
+         *
+         * @return bool Whether or not this analysis is enabled globally.
+         */
+        public function is_globally_enabled();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Metabox
+     */
+    /**
+     * Represents the readability analysis.
+     */
+    class WPSEO_Metabox_Analysis_Readability implements \WPSEO_Metabox_Analysis
+    {
+        /**
+         * Whether this analysis is enabled.
+         *
+         * @return bool Whether or not this analysis is enabled.
+         */
+        public function is_enabled()
+        {
+        }
+        /**
+         * Whether or not this analysis is enabled by the user.
+         *
+         * @return bool Whether or not this analysis is enabled by the user.
+         */
+        public function is_user_enabled()
+        {
+        }
+        /**
+         * Whether or not this analysis is enabled globally.
+         *
+         * @return bool Whether or not this analysis is enabled globally.
+         */
+        public function is_globally_enabled()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Metabox
+     */
+    /**
+     * Represents the SEO analysis.
+     */
+    class WPSEO_Metabox_Analysis_SEO implements \WPSEO_Metabox_Analysis
+    {
+        /**
+         * Whether this analysis is enabled.
+         *
+         * @return bool Whether or not this analysis is enabled.
+         */
+        public function is_enabled()
+        {
+        }
+        /**
+         * Whether or not this analysis is enabled by the user.
+         *
+         * @return bool Whether or not this analysis is enabled by the user.
+         */
+        public function is_user_enabled()
+        {
+        }
+        /**
+         * Whether or not this analysis is enabled globally.
+         *
+         * @return bool Whether or not this analysis is enabled globally.
+         */
+        public function is_globally_enabled()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates the HTML for a metabox tab.
+     */
+    interface WPSEO_Metabox_Tab
+    {
+        /**
+         * Returns the html for the tab link.
+         *
+         * @return string
+         */
+        public function link();
+        /**
+         * Returns the html for the tab content.
+         *
+         * @return string
+         */
+        public function content();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates the HTML for a metabox tab.
+     */
+    class WPSEO_Metabox_Collapsible implements \WPSEO_Metabox_Tab
+    {
+        /**
+         * The collapsible's unique identifier.
+         *
+         * @var string
+         */
+        private $name;
+        /**
+         * The content to be displayed inside the collapsible.
+         *
+         * @var string
+         */
+        private $content;
+        /**
+         * The label.
+         *
+         * @var string
+         */
+        private $link_content;
+        /**
+         * Constructor.
+         *
+         * @param string $name         The name of the tab, used as an identifier in the html.
+         * @param string $content      The tab content.
+         * @param string $link_content The text content of the tab link.
+         */
+        public function __construct($name, $content, $link_content)
+        {
+        }
+        /**
+         * Returns the html for the tab link.
+         *
+         * @return string
+         */
+        public function link()
+        {
+        }
+        /**
+         * Returns the html for the tab content.
+         *
+         * @return string
+         */
+        public function content()
+        {
+        }
+        /**
+         * Returns the collapsible's unique identifier.
+         *
+         * @return string
+         */
+        public function get_name()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates and displays a metabox tab that consists of collapsible sections.
+     */
+    class WPSEO_Metabox_Collapsibles_Sections extends \WPSEO_Abstract_Metabox_Tab_With_Sections
+    {
+        /**
+         * Holds the tab's collapsibles.
+         *
+         * @var WPSEO_Metabox_Collapsible[]
+         */
+        private $collapsibles = [];
+        /**
+         * Constructor.
+         *
+         * @param string $name         The name of the section, used as an identifier in the html.
+         *                             Can only contain URL safe characters.
+         * @param string $link_content The text content of the section link.
+         * @param array  $collapsibles The metabox collapsibles (`WPSEO_Metabox_Collapsible[]`) to be included in the section.
+         * @param array  $options      Optional link attributes.
+         */
+        public function __construct($name, $link_content, array $collapsibles = [], array $options = [])
+        {
+        }
+        /**
+         * Outputs the section content if any tab has been added.
+         */
+        public function display_content()
+        {
+        }
+        /**
+         * Checks whether the tab has any sections.
+         *
+         * @return bool Whether the tab has any sections
+         */
+        protected function has_sections()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Metabox
+     */
+    /**
+     * Handles all things with the metabox in combination with the WordPress editor.
+     */
+    class WPSEO_Metabox_Editor
+    {
+        /**
+         * Registers hooks to WordPress.
+         *
+         * @codeCoverageIgnore
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds our inside the editor CSS file to the list of CSS files to be loaded inside the editor.
+         *
+         * @param string $css_files The CSS files that WordPress wants to load inside the editor.
+         * @return string The CSS files WordPress wants to load and our CSS file.
+         */
+        public function add_css_inside_editor($css_files)
+        {
+        }
+        /**
+         * Adds a custom element to the tinyMCE editor that we need for marking the content.
+         *
+         * @param array $tinymce_config The tinyMCE config as configured by WordPress.
+         *
+         * @return array The new tinyMCE config with our added custom elements.
+         */
+        public function add_custom_element($tinymce_config)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates the HTML for a metabox tab.
+     */
+    class WPSEO_Metabox_Form_Tab implements \WPSEO_Metabox_Tab
+    {
+        /**
+         * The tab identifier.
+         *
+         * @var string
+         */
+        private $name;
+        /**
+         * The tab content.
+         *
+         * @var string
+         */
+        private $content;
+        /**
+         * The tab link content.
+         *
+         * @var string
+         */
+        private $link_content;
+        /**
+         * Additional tab content class.
+         *
+         * @var string
+         */
+        private $tab_class;
+        /**
+         * Additional tab link class.
+         *
+         * @var string
+         */
+        private $link_class;
+        /**
+         * Title attribute on the link span.
+         *
+         * @var string
+         */
+        private $link_title;
+        /**
+         * Arial label attribute on the link span.
+         *
+         * @var string
+         */
+        private $link_aria_label;
+        /**
+         * Does it contain a single tab.
+         *
+         * @var boolean
+         */
+        private $single;
+        /**
+         * Constructor.
+         *
+         * @param string $name         The name of the tab, used as an identifier in the html.
+         * @param string $content      The tab content.
+         * @param string $link_content The text content of the tab link.
+         * @param array  $options      Optional link attributes.
+         */
+        public function __construct($name, $content, $link_content, array $options = [])
+        {
+        }
+        /**
+         * Returns the html for the tab link.
+         *
+         * @return string
+         */
+        public function link()
+        {
+        }
+        /**
+         * Returns the html for the tab content.
+         *
+         * @return string
+         */
+        public function content()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates the HTML for a metabox tab.
+     */
+    class WPSEO_Metabox_Null_Tab implements \WPSEO_Metabox_Tab
+    {
+        /**
+         * Returns the html for the tab link.
+         *
+         * @return string
+         */
+        public function link()
+        {
+        }
+        /**
+         * Returns the html for the tab content.
+         *
+         * @return string
+         */
+        public function content()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Metabox
+     */
+    /**
+     * Generates and displays an additional metabox section.
+     */
+    class WPSEO_Metabox_Section_Additional implements \WPSEO_Metabox_Section
+    {
+        /**
+         * Name of the section, used as an identifier in the HTML.
+         *
+         * @var string
+         */
+        public $name;
+        /**
+         * Content of the tab's section.
+         *
+         * @var string
+         */
+        public $content;
+        /**
+         * HTML to use in the tab header.
+         *
+         * @var string
+         */
+        private $link_content;
+        /**
+         * Class to add to the link.
+         *
+         * @var string
+         */
+        private $link_class;
+        /**
+         * Aria label to use for the link.
+         *
+         * @var string
+         */
+        private $link_aria_label;
+        /**
+         * Constructor.
+         *
+         * @param string $name         The name of the section, used as an identifier in the html.
+         *                             Can only contain URL safe characters.
+         * @param string $link_content The text content of the section link.
+         * @param string $content      Optional. Content to use above the React root element.
+         * @param array  $options      Optional link attributes.
+         */
+        public function __construct($name, $link_content, $content = '', array $options = [])
+        {
+        }
+        /**
+         * Outputs the section link.
+         *
+         * @return void
+         */
+        public function display_link()
+        {
+        }
+        /**
+         * Outputs the section content.
+         *
+         * @return void
+         */
+        public function display_content()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates and displays the React root element for a metabox section.
+     */
+    class WPSEO_Metabox_Section_React implements \WPSEO_Metabox_Section
+    {
+        /**
+         * Name of the section, used as an identifier in the HTML.
+         *
+         * @var string
+         */
+        public $name;
+        /**
+         * Content to use before the React root node.
+         *
+         * @var string
+         */
+        public $content;
+        /**
+         * Content to use to display the button to open this content block.
+         *
+         * @var string
+         */
+        private $link_content;
+        /**
+         * Class to add to the link.
+         *
+         * @var string
+         */
+        private $link_class;
+        /**
+         * Aria label to use for the link.
+         *
+         * @var string
+         */
+        private $link_aria_label;
+        /**
+         * Additional html content to be displayed within the section.
+         *
+         * @var string
+         */
+        private $html_after;
+        /**
+         * Constructor.
+         *
+         * @param string $name         The name of the section, used as an identifier in the html.
+         *                             Can only contain URL safe characters.
+         * @param string $link_content The text content of the section link.
+         * @param string $content      Optional. Content to use above the React root element.
+         * @param array  $options      Optional link attributes.
+         */
+        public function __construct($name, $link_content, $content = '', array $options = [])
+        {
+        }
+        /**
+         * Outputs the section link.
+         *
+         * @return void
+         */
+        public function display_link()
+        {
+        }
+        /**
+         * Outputs the section content.
+         *
+         * @return void
+         */
+        public function display_content()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generates and displays the React root element for a metabox section.
+     */
+    class WPSEO_Metabox_Section_Readability implements \WPSEO_Metabox_Section
+    {
+        /**
+         * Name of the section, used as an identifier in the HTML.
+         *
+         * @var string
+         */
+        public $name = 'readability';
+        /**
+         * Outputs the section link.
+         */
+        public function display_link()
+        {
+        }
+        /**
+         * Outputs the section content.
+         */
+        public function display_content()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Notifiers
+     */
+    /**
+     * Represents the logic for showing the notification.
+     */
+    class WPSEO_Configuration_Notifier implements \WPSEO_Listener
+    {
+        /**
+         * Option name use to determine whether the notice has been dismissed.
+         *
+         * @var string
+         */
+        const META_NAME = 'wpseo-dismiss-configuration-notice';
+        /**
+         * Default value.
+         *
+         * @var string
+         */
+        const META_VALUE = 'yes';
+        /**
+         * Should the notification be shown.
+         *
+         * @var bool
+         */
+        protected $show_notification;
+        /**
+         * Constructs the object by setting the show notification property based the given options.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Returns the content of the notification.
+         *
+         * @return string A string with the notification HTML, or empty string when no notification is needed.
+         */
+        public function notify()
+        {
+        }
+        /**
+         * Listens to an argument in the request URL. When triggered just set the notification to dismissed.
+         *
+         * @return void
+         */
+        public function listen()
+        {
+        }
+        /**
+         * Checks if the dismissal should be triggered.
+         *
+         * @return bool True when action has been triggered.
+         */
+        protected function dismissal_is_triggered()
+        {
+        }
+        /**
+         * Checks if the current user has dismissed the notification.
+         *
+         * @return bool True when the notification has been dismissed.
+         */
+        protected function is_dismissed()
+        {
+        }
+        /**
+         * Sets the dismissed state for the current user.
+         *
+         * @return void
+         */
+        protected function set_dismissed()
+        {
+        }
+        /**
+         * Checks if the notification should be shown.
+         *
+         * @return bool True when notification should be shown.
+         */
+        protected function show_notification()
+        {
+        }
+        /**
+         * Returns the notification to re-run the config wizard.
+         *
+         * @return string The notification.
+         */
+        private function re_run_notification()
+        {
+        }
+        /**
+         * Returns the notification to start the config wizard for the first time.
+         *
+         * @return string The notification.
+         */
+        private function first_time_notification()
+        {
+        }
+        /**
+         * Returns a styled notification.
+         *
+         * @param string $title          Title for the notification.
+         * @param string $content        Content for the notification.
+         * @param bool   $show_dismissal Whether to show the dismiss button or not.
+         *
+         * @return string The styled notification.
+         */
+        private function notification($title, $content, $show_dismissal = \false)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Notifiers
+     */
+    /**
+     * Dictates the required methods for a Notification Handler implementation.
+     */
+    interface WPSEO_Notification_Handler
+    {
+        /**
+         * Handles the notification object.
+         *
+         * @param Yoast_Notification_Center $notification_center The notification center object.
+         *
+         * @return void
+         */
+        public function handle(\Yoast_Notification_Center $notification_center);
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Notifiers
+     */
+    /**
+     * Abstract class representing a dismissible notification.
+     */
+    abstract class WPSEO_Dismissible_Notification implements \WPSEO_Listener, \WPSEO_Notification_Handler
+    {
+        /**
+         * The identifier for the notification.
+         *
+         * @var string
+         */
+        protected $notification_identifier = '';
+        /**
+         * Retrieves instance of a notification.
+         *
+         * @return Yoast_Notification The notification.
+         */
+        protected abstract function get_notification();
+        /**
+         * Listens to an argument in the request URL and triggers an action.
+         *
+         * @return void
+         */
+        public function listen()
+        {
+        }
+        /**
+         * Adds the notification if applicable, otherwise removes it.
+         *
+         * @param Yoast_Notification_Center $notification_center The notification center object.
+         *
+         * @return void
+         */
+        public function handle(\Yoast_Notification_Center $notification_center)
+        {
+        }
+        /**
+         * Listens to an argument in the request URL and triggers an action.
+         *
+         * @return void
+         */
+        protected function dismiss()
+        {
+        }
+        /**
+         * Checks if a notice is applicable.
+         *
+         * @return bool Whether a notice should be shown or not.
+         */
+        protected function is_applicable()
+        {
+        }
+        /**
+         * Checks whether the notification has been dismissed.
+         *
+         * @return bool True when notification is dismissed.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function is_notice_dismissed()
+        {
+        }
+        /**
+         * Retrieves the value where listener is listening for.
+         *
+         * @return string The listener value.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function get_listener_value()
+        {
+        }
+        /**
+         * Dismisses the notification.
+         *
+         * @return void
+         *
+         * @codeCoverageIgnore
+         */
+        protected function set_dismissal_state()
+        {
+        }
+        /**
+         * Redirects the user back to the dashboard.
+         *
+         * @return void
+         *
+         * @codeCoverageIgnore
+         */
+        protected function redirect_to_dashboard()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Notifiers
+     */
+    /**
+     * Represents the logic for showing the post type archive notification.
+     */
+    class WPSEO_Post_Type_Archive_Notification_Handler extends \WPSEO_Dismissible_Notification
+    {
+        /**
+         * Defaults for the title option.
+         *
+         * @var array
+         */
+        protected $option_defaults = [];
+        /**
+         * Sets the notification identifier.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Checks if the notice should be shown.
+         *
+         * @return bool True when applicable.
+         */
+        protected function is_applicable()
+        {
+        }
+        /**
+         * Returns the notification.
+         *
+         * @return Yoast_Notification The notification for the notification center.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function get_notification()
+        {
+        }
+        /**
+         * Checks if the first activation is done before the release of 7.9.
+         *
+         * @return bool True when the install is 'new'.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function is_new_install()
+        {
+        }
+        /**
+         * Returns all the post types which might have wrong archive settings.
+         *
+         * @return array The post types.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function get_post_types()
+        {
+        }
+        /**
+         * Filters the WooCommerce product, when Woocommerce is active.
+         *
+         * @param array $post_types The post types to filter.
+         *
+         * @return array The filtere post types.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function filter_woocommerce_product_type($post_types)
+        {
+        }
+        /**
+         * Checks if the archive slug for the post type is overridden.
+         *
+         * @param string $post_type_name The post type's name.
+         *
+         * @return bool True when the archive slug is overridden.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function has_custom_archive_slug($post_type_name)
+        {
+        }
+        /**
+         * Checks if the default templates are set for given post type.
+         *
+         * @param string $post_type_name The post type name.
+         *
+         * @return bool True when the default templates are set.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function has_default_templates_set($post_type_name)
+        {
+        }
+        /**
+         * Checks if value for given option name is equal to the default value.
+         *
+         * @param string $option_name The option name to check.
+         *
+         * @return bool True when the option value is equal to the default value.
+         *
+         * @codeCoverageIgnore
+         */
+        protected function is_equal_to_default($option_name)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class handles the data for the option where the Ryte data is stored.
+     */
+    class WPSEO_OnPage_Option
+    {
+        /**
+         * Indicates the data is not fetched.
+         *
+         * @var int
+         */
+        const NOT_FETCHED = 99;
+        /**
+         * Indicates the option is indexable.
+         *
+         * @var int
+         */
+        const IS_INDEXABLE = 1;
+        /**
+         * Indicates the option is not indexable.
+         *
+         * @var int
+         */
+        const IS_NOT_INDEXABLE = 0;
+        /**
+         * Indicates the data could not be fetched.
+         *
+         * @var int
+         */
+        const CANNOT_FETCH = -1;
+        /**
+         * The name of the option where data will be stored.
+         *
+         * @var string
+         */
+        const OPTION_NAME = 'wpseo_onpage';
+        /**
+         * The key of the status in the option.
+         *
+         * @var string
+         */
+        const STATUS = 'status';
+        /**
+         * The key of the last fetch date in the option.
+         *
+         * @var string
+         */
+        const LAST_FETCH = 'last_fetch';
+        /**
+         * The limit for fetching the status manually.
+         *
+         * @var int
+         */
+        const FETCH_LIMIT = 15;
+        /**
+         * The Ryte option stored in the database.
+         *
+         * @var array
+         */
+        private $onpage_option;
+        /**
+         * Setting the object by setting the properties.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Getting the status from the option.
+         *
+         * @return string
+         */
+        public function get_status()
+        {
+        }
+        /**
+         * Saving the status to the options.
+         *
+         * @param string $status The status to save.
+         */
+        public function set_status($status)
+        {
+        }
+        /**
+         * Saving the last fetch timestamp to the options.
+         *
+         * @param integer $timestamp Timestamp with the new value.
+         */
+        public function set_last_fetch($timestamp)
+        {
+        }
+        /**
+         * Check if the last fetch is within the time of 60 minutes.
+         *
+         * @return bool
+         */
+        public function should_be_fetched()
+        {
+        }
+        /**
+         * Saving the option with the current data.
+         */
+        public function save_option()
+        {
+        }
+        /**
+         * Returns the value of the onpage_enabled status.
+         *
+         * @return bool
+         */
+        public function is_enabled()
+        {
+        }
+        /**
+         * Getting the option with the Ryte data.
+         *
+         * @return array
+         */
+        private function get_option()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class will fetch a new status from Ryte and if it's necessary it will
+     * notify the site admin by email and remove the current meta value to hide the
+     * notice for all admin users.
+     */
+    class WPSEO_OnPage_Request
+    {
+        /**
+         * The endpoint where the request will be send to.
+         *
+         * @var string
+         */
+        private $onpage_endpoint = 'https://indexability.yoast.onpage.org/';
+        /**
+         * Doing the remote get and returns the body.
+         *
+         * @param string $target_url The home url.
+         * @param array  $parameters Array of extra parameters to send to Ryte.
+         *
+         * @return array
+         * @throws Exception The error message that can be used to show to the user.
+         */
+        protected function get_remote($target_url, $parameters = [])
+        {
+        }
+        /**
+         * Sending a request to Ryte to check if the $home_url is indexable.
+         *
+         * @param string $target_url The URL that will be send to the API.
+         * @param array  $parameters Array of extra parameters to send to Ryte.
+         *
+         * @return array
+         */
+        public function do_request($target_url, $parameters = [])
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Handles the request for getting the Ryte status.
+     */
+    class WPSEO_OnPage implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The name of the user meta key for storing the dismissed status.
+         *
+         * @var string
+         */
+        const USER_META_KEY = 'wpseo_dismiss_onpage';
+        /**
+         * Is the request started by pressing the fetch button.
+         *
+         * @var boolean
+         */
+        private $is_manual_request = \false;
+        /**
+         * Constructs the object.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Sets up the hooks.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Shows a notice when the website is not indexable.
+         *
+         * @return void
+         */
+        public function show_notice()
+        {
+        }
+        /**
+         * Determines if we can use the functionality.
+         *
+         * @return bool True if this functionality can be used.
+         */
+        public static function is_active()
+        {
+        }
+        /**
+         * Hooks to run on plugin activation.
+         */
+        public function activate_hooks()
+        {
+        }
+        /**
+         * Adds a weekly cron schedule.
+         *
+         * @param array $schedules Currently scheduled items.
+         *
+         * @return array Enriched list of schedules.
+         */
+        public function add_weekly_schedule($schedules)
+        {
+        }
+        /**
+         * Fetches the data from Ryte.
+         *
+         * @return bool True if this has been run.
+         */
+        public function fetch_from_onpage()
+        {
+        }
+        /**
+         * Retrieves the option to use.
+         *
+         * @return WPSEO_OnPage_Option The option.
+         */
+        protected function get_option()
+        {
+        }
+        /**
+         * Builds the indexability notification.
+         *
+         * @return Yoast_Notification The notification.
+         */
+        private function get_indexability_notification()
+        {
+        }
+        /**
+         * Sends a request to Ryte to get the indexability.
+         *
+         * @return int|bool The indexability value.
+         */
+        protected function request_indexability()
+        {
+        }
+        /**
+         * Should the notice being given?
+         *
+         * @return bool True if a notice should be shown.
+         */
+        protected function should_show_notice()
+        {
+        }
+        /**
+         * Notifies the admins.
+         *
+         * @return void
+         */
+        protected function notify_admins()
+        {
+        }
+        /**
+         * Schedules the cronjob to get the new indexibility status.
+         *
+         * @return void
+         */
+        private function schedule_cron()
+        {
+        }
+        /**
+         * Unschedules the cronjob to get the new indexibility status.
+         *
+         * @return void
+         */
+        private function unschedule_cron()
+        {
+        }
+        /**
+         * Redo the fetch request for Ryte.
+         *
+         * @return void
+         */
+        private function catch_redo_listener()
+        {
+        }
+        /**
+         * Checks if WordFence protects the site against 'fake' Google crawlers.
+         *
+         * @return boolean True if WordFence protects the site.
+         */
+        private function wordfence_protection_enabled()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\OnPage
+     */
+    /**
+     * Represents the service to be used by the WPSEO_Endpoint_Ryte endpoint.
+     */
+    class WPSEO_Ryte_Service
+    {
+        /**
+         * This class handles the data for the option where the Ryte data is stored.
+         *
+         * @var WPSEO_OnPage_Option
+         */
+        protected $option;
+        /**
+         * Constructs the WPSEO_Ryte_Service class.
+         *
+         * @param WPSEO_OnPage_Option $option The option to retrieve data from.
+         */
+        public function __construct(\WPSEO_OnPage_Option $option)
+        {
+        }
+        /**
+         * Fetches statistics via REST request.
+         *
+         * @return WP_REST_Response The response object.
+         */
+        public function get_statistics()
+        {
+        }
+        /**
+         * Returns an the results of the Ryte option based on the passed status.
+         *
+         * @param string $status The option's status.
+         * @param bool   $fetch  Whether or not the data should be fetched.
+         *
+         * @return array The results, contains a score and label.
+         */
+        private function get_score($status, $fetch = \false)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Abstract class to force methods in recalculate classes.
+     */
+    abstract class WPSEO_Recalculate
+    {
+        /**
+         * Recalculations per page.
+         *
+         * @var int
+         */
+        protected $items_per_page = 20;
+        /**
+         * Saves the array with scores to the database.
+         *
+         * @param array $scores Array with the score for each item.
+         */
+        public abstract function save_scores(array $scores);
+        /**
+         * Gets the items and parses it to an response.
+         *
+         * @param integer $paged The current page number.
+         *
+         * @return string
+         */
+        protected abstract function get_items($paged);
+        /**
+         * Maps the items to an array for the response.
+         *
+         * @param mixed $item Object with data to parse.
+         *
+         * @return array
+         */
+        protected abstract function item_to_response($item);
+        /**
+         * Gets the items to recalculate.
+         *
+         * @param int $paged The current page number.
+         *
+         * @return array Items that can be recalculated.
+         */
+        public function get_items_to_recalculate($paged)
+        {
+        }
+        /**
+         * Parse the posts|terms with the value we need.
+         *
+         * @param array $items The items to parse.
+         *
+         * @return array
+         */
+        protected function parse_items(array $items)
+        {
+        }
+        /**
+         * Get default from the options for given field.
+         *
+         * @param string $field  The field for which to get the default options.
+         * @param string $suffix The post type.
+         *
+         * @return bool|string
+         */
+        protected function default_from_options($field, $suffix)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class handles the calculation of the SEO score for all posts with a filled focus keyword.
+     */
+    class WPSEO_Recalculate_Posts extends \WPSEO_Recalculate
+    {
+        /**
+         * Save the scores.
+         *
+         * @param array $scores The scores for the posts.
+         */
+        public function save_scores(array $scores)
+        {
+        }
+        /**
+         * Save the score.
+         *
+         * @param array $score The score to save.
+         */
+        protected function save_score(array $score)
+        {
+        }
+        /**
+         * Get the posts from the database by doing a WP_Query.
+         *
+         * @param integer $paged The page.
+         *
+         * @return string
+         */
+        protected function get_items($paged)
+        {
+        }
+        /**
+         * Map the posts to a response array.
+         *
+         * @param WP_Post $item The post for which to build the analyzer data.
+         *
+         * @return array
+         */
+        protected function item_to_response($item)
+        {
+        }
+        /**
+         * Get the title for given post.
+         *
+         * @param integer $post_id   The ID of the post for which to get the title.
+         * @param string  $post_type The post type.
+         *
+         * @return mixed|string
+         */
+        private function get_title($post_id, $post_type)
+        {
+        }
+        /**
+         * Get the meta description for given post.
+         *
+         * @param integer $post_id   The ID of the post for which to get the meta description.
+         * @param string  $post_type The post type.
+         *
+         * @return bool|string
+         */
+        private function get_meta_description($post_id, $post_type)
+        {
+        }
+        /**
+         * Retrieves the associated featured image if there is one present.
+         *
+         * @param WP_Post $item The post item to check for a featured image.
+         *
+         * @return string The image string.
+         */
+        private function add_featured_image($item)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class handles the calculation of the SEO score for all terms.
+     */
+    class WPSEO_Recalculate_Terms extends \WPSEO_Recalculate
+    {
+        /**
+         * Save the scores.
+         *
+         * @param array $scores The scores to save.
+         */
+        public function save_scores(array $scores)
+        {
+        }
+        /**
+         * Save the score.
+         *
+         * @param array $score The score to save.
+         */
+        protected function save_score(array $score)
+        {
+        }
+        /**
+         * Get the terms from the database by doing a WP_Query.
+         *
+         * @param integer $paged The page.
+         *
+         * @return array
+         */
+        protected function get_items($paged)
+        {
+        }
+        /**
+         * Convert the given term into a analyzable object.
+         *
+         * @param mixed $item The term for which to build the analyzer data.
+         *
+         * @return array
+         */
+        protected function item_to_response($item)
+        {
+        }
+        /**
+         * Gets the focus keyword for the term.
+         *
+         * @param stdClass|WP_Term $term Term to determine the keyword for.
+         *
+         * @return bool|string
+         */
+        private function get_focus_keyword($term)
+        {
+        }
+        /**
+         * Get the title for given term.
+         *
+         * @param stdClass|WP_Term $term The term object.
+         *
+         * @return mixed|string
+         */
+        private function get_title($term)
+        {
+        }
+        /**
+         * Get the meta description for given post.
+         *
+         * @param stdClass|WP_Term $term The term object.
+         *
+         * @return bool|string
+         */
+        private function get_meta_description($term)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Roles
+     */
+    /**
+     * Role Manager interface.
+     */
+    interface WPSEO_Role_Manager
+    {
+        /**
+         * Registers a role.
+         *
+         * @param string      $role         Role to register.
+         * @param string      $display_name Display name to use.
+         * @param null|string $template     Optional. Role to base the new role on.
+         *
+         * @return void
+         */
+        public function register($role, $display_name, $template = \null);
+        /**
+         * Adds the registered roles.
+         *
+         * @return void
+         */
+        public function add();
+        /**
+         * Removes the registered roles.
+         *
+         * @return void
+         */
+        public function remove();
+        /**
+         * Returns the list of registered roles.
+         *
+         * @return string[] List or registered roles.
+         */
+        public function get_roles();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Roles
+     */
+    /**
+     * Abstract Role Manager template.
+     */
+    abstract class WPSEO_Abstract_Role_Manager implements \WPSEO_Role_Manager
+    {
+        /**
+         * Registered roles.
+         *
+         * @var array
+         */
+        protected $roles = [];
+        /**
+         * Registers a role.
+         *
+         * @param string      $role         Role to register.
+         * @param string      $display_name Display name to use.
+         * @param null|string $template     Optional. Role to base the new role on.
+         *
+         * @return void
+         */
+        public function register($role, $display_name, $template = \null)
+        {
+        }
+        /**
+         * Returns the list of registered roles.
+         *
+         * @return string[] List or registered roles.
+         */
+        public function get_roles()
+        {
+        }
+        /**
+         * Adds the registered roles.
+         *
+         * @return void
+         */
+        public function add()
+        {
+        }
+        /**
+         * Removes the registered roles.
+         *
+         * @return void
+         */
+        public function remove()
+        {
+        }
+        /**
+         * Returns the capabilities for the specified role.
+         *
+         * @param string $role Role to fetch capabilities from.
+         *
+         * @return array List of capabilities.
+         */
+        protected function get_capabilities($role)
+        {
+        }
+        /**
+         * Returns true if the capability exists on the role.
+         *
+         * @param WP_Role $role       Role to check capability against.
+         * @param string  $capability Capability to check.
+         *
+         * @return bool True if the capability is defined for the role.
+         */
+        protected function capability_exists(\WP_Role $role, $capability)
+        {
+        }
+        /**
+         * Filters out capabilities that are already set for the role.
+         *
+         * This makes sure we don't override configurations that have been previously set.
+         *
+         * @param string $role         The role to check against.
+         * @param array  $capabilities The capabilities that should be set.
+         *
+         * @return array Capabilties that can be safely set.
+         */
+        protected function filter_existing_capabilties($role, array $capabilities)
+        {
+        }
+        /**
+         * Adds a role to the system.
+         *
+         * @param string $role         Role to add.
+         * @param string $display_name Name to display for the role.
+         * @param array  $capabilities Capabilities to add to the role.
+         *
+         * @return void
+         */
+        protected abstract function add_role($role, $display_name, array $capabilities = []);
+        /**
+         * Removes a role from the system.
+         *
+         * @param string $role Role to remove.
+         *
+         * @return void
+         */
+        protected abstract function remove_role($role);
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Roles
+     */
+    /**
+     * Role registration class.
+     */
+    class WPSEO_Register_Roles implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Adds hooks.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Registers the roles.
+         *
+         * @return void
+         */
+        public function register()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Roles
+     */
+    /**
+     * Role Manager Factory.
+     */
+    class WPSEO_Role_Manager_Factory
+    {
+        /**
+         * Retrieves the Role manager to use.
+         *
+         * @return WPSEO_Role_Manager
+         */
+        public static function get()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Roles
+     */
+    /**
+     * VIP implementation of the Role Manager.
+     */
+    final class WPSEO_Role_Manager_VIP extends \WPSEO_Abstract_Role_Manager
+    {
+        /**
+         * Adds a role to the system.
+         *
+         * @param string $role         Role to add.
+         * @param string $display_name Name to display for the role.
+         * @param array  $capabilities Capabilities to add to the role.
+         *
+         * @return void
+         */
+        protected function add_role($role, $display_name, array $capabilities = [])
+        {
+        }
+        /**
+         * Removes a role from the system.
+         *
+         * @param string $role Role to remove.
+         *
+         * @return void
+         */
+        protected function remove_role($role)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Roles
+     */
+    /**
+     * WordPress' default implementation of the Role Manager.
+     */
+    final class WPSEO_Role_Manager_WP extends \WPSEO_Abstract_Role_Manager
+    {
+        /**
+         * Adds a role to the system.
+         *
+         * @param string $role         Role to add.
+         * @param string $display_name Name to display for the role.
+         * @param array  $capabilities Capabilities to add to the role.
+         *
+         * @return void
+         */
+        protected function add_role($role, $display_name, array $capabilities = [])
+        {
+        }
+        /**
+         * Removes a role from the system.
+         *
+         * @param string $role Role to remove.
+         *
+         * @return void
+         */
+        protected function remove_role($role)
+        {
+        }
+        /**
+         * Formats the capabilities to the required format.
+         *
+         * @param array $capabilities Capabilities to format.
+         * @param bool  $enabled      Whether these capabilities should be enabled or not.
+         *
+         * @return array Formatted capabilities.
+         */
+        protected function format_capabilities(array $capabilities, $enabled = \true)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Services
+     */
+    /**
+     * Represents the file size service.
+     */
+    class WPSEO_File_Size_Service
+    {
+        /**
+         * Retrieves an indexable.
+         *
+         * @param WP_REST_Request $request The request object.
+         *
+         * @return WP_REST_Response The response.
+         */
+        public function get(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Retrieves the file url.
+         *
+         * @param WP_REST_Request $request The request to retrieve file url from.
+         *
+         * @return string The file url.
+         * @throws WPSEO_File_Size_Exception The file is hosted externally.
+         */
+        protected function get_file_url(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Checks if the file is hosted externally.
+         *
+         * @param string $file_url The file url.
+         *
+         * @return bool True if it is hosted externally.
+         */
+        protected function is_externally_hosted($file_url)
+        {
+        }
+        /**
+         * Returns the file size.
+         *
+         * @param string $file_url The file url to get the size for.
+         *
+         * @return int The file size.
+         * @throws WPSEO_File_Size_Exception Retrieval of file size went wrong for unknown reasons.
+         */
+        protected function get_file_size($file_url)
+        {
+        }
+        /**
+         * Calculates the file size using the Utils class.
+         *
+         * @param string $file_url The file to retrieve the size for.
+         *
+         * @return int|bool The file size or False if it could not be retrieved.
+         */
+        protected function calculate_file_size($file_url)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Endpoints
+     */
+    /**
+     * Dictates the required methods for an indexable service provider.
+     */
+    interface WPSEO_Indexable_Service_Provider
+    {
+        /**
+         * Returns an array with data for the target object.
+         *
+         * @param integer $object_id The target object id.
+         * @param bool    $as_object Optional. Whether or not to return the indexable
+         *                           as an object. Defaults to false.
+         *
+         * @return array The retrieved data.
+         */
+        public function get($object_id, $as_object = \false);
+        /**
+         * Handles the patching of values for an existing indexable.
+         *
+         * @param int   $object_id   The ID of the object.
+         * @param array $requestdata The request data to store.
+         *
+         * @return array The patched indexable.
+         */
+        public function patch($object_id, $requestdata);
+        /**
+         * Checks if the given object id belongs to an indexable.
+         *
+         * @param int $object_id The object id.
+         *
+         * @return bool Whether the object id is indexable.
+         */
+        public function is_indexable($object_id);
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Services
+     */
+    /**
+     * Represents the indexable service.
+     */
+    abstract class WPSEO_Indexable_Provider implements \WPSEO_Indexable_Service_Provider
+    {
+        /**
+         * List of fields that need to be renamed.
+         *
+         * @var array
+         */
+        protected $renameable_fields = [];
+        /**
+         * Renames and converts some of the indexable data to its database variant.
+         *
+         * @param array $indexable_data The indexable data to rename and convert.
+         *
+         * @return array The renamed and converted indexable data.
+         */
+        protected function rename_indexable_data(&$indexable_data)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Services
+     */
+    /**
+     * Represents the indexable post service.
+     */
+    class WPSEO_Indexable_Service_Post_Provider extends \WPSEO_Indexable_Provider
+    {
+        /**
+         * List of fields that need to be renamed.
+         *
+         * @var array
+         */
+        protected $renameable_fields = ['description' => 'metadesc', 'breadcrumb_title' => 'bctitle', 'og_title' => 'opengraph-title', 'og_description' => 'opengraph-description', 'og_image' => 'opengraph-image', 'twitter_title' => 'twitter-title', 'twitter_description' => 'twitter-description', 'twitter_image' => 'twitter-image', 'is_robots_noindex' => 'meta-robots-noindex', 'is_robots_nofollow' => 'meta-robots-nofollow', 'primary_focus_keyword' => 'focuskw', 'primary_focus_keyword_score' => 'linkdex', 'readability_score' => 'content_score'];
+        /**
+         * Returns an array with data for the target object.
+         *
+         * @param integer $object_id The target object id.
+         * @param bool    $as_object Optional. Whether or not to return the indexable
+         *                           as an object. Defaults to false.
+         *
+         * @return array|WPSEO_Post_Indexable The retrieved data. Defaults to an array format.
+         *
+         * @throws WPSEO_Invalid_Argument_Exception The invalid argument exception.
+         */
+        public function get($object_id, $as_object = \false)
+        {
+        }
+        /**
+         * Handles the patching of values for an existing indexable.
+         *
+         * @param int   $object_id   The ID of the object.
+         * @param array $requestdata The request data to store.
+         *
+         * @return array The patched indexable.
+         *
+         * @throws WPSEO_Invalid_Indexable_Exception The invalid argument exception.
+         * @throws WPSEO_REST_Request_Exception      Exception that is thrown if patching the object has failed.
+         */
+        public function patch($object_id, $requestdata)
+        {
+        }
+        /**
+         * Stores the indexable object.
+         *
+         * @param WPSEO_Indexable $indexable The indexable object to store.
+         *
+         * @return bool True if saving was successful.
+         */
+        protected function store_indexable(\WPSEO_Indexable $indexable)
+        {
+        }
+        /**
+         * Checks if the given object id belongs to an indexable.
+         *
+         * @param int $object_id The object id.
+         *
+         * @return bool Whether the object id is indexable.
+         */
+        public function is_indexable($object_id)
+        {
+        }
+        /**
+         * Converts some of the indexable data to its database variant.
+         *
+         * @param array $indexable_data The indexable data to convert.
+         *
+         * @return array The converted indexable data.
+         */
+        protected function convert_indexable_data($indexable_data)
+        {
+        }
+        /**
+         * Converts the cornerstone value to its database variant.
+         *
+         * @param string $cornerstone_value The cornerstone value.
+         *
+         * @return string The converted indexable cornerstone value.
+         */
+        protected function convert_cornerstone($cornerstone_value)
+        {
+        }
+        /**
+         * Converts the advanced meta settings to its database variant.
+         *
+         * @param array $indexable_data The indexable data to convert the advanced meta settings from.
+         *
+         * @return string The converted advanced meta settings.
+         */
+        protected function convert_advanced(&$indexable_data)
+        {
+        }
+        /**
+         * Converts the nofollow value to a database compatible one.
+         *
+         * @param bool $nofollow The current nofollow value.
+         *
+         * @return string The converted value.
+         */
+        protected function convert_nofollow($nofollow)
+        {
+        }
+        /**
+         * Converts the noindex value to a database compatible one.
+         *
+         * @param string $noindex The current noindex value.
+         *
+         * @return string|null The converted value.
+         */
+        protected function convert_noindex($noindex)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Services
+     */
+    /**
+     * Represents the indexable term service.
+     */
+    class WPSEO_Indexable_Service_Term_Provider extends \WPSEO_Indexable_Provider
+    {
+        /**
+         * List of fields that need to be renamed.
+         *
+         * @var array
+         */
+        protected $renameable_fields = ['description' => 'desc', 'breadcrumb_title' => 'bctitle', 'og_title' => 'opengraph-title', 'og_description' => 'opengraph-description', 'og_image' => 'opengraph-image', 'twitter_title' => 'twitter-title', 'twitter_description' => 'twitter-description', 'twitter_image' => 'twitter-image', 'is_robots_noindex' => 'noindex', 'primary_focus_keyword' => 'focuskw', 'primary_focus_keyword_score' => 'linkdex', 'readability_score' => 'content_score'];
+        /**
+         * Returns an array with data for the target object.
+         *
+         * @param integer $object_id The target object id.
+         * @param bool    $as_object Optional. Whether or not to return the indexable
+         *                           as an object. Defaults to false.
+         *
+         * @return array|WPSEO_Term_Indexable The retrieved data. Defaults to an array format.
+         */
+        public function get($object_id, $as_object = \false)
+        {
+        }
+        /**
+         * Handles the patching of values for an existing indexable.
+         *
+         * @param int   $object_id   The ID of the object.
+         * @param array $requestdata The request data to store.
+         *
+         * @return array The patched indexable.
+         *
+         * @throws WPSEO_Invalid_Indexable_Exception The indexable exception.
+         * @throws WPSEO_REST_Request_Exception      Exception that is thrown if patching the object has failed.
+         */
+        public function patch($object_id, $requestdata)
+        {
+        }
+        /**
+         * Stores the indexable object.
+         *
+         * @param WPSEO_Indexable $indexable The indexable object to store.
+         *
+         * @return bool True if the indexable object was successfully stored.
+         */
+        protected function store_indexable(\WPSEO_Indexable $indexable)
+        {
+        }
+        /**
+         * Prefixes the indexable data to make it compatible with the database.
+         *
+         * @param array $indexable_data The indexable data to prefix.
+         *
+         * @return array The compatible indexable data.
+         */
+        protected function prefix_indexable_data($indexable_data)
+        {
+        }
+        /**
+         * Converts the indexable data to make it compatible with the database.
+         *
+         * @param array $indexable_data The indexable data to prepare.
+         *
+         * @return array The converted indexable data.
+         */
+        protected function convert_indexable_data($indexable_data)
+        {
+        }
+        /**
+         * Checks if the given object id belongs to an indexable.
+         *
+         * @param int $object_id The object id.
+         *
+         * @return bool Whether the object id is indexable.
+         */
+        public function is_indexable($object_id)
+        {
+        }
+        /**
+         * Converts the noindex value to a database compatible one.
+         *
+         * @param bool $noindex The current noindex value.
+         *
+         * @return string|null The converted value.
+         */
+        protected function convert_noindex($noindex)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Services
+     */
+    /**
+     * Represents the indexable service.
+     */
+    class WPSEO_Indexable_Service
+    {
+        /**
+         * Retrieves an indexable.
+         *
+         * @param WP_REST_Request $request The request object.
+         *
+         * @return WP_REST_Response The response.
+         */
+        public function get_indexable(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Patches an indexable with the request parameters.
+         *
+         * @param WP_REST_Request $request The REST API request to process.
+         *
+         * @return WP_REST_Response The REST response.
+         */
+        public function patch_indexable(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Returns a provider based on the given object type.
+         *
+         * @param string $object_type The object type to get the provider for.
+         *
+         * @return WPSEO_Indexable_Service_Provider Instance of the service provider.
+         *
+         * @throws WPSEO_Invalid_Argument_Exception The invalid argument exception.
+         */
+        protected function get_provider($object_type)
+        {
+        }
+        /**
+         * Handles the situation when the object type is unknown.
+         *
+         * @param string $object_type The unknown object type.
+         *
+         * @return WP_REST_Response The response.
+         */
+        protected function handle_unknown_object_type($object_type)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Statistics
+     */
+    /**
+     * Class WPSEO_Statistic_Integration.
+     */
+    class WPSEO_Statistic_Integration implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Adds hooks to clear the cache.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Clears the dashboard widget items cache.
+         *
+         * @return void
+         */
+        public function clear_cache()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Statistics
+     */
+    /**
+     * Class WPSEO_Statistics_Service.
+     */
+    class WPSEO_Statistics_Service
+    {
+        /**
+         * Cache transient id.
+         *
+         * @var string
+         */
+        const CACHE_TRANSIENT_KEY = 'wpseo-statistics-totals';
+        /**
+         * Class that generates interesting statistics about things.
+         *
+         * @var WPSEO_Statistics
+         */
+        protected $statistics;
+        /**
+         * Statistics labels.
+         *
+         * @var string[]
+         */
+        protected $labels;
+        /**
+         * WPSEO_Statistics_Service contructor.
+         *
+         * @param WPSEO_Statistics $statistics The statistics class to retrieve statistics from.
+         */
+        public function __construct(\WPSEO_Statistics $statistics)
+        {
+        }
+        /**
+         * Fetches statistics by REST request.
+         *
+         * @return WP_REST_Response The response object.
+         */
+        public function get_statistics()
+        {
+        }
+        /**
+         * Gets a header summarizing the given statistics results.
+         *
+         * @param array $statistics The statistics results.
+         *
+         * @return string The header summing up the statistics results.
+         */
+        private function get_header_from_statistics(array $statistics)
+        {
+        }
+        /**
+         * An array representing items to be added to the At a Glance dashboard widget.
+         *
+         * @return array The statistics for the current user.
+         */
+        private function statistic_items()
+        {
+        }
+        /**
+         * Gets the statistics transient value. Returns array if transient wasn't set.
+         *
+         * @return array|mixed Returns the transient or an empty array if the transient doesn't exist.
+         */
+        private function get_transient()
+        {
+        }
+        /**
+         * Set the statistics transient cache for a specific user.
+         *
+         * @param array $transient The current stored transient with the cached data.
+         * @param int   $user      The user's ID to assign the retrieved values to.
+         *
+         * @return array The statistics transient for the user.
+         */
+        private function set_statistic_items_for_user($transient, $user)
+        {
+        }
+        /**
+         * Gets the division of SEO scores.
+         *
+         * @param array $scores The SEO scores.
+         *
+         * @return array|bool The division of SEO scores, false if there are no posts.
+         */
+        private function get_seo_score_division(array $scores)
+        {
+        }
+        /**
+         * Get all SEO ranks and data associated with them.
+         *
+         * @return array An array of SEO scores and associated data.
+         */
+        private function get_seo_scores_with_post_count()
+        {
+        }
+        /**
+         * Converts a rank to data usable in the dashboard widget.
+         *
+         * @param WPSEO_Rank $rank The rank to map.
+         *
+         * @return array The mapped rank.
+         */
+        private function map_rank_to_widget(\WPSEO_Rank $rank)
+        {
+        }
+        /**
+         * Returns a dashboard widget label to use for a certain rank.
+         *
+         * @param WPSEO_Rank $rank The rank to return a label for.
+         *
+         * @return string The label for the rank.
+         */
+        private function get_label_for_rank(\WPSEO_Rank $rank)
+        {
+        }
+        /**
+         * Determines the labels for the various scoring ranks that are known within Yoast SEO.
+         *
+         * @return array Array containing the translatable labels.
+         */
+        private function labels()
+        {
+        }
+        /**
+         * Filter items if they have a count of zero.
+         *
+         * @param array $item The item to potentially filter out.
+         *
+         * @return bool Whether or not the count is zero.
+         */
+        private function filter_items($item)
+        {
+        }
+        /**
+         * Returns a link for the overview of posts of a certain rank.
+         *
+         * @param WPSEO_Rank $rank The rank to return a link for.
+         *
+         * @return string The link that shows an overview of posts with that rank.
+         */
+        private function get_link_for_rank(\WPSEO_Rank $rank)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class adds columns to the taxonomy table.
+     */
+    class WPSEO_Taxonomy_Columns
+    {
+        /**
+         * The SEO analysis.
+         *
+         * @var WPSEO_Metabox_Analysis_SEO
+         */
+        private $analysis_seo;
+        /**
+         * The readability analysis.
+         *
+         * @var WPSEO_Metabox_Analysis_Readability
+         */
+        private $analysis_readability;
+        /**
+         * The current taxonomy.
+         *
+         * @var string
+         */
+        private $taxonomy;
+        /**
+         * WPSEO_Taxonomy_Columns constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Adds an SEO score column to the terms table, right after the description column.
+         *
+         * @param array $columns Current set columns.
+         *
+         * @return array
+         */
+        public function add_columns(array $columns)
+        {
+        }
+        /**
+         * Parses the column.
+         *
+         * @param string  $content     The current content of the column.
+         * @param string  $column_name The name of the column.
+         * @param integer $term_id     ID of requested taxonomy.
+         *
+         * @return string
+         */
+        public function parse_column($content, $column_name, $term_id)
+        {
+        }
+        /**
+         * Retrieves the taxonomy from the $_GET variable.
+         *
+         * @return string The current taxonomy.
+         */
+        public function get_current_taxonomy()
+        {
+        }
+        /**
+         * Returns the posted/get taxonomy value if it is set.
+         *
+         * @return string|null
+         */
+        private function get_taxonomy()
+        {
+        }
+        /**
+         * Parses the value for the score column.
+         *
+         * @param integer $term_id ID of requested term.
+         *
+         * @return string
+         */
+        private function get_score_value($term_id)
+        {
+        }
+        /**
+         * Parses the value for the readability score column.
+         *
+         * @param int $term_id ID of the requested term.
+         *
+         * @return string The HTML for the readability score indicator.
+         */
+        private function get_score_readability_value($term_id)
+        {
+        }
+        /**
+         * Creates an icon by the given values.
+         *
+         * @param WPSEO_Rank $rank  The ranking object.
+         * @param string     $title Optional. The title to show. Defaults to the rank label.
+         *
+         * @return string The HTML for a score icon.
+         */
+        private function create_score_icon(\WPSEO_Rank $rank, $title = '')
+        {
+        }
+        /**
+         * Check if the taxonomy is indexable.
+         *
+         * @param mixed $term The current term.
+         *
+         * @return bool Whether or not the term is indexable.
+         */
+        private function is_indexable($term)
+        {
+        }
+        /**
+         * Returns the focus keyword if this is set, otherwise it will give the term name.
+         *
+         * @param stdClass|WP_Term $term The current term.
+         *
+         * @return string
+         */
+        private function get_focus_keyword($term)
+        {
+        }
+        /**
+         * Checks if a taxonomy is being added via a POST method. If not, it defaults to a GET request.
+         *
+         * @return int
+         */
+        private function get_taxonomy_input_type()
+        {
+        }
+        /**
+         * Wraps the WPSEO_Metabox check to determine whether the metabox should be displayed either by
+         * choice of the admin or because the taxonomy is not public.
+         *
+         * @since 7.0
+         *
+         * @param string $taxonomy Optional. The taxonomy to test, defaults to the current taxonomy.
+         *
+         * @return bool Whether or not the meta box (and associated columns etc) should be hidden.
+         */
+        private function display_metabox($taxonomy = \null)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_Taxonomy_Tab.
+     *
+     * Contains the basics for each class extending this one.
+     */
+    abstract class WPSEO_Taxonomy_Fields
+    {
+        /**
+         * The current term data.
+         *
+         * @var stdClass
+         */
+        protected $term;
+        /**
+         * Setting the class properties.
+         *
+         * @param stdClass $term The current term.
+         */
+        public function __construct($term)
+        {
+        }
+        /**
+         * This method should return the fields.
+         *
+         * @return array
+         */
+        public abstract function get();
+        /**
+         * Returns array with the field data.
+         *
+         * @param string       $label       The label displayed before the field.
+         * @param string       $description Description which will explain the field.
+         * @param string       $type        The field type, for example: input, select.
+         * @param string|array $options     Optional. Array with additional options.
+         * @param bool         $hide        Should the field be hidden.
+         *
+         * @return array
+         */
+        protected function get_field_config($label, $description, $type = 'text', $options = '', $hide = \false)
+        {
+        }
+        /**
+         * Filter the hidden fields.
+         *
+         * @param array $fields Array with the form fields that has will be filtered.
+         *
+         * @return array
+         */
+        protected function filter_hidden_fields(array $fields)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class parses all the values for the general tab in the Yoast SEO settings metabox.
+     */
+    class WPSEO_Taxonomy_Content_Fields extends \WPSEO_Taxonomy_Fields
+    {
+        /**
+         * Returns array with the fields for the general tab.
+         *
+         * @return array
+         */
+        public function get()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class WPSEO_Taxonomy_Presenter.
+     */
+    class WPSEO_Taxonomy_Fields_Presenter
+    {
+        /**
+         * The taxonomy meta data for the current term.
+         *
+         * @var array
+         */
+        private $tax_meta;
+        /**
+         * Constructs the WPSEO_Taxonomy_Fields_Presenter class.
+         *
+         * @param stdClass $term The current term.
+         */
+        public function __construct($term)
+        {
+        }
+        /**
+         * Displaying the form fields.
+         *
+         * @param array $fields Array with the fields that will be displayed.
+         */
+        public function html(array $fields)
+        {
+        }
+        /**
+         * Create a row in the form table.
+         *
+         * @param string $field_name          Variable the row controls.
+         * @param array  $field_configuration Array with the field configuration.
+         */
+        private function form_row($field_name, array $field_configuration)
+        {
+        }
+        /**
+         * Generates the html for the given field config.
+         *
+         * @param string $field_type  The fieldtype, e.g: text, checkbox, etc.
+         * @param string $field_name  The name of the field.
+         * @param string $field_value The value of the field.
+         * @param array  $options     Array with additional options.
+         *
+         * @return string
+         */
+        private function get_field($field_type, $field_name, $field_value, array $options)
+        {
+        }
+        /**
+         * Getting the value for given field_name.
+         *
+         * @param string $field_name The fieldname to get the value for.
+         *
+         * @return string
+         */
+        private function get_field_value($field_name)
+        {
+        }
+        /**
+         * Getting the class attributes if $options contains a class key.
+         *
+         * @param array $options The array with field options.
+         *
+         * @return string
+         */
+        private function get_class(array $options)
+        {
+        }
+        /**
+         * Getting the label HTML.
+         *
+         * @param string $label      The label value.
+         * @param string $field_name The target field.
+         *
+         * @return string
+         */
+        private function get_label($label, $field_name)
+        {
+        }
+        /**
+         * Returns the HTML for the row which contains label, help and the field.
+         *
+         * @param string                 $label The html for the label if there was a label set.
+         * @param WPSEO_Admin_Help_Panel $help  The help panel to render in this row.
+         * @param string                 $field The html for the field.
+         *
+         * @return string
+         */
+        private function parse_row($label, \WPSEO_Admin_Help_Panel $help, $field)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class generates the metabox on the edit term page.
+     */
+    class WPSEO_Taxonomy_Metabox
+    {
+        /**
+         * The term currently being edited.
+         *
+         * @var WP_Term
+         */
+        private $term;
+        /**
+         * The term's taxonomy.
+         *
+         * @var string
+         */
+        private $taxonomy;
+        /**
+         * Renders the taxonomy field.
+         *
+         * @var WPSEO_Taxonomy_Fields_Presenter
+         */
+        private $taxonomy_tab_content;
+        /**
+         * Renders the taxonomy social fields.
+         *
+         * @var WPSEO_Taxonomy_Social_Fields
+         */
+        private $taxonomy_social_fields;
+        /**
+         * This class adds the Social tab to the Yoast SEO metabox and makes sure the settings are saved.
+         *
+         * @var WPSEO_Social_Admin
+         */
+        private $social_admin;
+        /**
+         * The constructor.
+         *
+         * @param string   $taxonomy The taxonomy.
+         * @param stdClass $term     The term.
+         */
+        public function __construct($taxonomy, $term)
+        {
+        }
+        /**
+         * Shows the Yoast SEO metabox for the term.
+         */
+        public function display()
+        {
+        }
+        /**
+         * Returns the relevant metabox sections for the current view.
+         *
+         * @return WPSEO_Metabox_Section[]
+         */
+        private function get_content_sections()
+        {
+        }
+        /**
+         * Returns the metabox section for the content analysis.
+         *
+         * @return WPSEO_Metabox_Section
+         */
+        private function get_seo_meta_section()
+        {
+        }
+        /**
+         * Returns the metabox section for the readability analysis.
+         *
+         * @return WPSEO_Metabox_Section
+         */
+        private function get_readability_meta_section()
+        {
+        }
+        /**
+         * Returns the metabox section for the social settings.
+         *
+         * @return WPSEO_Metabox_Section
+         */
+        private function get_social_meta_section()
+        {
+        }
+        /**
+         * Creates a social network tab.
+         *
+         * @param string $name    The name of the tab.
+         * @param string $network The network of the tab.
+         * @param string $icon    The icon for the tab.
+         * @param string $label   The label for the tab.
+         *
+         * @return WPSEO_Metabox_Tab A WPSEO_Metabox_Tab instance.
+         */
+        private function create_collapsible($name, $network, $icon, $label)
+        {
+        }
+        /**
+         * Hides the given output when rendered to HTML.
+         *
+         * @param string $tab_content The social tab content.
+         *
+         * @return string The content.
+         */
+        private function hide_form($tab_content)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class parses all the values for the general tab in the Yoast SEO settings metabox.
+     */
+    class WPSEO_Taxonomy_Settings_Fields extends \WPSEO_Taxonomy_Fields
+    {
+        /**
+         * Options array for the no-index options, including translated labels.
+         *
+         * @var array
+         */
+        private $no_index_options = [];
+        /**
+         * The WPSEO_Taxonomy_Settings_Fields class constructor.
+         *
+         * @param stdClass $term The current taxonomy.
+         */
+        public function __construct($term)
+        {
+        }
+        /**
+         * Returns array with the fields for the General tab.
+         *
+         * @return array Fields to be used on the General tab.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Translate options text strings for use in the select fields.
+         *
+         * {@internal IMPORTANT: if you want to add a new string (option) somewhere, make sure you add
+         * that array key to the main options definition array in the class WPSEO_Taxonomy_Meta() as well!!!!}}
+         */
+        private function translate_meta_options()
+        {
+        }
+        /**
+         * Getting the data for the noindex fields.
+         *
+         * @return array Array containing the no_index options.
+         */
+        private function get_noindex_options()
+        {
+        }
+        /**
+         * Retrieve the taxonomies plural for use in sentences.
+         *
+         * @return object Object containing the taxonomy's labels.
+         */
+        private function get_taxonomy_labels()
+        {
+        }
+        /**
+         * Returns the current robot index value for the taxonomy
+         *
+         * @return string
+         */
+        private function get_robot_index()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * This class parses all the values for the social tab in the Yoast SEO settings metabox.
+     */
+    class WPSEO_Taxonomy_Social_Fields extends \WPSEO_Taxonomy_Fields
+    {
+        /**
+         * List of social networks.
+         *
+         * @var array
+         */
+        protected $networks;
+        /**
+         * Setting the class properties.
+         *
+         * @param stdClass|WP_Term $term The current taxonomy.
+         */
+        public function __construct($term)
+        {
+        }
+        /**
+         * When this method returns false, the social tab in the meta box will be hidden.
+         *
+         * @return bool
+         */
+        public function show_social()
+        {
+        }
+        /**
+         * Gets the social meta fields by social network for the taxonomy.
+         *
+         * @param string $network The social network for which to fetch the fields.
+         *
+         * @return array
+         */
+        public function get_by_network($network)
+        {
+        }
+        /**
+         * Returning the fields for the social media tab.
+         *
+         * @return array
+         */
+        public function get()
+        {
+        }
+        /**
+         * Getting array with the social networks.
+         *
+         * @return array
+         */
+        private function get_social_networks()
+        {
+        }
+        /**
+         * Returns array with the config fields for the social network.
+         *
+         * @param string $network    The name of the social network.
+         * @param string $label      The label for the social network.
+         * @param string $image_size The image dimensions.
+         *
+         * @return array
+         */
+        private function social_network($network, $label, $image_size)
+        {
+        }
+        /**
+         * Filter the social networks which are disabled in the configuration.
+         *
+         * @param array $social_networks Array with the social networks that have to be filtered.
+         *
+         * @return array
+         */
+        private function filter_social_networks(array $social_networks)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class that handles the edit boxes on taxonomy edit pages.
+     */
+    class WPSEO_Taxonomy
+    {
+        /**
+         * The current active taxonomy.
+         *
+         * @var string
+         */
+        private $taxonomy = '';
+        /**
+         * Holds the metabox SEO analysis instance.
+         *
+         * @var WPSEO_Metabox_Analysis_SEO
+         */
+        private $analysis_seo;
+        /**
+         * Holds the metabox readability analysis instance.
+         *
+         * @var WPSEO_Metabox_Analysis_Readability
+         */
+        private $analysis_readability;
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Add hooks late enough for taxonomy object to be available for checks.
+         */
+        public function admin_init()
+        {
+        }
+        /**
+         * Show the SEO inputs for term.
+         *
+         * @param stdClass|WP_Term $term Term to show the edit boxes for.
+         */
+        public function term_metabox($term)
+        {
+        }
+        /**
+         * Renders the content for the internet explorer metabox.
+         */
+        private function show_internet_explorer_notice()
+        {
+        }
+        /**
+         * Queue assets for taxonomy screens.
+         *
+         * @since 1.5.0
+         */
+        public function admin_enqueue_scripts()
+        {
+        }
+        /**
+         * Update the taxonomy meta data on save.
+         *
+         * @param int    $term_id  ID of the term to save data for.
+         * @param int    $tt_id    The taxonomy_term_id for the term.
+         * @param string $taxonomy The taxonomy the term belongs to.
+         */
+        public function update_term($term_id, $tt_id, $taxonomy)
+        {
+        }
+        /**
+         * Determines if the given meta value key is disabled.
+         *
+         * @param string $key The key of the meta value.
+         * @return bool Whether the given meta value key is disabled.
+         */
+        public function is_meta_value_disabled($key)
+        {
+        }
+        /**
+         * Allows HTML in descriptions.
+         */
+        public function custom_category_descriptions_allow_html()
+        {
+        }
+        /**
+         * Output the WordPress editor.
+         */
+        public function custom_category_description_editor()
+        {
+        }
+        /**
+         * Pass variables to js for use with the term-scraper.
+         *
+         * @return array
+         */
+        public function localize_term_scraper_script()
+        {
+        }
+        /**
+         * Pass some variables to js for replacing variables.
+         */
+        public function localize_replace_vars_script()
+        {
+        }
+        /**
+         * Determines the scope based on the current taxonomy.
+         * This can be used by the replacevar plugin to determine if a replacement needs to be executed.
+         *
+         * @return string String decribing the current scope.
+         */
+        private function determine_scope()
+        {
+        }
+        /**
+         * Determines if a given page is the term overview page.
+         *
+         * @param string $page The string to check for the term overview page.
+         *
+         * @return bool
+         */
+        public static function is_term_overview($page)
+        {
+        }
+        /**
+         * Determines if a given page is the term edit page.
+         *
+         * @param string $page The string to check for the term edit page.
+         *
+         * @return bool
+         */
+        public static function is_term_edit($page)
+        {
+        }
+        /**
+         * Retrieves a template.
+         * Check if metabox for current taxonomy should be displayed.
+         *
+         * @return bool
+         */
+        private function show_metabox()
+        {
+        }
+        /**
+         * Getting the taxonomy from the URL.
+         *
+         * @return string
+         */
+        private function get_taxonomy()
+        {
+        }
+        /**
+         * Prepares the replace vars for localization.
+         *
+         * @return array The replacement variables.
+         */
+        private function get_replace_vars()
+        {
+        }
+        /**
+         * Prepares the recommended replace vars for localization.
+         *
+         * @return array The recommended replacement variables.
+         */
+        private function get_recommended_replace_vars()
+        {
+        }
+        /**
+         * Adds custom category description editor.
+         * Needs a hook that runs before the description field. Prior to WP version 4.5 we need to use edit_form as
+         * term_edit_form_top was introduced in WP 4.5. This can be removed after <4.5 is no longer supported.
+         *
+         * @return {void}
+         */
+        private function insert_description_field_editor()
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Adds shortcode support to category descriptions.
+         *
+         * @deprecated 7.9.0
+         * @codeCoverageIgnore
+         *
+         * @param string $desc String to add shortcodes in.
+         *
+         * @return string Content with shortcodes filtered out.
+         */
+        public function custom_category_descriptions_add_shortcode_support($desc)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Tracking
+     */
+    /**
+     * Represents the default data.
+     */
+    class WPSEO_Tracking_Default_Data implements \WPSEO_Collection
+    {
+        /**
+         * Returns the collection data.
+         *
+         * @return array The collection data.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Returns the WordPress version.
+         *
+         * @return string The version.
+         */
+        protected function get_wordpress_version()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Tracking
+     */
+    /**
+     * Represents the plugin data.
+     */
+    class WPSEO_Tracking_Plugin_Data implements \WPSEO_Collection
+    {
+        /**
+         * Returns the collection data.
+         *
+         * @return array The collection data.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Returns all plugins.
+         *
+         * @return array The formatted plugins.
+         */
+        protected function get_plugin_data()
+        {
+        }
+        /**
+         * Formats the plugin array.
+         *
+         * @param array $plugin The plugin details.
+         *
+         * @return array The formatted array.
+         */
+        protected function format_plugin(array $plugin)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Tracking
+     */
+    /**
+     * Represents the server data.
+     */
+    class WPSEO_Tracking_Server_Data implements \WPSEO_Collection
+    {
+        /**
+         * Returns the collection data.
+         *
+         * @return array The collection data.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Returns the values with server details.
+         *
+         * @return array Array with the value.
+         */
+        protected function get_server_data()
+        {
+        }
+        /**
+         * Returns details about the curl version.
+         *
+         * @return array|null The curl info. Or null when curl isn't available..
+         */
+        protected function get_curl_info()
+        {
+        }
+        /**
+         * Returns a list with php extensions.
+         *
+         * @return array Returns the state of the php extensions.
+         */
+        protected function get_php_extensions()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Tracking
+     */
+    /**
+     * Collects anonymized settings data.
+     */
+    class WPSEO_Tracking_Settings_Data implements \WPSEO_Collection
+    {
+        /**
+         * The options that need to be anonymized before they can be sent elsewhere.
+         *
+         * @var array $anonymous_settings All of the option_names which need to be
+         * anonymized before they can be sent elsewhere.
+         */
+        private $anonymous_settings = ['baiduverify', 'googleverify', 'msverify', 'yandexverify', 'myyoast-oauth', 'website_name', 'alternate_website_name', 'company_logo', 'company_name', 'person_name', 'person_logo', 'person_logo_id', 'company_logo_id', 'facebook_site', 'instagram_url', 'linkedin_url', 'myspace_url', 'og_default_image', 'og_default_image_id', 'og_frontpage_title', 'og_frontpage_desc', 'og_frontpage_image', 'og_frontpage_image_id', 'pinterest_url', 'pinterestverify', 'twitter_site', 'youtube_url', 'wikipedia_url', 'fbadminapp'];
+        /**
+         * The options we want to track.
+         *
+         * @var array $include_list The option_names for the options we want to track.
+         */
+        private $include_list = ['ms_defaults_set', 'version', 'disableadvanced_meta', 'onpage_indexability', 'baiduverify', 'googleverify', 'msverify', 'yandexverify', 'site_type', 'has_multiple_authors', 'environment_type', 'content_analysis_active', 'keyword_analysis_active', 'enable_admin_bar_menu', 'enable_cornerstone_content', 'enable_xml_sitemap', 'enable_text_link_counter', 'show_onboarding_notice', 'first_activated_on', 'myyoast-oauth', 'website_name', 'alternate_website_name', 'company_logo', 'company_name', 'company_or_person', 'person_name', 'title_test', 'forcerewritetitle', 'separator', 'title-home-wpseo', 'title-author-wpseo', 'title-archive-wpseo', 'title-search-wpseo', 'title-404-wpseo', 'metadesc-home-wpseo', 'metadesc-author-wpseo', 'metadesc-archive-wpseo', 'rssbefore', 'rssafter', 'noindex-author-wpseo', 'noindex-author-noposts-wpseo', 'noindex-archive-wpseo', 'disable-author', 'disable-date', 'disable-post_format', 'disable-attachment', 'is-media-purge-relevant', 'breadcrumbs-404crumb', 'breadcrumbs-display-blog-page', 'breadcrumbs-boldlast', 'breadcrumbs-archiveprefix', 'breadcrumbs-enable', 'breadcrumbs-home', 'breadcrumbs-prefix', 'breadcrumbs-searchprefix', 'breadcrumbs-sep', 'person_logo', 'person_logo_id', 'company_logo_id', 'company_or_person_user_id', 'stripcategorybase', 'noindex-post', 'showdate-post', 'display-metabox-pt-post', 'noindex-page', 'showdate-page', 'display-metabox-pt-page', 'noindex-attachment', 'showdate-attachment', 'display-metabox-pt-attachment', 'display-metabox-tax-category', 'noindex-tax-category', 'display-metabox-tax-post_tag', 'noindex-tax-post_tag', 'display-metabox-tax-post_format', 'noindex-tax-post_format', 'taxonomy-category-ptparent', 'taxonomy-post_tag-ptparent', 'taxonomy-post_format-ptparent', 'breadcrumbs-blog-remove', 'hideeditbox-post', 'hideeditbox-page', 'hideeditbox-attachment', 'hideeditbox-tax-category', 'hideeditbox-tax-post_tag', 'hideeditbox-tax-post_format', 'facebook_site', 'instagram_url', 'linkedin_url', 'myspace_url', 'og_default_image', 'og_default_image_id', 'og_frontpage_title', 'og_frontpage_desc', 'og_frontpage_image', 'og_frontpage_image_id', 'opengraph', 'pinterest_url', 'pinterestverify', 'twitter', 'twitter_site', 'twitter_card_type', 'youtube_url', 'wikipedia_url', 'fbadminapp'];
+        /**
+         * Returns the collection data.
+         *
+         * @return array The collection data.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Anonimizes the WPSEO_Options array by replacing all $anonymous_settings values to 'used'.
+         *
+         * @param array $settings The settings.
+         * @return array The anonymized settings.
+         */
+        private function anonymize_settings($settings)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Tracking
+     */
+    /**
+     * Represents the theme data.
+     */
+    class WPSEO_Tracking_Theme_Data implements \WPSEO_Collection
+    {
+        /**
+         * Returns the collection data.
+         *
+         * @return array The collection data.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Returns the name of the parent theme.
+         *
+         * @param WP_Theme $theme The theme object.
+         *
+         * @return null|string The name of the parent theme or null.
+         */
+        private function get_parent_theme(\WP_Theme $theme)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Tracking
+     */
+    /**
+     * This class handles the tracking routine.
+     */
+    class WPSEO_Tracking implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The tracking option name.
+         *
+         * @var string
+         */
+        protected $option_name = 'wpseo_tracking_last_request';
+        /**
+         * The limit for the option.
+         *
+         * @var int
+         */
+        protected $threshold = 0;
+        /**
+         * The endpoint to send the data to.
+         *
+         * @var string
+         */
+        protected $endpoint = '';
+        /**
+         * The current time.
+         *
+         * @var int
+         */
+        private $current_time;
+        /**
+         * WPSEO_Tracking constructor.
+         *
+         * @param string $endpoint  The endpoint to send the data to.
+         * @param int    $threshold The limit for the option.
+         */
+        public function __construct($endpoint, $threshold)
+        {
+        }
+        /**
+         * Registers all hooks to WordPress.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Schedules a new sending of the tracking data after a WordPress core update.
+         *
+         * @param bool|WP_Upgrader $upgrader Optional. WP_Upgrader instance or false.
+         *                                   Depending on context, it might be a Theme_Upgrader,
+         *                                   Plugin_Upgrader, Core_Upgrade, or Language_Pack_Upgrader.
+         *                                   instance. Default false.
+         * @param array            $data     Array of update data.
+         *
+         * @return void
+         */
+        public function schedule_tracking_data_sending($upgrader = \false, $data = [])
+        {
+        }
+        /**
+         * Sends the tracking data.
+         *
+         * @param bool $force Whether to send the tracking data ignoring the two
+         *                    weeks time treshhold. Default false.
+         */
+        public function send($force = \false)
+        {
+        }
+        /**
+         * Determines whether to send the tracking data.
+         *
+         * Returns false if tracking is disabled or the current page is one of the
+         * admin plugins pages. Returns true when there's no tracking data stored or
+         * the data was sent more than two weeks ago. The two weeks interval is set
+         * when instantiating the class.
+         *
+         * @param bool $ignore_time_treshhold Whether to send the tracking data ignoring
+         *                                    the two weeks time treshhold. Default false.
+         *
+         * @return bool True when tracking data should be sent.
+         */
+        protected function should_send_tracking($ignore_time_treshhold = \false)
+        {
+        }
+        /**
+         * Checks if the given amount of seconds exceeds the set threshold.
+         *
+         * @param int $seconds The amount of seconds to check.
+         *
+         * @return bool True when seconds is bigger than threshold.
+         */
+        protected function exceeds_treshhold($seconds)
+        {
+        }
+        /**
+         * Returns the collector for collecting the data.
+         *
+         * @return WPSEO_Collector The instance of the collector.
+         */
+        public function get_collector()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Views
+     */
+    /**
+     * Class Yoast_View_Utils.
+     */
+    class Yoast_View_Utils
+    {
+        /**
+         * Form to use.
+         *
+         * @var Yoast_Form
+         */
+        protected $form;
+        /**
+         * Yoast_View_Utils constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Shows the search results help question mark and help section.
+         *
+         * Used for all the Help sections for indexable objects like post types, taxonomies, or archives.
+         *
+         * @param string|object $post_type        The post type to show the search results help for.
+         * @param string        $help_text_switch Switch the help text to one that's more appropriate
+         *                                        for the indexable object type the help section is for.
+         *
+         * @return object The help panel instance.
+         */
+        public function search_results_setting_help($post_type, $help_text_switch = '')
+        {
+        }
+        /**
+         * Shows the search appearance settings for a post type.
+         *
+         * @param string|object $post_type   The post type to show the search appearance settings for.
+         * @param bool          $paper_style Whether or not the paper style should be shown.
+         *
+         * @return void
+         */
+        public function show_post_type_settings($post_type, $paper_style = \false)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class representing a feature toggle.
+     */
+    class Yoast_Feature_Toggle
+    {
+        /**
+         * Feature toggle identifier.
+         *
+         * @var string
+         */
+        protected $name = '';
+        /**
+         * Name of the setting the feature toggle is associated with.
+         *
+         * @var string
+         */
+        protected $setting = '';
+        /**
+         * Feature toggle label.
+         *
+         * @var string
+         */
+        protected $label = '';
+        /**
+         * URL to learn more about the feature.
+         *
+         * @var string
+         */
+        protected $read_more_url = '';
+        /**
+         * Label for the learn more link.
+         *
+         * @var string
+         */
+        protected $read_more_label = '';
+        /**
+         * Additional help content for the feature.
+         *
+         * @var string
+         */
+        protected $extra = '';
+        /**
+         * Value to specify the feature toggle order.
+         *
+         * @var string
+         */
+        protected $order = 100;
+        /**
+         * Constructor.
+         *
+         * Sets the feature toggle arguments.
+         *
+         * @param array $args {
+         *     Feature toggle arguments.
+         *
+         *     @type string $name            Required. Feature toggle identifier.
+         *     @type string $setting         Required. Name of the setting the feature toggle is associated with.
+         *     @type string $label           Required. Feature toggle label.
+         *     @type string $read_more_url   URL to learn more about the feature. Default empty string.
+         *     @type string $read_more_label Label for the learn more link. Default empty string.
+         *     @type string $extra           Additional help content for the feature. Default empty string.
+         *     @type int    $order           Value to specify the feature toggle order. A lower value indicates
+         *                                   a higher priority. Default 100.
+         * }
+         *
+         * @throws InvalidArgumentException Thrown when a required argument is missing.
+         */
+        public function __construct(array $args)
+        {
+        }
+        /**
+         * Magic isset-er.
+         *
+         * @param string $key Key to check whether a value for it is set.
+         *
+         * @return bool True if set, false otherwise.
+         */
+        public function __isset($key)
+        {
+        }
+        /**
+         * Magic getter.
+         *
+         * @param string $key Key to get the value for.
+         *
+         * @return mixed Value for the key, or null if not set.
+         */
+        public function __get($key)
+        {
+        }
+        /**
+         * Checks whether the feature for this toggle is enabled.
+         *
+         * @return bool True if the feature is enabled, false otherwise.
+         */
+        public function is_enabled()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class for managing feature toggles.
+     */
+    class Yoast_Feature_Toggles
+    {
+        /**
+         * Available feature toggles.
+         *
+         * @var array
+         */
+        protected $toggles;
+        /**
+         * Instance holder.
+         *
+         * @var self|null
+         */
+        protected static $instance = \null;
+        /**
+         * Gets the main feature toggles manager instance used.
+         *
+         * This essentially works like a Singleton, but for its drawbacks does not restrict
+         * instantiation otherwise.
+         *
+         * @return self Main instance.
+         */
+        public static function instance()
+        {
+        }
+        /**
+         * Gets all available feature toggles.
+         *
+         * @return array List of sorted Yoast_Feature_Toggle instances.
+         */
+        public function get_all()
+        {
+        }
+        /**
+         * Loads the available feature toggles.
+         *
+         * Also ensures that the toggles are all Yoast_Feature_Toggle instances and sorted by their order value.
+         *
+         * @return array List of sorted Yoast_Feature_Toggle instances.
+         */
+        protected function load_toggles()
+        {
+        }
+        /**
+         * Ensures that the passed value is a Yoast_Feature_Toggle.
+         *
+         * @param Yoast_Feature_Toggle|object|array $toggle_data Feature toggle instance, or raw object or array
+         *                                                       containing feature toggle data.
+         * @return Yoast_Feature_Toggle Feature toggle instance based on $toggle_data.
+         */
+        protected function ensure_toggle($toggle_data)
+        {
+        }
+        /**
+         * Callback for sorting feature toggles by their order.
+         *
+         * @param Yoast_Feature_Toggle $feature_a Feature A.
+         * @param Yoast_Feature_Toggle $feature_b Feature B.
+         *
+         * @return bool Whether order for feature A is bigger than for feature B.
+         */
+        protected function sort_toggles_callback(\Yoast_Feature_Toggle $feature_a, \Yoast_Feature_Toggle $feature_b)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Class for generating a html select.
+     */
+    class Yoast_Input_Select
+    {
+        /**
+         * The id attribute value.
+         *
+         * @var string
+         */
+        private $select_id;
+        /**
+         * The name attribute value.
+         *
+         * @var string
+         */
+        private $select_name;
+        /**
+         * Additional select attributes.
+         *
+         * @var array
+         */
+        private $select_attributes = [];
+        /**
+         * Array with the options to parse.
+         *
+         * @var array
+         */
+        private $select_options;
+        /**
+         * The current selected option.
+         *
+         * @var string
+         */
+        private $selected_option;
+        /**
+         * Constructor.
+         *
+         * @param string $select_id       ID for the select.
+         * @param string $select_name     Name for the select.
+         * @param array  $select_options  Array with the options to parse.
+         * @param string $selected_option The current selected option.
+         */
+        public function __construct($select_id, $select_name, array $select_options, $selected_option)
+        {
+        }
+        /**
+         * Print the rendered view.
+         */
+        public function output_html()
+        {
+        }
+        /**
+         * Return the rendered view.
+         *
+         * @return string
+         */
+        public function get_html()
+        {
+        }
+        /**
+         * Add an attribute to the attributes property.
+         *
+         * @param string $attribute The name of the attribute to add.
+         * @param string $value     The value of the attribute.
+         */
+        public function add_attribute($attribute, $value)
+        {
+        }
+        /**
+         * Return the set fields for the select.
+         *
+         * @return array
+         */
+        private function get_select_values()
+        {
+        }
+        /**
+         * Return the attribute string, when there are attributes set.
+         *
+         * @return string
+         */
+        private function get_attributes()
+        {
+        }
+        /**
+         * Get an attribute from the attributes.
+         *
+         * @param string $value     The value of the attribute.
+         * @param string $attribute The attribute to look for.
+         */
+        private function parse_attribute(&$value, $attribute)
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin
+     */
+    /**
+     * Generate the HTML for a form element.
+     */
+    interface Yoast_Form_Element
+    {
+        /**
+         * Return the HTML for the form element.
+         *
+         * @return string
+         */
+        public function get_html();
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Watchers
+     */
+    /**
+     * Class WPSEO_Slug_Change_Watcher.
+     */
+    class WPSEO_Slug_Change_Watcher implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * Registers all hooks to WordPress.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Enqueues the quick edit handler.
+         *
+         * @return void
+         */
+        public function enqueue_assets()
+        {
+        }
+        /**
+         * Shows an message when a post is about to get trashed.
+         *
+         * @param integer $post_id The current post ID.
+         *
+         * @return void
+         */
+        public function detect_post_trash($post_id)
+        {
+        }
+        /**
+         * Shows an message when a post is about to get trashed.
+         *
+         * @param integer $post_id The current post ID.
+         *
+         * @return void
+         */
+        public function detect_post_delete($post_id)
+        {
+        }
+        /**
+         * Shows a message when a term is about to get deleted.
+         *
+         * @param integer $term_id The term ID that will be deleted.
+         *
+         * @return void
+         */
+        public function detect_term_delete($term_id)
+        {
+        }
+        /**
+         * Checks if the post is viewable.
+         *
+         * @param string $post_id The post id to check.
+         *
+         * @return bool Whether the post is viewable or not.
+         */
+        protected function is_post_viewable($post_id)
+        {
+        }
+        /**
+         * Checks if the term is viewable.
+         *
+         * @param string $term_id The term ID to check.
+         *
+         * @return bool Whether the term is viewable or not.
+         */
+        protected function is_term_viewable($term_id)
+        {
+        }
+        /**
+         * Gets the taxonomy label to use for a term.
+         *
+         * @param int $term_id The term ID.
+         *
+         * @return string The taxonomy's singular label.
+         */
+        protected function get_taxonomy_label_for_term($term_id)
+        {
+        }
+        /**
+         * Retrieves the singular post type label.
+         *
+         * @param string $post_type Post type to retrieve label from.
+         *
+         * @return string The singular post type name.
+         */
+        protected function get_post_type_label($post_type)
+        {
+        }
+        /**
+         * Checks whether the given post status is visible or not.
+         *
+         * @param string $post_status The post status to check.
+         *
+         * @return bool Whether or not the post is visible.
+         */
+        protected function check_visible_post_status($post_status)
+        {
+        }
+        /**
+         * Returns the message around changed URLs.
+         *
+         * @param string $first_sentence The first sentence of the notification.
+         *
+         * @return string The full notification.
+         */
+        protected function get_message($first_sentence)
+        {
+        }
+        /**
+         * Adds a notification to be shown on the next page request since posts are updated in an ajax request.
+         *
+         * @param string $message The message to add to the notification.
+         *
+         * @return void
+         */
+        protected function add_notification($message)
+        {
+        }
+    }
+}
+namespace Yoast\WP\Free\Dependency_Injection {
+    /**
+     * This class is responsible for compiling the dependency injection container.
+     */
+    class Container_Compiler
+    {
+        /**
+         * Compiles the dependency injection container.
+         *
+         * @param boolean $debug If false the container will only be re-compiled if it does not yet already exist.
+         *
+         * @throws \Exception If compiling the container fails.
+         *
+         * @return void
+         */
+        public static function compile($debug)
+        {
+        }
+    }
+    /**
+     * This class is mostly a direct copy-paste of the symfony PhpFileLoader class.
+     * It's been adapted to allow automatic discovery based on not just PSR-4 but also the Yoast standards.
+     */
+    class Custom_Loader extends \Symfony\Component\DependencyInjection\Loader\PhpFileLoader
+    {
+        /**
+         * Custom_Loader constructor.
+         *
+         * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The ContainerBuilder to load classes for.
+         */
+        public function __construct(\Symfony\Component\DependencyInjection\ContainerBuilder $container)
+        {
+        }
+        /**
+         * Transforms a path to a class name using the class map.
+         *
+         * @param string $path The path of the class.
+         *
+         * @return bool|string The classname.
+         */
+        private function getClassFromClassMap($path)
+        {
+        }
+        /**
+         * Registers a set of classes as services using PSR-4 for discovery.
+         *
+         * @param \Symfony\Component\DependencyInjection\Definition $prototype A definition to use as template.
+         * @param string                                            $namespace The namespace prefix of classes
+         *                                                                     in the scanned directory.
+         * @param string                                            $resource  The directory to look for classes,
+         *                                                                     glob-patterns allowed.
+         * @param string                                            $exclude   A globed path of files to exclude.
+         *
+         * @throws InvalidArgumentException If invalid arguments are supplied.
+         *
+         * @return void
+         */
+        public function registerClasses(\Symfony\Component\DependencyInjection\Definition $prototype, $namespace, $resource, $exclude = null)
+        {
+        }
+        /**
+         * Registers a definition in the container with its instanceof-conditionals.
+         *
+         * @param string                                            $id         The ID of the definition.
+         * @param \Symfony\Component\DependencyInjection\Definition $definition The definition.
+         *
+         * @throws InvalidArgumentException If invalid arguments were supplied.
+         *
+         * @return void
+         */
+        protected function setDefinition($id, \Symfony\Component\DependencyInjection\Definition $definition)
+        {
+        }
+        /**
+         * Finds classes based on a given pattern and exclude pattern.
+         *
+         * @param string $namespace The namespace prefix of classes in the scanned directory.
+         * @param string $pattern   The directory to look for classes, glob-patterns allowed.
+         * @param string $exclude   A globed path of files to exclude.
+         *
+         * @throws InvalidArgumentException If invalid arguments were supplied.
+         *
+         * @return array The found classes.
+         */
+        private function findClasses($namespace, $pattern, $exclude)
+        {
+        }
+    }
+    /**
+     * A pass is a step in the compilation process of the container.
+     *
+     * This step will automatically ensure all classes implementing the Integration interface
+     * are registered with the Loader class.
+     */
+    class Loader_Pass implements \Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface
+    {
+        /**
+         * Checks all definitions to ensure all classes implementing the Integration interface
+         * are registered with the Loader class.
+         *
+         * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container.
+         */
+        public function process(\Symfony\Component\DependencyInjection\ContainerBuilder $container)
+        {
+        }
+        /**
+         * Processes a definition in the container.
+         *
+         * @param \Symfony\Component\DependencyInjection\Definition $definition        The definition to process.
+         * @param \Symfony\Component\DependencyInjection\Definition $loader_definition The loader definition.
+         */
+        private function process_definition(\Symfony\Component\DependencyInjection\Definition $definition, \Symfony\Component\DependencyInjection\Definition $loader_definition)
+        {
+        }
+    }
+}
+namespace {
+    /**
      * WPSEO plugin file.
      *
      * @package WPSEO\Frontend
@@ -1262,18 +20544,6 @@ namespace {
         public function publisher()
         {
         }
-    }
-    /**
-     * An interface for registering integrations with WordPress.
-     */
-    interface WPSEO_WordPress_Integration
-    {
-        /**
-         * Registers all hooks to WordPress.
-         *
-         * @return void
-         */
-        public function register_hooks();
     }
     /**
      * WPSEO plugin file.
@@ -5092,6 +24362,250 @@ namespace {
      * @package WPSEO
      */
     /**
+     * Class for the Yoast SEO admin bar menu.
+     */
+    class WPSEO_Admin_Bar_Menu implements \WPSEO_WordPress_Integration
+    {
+        /**
+         * The identifier used for the menu.
+         *
+         * @var string
+         */
+        const MENU_IDENTIFIER = 'wpseo-menu';
+        /**
+         * The identifier used for the Keyword Research submenu.
+         *
+         * @var string
+         */
+        const KEYWORD_RESEARCH_SUBMENU_IDENTIFIER = 'wpseo-kwresearch';
+        /**
+         * The identifier used for the Analysis submenu.
+         *
+         * @var string
+         */
+        const ANALYSIS_SUBMENU_IDENTIFIER = 'wpseo-analysis';
+        /**
+         * The identifier used for the Settings submenu.
+         *
+         * @var string
+         */
+        const SETTINGS_SUBMENU_IDENTIFIER = 'wpseo-settings';
+        /**
+         * The identifier used for the Network Settings submenu.
+         *
+         * @var string
+         */
+        const NETWORK_SETTINGS_SUBMENU_IDENTIFIER = 'wpseo-network-settings';
+        /**
+         * Asset manager instance.
+         *
+         * @var WPSEO_Admin_Asset_Manager
+         */
+        protected $asset_manager;
+        /**
+         * Constructor.
+         *
+         * Sets the asset manager to use.
+         *
+         * @param WPSEO_Admin_Asset_Manager $asset_manager Optional. Asset manager to use.
+         */
+        public function __construct(\WPSEO_Admin_Asset_Manager $asset_manager = \null)
+        {
+        }
+        /**
+         * Adds the admin bar menu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        public function add_menu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Enqueues admin bar assets.
+         *
+         * @return void
+         */
+        public function enqueue_assets()
+        {
+        }
+        /**
+         * Registers the hooks.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Checks whether the requirements to use this class are met.
+         *
+         * @return bool True if requirements are met, false otherwise.
+         */
+        public function meets_requirements()
+        {
+        }
+        /**
+         * Adds the admin bar root menu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_root_menu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar keyword research submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_keyword_research_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar analysis submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_analysis_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar settings submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_settings_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar network settings submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_network_settings_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Gets the menu title markup.
+         *
+         * @return string Admin bar title markup.
+         */
+        protected function get_title()
+        {
+        }
+        /**
+         * Gets the current post if in a singular post context.
+         *
+         * @global string       $pagenow Current page identifier.
+         * @global WP_Post|null $post    Current post object, or null if none available.
+         *
+         * @return WP_Post|null Post object, or null if not in singular context.
+         */
+        protected function get_singular_post()
+        {
+        }
+        /**
+         * Gets the focus keyword for a given post.
+         *
+         * @param WP_Post $post Post object to get its focus keyword.
+         *
+         * @return string Focus keyword, or empty string if none available.
+         */
+        protected function get_post_focus_keyword($post)
+        {
+        }
+        /**
+         * Gets the score for a given post.
+         *
+         * @param WP_Post $post Post object to get its score.
+         *
+         * @return string Score markup, or empty string if none available.
+         */
+        protected function get_post_score($post)
+        {
+        }
+        /**
+         * Gets the current term if in a singular term context.
+         *
+         * @global string       $pagenow  Current page identifier.
+         * @global WP_Query     $wp_query Current query object.
+         * @global WP_Term|null $tag      Current term object, or null if none available.
+         *
+         * @return WP_Term|null Term object, or null if not in singular context.
+         */
+        protected function get_singular_term()
+        {
+        }
+        /**
+         * Gets the score for a given term.
+         *
+         * @param WP_Term $term Term object to get its score.
+         *
+         * @return string Score markup, or empty string if none available.
+         */
+        protected function get_term_score($term)
+        {
+        }
+        /**
+         * Takes the SEO score and makes the score icon for the admin bar for it.
+         *
+         * @param int $score The 0-100 rating of the score. Can be either SEO score or content score.
+         *
+         * @return string Score markup.
+         */
+        protected function get_score($score)
+        {
+        }
+        /**
+         * Gets the URL to the main admin settings page.
+         *
+         * @return string Admin settings page URL.
+         */
+        protected function get_settings_page_url()
+        {
+        }
+        /**
+         * Gets the notification counter if in a valid context.
+         *
+         * @return string Notification counter markup, or empty string if not available.
+         */
+        protected function get_notification_counter()
+        {
+        }
+        /**
+         * Gets the notification alert popup if in a valid context.
+         *
+         * @return string Notification alert popup markup, or empty string if not available.
+         */
+        protected function get_notification_alert_popup()
+        {
+        }
+        /**
+         * Checks whether the current user can manage options in the current context.
+         *
+         * @return bool True if capabilities are sufficient, false otherwise.
+         */
+        protected function can_manage_options()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO
+     */
+    /**
      * WPSEO_Custom_Fields.
      */
     class WPSEO_Custom_Fields
@@ -5567,411 +25081,6 @@ namespace {
          * Sets the options on first install for showing the installation notice and disabling of the settings pages.
          */
         public function set_first_install_options()
-        {
-        }
-    }
-    /**
-     * WPSEO plugin file.
-     *
-     * @package WPSEO\Internals
-     * @since   1.5.0
-     */
-    /**
-     * This class implements defaults and value validation for all WPSEO Post Meta values.
-     *
-     * Some guidelines:
-     * - To update a meta value, you can just use update_post_meta() with the full (prefixed) meta key
-     *   or the convenience method WPSEO_Meta::set_value() with the internal key.
-     *   All updates will be automatically validated.
-     *   Meta values will only be saved to the database if they are *not* the same as the default to
-     *   keep database load low.
-     * - To retrieve a WPSEO meta value, you **must** use WPSEO_Meta::get_value() which will always return a
-     *   string value, either the saved value or the default.
-     *   This method can also retrieve a complete set of WPSEO meta values for one specific post, see
-     *   the method documentation for the parameters.
-     *
-     * {@internal Unfortunately there isn't a filter available to hook into before returning the results
-     *            for get_post_meta(), get_post_custom() and the likes. That would have been the
-     *            preferred solution.}}
-     *
-     * {@internal All WP native get_meta() results get cached internally, so no need to cache locally.}}
-     * {@internal Use $key when the key is the WPSEO internal name (without prefix), $meta_key when it
-     *            includes the prefix.}}
-     */
-    class WPSEO_Meta
-    {
-        /**
-         * Prefix for all WPSEO meta values in the database.
-         *
-         * {@internal If at any point this would change, quite apart from an upgrade routine,
-         *            this also will need to be changed in the wpml-config.xml file.}}
-         *
-         * @var string
-         */
-        public static $meta_prefix = '_yoast_wpseo_';
-        /**
-         * Prefix for all WPSEO meta value form field names and ids.
-         *
-         * @var string
-         */
-        public static $form_prefix = 'yoast_wpseo_';
-        /**
-         * Allowed length of the meta description.
-         *
-         * @var int
-         */
-        public static $meta_length = 156;
-        /**
-         * Reason the meta description is not the default length.
-         *
-         * @var string
-         */
-        public static $meta_length_reason = '';
-        /**
-         * Meta box field definitions for the meta box form.
-         *
-         * {@internal
-         * - Titles, help texts, description text and option labels are added via a translate_meta_boxes() method
-         *   in the relevant child classes (WPSEO_Metabox and WPSEO_Social_admin) as they are only needed there.
-         * - Beware: even though the meta keys are divided into subsets, they still have to be uniquely named!}}
-         *
-         * @var array $meta_fields
-         *            Array format:
-         *                (required)       'type'          => (string) field type. i.e. text / textarea / checkbox /
-         *                                                    radio / select / multiselect / upload etc.
-         *                (required)       'title'         => (string) table row title.
-         *                (recommended)    'default_value' => (string|array) default value for the field.
-         *                                                    IMPORTANT:
-         *                                                    - if the field has options, the default has to be the
-         *                                                      key of one of the options.
-         *                                                    - if the field is a text field, the default **has** to be
-         *                                                      an empty string as otherwise the user can't save
-         *                                                      an empty value/delete the meta value.
-         *                                                    - if the field is a checkbox, the only valid values
-         *                                                      are 'on' or 'off'.
-         *                (semi-required)   'options'      => (array) options for used with (multi-)select and radio
-         *                                                    fields, required if that's the field type.
-         *                                                    key = (string) value which will be saved to db.
-         *                                                    value = (string) text label for the option.
-         *                (optional)        'autocomplete' => (bool) whether autocomplete is on for text fields,
-         *                                                    defaults to true.
-         *                (optional)        'class'        => (string) classname(s) to add to the actual <input> tag.
-         *                (optional)        'description'  => (string) description to show underneath the field.
-         *                (optional)        'expl'         => (string) label for a checkbox.
-         *                (optional)        'help'         => (string) help text to show on mouse over ? image.
-         *                (optional)        'rows'         => (int) number of rows for a textarea, defaults to 3.
-         *                (optional)        'placeholder'  => (string) Currently only used by add-on plugins.
-         *                (optional)        'serialized'   => (bool) whether the value is expected to be serialized,
-         *                                                     i.e. an array or object, defaults to false.
-         *                                                     Currently only used by add-on plugins.
-         */
-        public static $meta_fields = [
-            'general' => ['focuskw' => ['type' => 'hidden', 'title' => ''], 'title' => [
-                'type' => 'hidden',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '',
-                'description' => '',
-                // Translation added later.
-                'help' => '',
-            ], 'metadesc' => [
-                'type' => 'hidden',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '',
-                'class' => 'metadesc',
-                'rows' => 2,
-                'description' => '',
-                // Translation added later.
-                'help' => '',
-            ], 'linkdex' => ['type' => 'hidden', 'title' => 'linkdex', 'default_value' => '0', 'description' => ''], 'content_score' => ['type' => 'hidden', 'title' => 'content_score', 'default_value' => '0', 'description' => ''], 'is_cornerstone' => ['type' => 'hidden', 'title' => 'is_cornerstone', 'default_value' => 'false', 'description' => '']],
-            'advanced' => ['meta-robots-noindex' => [
-                'type' => 'select',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '0',
-                // = post-type default.
-                'options' => [
-                    '0' => '',
-                    // Post type default - translation added later.
-                    '2' => '',
-                    // Index - translation added later.
-                    '1' => '',
-                ],
-            ], 'meta-robots-nofollow' => [
-                'type' => 'radio',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '0',
-                // = follow.
-                'options' => [
-                    '0' => '',
-                    // Follow - translation added later.
-                    '1' => '',
-                ],
-            ], 'meta-robots-adv' => [
-                'type' => 'multiselect',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '',
-                'description' => '',
-                // Translation added later.
-                'options' => [
-                    'noimageindex' => '',
-                    // Translation added later.
-                    'noarchive' => '',
-                    // Translation added later.
-                    'nosnippet' => '',
-                ],
-            ], 'bctitle' => [
-                'type' => 'text',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '',
-                'description' => '',
-            ], 'canonical' => [
-                'type' => 'text',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '',
-                'description' => '',
-            ], 'redirect' => [
-                'type' => 'text',
-                'title' => '',
-                // Translation added later.
-                'default_value' => '',
-                'description' => '',
-            ]],
-            'social' => [],
-            /* Fields we should validate & save, but not show on any form. */
-            'non_form' => ['linkdex' => ['type' => \null, 'default_value' => '0']],
-        ];
-        /**
-         * Helper property - reverse index of the definition array.
-         *
-         * Format: [full meta key including prefix]    => array
-         *         ['subset']    => (string) primary index
-         *         ['key']       => (string) internal key
-         *
-         * @var array
-         */
-        public static $fields_index = [];
-        /**
-         * Helper property - array containing only the defaults in the format:
-         * [full meta key including prefix]    => (string) default value
-         *
-         * @var array
-         */
-        public static $defaults = [];
-        /**
-         * Helper property to define the social network meta field definitions - networks.
-         *
-         * @var array
-         */
-        private static $social_networks = ['opengraph' => 'opengraph', 'twitter' => 'twitter'];
-        /**
-         * Helper property to define the social network meta field definitions - fields and their type.
-         *
-         * @var array
-         */
-        private static $social_fields = ['title' => 'text', 'description' => 'textarea', 'image' => 'upload', 'image-id' => 'hidden'];
-        /**
-         * Register our actions and filters.
-         *
-         * @return void
-         */
-        public static function init()
-        {
-        }
-        /**
-         * Retrieve the meta box form field definitions for the given tab and post type.
-         *
-         * @param string $tab       Tab for which to retrieve the field definitions.
-         * @param string $post_type Post type of the current post.
-         *
-         * @return array Array containing the meta box field definitions.
-         */
-        public static function get_meta_field_defs($tab, $post_type = 'post')
-        {
-        }
-        /**
-         * Validate the post meta values.
-         *
-         * @param mixed  $meta_value The new value.
-         * @param string $meta_key   The full meta key (including prefix).
-         *
-         * @return string Validated meta value.
-         */
-        public static function sanitize_post_meta($meta_value, $meta_key)
-        {
-        }
-        /**
-         * Validate a meta-robots-adv meta value.
-         *
-         * @todo [JRF => Yoast] Verify that this logic for the prioritisation is correct.
-         *
-         * @param array|string $meta_value The value to validate.
-         *
-         * @return string Clean value.
-         */
-        public static function validate_meta_robots_adv($meta_value)
-        {
-        }
-        /**
-         * Prevent saving of default values and remove potential old value from the database if replaced by a default.
-         *
-         * @param bool   $check      The current status to allow updating metadata for the given type.
-         * @param int    $object_id  ID of the current object for which the meta is being updated.
-         * @param string $meta_key   The full meta key (including prefix).
-         * @param string $meta_value New meta value.
-         * @param string $prev_value The old meta value.
-         *
-         * @return null|bool True = stop saving, null = continue saving.
-         */
-        public static function remove_meta_if_default($check, $object_id, $meta_key, $meta_value, $prev_value = '')
-        {
-        }
-        /**
-         * Prevent adding of default values to the database.
-         *
-         * @param bool   $check      The current status to allow adding metadata for the given type.
-         * @param int    $object_id  ID of the current object for which the meta is being added.
-         * @param string $meta_key   The full meta key (including prefix).
-         * @param string $meta_value New meta value.
-         *
-         * @return null|bool True = stop saving, null = continue saving.
-         */
-        public static function dont_save_meta_if_default($check, $object_id, $meta_key, $meta_value)
-        {
-        }
-        /**
-         * Is the given meta value the same as the default value ?
-         *
-         * @param string $meta_key   The full meta key (including prefix).
-         * @param mixed  $meta_value The value to check.
-         *
-         * @return bool
-         */
-        public static function meta_value_is_default($meta_key, $meta_value)
-        {
-        }
-        /**
-         * Get a custom post meta value.
-         *
-         * Returns the default value if the meta value has not been set.
-         *
-         * {@internal Unfortunately there isn't a filter available to hook into before returning
-         *            the results for get_post_meta(), get_post_custom() and the likes. That
-         *            would have been the preferred solution.}}
-         *
-         * @param string $key    Internal key of the value to get (without prefix).
-         * @param int    $postid Post ID of the post to get the value for.
-         *
-         * @return string All 'normal' values returned from get_post_meta() are strings.
-         *                Objects and arrays are possible, but not used by this plugin
-         *                and therefore discarted (except when the special 'serialized' field def
-         *                value is set to true - only used by add-on plugins for now).
-         *                Will return the default value if no value was found.
-         *                Will return empty string if no default was found (not one of our keys) or
-         *                if the post does not exist.
-         */
-        public static function get_value($key, $postid = 0)
-        {
-        }
-        /**
-         * Update a meta value for a post.
-         *
-         * @param string $key        The internal key of the meta value to change (without prefix).
-         * @param mixed  $meta_value The value to set the meta to.
-         * @param int    $post_id    The ID of the post to change the meta for.
-         *
-         * @return bool Whether the value was changed.
-         */
-        public static function set_value($key, $meta_value, $post_id)
-        {
-        }
-        /**
-         * Deletes a meta value for a post.
-         *
-         * @param string $key     The internal key of the meta value to change (without prefix).
-         * @param int    $post_id The ID of the post to change the meta for.
-         *
-         * @return bool Whether the value was changed.
-         */
-        public static function delete($key, $post_id)
-        {
-        }
-        /**
-         * Used for imports, this functions imports the value of $old_metakey into $new_metakey for those post
-         * where no WPSEO meta data has been set.
-         * Optionally deletes the $old_metakey values.
-         *
-         * @param string $old_metakey The old key of the meta value.
-         * @param string $new_metakey The new key, usually the WPSEO meta key (including prefix).
-         * @param bool   $delete_old  Whether to delete the old meta key/value-sets.
-         *
-         * @return void
-         */
-        public static function replace_meta($old_metakey, $new_metakey, $delete_old = \false)
-        {
-        }
-        /**
-         * General clean-up of the saved meta values.
-         * - Remove potentially lingering old meta keys;
-         * - Remove all default and invalid values.
-         *
-         * @return void
-         */
-        public static function clean_up()
-        {
-        }
-        /**
-         * Recursively merge a variable number of arrays, using the left array as base,
-         * giving priority to the right array.
-         *
-         * Difference with native array_merge_recursive():
-         * array_merge_recursive converts values with duplicate keys to arrays rather than
-         * overwriting the value in the first array with the duplicate value in the second array.
-         *
-         * array_merge_recursive_distinct does not change the data types of the values in the arrays.
-         * Matching keys' values in the second array overwrite those in the first array, as is the
-         * case with array_merge.
-         *
-         * Freely based on information found on http://www.php.net/manual/en/function.array-merge-recursive.php
-         *
-         * {@internal Should be moved to a general utility class.}}
-         *
-         * @return array
-         */
-        public static function array_merge_recursive_distinct()
-        {
-        }
-        /**
-         * Counts the total of all the keywords being used for posts except the given one.
-         *
-         * @param string  $keyword The keyword to be counted.
-         * @param integer $post_id The is of the post to which the keyword belongs.
-         *
-         * @return array
-         */
-        public static function keyword_usage($keyword, $post_id)
-        {
-        }
-        /* ********************* DEPRECATED METHODS ********************* */
-        /**
-         * Get a value from $_POST for a given key.
-         *
-         * Returns the $_POST value if exists, returns an empty string if key does not exist.
-         *
-         * @deprecated 9.6
-         * @codeCoverageIgnore
-         *
-         * @param string $key Key of the value to get from $_POST.
-         *
-         * @return string Returns $_POST value, which will be a string the majority of the time.
-         *                Will return empty string if key does not exists in $_POST.
-         */
-        public static function get_post_value($key)
         {
         }
     }
@@ -8742,23 +27851,6 @@ namespace {
     /**
      * WPSEO plugin file.
      *
-     * @package WPSEO
-     */
-    /**
-     * An interface for registering AJAX integrations with WordPress.
-     */
-    interface WPSEO_WordPress_AJAX_Integration
-    {
-        /**
-         * Registers all AJAX hooks to WordPress.
-         *
-         * @return void
-         */
-        public function register_ajax_hooks();
-    }
-    /**
-     * WPSEO plugin file.
-     *
      * @package WPSEO\Internals
      * @since   5.9.0
      */
@@ -11243,6 +30335,79 @@ namespace {
     /**
      * WPSEO plugin file.
      *
+     * @package WPSEO\Admin\XML Sitemaps
+     */
+    /**
+     * Class that handles the Admin side of XML sitemaps.
+     */
+    class WPSEO_Sitemaps_Admin
+    {
+        /**
+         * Post_types that are being imported.
+         *
+         * @var array
+         */
+        private $importing_post_types = [];
+        /**
+         * Class constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Hooked into transition_post_status. Will initiate search engine pings
+         * if the post is being published, is a post type that a sitemap is built for
+         * and is a post that is included in sitemaps.
+         *
+         * @param string   $new_status New post status.
+         * @param string   $old_status Old post status.
+         * @param \WP_Post $post       Post object.
+         */
+        public function status_transition($new_status, $old_status, $post)
+        {
+        }
+        /**
+         * While bulk importing, just save unique post_types.
+         *
+         * When importing is done, if we have a post_type that is saved in the sitemap
+         * try to ping the search engines.
+         *
+         * @param string   $new_status New post status.
+         * @param string   $old_status Old post status.
+         * @param \WP_Post $post       Post object.
+         */
+        private function status_transition_bulk($new_status, $old_status, $post)
+        {
+        }
+        /**
+         * After import finished, walk through imported post_types and update info.
+         */
+        public function status_transition_bulk_finished()
+        {
+        }
+        /* ********************* DEPRECATED METHODS ********************* */
+        /**
+         * Find sitemaps residing on disk as they will block our rewrite.
+         *
+         * @deprecated 7.0
+         * @codeCoverageIgnore
+         */
+        public function delete_sitemaps()
+        {
+        }
+        /**
+         * Find sitemaps residing on disk as they will block our rewrite.
+         *
+         * @deprecated 7.0
+         * @codeCoverageIgnore
+         */
+        public function detect_blocking_filesystem_sitemaps()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
      * @package WPSEO\XML_Sitemaps
      */
     /**
@@ -12375,6 +31540,20 @@ namespace Yoast\WP\Free\Conditionals {
         public function is_met();
     }
     /**
+     * Conditional that is only met when in the admin.
+     */
+    class Admin_Conditional implements \Yoast\WP\Free\Conditionals\Conditional
+    {
+        /**
+         * Returns whether or not this conditional is met.
+         *
+         * @return boolean Whether or not the conditional is met.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
      * Abstract class for creating conditionals based on feature flags.
      */
     abstract class Feature_Flag_Conditional implements \Yoast\WP\Free\Conditionals\Conditional
@@ -12418,6 +31597,25 @@ namespace Yoast\WP\Free\Conditionals {
          * @return array The conditionals that must be met to load this.
          */
         public static function get_conditionals()
+        {
+        }
+    }
+}
+namespace Yoast\WP\Free\Config {
+    /**
+     * Makes sure the dependencies are loaded and the environment is prepared to use them.
+     * This is achieved by setting up class aliases and defines required constants.
+     */
+    class Dependency_Management
+    {
+        /**
+         * Checks if the prefixes are available.
+         *
+         * @codeCoverageIgnore
+         *
+         * @return bool True if prefixes are available.
+         */
+        public function prefixed_available()
         {
         }
     }
@@ -13058,50 +32256,6 @@ namespace Yoast\WP\Free\Loggers {
          * @return void
          */
         public function log($level, $message, array $context = [])
-        {
-        }
-    }
-    /**
-     * Logger to make sure the output is not written into a file.
-     */
-    class Migration_Logger extends \Ruckusing_Util_Logger
-    {
-        /**
-         * The logger object.
-         *
-         * @var \Yoast\WP\Free\Loggers\Logger
-         */
-        protected $logger;
-        /**
-         * Creates an instance of Ruckusing_Util_Logger.
-         *
-         * @codeCoverageIgnore
-         *
-         * @param \Yoast\WP\Free\Loggers\Logger $logger The logger to wrap.
-         */
-        public function __construct(\Yoast\WP\Free\Loggers\Logger $logger)
-        {
-        }
-        /**
-         * Logs a message.
-         *
-         * @codeCoverageIgnore
-         *
-         * @param string $msg Message to log.
-         *
-         * @return void
-         */
-        public function log($msg)
-        {
-        }
-        /**
-         * Close the log file handler.
-         *
-         * @codeCoverageIgnore
-         *
-         * @return void
-         */
-        public function close()
         {
         }
     }
@@ -14351,6 +33505,196 @@ namespace Yoast\WP\Free\WordPress {
 }
 namespace {
     /**
+     * Convenience function to JSON encode and echo results and then die.
+     *
+     * @param array $results Results array for encoding.
+     */
+    function wpseo_ajax_json_echo_die($results)
+    {
+    }
+    /**
+     * Function used from AJAX calls, takes it variables from $_POST, dies on exit.
+     */
+    function wpseo_set_option()
+    {
+    }
+    /**
+     * Function used to remove the admin notices for several purposes, dies on exit.
+     */
+    function wpseo_set_ignore()
+    {
+    }
+    /**
+     * Hides the default tagline notice for a specific user.
+     */
+    function wpseo_dismiss_tagline_notice()
+    {
+    }
+    /**
+     * Save an individual SEO title from the Bulk Editor.
+     */
+    function wpseo_save_title()
+    {
+    }
+    /**
+     * Save an individual meta description from the Bulk Editor.
+     */
+    function wpseo_save_description()
+    {
+    }
+    /**
+     * Save titles & descriptions.
+     *
+     * @param string $what Type of item to save (title, description).
+     */
+    function wpseo_save_what($what)
+    {
+    }
+    /**
+     * Helper function to update a post's meta data, returning relevant information
+     * about the information updated and the results or the meta update.
+     *
+     * @param int    $post_id         Post ID.
+     * @param string $new_meta_value  New meta value to record.
+     * @param string $orig_meta_value Original meta value.
+     * @param string $meta_key        Meta key string.
+     * @param string $return_key      Return key string to use in results.
+     *
+     * @return string
+     */
+    function wpseo_upsert_meta($post_id, $new_meta_value, $orig_meta_value, $meta_key, $return_key)
+    {
+    }
+    /**
+     * Save all titles sent from the Bulk Editor.
+     */
+    function wpseo_save_all_titles()
+    {
+    }
+    /**
+     * Save all description sent from the Bulk Editor.
+     */
+    function wpseo_save_all_descriptions()
+    {
+    }
+    /**
+     * Utility function to save values.
+     *
+     * @param string $what Type of item so save.
+     */
+    function wpseo_save_all($what)
+    {
+    }
+    /**
+     * Insert a new value.
+     *
+     * @param string $what     Item type (such as title).
+     * @param int    $post_id  Post ID.
+     * @param string $new      New value to record.
+     * @param string $original Original value.
+     *
+     * @return string
+     */
+    function wpseo_upsert_new($what, $post_id, $new, $original)
+    {
+    }
+    /**
+     * Retrieves the keyword for the keyword doubles.
+     */
+    function ajax_get_keyword_usage()
+    {
+    }
+    /**
+     * Retrieves the keyword for the keyword doubles of the termpages.
+     */
+    function ajax_get_term_keyword_usage()
+    {
+    }
+    /**
+     * Registers hooks for all AJAX integrations.
+     *
+     * @return void
+     */
+    function wpseo_register_ajax_integrations()
+    {
+    }
+    /* ********************* DEPRECATED FUNCTIONS ********************* */
+    /**
+     * Removes stopword from the sample permalink that is generated in an AJAX request.
+     *
+     * @deprecated 6.3
+     * @codeCoverageIgnore
+     */
+    function wpseo_remove_stopwords_sample_permalink()
+    {
+    }
+    /**
+     * Function used to delete blocking files, dies on exit.
+     *
+     * @deprecated 7.0
+     * @codeCoverageIgnore
+     */
+    function wpseo_kill_blocking_files()
+    {
+    }
+    /**
+     * Handles the posting of a new FB admin.
+     *
+     * @deprecated 7.1
+     * @codeCoverageIgnore
+     */
+    function wpseo_add_fb_admin()
+    {
+    }
+    /**
+     * Used in the editor to replace vars for the snippet preview.
+     *
+     * @deprecated 11.9
+     * @codeCoverageIgnore
+     */
+    function wpseo_ajax_replace_vars()
+    {
+    }
+    /**
+     * Create the alert HTML with restore/dismiss button.
+     *
+     * @param array  $list   List of alerts.
+     * @param string $status Status of the alerts (active/dismissed).
+     *
+     * @return string The output to render.
+     */
+    function _yoast_display_alerts($list, $status)
+    {
+    }
+    /**
+     * Creates a select box given a name and plugins array.
+     *
+     * @param string $name    Name field for the select field.
+     * @param array  $plugins An array of plugins and classes.
+     *
+     * @return void
+     */
+    function wpseo_import_external_select($name, $plugins)
+    {
+    }
+    /**
+     * Sanitizes the parameters that have been sent.
+     *
+     * @return array The sanitized fields.
+     */
+    function yoast_free_bulk_sanitize_input_fields()
+    {
+    }
+    /**
+     * Renders a bulk editor tab.
+     *
+     * @param WPSEO_Bulk_List_Table $table The table to render.
+     * @param string                $id    The id for the tab.
+     */
+    function wpseo_get_rendered_tab($table, $id)
+    {
+    }
+    /**
      * Wraps frontend class.
      */
     function initialize_wpseo_front()
@@ -14793,6 +34137,8 @@ namespace {
     {
     }
 }
+namespace Yoast\WP\Free\Loggers { class Migration_Logger {} }
+
 namespace {
     define('WPSEO_VERSION', '0.0.0');
 }

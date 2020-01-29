@@ -2,11 +2,13 @@
 
 return \StubsGenerator\Finder::create()
     ->in('source/wordpress-seo')
-    ->notPath('admin')
     ->notPath('cli')
-    ->notPath('config')
+    ->notPath('config/composer')
+    ->notPath('config/php-codeshift')
     ->notPath('deprecated')
     ->notPath('migrations')
+    // Uses ruckusing/ruckusing-migrations.
+    ->notPath('src/loggers/migration-logger.php')
     // Assets.
     ->notPath('css')
     ->notPath('images')
