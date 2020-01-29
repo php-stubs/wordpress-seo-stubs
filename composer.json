@@ -1,0 +1,36 @@
+{
+    "name": "php-stubs/wordpress-seo-stubs",
+    "description": "Yoas SEO function and class declaration stubs for static analysis.",
+    "keywords": [
+        "yoast",
+        "seo",
+        "wordpress",
+        "static analysis",
+        "phpstan"
+    ],
+    "homepage": "https://github.com/php-stubs/wordpress-seo-stubs",
+    "license": "MIT",
+    "require": {
+        "php-stubs/wordpress-stubs": "^5.3.0",
+        "psr/log": "^1.0",
+        "league/oauth2-client": "^2.4",
+        "symfony/dependency-injection": "^3.4"
+    },
+    "require-dev": {
+        "php": "~7.1",
+        "giacocorsiglia/stubs-generator": "^0.5.0"
+    },
+    "suggest": {
+        "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan",
+        "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions"
+    },
+    "minimum-stability": "stable",
+    "scripts": {
+        "post-install-cmd": "@composer --working-dir=source/ install --no-interaction --no-suggest --no-dev",
+        "post-update-cmd" : "@composer --working-dir=source/ install --no-interaction --no-suggest --no-dev",
+        "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf"
+    },
+    "scripts-descriptions": {
+        "cleanup": "Remove all ignored files."
+    }
+}

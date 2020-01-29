@@ -1,0 +1,14 @@
+{
+    "require": {
+        "php": "~7.0",
+        "yoast/wordpress-seo": "12.9.1"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "installer-paths": {
+            "{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    }
+}
