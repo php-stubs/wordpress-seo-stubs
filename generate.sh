@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HEADER=$'/**\n * Generated stub declarations for WooCommerce.\n * @see https://woocommerce.com\n * @see https://github.com/php-stubs/woocommerce-stubs\n */'
+HEADER=$'/**\n * Generated stub declarations for Yoast.\n * @see https://yoast.com/\n * @see https://github.com/php-stubs/wordpress-seo-stubs\n */'
 
 FILE="wordpress-seo-stubs.php"
 
