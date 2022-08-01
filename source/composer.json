@@ -1,7 +1,7 @@
 {
     "require": {
         "php": "~7.0",
-        "yoast/wordpress-seo": "17.2"
+        "yoast/wordpress-seo": "19.4"
     },
     "minimum-stability": "stable",
     "extra": {
@@ -9,6 +9,11 @@
             "{$name}/": [
                 "type:wordpress-plugin"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
         }
     }
 }
