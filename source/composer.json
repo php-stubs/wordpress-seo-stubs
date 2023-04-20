@@ -1,7 +1,7 @@
 {
     "require": {
         "php": "~7.0",
-        "yoast/wordpress-seo": "19.4"
+        "yoast/wordpress-seo": "20.5"
     },
     "minimum-stability": "stable",
     "extra": {

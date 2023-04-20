@@ -11,6 +11,7 @@ test -d "source/wordpress-seo"
 
 # Exclude globals.
 "$(dirname "$0")/vendor/bin/generate-stubs" \
+    --include-inaccessible-class-nodes \
     --force \
     --finder=finder.php \
     --header="$HEADER" \

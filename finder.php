@@ -14,5 +14,37 @@ return \StubsGenerator\Finder::create()
     ->notPath('images')
     ->notPath('js')
     ->notPath('languages')
+    ->notPath('vendor_prefixed')
+    // Referenced in src/config/.
+    ->append(
+        \StubsGenerator\Finder::create()
+            ->in(['source/wordpress-seo/vendor_prefixed/league/oauth2-client/src/Provider/'])
+            ->files()
+    )
+    ->append(
+        \StubsGenerator\Finder::create()
+            ->in(['source/wordpress-seo/vendor_prefixed/league/oauth2-client/src/Tool/'])
+            ->files()
+    )
+    ->append(
+        \StubsGenerator\Finder::create()
+            ->in(['source/wordpress-seo/vendor_prefixed/wordproof/wordpress-sdk/app/'])
+            ->files()
+    )
+    ->append(
+        \StubsGenerator\Finder::create()
+            ->in(['source/wordpress-seo/vendor_prefixed/symfony/dependency-injection/'])
+            ->files()
+    )
+    ->append(
+        \StubsGenerator\Finder::create()
+            ->in(['source/wordpress-seo/vendor_prefixed/psr/container/src/'])
+            ->files()
+    )
+    ->append(
+        \StubsGenerator\Finder::create()
+            ->in(['source/wordpress-seo/vendor_prefixed/psr/log/Psr/Log/'])
+            ->files()
+    )
     ->sortByName()
 ;

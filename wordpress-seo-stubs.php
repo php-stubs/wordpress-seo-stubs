@@ -926,21 +926,6 @@ namespace {
         {
         }
         /**
-         * Loads the select2 scripts.
-         *
-         * @return array {
-         *     The scripts to be registered.
-         *
-         *     @type string   $name      The name of the asset.
-         *     @type string   $src       The src of the asset.
-         *     @type string[] $deps      The dependenies of the asset.
-         *     @type bool     $in_footer Whether or not the asset should be in the footer.
-         * }
-         */
-        protected function load_select2_scripts()
-        {
-        }
-        /**
          * Loads the scripts that should be renamed for BC.
          *
          * @return array {
@@ -1384,6 +1369,14 @@ namespace {
         {
         }
         /**
+         * Removes any notification for incomplete translations.
+         *
+         * @return void
+         */
+        public function remove_translations_notification()
+        {
+        }
+        /**
          * Creates an unsupported PHP version notification in the notification center.
          *
          * @return void
@@ -1405,6 +1398,14 @@ namespace {
          * @return bool
          */
         private function on_wpseo_admin_page()
+        {
+        }
+        /**
+         * Whether we should load the meta box classes.
+         *
+         * @return bool true if we should load the meta box classes, false otherwise.
+         */
+        private function should_load_meta_boxes()
         {
         }
         /**
@@ -1450,25 +1451,9 @@ namespace {
         {
         }
         /**
-         * Registers the promotion class for our GlotPress instance, then creates a notification with the i18n promo.
-         *
-         * @link https://github.com/Yoast/i18n-module
-         */
-        private function register_i18n_promo_class()
-        {
-        }
-        /**
          * See if we should start our XML Sitemaps Admin class.
          */
         private function load_xml_sitemaps_admin()
-        {
-        }
-        /**
-         * Checks whether search engines are discouraged from indexing the site.
-         *
-         * @return bool Whether search engines are discouraged from indexing the site.
-         */
-        private function are_search_engines_discouraged()
         {
         }
         /**
@@ -1492,22 +1477,6 @@ namespace {
         {
         }
         /**
-         * Determines whether and where the "search engines discouraged" admin notice should be displayed.
-         *
-         * @return bool Whether the "search engines discouraged" admin notice should be displayed.
-         */
-        private function should_display_search_engines_discouraged_notice()
-        {
-        }
-        /**
-         * Displays an admin notice when WordPress is set to discourage search engines from indexing the site.
-         *
-         * @return void
-         */
-        public function search_engines_discouraged_notice()
-        {
-        }
-        /**
          * Adds a custom Yoast section within the Classic Editor publish box.
          *
          * @param \WP_Post $post The current post object.
@@ -1515,56 +1484,6 @@ namespace {
          * @return void
          */
         public function add_publish_box_section($post)
-        {
-        }
-        /* ********************* DEPRECATED METHODS ********************* */
-        /**
-         * Notify about the default tagline if the user hasn't changed it.
-         *
-         * @deprecated 13.2
-         * @codeCoverageIgnore
-         */
-        public function tagline_notice()
-        {
-        }
-        /**
-         * Returns whether or not the site has the default tagline.
-         *
-         * @deprecated 13.2
-         * @codeCoverageIgnore
-         *
-         * @return bool
-         */
-        public function has_default_tagline()
-        {
-        }
-        /**
-         * Shows an alert when the permalink doesn't contain %postname%.
-         *
-         * @deprecated 13.2
-         * @codeCoverageIgnore
-         */
-        public function permalink_notice()
-        {
-        }
-        /**
-         * Add an alert if the blog is not publicly visible.
-         *
-         * @deprecated 14.1
-         * @codeCoverageIgnore
-         */
-        public function blog_public_notice()
-        {
-        }
-        /**
-         * Handles the notifiers for the dashboard page.
-         *
-         * @deprecated 14.1
-         * @codeCoverageIgnore
-         *
-         * @return void
-         */
-        public function handle_notifications()
         {
         }
     }
@@ -1596,7 +1515,7 @@ namespace {
             'post_tag' => ['sitename', 'term_title', 'sep'],
             'post_format' => ['sitename', 'term_title', 'sep', 'page'],
             // Custom taxonomy.
-            'term-in-custom-taxomomy' => ['sitename', 'term_title', 'sep', 'term_hierarchy'],
+            'term-in-custom-taxonomy' => ['sitename', 'term_title', 'sep', 'term_hierarchy'],
             // Settings - archive pages.
             'author_archive' => ['sitename', 'title', 'sep', 'page'],
             'date_archive' => ['sitename', 'sep', 'date', 'page'],
@@ -1715,16 +1634,6 @@ namespace {
          * @param string $meta_key  The key of the meta field changed.
          */
         public function clear_author_sitemap_cache($meta_id, $object_id, $meta_key)
-        {
-        }
-        /**
-         * Filter POST variables.
-         *
-         * @param string $var_name Name of the variable to filter.
-         *
-         * @return mixed
-         */
-        private function filter_input_post($var_name)
         {
         }
         /**
@@ -2257,7 +2166,7 @@ namespace {
         {
         }
         /**
-         * Will show the navigation for the table like pagenavigation and pagefilter.
+         * Will show the navigation for the table like page navigation and page filter.
          *
          * @param string $which Table nav location (such as top).
          */
@@ -2696,38 +2605,26 @@ namespace {
         /**
          * Retrieves some variables that are needed for replacing variables in JS.
          *
+         * @deprecated 20.3
+         * @codeCoverageIgnore
+         *
          * @return array The replacement and recommended replacement variables.
          */
         public function get_replace_vars_script_data()
         {
         }
         /**
-         * Determines whether the Local SEO upsell should be shown.
-         *
-         * The Local SEO upsell should:
-         * - Only be shown in Free, not when Premium is active.
-         * - Not be shown when Local SEO is active.
-         *
-         * @return bool Whether the Local SEO upsell should be shown.
-         */
-        private function should_show_local_seo_upsell()
-        {
-        }
-        /**
-         * Determines whether the News SEO upsell should be shown.
-         *
-         * The News SEO upsell should:
-         * - Not be shown when Local SEO is active.
-         *
-         * @return bool Whether the News SEO upsell should be shown.
-         */
-        private function should_show_news_seo_upsell()
-        {
-        }
-        /**
          * Enqueues and handles all the tool dependencies.
          */
         private function enqueue_tools_scripts()
+        {
+        }
+        /**
+         * Returns the appropriate shortlink for the Webinar.
+         *
+         * @return string The shortlink for the Webinar.
+         */
+        private function get_webinar_shortlink()
         {
         }
     }
@@ -2912,8 +2809,8 @@ namespace {
         /**
          * Inserts data into the database.
          *
-         * @param array $data   Data to insert.
-         * @param null  $format Formats for the data.
+         * @param array             $data   Data to insert.
+         * @param array|string|null $format Formats for the data.
          *
          * @return false|int Total amount of inserted rows or false on error.
          */
@@ -2923,10 +2820,10 @@ namespace {
         /**
          * Updates data in the database.
          *
-         * @param array $data         Data to update on the table.
-         * @param array $where        Where condition as key => value array.
-         * @param null  $format       Optional. Data prepare format.
-         * @param null  $where_format Optional. Where prepare format.
+         * @param array             $data         Data to update on the table.
+         * @param array             $where        Where condition as key => value array.
+         * @param array|string|null $format       Optional. Data prepare format.
+         * @param array|string|null $where_format Optional. Where prepare format.
          *
          * @return false|int False when the update request is invalid, int on number of rows changed.
          */
@@ -2938,10 +2835,10 @@ namespace {
          *
          * Performs an insert into and if key is duplicate it will update the existing record.
          *
-         * @param array      $data         Data to update on the table.
-         * @param array|null $where        Unused. Where condition as key => value array.
-         * @param null       $format       Optional. Data prepare format.
-         * @param null       $where_format Deprecated. Where prepare format.
+         * @param array             $data         Data to update on the table.
+         * @param array|null        $where        Unused. Where condition as key => value array.
+         * @param array|string|null $format       Optional. Data prepare format.
+         * @param array|string|null $where_format Optional. Where prepare format.
          *
          * @return false|int False when the upsert request is invalid, int on number of rows changed.
          */
@@ -2951,8 +2848,8 @@ namespace {
         /**
          * Deletes a record from the database.
          *
-         * @param array      $where  Where clauses for the query.
-         * @param array|null $format Formats for the data.
+         * @param array             $where  Where clauses for the query.
+         * @param array|string|null $format Formats for the data.
          *
          * @return false|int
          */
@@ -3129,7 +3026,7 @@ namespace {
          *
          * @var array
          */
-        private $shortlinks = ['shortlinks.advanced.allow_search_engines' => 'https://yoa.st/allow-search-engines', 'shortlinks.advanced.follow_links' => 'https://yoa.st/follow-links', 'shortlinks.advanced.meta_robots' => 'https://yoa.st/meta-robots-advanced', 'shortlinks.advanced.breadcrumbs_title' => 'https://yoa.st/breadcrumbs-title', 'shortlinks.metabox.schema.explanation' => 'https://yoa.st/400', 'shortlinks.metabox.schema.page_type' => 'https://yoa.st/402', 'shortlinks.sidebar.schema.explanation' => 'https://yoa.st/401', 'shortlinks.sidebar.schema.page_type' => 'https://yoa.st/403', 'shortlinks.focus_keyword_info' => 'https://yoa.st/focus-keyword', 'shortlinks.nofollow_sponsored' => 'https://yoa.st/nofollow-sponsored', 'shortlinks.snippet_preview_info' => 'https://yoa.st/snippet-preview', 'shortlinks.cornerstone_content_info' => 'https://yoa.st/1i9', 'shortlinks.upsell.social_previews' => 'https://yoa.st/social-preview-cta', 'shortlinks.upsell.sidebar.news' => 'https://yoa.st/get-news-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_synonyms_link' => 'https://yoa.st/textlink-synonyms-popup-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_synonyms_button' => 'https://yoa.st/keyword-synonyms-popup-sidebar', 'shortlinks.upsell.sidebar.premium_seo_analysis_button' => 'https://yoa.st/premium-seo-analysis-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_additional_link' => 'https://yoa.st/textlink-keywords-popup-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_additional_button' => 'https://yoa.st/add-keywords-popup-sidebar', 'shortlinks.upsell.sidebar.additional_link' => 'https://yoa.st/textlink-keywords-sidebar', 'shortlinks.upsell.sidebar.additional_button' => 'https://yoa.st/add-keywords-sidebar', 'shortlinks.upsell.sidebar.keyphrase_distribution' => 'https://yoa.st/keyphrase-distribution-sidebar', 'shortlinks.upsell.sidebar.word_complexity' => 'https://yoa.st/word-complexity-sidebar', 'shortlinks.upsell.metabox.news' => 'https://yoa.st/get-news-metabox', 'shortlinks.upsell.metabox.go_premium' => 'https://yoa.st/pe-premium-page', 'shortlinks.upsell.metabox.focus_keyword_synonyms_link' => 'https://yoa.st/textlink-synonyms-popup-metabox', 'shortlinks.upsell.metabox.focus_keyword_synonyms_button' => 'https://yoa.st/keyword-synonyms-popup', 'shortlinks.upsell.metabox.premium_seo_analysis_button' => 'https://yoa.st/premium-seo-analysis-metabox', 'shortlinks.upsell.metabox.focus_keyword_additional_link' => 'https://yoa.st/textlink-keywords-popup-metabox', 'shortlinks.upsell.metabox.focus_keyword_additional_button' => 'https://yoa.st/add-keywords-popup', 'shortlinks.upsell.metabox.additional_link' => 'https://yoa.st/textlink-keywords-metabox', 'shortlinks.upsell.metabox.additional_button' => 'https://yoa.st/add-keywords-metabox', 'shortlinks.upsell.metabox.keyphrase_distribution' => 'https://yoa.st/keyphrase-distribution-metabox', 'shortlinks.upsell.metabox.word_complexity' => 'https://yoa.st/word-complexity-metabox', 'shortlinks.upsell.gsc.create_redirect_button' => 'https://yoa.st/redirects', 'shortlinks.readability_analysis_info' => 'https://yoa.st/readability-analysis', 'shortlinks.activate_premium_info' => 'https://yoa.st/activate-subscription', 'shortlinks.upsell.sidebar.morphology_upsell_metabox' => 'https://yoa.st/morphology-upsell-metabox', 'shortlinks.upsell.sidebar.morphology_upsell_sidebar' => 'https://yoa.st/morphology-upsell-sidebar', 'shortlinks.semrush.volume_help' => 'https://yoa.st/3-v', 'shortlinks.semrush.trend_help' => 'https://yoa.st/3-v', 'shortlinks.semrush.prices' => 'https://yoa.st/semrush-prices', 'shortlinks.semrush.premium_landing_page' => 'https://yoa.st/413', 'shortlinks.wincher.seo_performance' => 'https://yoa.st/wincher-integration', 'shortlinks-insights-estimated_reading_time' => 'https://yoa.st/4fd', 'shortlinks-insights-flesch_reading_ease' => 'https://yoa.st/34r', 'shortlinks-insights-flesch_reading_ease_sidebar' => 'https://yoa.st/4mf', 'shortlinks-insights-flesch_reading_ease_metabox' => 'https://yoa.st/4mg', 'shortlinks-insights-flesch_reading_ease_article' => 'https://yoa.st/34s', 'shortlinks-insights-keyword_research_link' => 'https://yoa.st/keyword-research-metabox', 'shortlinks-insights-upsell-sidebar-prominent_words' => 'https://yoa.st/prominent-words-upsell-sidebar', 'shortlinks-insights-upsell-metabox-prominent_words' => 'https://yoa.st/prominent-words-upsell-metabox', 'shortlinks-insights-upsell-elementor-prominent_words' => 'https://yoa.st/prominent-words-upsell-elementor', 'shortlinks-insights-word_count' => 'https://yoa.st/word-count'];
+        private $shortlinks = ['shortlinks.advanced.allow_search_engines' => 'https://yoa.st/allow-search-engines', 'shortlinks.advanced.follow_links' => 'https://yoa.st/follow-links', 'shortlinks.advanced.meta_robots' => 'https://yoa.st/meta-robots-advanced', 'shortlinks.advanced.breadcrumbs_title' => 'https://yoa.st/breadcrumbs-title', 'shortlinks.metabox.schema.explanation' => 'https://yoa.st/400', 'shortlinks.metabox.schema.page_type' => 'https://yoa.st/402', 'shortlinks.sidebar.schema.explanation' => 'https://yoa.st/401', 'shortlinks.sidebar.schema.page_type' => 'https://yoa.st/403', 'shortlinks.focus_keyword_info' => 'https://yoa.st/focus-keyword', 'shortlinks.nofollow_sponsored' => 'https://yoa.st/nofollow-sponsored', 'shortlinks.snippet_preview_info' => 'https://yoa.st/snippet-preview', 'shortlinks.cornerstone_content_info' => 'https://yoa.st/1i9', 'shortlinks.upsell.social_preview.facebook' => 'https://yoa.st/social-preview-facebook', 'shortlinks.upsell.social_preview.twitter' => 'https://yoa.st/social-preview-twitter', 'shortlinks.upsell.sidebar.news' => 'https://yoa.st/get-news-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_synonyms_link' => 'https://yoa.st/textlink-synonyms-popup-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_synonyms_button' => 'https://yoa.st/keyword-synonyms-popup-sidebar', 'shortlinks.upsell.sidebar.premium_seo_analysis_button' => 'https://yoa.st/premium-seo-analysis-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_additional_link' => 'https://yoa.st/textlink-keywords-popup-sidebar', 'shortlinks.upsell.sidebar.focus_keyword_additional_button' => 'https://yoa.st/add-keywords-popup-sidebar', 'shortlinks.upsell.sidebar.additional_link' => 'https://yoa.st/textlink-keywords-sidebar', 'shortlinks.upsell.sidebar.additional_button' => 'https://yoa.st/add-keywords-sidebar', 'shortlinks.upsell.sidebar.keyphrase_distribution' => 'https://yoa.st/keyphrase-distribution-sidebar', 'shortlinks.upsell.sidebar.word_complexity' => 'https://yoa.st/word-complexity-sidebar', 'shortlinks.upsell.metabox.news' => 'https://yoa.st/get-news-metabox', 'shortlinks.upsell.metabox.go_premium' => 'https://yoa.st/pe-premium-page', 'shortlinks.upsell.metabox.focus_keyword_synonyms_link' => 'https://yoa.st/textlink-synonyms-popup-metabox', 'shortlinks.upsell.metabox.focus_keyword_synonyms_button' => 'https://yoa.st/keyword-synonyms-popup', 'shortlinks.upsell.metabox.premium_seo_analysis_button' => 'https://yoa.st/premium-seo-analysis-metabox', 'shortlinks.upsell.metabox.focus_keyword_additional_link' => 'https://yoa.st/textlink-keywords-popup-metabox', 'shortlinks.upsell.metabox.focus_keyword_additional_button' => 'https://yoa.st/add-keywords-popup', 'shortlinks.upsell.metabox.additional_link' => 'https://yoa.st/textlink-keywords-metabox', 'shortlinks.upsell.metabox.additional_button' => 'https://yoa.st/add-keywords-metabox', 'shortlinks.upsell.metabox.keyphrase_distribution' => 'https://yoa.st/keyphrase-distribution-metabox', 'shortlinks.upsell.metabox.word_complexity' => 'https://yoa.st/word-complexity-metabox', 'shortlinks.upsell.gsc.create_redirect_button' => 'https://yoa.st/redirects', 'shortlinks.readability_analysis_info' => 'https://yoa.st/readability-analysis', 'shortlinks.inclusive_language_analysis_info' => 'https://yoa.st/inclusive-language-analysis', 'shortlinks.activate_premium_info' => 'https://yoa.st/activate-subscription', 'shortlinks.upsell.sidebar.morphology_upsell_metabox' => 'https://yoa.st/morphology-upsell-metabox', 'shortlinks.upsell.sidebar.morphology_upsell_sidebar' => 'https://yoa.st/morphology-upsell-sidebar', 'shortlinks.semrush.volume_help' => 'https://yoa.st/3-v', 'shortlinks.semrush.trend_help' => 'https://yoa.st/3-v', 'shortlinks.semrush.prices' => 'https://yoa.st/semrush-prices', 'shortlinks.semrush.premium_landing_page' => 'https://yoa.st/413', 'shortlinks.wincher.seo_performance' => 'https://yoa.st/wincher-integration', 'shortlinks-insights-estimated_reading_time' => 'https://yoa.st/4fd', 'shortlinks-insights-flesch_reading_ease' => 'https://yoa.st/34r', 'shortlinks-insights-flesch_reading_ease_sidebar' => 'https://yoa.st/4mf', 'shortlinks-insights-flesch_reading_ease_metabox' => 'https://yoa.st/4mg', 'shortlinks-insights-flesch_reading_ease_article' => 'https://yoa.st/34s', 'shortlinks-insights-keyword_research_link' => 'https://yoa.st/keyword-research-metabox', 'shortlinks-insights-upsell-sidebar-prominent_words' => 'https://yoa.st/prominent-words-upsell-sidebar', 'shortlinks-insights-upsell-metabox-prominent_words' => 'https://yoa.st/prominent-words-upsell-metabox', 'shortlinks-insights-upsell-elementor-prominent_words' => 'https://yoa.st/prominent-words-upsell-elementor', 'shortlinks-insights-word_count' => 'https://yoa.st/word-count', 'shortlinks-insights-upsell-sidebar-text_formality' => 'https://yoa.st/formality-upsell-sidebar', 'shortlinks-insights-upsell-metabox-text_formality' => 'https://yoa.st/formality-upsell-metabox', 'shortlinks-insights-upsell-elementor-text_formality' => 'https://yoa.st/formality-upsell-elementor', 'shortlinks-insights-text_formality_info_free' => 'https://yoa.st/formality-free', 'shortlinks-insights-text_formality_info_premium' => 'https://yoa.st/formality'];
         /**
          * Registers all hooks to WordPress.
          *
@@ -3180,13 +3077,13 @@ namespace {
          *
          * @var string
          */
-        const CURRENT_RELEASE = '13.7.2';
+        const CURRENT_RELEASE = '15.4.0';
         /**
          * The minimally supported version of Gutenberg by the plugin.
          *
          * @var string
          */
-        const MINIMUM_SUPPORTED = '13.7.2';
+        const MINIMUM_SUPPORTED = '15.4.0';
         /**
          * Holds the current version.
          *
@@ -3257,136 +3154,6 @@ namespace {
         }
     }
     /**
-     * WPSEO plugin file.
-     *
-     * @package WPSEO\Admin
-     */
-    /**
-     * Class WPSEO_HelpScout
-     */
-    class WPSEO_HelpScout implements \WPSEO_WordPress_Integration
-    {
-        /**
-         * The id for the beacon.
-         *
-         * @var string
-         */
-        protected $beacon_id;
-        /**
-         * The pages where the beacon is loaded.
-         *
-         * @var array
-         */
-        protected $pages;
-        /**
-         * The products the beacon is loaded for.
-         *
-         * @var array
-         */
-        protected $products;
-        /**
-         * Whether to asks the user's consent before loading in HelpScout.
-         *
-         * @var bool
-         */
-        protected $ask_consent;
-        /**
-         * WPSEO_HelpScout constructor.
-         *
-         * @param string $beacon_id   The beacon id.
-         * @param array  $pages       The pages where the beacon is loaded.
-         * @param array  $products    The products the beacon is loaded for.
-         * @param bool   $ask_consent Optional. Whether to ask for consent before loading in HelpScout.
-         */
-        public function __construct($beacon_id, array $pages, array $products, $ask_consent = \false)
-        {
-        }
-        /**
-         * {@inheritDoc}
-         */
-        public function register_hooks()
-        {
-        }
-        /**
-         * Enqueues the HelpScout script.
-         */
-        public function enqueue_help_scout_script()
-        {
-        }
-        /**
-         * Outputs a small piece of javascript for the beacon.
-         */
-        public function output_beacon_js()
-        {
-        }
-        /**
-         * Checks if the current page is a page containing the beacon.
-         *
-         * @return bool
-         */
-        private function is_beacon_page()
-        {
-        }
-        /**
-         * Retrieves the value of the current page.
-         *
-         * @return string The current page.
-         */
-        private function get_current_page()
-        {
-        }
-        /**
-         * Retrieves the identifying data.
-         *
-         * @return string The data to pass as identifying data.
-         */
-        protected function get_session_data()
-        {
-        }
-        /**
-         * Returns basic info about the server software.
-         *
-         * @return string
-         */
-        private function get_server_info()
-        {
-        }
-        /**
-         * Returns info about the Yoast SEO plugin version and license.
-         *
-         * @param object $plugin The plugin.
-         *
-         * @return string The product info.
-         */
-        private function get_product_info($plugin)
-        {
-        }
-        /**
-         * Returns the WordPress version + a suffix if current WP is multi site.
-         *
-         * @return string The WordPress version string.
-         */
-        private function get_wordpress_version()
-        {
-        }
-        /**
-         * Returns a formatted HTML string for the current theme.
-         *
-         * @return string The theme info as string.
-         */
-        private function get_theme_info()
-        {
-        }
-        /**
-         * Returns a formatted HTML list of all active plugins.
-         *
-         * @return string The active plugins.
-         */
-        private function get_active_plugins()
-        {
-        }
-    }
-    /**
      * Class WPSEO_Meta_Columns.
      */
     class WPSEO_Meta_Columns
@@ -3415,6 +3182,12 @@ namespace {
          * @var Admin_Columns_Cache_Integration
          */
         private $admin_columns_cache;
+        /**
+         * Holds the Score_Icon_Helper.
+         *
+         * @var Score_Icon_Helper
+         */
+        private $score_icon_helper;
         /**
          * When page analysis is enabled, just initialize the hooks.
          */
@@ -3537,7 +3310,7 @@ namespace {
          *
          * @param mixed $filter The filter to check against.
          *
-         * @return bool Whether or not the filter is considered valid.
+         * @return bool Whether the filter is considered valid.
          */
         protected function is_valid_filter($filter)
         {
@@ -3581,7 +3354,7 @@ namespace {
         /**
          * Retrieves the post type from the $_GET variable.
          *
-         * @return string The current post type.
+         * @return string|null The sanitized current post type or null when the variable is not set in $_GET.
          */
         public function get_current_post_type()
         {
@@ -3589,7 +3362,7 @@ namespace {
         /**
          * Retrieves the SEO filter from the $_GET variable.
          *
-         * @return string The current post type.
+         * @return string|null The sanitized seo filter or null when the variable is not set in $_GET.
          */
         public function get_current_seo_filter()
         {
@@ -3597,7 +3370,7 @@ namespace {
         /**
          * Retrieves the Readability filter from the $_GET variable.
          *
-         * @return string The current post type.
+         * @return string|null The sanitized readability filter or null when the variable is not set in $_GET.
          */
         public function get_current_readability_filter()
         {
@@ -3605,7 +3378,7 @@ namespace {
         /**
          * Retrieves the keyword filter from the $_GET variable.
          *
-         * @return string The current post type.
+         * @return string|null The sanitized seo keyword filter or null when the variable is not set in $_GET.
          */
         public function get_current_keyword_filter()
         {
@@ -3729,17 +3502,6 @@ namespace {
         {
         }
         /**
-         * Renders the score indicator.
-         *
-         * @param WPSEO_Rank $rank  The rank this indicator should have.
-         * @param string     $title Optional. The title for this rank, defaults to the title of the rank.
-         *
-         * @return string The HTML for a score indicator.
-         */
-        private function render_score_indicator($rank, $title = '')
-        {
-        }
-        /**
          * Determines whether or not filter dropdowns should be displayed.
          *
          * @return bool Whether or the current page can display the filter drop downs.
@@ -3859,7 +3621,7 @@ namespace {
          *
          * @codeCoverageIgnore
          *
-         * @return string The sanitized file request parameter.
+         * @return string The sanitized file request parameter or an empty string if it does not exist.
          */
         protected function get_proxy_file()
         {
@@ -3869,7 +3631,7 @@ namespace {
          *
          * @codeCoverageIgnore
          *
-         * @return string The sanitized plugin_version request parameter.
+         * @return string The sanitized plugin_version request parameter or an empty string if it does not exist.
          */
         protected function get_plugin_version()
         {
@@ -4400,7 +4162,7 @@ namespace {
          * Setting instance, all active plugins and search for active plugins.
          *
          * Protected constructor to prevent creating a new instance of the
-         * *Singleton* via the `new` operator from outside of this class.
+         * *Singleton* via the `new` operator from outside this class.
          */
         protected function __construct()
         {
@@ -4413,22 +4175,6 @@ namespace {
          * @return bool
          */
         public function check_for_conflicts($plugin_section)
-        {
-        }
-        /**
-         * Getting all the conflicting plugins and return them as a string.
-         *
-         * This method will loop through all conflicting plugins to get the details of each plugin. The plugin name
-         * will be taken from the details to parse a comma separated string, which can be use for by example a notice
-         *
-         * @deprecated 17.7 This method is unused and will be removed in the future
-         * @codeCoverageIgnore
-         *
-         * @param string $plugin_section Plugin conflict type (such as Open Graph or sitemap).
-         *
-         * @return string
-         */
-        public function get_conflicting_plugins_as_string($plugin_section)
         {
         }
         /**
@@ -5222,16 +4968,6 @@ namespace {
         protected function create_more_information_link($url, $name)
         {
         }
-        /**
-         * Creates a message to suggest the activation of a particular plugin.
-         *
-         * @param array $suggested_plugin The suggested plugin.
-         *
-         * @return string The activate suggested plugin message.
-         */
-        protected function create_activate_suggested_plugin_message($suggested_plugin)
-        {
-        }
     }
     /**
      * WPSEO plugin file.
@@ -5264,10 +5000,10 @@ namespace {
         {
         }
         /**
-         * Whether or not we are showing link columns on this overview page.
+         * Whether we are showing link columns on this overview page.
          * This depends on the post being accessible or not.
          *
-         * @return bool Whether or not the linking columns are shown
+         * @return bool Whether the linking columns are shown
          */
         private function display_links()
         {
@@ -5276,7 +5012,7 @@ namespace {
          * Wraps the WPSEO_Metabox check to determine whether the metabox should be displayed either by
          * choice of the admin or because the post type is not a public post type.
          *
-         * @return bool Whether or not the meta box (and associated columns etc) should be hidden.
+         * @return bool Whether the meta box (and associated columns etc) should be hidden.
          */
         private function display_meta_columns()
         {
@@ -5470,7 +5206,7 @@ namespace {
          *
          * @since 2.0
          *
-         * @param string $text Label text string.
+         * @param string $text Label text string, which can contain escaped html.
          * @param array  $attr HTML attributes set.
          */
         public function label($text, $attr)
@@ -5709,11 +5445,12 @@ namespace {
         /**
          * Gets the explanation note to print if a given control is disabled.
          *
-         * @param string $variable The variable within the option to print a disabled note for.
+         * @param string $variable    The variable within the option to print a disabled note for.
+         * @param string $custom_note An optional custom note to print instead.
          *
          * @return string Explanation note HTML string, or empty string if no note necessary.
          */
-        protected function get_disabled_note($variable)
+        protected function get_disabled_note($variable, $custom_note = '')
         {
         }
         /**
@@ -6488,9 +6225,11 @@ namespace {
         /**
          * Get information from the User input.
          *
+         * Note that this function does not handle nonce verification.
+         *
          * @param string $key Key to retrieve.
          *
-         * @return mixed value of key if set.
+         * @return string non-sanitized value of key if set, an empty string otherwise.
          */
         private static function get_user_input($key)
         {
@@ -6729,7 +6468,7 @@ namespace {
         {
         }
         /**
-         * Retrieve the is of the user to show the notification for.
+         * Retrieve the id of the user to show the notification for.
          *
          * Returns the id of the current user if not user has been sent.
          *
@@ -6951,32 +6690,9 @@ namespace {
         {
         }
         /**
-         * Deprecated: Handle ajax request to dismiss a alert.
-         * Renamed to ajax_dismiss_notification
-         *
-         * @deprecated 14.0
-         *
-         * @codeCoverageIgnore
-         */
-        public function ajax_dismiss_alert()
-        {
-        }
-        /**
          * Handle ajax request to dismiss a notification.
          */
         public function ajax_dismiss_notification()
-        {
-        }
-        /**
-         * Deprecated: Handle ajax request to restore a notification.
-         * Renamed to ajax_restore_notification
-         *
-         * @deprecated 14.0
-         * @codeCoverageIgnore
-         *
-         * @return void
-         */
-        public function ajax_restore_alert()
         {
         }
         /**
@@ -7006,7 +6722,9 @@ namespace {
         /**
          * Extract the Yoast Notification from the AJAX request.
          *
-         * @return Yoast_Notification|null
+         * This function does not handle nonce verification.
+         *
+         * @return Yoast_Notification|null A Yoast_Notification on success, null on failure.
          */
         private function get_notification_from_ajax_request()
         {
@@ -7026,35 +6744,11 @@ namespace {
         {
         }
         /**
-         * Deprecated: Get the number of active notifications.
-         * Renamed to get_active_notification_count
-         *
-         * @deprecated 14.0
-         * @codeCoverageIgnore
-         *
-         * @return int
-         */
-        public function get_active_alert_count()
-        {
-        }
-        /**
          * Get the number of active notifications.
          *
          * @return int
          */
         public static function get_active_notification_count()
-        {
-        }
-        /**
-         * Deprecated: Filter out any non-errors. Renamed to filter_error_notifications
-         *
-         * @deprecated 14.0
-         * @codeCoverageIgnore
-         *
-         * @param Yoast_Notification $notification Notification to test.
-         * @return bool
-         */
-        public function filter_error_alerts(\Yoast_Notification $notification)
         {
         }
         /**
@@ -7068,18 +6762,6 @@ namespace {
         {
         }
         /**
-         * Deprecated: Filter out any non-warnings. Renamed to filter_warning_notifications
-         *
-         * @deprecated 14.0
-         * @codeCoverageIgnore
-         *
-         * @param Yoast_Notification $notification Notification to test.
-         * @return bool
-         */
-        public function filter_warning_alerts(\Yoast_Notification $notification)
-        {
-        }
-        /**
          * Filter out any non-warnings.
          *
          * @param Yoast_Notification $notification Notification to test.
@@ -7087,18 +6769,6 @@ namespace {
          * @return bool
          */
         private static function filter_warning_notifications(\Yoast_Notification $notification)
-        {
-        }
-        /**
-         * Deprecated: Filter out any dismissed notifications. Renamed to filter_dismissed_alerts.
-         *
-         * @deprecated 14.0
-         * @codeCoverageIgnore
-         *
-         * @param Yoast_Notification $notification Notification to test.
-         * @return bool
-         */
-        public function filter_dismissed_alerts(\Yoast_Notification $notification)
         {
         }
         /**
@@ -7383,7 +7053,7 @@ namespace {
         /**
          * Returns true when the filter is active.
          *
-         * @return bool Whether or not the filter is active.
+         * @return bool Whether the filter is active.
          */
         protected function is_filter_active()
         {
@@ -7568,19 +7238,12 @@ namespace {
         private function get_semrush_login_status()
         {
         }
-        /* ********************* DEPRECATED METHODS ********************* */
         /**
-         * Returns the translations for the Add Keyword modal.
+         * Checks whether a multilingual plugin is currently active. Currently, we only check the following plugins: WPML, Polylang, and TranslatePress.
          *
-         * These strings are not escaped because they're meant to be used with React
-         * which already takes care of that. If used in PHP, they should be escaped.
-         *
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @return array Translated text strings for the Add Keyword modal.
+         * @return bool Whether a multilingual plugin is currently active.
          */
-        public function get_add_keyword_upsell_translations()
+        private function multilingual_plugin_active()
         {
         }
     }
@@ -7696,13 +7359,12 @@ namespace {
         {
         }
         /**
-         * Retrieves the additional keywords from Premium, that are associated with the post.
+         * Retrieves the post types for the given post IDs.
          *
-         * @param array $usage The original keyword usage for the main keyword.
-         *
-         * @return array The keyword usage, including the additional keywords.
+         * @param array $post_ids_per_keyword An associative array with keywords as keys and an array of post ids where those keywords are used.
+         * @return array The post types for the given post IDs.
          */
-        protected function get_premium_keywords($usage)
+        private function get_post_types_for_all_ids($post_ids_per_keyword)
         {
         }
         /**
@@ -7765,6 +7427,16 @@ namespace {
          * @return string
          */
         private function get_template($template_option_name)
+        {
+        }
+        /**
+         * Retrieves a social template.
+         *
+         * @param string $template_option_name The name of the option in which the template you want to get is saved.
+         *
+         * @return string
+         */
+        private function get_social_template($template_option_name)
         {
         }
         /**
@@ -7933,6 +7605,16 @@ namespace {
          * @return string
          */
         private function get_template($template_option_name)
+        {
+        }
+        /**
+         * Retrieves a social template.
+         *
+         * @param string $template_option_name The name of the option in which the template you want to get is saved.
+         *
+         * @return string
+         */
+        private function get_social_template($template_option_name)
         {
         }
         /**
@@ -10144,6 +9826,53 @@ namespace {
      * @package WPSEO\Admin\Metabox
      */
     /**
+     * Represents the inclusive language analysis.
+     */
+    class WPSEO_Metabox_Analysis_Inclusive_Language implements \WPSEO_Metabox_Analysis
+    {
+        /**
+         * Whether this analysis is enabled.
+         *
+         * @return bool Whether or not this analysis is enabled.
+         */
+        public function is_enabled()
+        {
+        }
+        /**
+         * Whether or not this analysis is enabled by the user.
+         *
+         * @return bool Whether or not this analysis is enabled by the user.
+         */
+        public function is_user_enabled()
+        {
+        }
+        /**
+         * Whether or not this analysis is enabled globally.
+         *
+         * @return bool Whether or not this analysis is enabled globally.
+         */
+        public function is_globally_enabled()
+        {
+        }
+        /**
+         * Whether the inclusive language analysis should be loaded in Free.
+         *
+         * It should always be loaded when Premium is not active. If Premium is active, it depends on the version. Some Premium
+         * versions also have inclusive language code (when it was still a Premium only feature) which would result in rendering
+         * the analysis twice. In those cases, the analysis should be only loaded from the Premium side.
+         *
+         * @return bool Whether or not the inclusive language analysis should be loaded.
+         */
+        private function is_current_version_supported()
+        {
+        }
+    }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\Admin\Metabox
+     */
+    /**
      * Represents the readability analysis.
      */
     class WPSEO_Metabox_Analysis_Readability implements \WPSEO_Metabox_Analysis
@@ -10570,6 +10299,30 @@ namespace {
         }
     }
     /**
+     * Generates and displays the React root element for a metabox section.
+     */
+    class WPSEO_Metabox_Section_Inclusive_Language implements \WPSEO_Metabox_Section
+    {
+        /**
+         * Name of the section, used as an identifier in the HTML.
+         *
+         * @var string
+         */
+        public $name = 'inclusive-language';
+        /**
+         * Outputs the section link.
+         */
+        public function display_link()
+        {
+        }
+        /**
+         * Outputs the section content.
+         */
+        public function display_content()
+        {
+        }
+    }
+    /**
      * WPSEO plugin file.
      *
      * @package WPSEO\Admin
@@ -10781,7 +10534,7 @@ namespace {
                 'description' => '',
                 // Translation added later.
                 'help' => '',
-            ], 'linkdex' => ['type' => 'hidden', 'title' => 'linkdex', 'default_value' => '0', 'description' => ''], 'content_score' => ['type' => 'hidden', 'title' => 'content_score', 'default_value' => '0', 'description' => ''], 'is_cornerstone' => ['type' => 'hidden', 'title' => 'is_cornerstone', 'default_value' => 'false', 'description' => '']],
+            ], 'linkdex' => ['type' => 'hidden', 'title' => 'linkdex', 'default_value' => '0', 'description' => ''], 'content_score' => ['type' => 'hidden', 'title' => 'content_score', 'default_value' => '0', 'description' => ''], 'inclusive_language_score' => ['type' => 'hidden', 'title' => 'inclusive_language_score', 'default_value' => '0', 'description' => ''], 'is_cornerstone' => ['type' => 'hidden', 'title' => 'is_cornerstone', 'default_value' => 'false', 'description' => '']],
             'advanced' => ['meta-robots-noindex' => [
                 'type' => 'hidden',
                 'title' => '',
@@ -11056,6 +10809,16 @@ namespace {
         {
         }
         /**
+         * Returns the post types for the given post ids.
+         *
+         * @param array $post_ids The post ids to get the post types for.
+         *
+         * @return array The post types.
+         */
+        public static function post_types_for_ids($post_ids)
+        {
+        }
+        /**
          * Filter the schema article types.
          *
          * @return void
@@ -11070,23 +10833,29 @@ namespace {
     class WPSEO_Metabox extends \WPSEO_Meta
     {
         /**
-         * Whether or not the social tab is enabled.
+         * Whether the social tab is enabled.
          *
          * @var bool
          */
         private $social_is_enabled;
         /**
-         * Helper to determine whether or not the SEO analysis is enabled.
+         * Helper to determine whether the SEO analysis is enabled.
          *
          * @var WPSEO_Metabox_Analysis_SEO
          */
         protected $seo_analysis;
         /**
-         * Helper to determine whether or not the readability analysis is enabled.
+         * Helper to determine whether the readability analysis is enabled.
          *
          * @var WPSEO_Metabox_Analysis_Readability
          */
         protected $readability_analysis;
+        /**
+         * Helper to determine whether the inclusive language analysis is enabled.
+         *
+         * @var WPSEO_Metabox_Analysis_Inclusive_Language
+         */
+        protected $inclusive_language_analysis;
         /**
          * The metabox editor object.
          *
@@ -11100,17 +10869,11 @@ namespace {
          */
         protected $post = \null;
         /**
-         * Whether or not the advanced metadata is enabled.
+         * Whether the advanced metadata is enabled.
          *
          * @var bool
          */
         protected $is_advanced_metadata_enabled;
-        /**
-         * Represents the estimated_reading_time_conditional.
-         *
-         * @var Estimated_Reading_Time_Conditional
-         */
-        protected $estimated_reading_time_conditional;
         /**
          * Class constructor.
          */
@@ -11475,7 +11238,7 @@ namespace {
          *
          * @codeCoverageIgnore
          *
-         * @return string The listener value.
+         * @return string|null The listener value or null if not set.
          */
         protected function get_listener_value()
         {
@@ -11698,11 +11461,17 @@ namespace {
      */
     /**
      * VIP implementation of the Role Manager.
+     *
+     * @deprecated 19.9
+     * @codeCoverageIgnore
      */
     final class WPSEO_Role_Manager_VIP extends \WPSEO_Abstract_Role_Manager
     {
         /**
          * Adds a role to the system.
+         *
+         * @deprecated 19.9
+         * @codeCoverageIgnore
          *
          * @param string $role         Role to add.
          * @param string $display_name Name to display for the role.
@@ -11715,6 +11484,9 @@ namespace {
         }
         /**
          * Removes a role from the system.
+         *
+         * @deprecated 19.9
+         * @codeCoverageIgnore
          *
          * @param string $role Role to remove.
          *
@@ -11765,186 +11537,6 @@ namespace {
          * @return array Formatted capabilities.
          */
         protected function format_capabilities(array $capabilities, $enabled = \true)
-        {
-        }
-    }
-    /**
-     * WPSEO plugin file.
-     *
-     * @package WPSEO\Admin
-     */
-    /**
-     * This class handles the data for the option where the Ryte data is stored.
-     */
-    class WPSEO_Ryte_Option
-    {
-        /**
-         * Indicates the data is not fetched.
-         *
-         * @var int
-         */
-        const NOT_FETCHED = 99;
-        /**
-         * Indicates the option is indexable.
-         *
-         * @var int
-         */
-        const IS_INDEXABLE = 1;
-        /**
-         * Indicates the option is not indexable.
-         *
-         * @var int
-         */
-        const IS_NOT_INDEXABLE = 0;
-        /**
-         * Indicates the data could not be fetched.
-         *
-         * @var int
-         */
-        const CANNOT_FETCH = -1;
-        /**
-         * The name of the option where data will be stored.
-         *
-         * @var string
-         */
-        const OPTION_NAME = 'wpseo_ryte';
-        /**
-         * The key of the status in the option.
-         *
-         * @var string
-         */
-        const STATUS = 'status';
-        /**
-         * The key of the last fetch date in the option.
-         *
-         * @var string
-         */
-        const LAST_FETCH = 'last_fetch';
-        /**
-         * The limit for fetching the status manually.
-         *
-         * @var int
-         */
-        const FETCH_LIMIT = 15;
-        /**
-         * The Ryte option stored in the database.
-         *
-         * @var array
-         */
-        private $ryte_option;
-        /**
-         * Setting the object by setting the properties.
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Getting the status from the option.
-         *
-         * @return integer|string
-         */
-        public function get_status()
-        {
-        }
-        /**
-         * Saving the status to the options.
-         *
-         * @param string $status The status to save.
-         */
-        public function set_status($status)
-        {
-        }
-        /**
-         * Saving the last fetch timestamp to the options.
-         *
-         * @param int $timestamp Timestamp with the new value.
-         */
-        public function set_last_fetch($timestamp)
-        {
-        }
-        /**
-         * Determines whether the indexability status should be fetched.
-         *
-         * If LAST_FETCH isn't set, we assume the indexability status hasn't been fetched
-         * yet and return true. Then, we check whether the last fetch is within the
-         * FETCH_LIMIT time interval (15 seconds) to avoid too many consecutive API calls.
-         *
-         * @return bool Whether the indexability status should be fetched.
-         */
-        public function should_be_fetched()
-        {
-        }
-        /**
-         * Saving the option with the current data.
-         */
-        public function save_option()
-        {
-        }
-        /**
-         * Returns the value of the onpage_enabled status.
-         *
-         * @return bool
-         */
-        public function is_enabled()
-        {
-        }
-        /**
-         * Getting the option with the Ryte data.
-         *
-         * @return array
-         */
-        private function get_option()
-        {
-        }
-    }
-    /**
-     * WPSEO plugin file.
-     *
-     * @package WPSEO\Admin
-     */
-    /**
-     * This class will fetch a new status from Ryte and if it's necessary it will
-     * notify the site admin by email and remove the current meta value to hide the
-     * notice for all admin users.
-     */
-    class WPSEO_Ryte_Request
-    {
-        /**
-         * The endpoint where the request will be send to.
-         *
-         * @var string
-         */
-        private $ryte_endpoint = 'https://indexability.yoast.onpage.org/';
-        /**
-         * Gets the response from the Ryte API and returns the body.
-         *
-         * @param string $target_url The URL to check indexability for.
-         * @param array  $parameters Array of extra parameters to send to the Ryte API.
-         *
-         * @return array The successful response or the error details.
-         */
-        protected function get_remote($target_url, $parameters = [])
-        {
-        }
-        /**
-         * Sends a request to the Ryte API to check whether a URL is indexable.
-         *
-         * @param string $target_url The URL to check indexability for.
-         * @param array  $parameters Array of extra parameters to send to the Ryte API.
-         *
-         * @return array
-         */
-        public function do_request($target_url, $parameters = [])
-        {
-        }
-        /**
-         * Processes the given Ryte response.
-         *
-         * @param array|WP_Error $response The response or WP_Error to process.
-         *
-         * @return array The response body or the error detaiils on failure.
-         */
-        protected function process_response($response)
         {
         }
     }
@@ -12187,11 +11779,6 @@ namespace {
         }
     }
     /**
-     * WPSEO plugin file.
-     *
-     * @package WPSEO\Admin
-     */
-    /**
      * This class adds columns to the taxonomy table.
      */
     class WPSEO_Taxonomy_Columns
@@ -12214,6 +11801,18 @@ namespace {
          * @var string
          */
         private $taxonomy;
+        /**
+         * Holds the Indexable_Repository.
+         *
+         * @var Indexable_Repository
+         */
+        protected $indexable_repository;
+        /**
+         * Holds the Score_Icon_Helper.
+         *
+         * @var Score_Icon_Helper
+         */
+        protected $score_icon_helper;
         /**
          * WPSEO_Taxonomy_Columns constructor.
          */
@@ -12243,9 +11842,9 @@ namespace {
         {
         }
         /**
-         * Retrieves the taxonomy from the $_GET variable.
+         * Retrieves the taxonomy from the $_GET or $_POST variable.
          *
-         * @return string The current taxonomy.
+         * @return string|null The current taxonomy or null when it is not set.
          */
         public function get_current_taxonomy()
         {
@@ -12279,42 +11878,13 @@ namespace {
         {
         }
         /**
-         * Creates an icon by the given values.
-         *
-         * @param WPSEO_Rank $rank  The ranking object.
-         * @param string     $title Optional. The title to show. Defaults to the rank label.
-         *
-         * @return string The HTML for a score icon.
-         */
-        private function create_score_icon(\WPSEO_Rank $rank, $title = '')
-        {
-        }
-        /**
          * Check if the taxonomy is indexable.
          *
          * @param mixed $term The current term.
          *
-         * @return bool Whether or not the term is indexable.
+         * @return bool Whether the term is indexable.
          */
         private function is_indexable($term)
-        {
-        }
-        /**
-         * Returns the focus keyword if this is set, otherwise it will give the term name.
-         *
-         * @param stdClass|WP_Term $term The current term.
-         *
-         * @return string
-         */
-        private function get_focus_keyword($term)
-        {
-        }
-        /**
-         * Checks if a taxonomy is being added via a POST method. If not, it defaults to a GET request.
-         *
-         * @return int
-         */
-        private function get_taxonomy_input_type()
         {
         }
         /**
@@ -12325,7 +11895,7 @@ namespace {
          *
          * @param string|null $taxonomy Optional. The taxonomy to test, defaults to the current taxonomy.
          *
-         * @return bool Whether or not the meta box (and associated columns etc) should be hidden.
+         * @return bool Whether the meta box (and associated columns etc) should be hidden.
          */
         private function display_metabox($taxonomy = \null)
         {
@@ -12531,6 +12101,12 @@ namespace {
          */
         protected $readability_analysis;
         /**
+         * Helper to determine whether or not the inclusive language analysis is enabled.
+         *
+         * @var WPSEO_Metabox_Analysis_Inclusive_Language
+         */
+        protected $inclusive_language_analysis;
+        /**
          * The constructor.
          *
          * @param string   $taxonomy The taxonomy.
@@ -12570,6 +12146,14 @@ namespace {
         {
         }
         /**
+         * Returns the metabox tabs that have been added by other plugins.
+         *
+         * @return WPSEO_Metabox_Section_Additional[]
+         */
+        protected function get_additional_tabs()
+        {
+        }
+        /**
          * Retrieves the product title.
          *
          * @return string The product title.
@@ -12601,6 +12185,12 @@ namespace {
          * @var WPSEO_Metabox_Analysis_Readability
          */
         private $analysis_readability;
+        /**
+         * Holds the metabox inclusive language analysis instance.
+         *
+         * @var WPSEO_Metabox_Analysis_Inclusive_Language
+         */
+        private $analysis_inclusive_language;
         /**
          * Class constructor.
          */
@@ -12671,9 +12261,11 @@ namespace {
         /**
          * Pass variables to js for use with the term-scraper.
          *
+         * @param int $term_id The ID of the term to localize the script for.
+         *
          * @return array
          */
-        public function localize_term_scraper_script()
+        public function localize_term_scraper_script($term_id)
         {
         }
         /**
@@ -12716,7 +12308,7 @@ namespace {
         /**
          * Function to get the labels for the current taxonomy.
          *
-         * @return object Labels for the current taxonomy.
+         * @return object|null Labels for the current taxonomy or null if the taxonomy is not set.
          */
         public static function get_labels()
         {
@@ -12735,7 +12327,15 @@ namespace {
          *
          * @return string
          */
-        private function get_taxonomy()
+        private static function get_taxonomy()
+        {
+        }
+        /**
+         * Get the current tag ID from the GET parameters.
+         *
+         * @return int|null the tag ID if it exists, null otherwise.
+         */
+        private static function get_tag_id()
         {
         }
         /**
@@ -12754,14 +12354,70 @@ namespace {
         private function get_recommended_replace_vars()
         {
         }
+    }
+    /**
+     * Represents the addon option data.
+     */
+    class WPSEO_Tracking_Addon_Data implements \WPSEO_Collection
+    {
         /**
-         * Adds custom category description editor.
-         * Needs a hook that runs before the description field. Prior to WP version 4.5 we need to use edit_form as
-         * term_edit_form_top was introduced in WP 4.5. This can be removed after <4.5 is no longer supported.
+         * The local options we want to track.
          *
-         * @return void
+         * @var string[] The option_names for the options we want to track.
          */
-        private function insert_description_field_editor()
+        private $local_include_list = ['use_multiple_locations', 'multiple_locations_same_organization', 'business_type', 'woocommerce_local_pickup_setting'];
+        /**
+         * The woo options we want to track.
+         *
+         * @var string[] The option_names for the options we want to track.
+         */
+        private $woo_include_list = [];
+        /**
+         * The news options we want to track.
+         *
+         * @var string[] The option_names for the options we want to track.
+         */
+        private $news_include_list = [];
+        /**
+         * The video options we want to track.
+         *
+         * @var string[] The option_names for the options we want to track.
+         */
+        private $video_include_list = [];
+        /**
+         * Returns the collection data.
+         *
+         * @return array The collection data.
+         */
+        public function get()
+        {
+        }
+        /**
+         * Gets the tracked options from the addon
+         *
+         * @param array  $addon_settings      The current list of addon settings.
+         * @param string $source_name         The option key of the addon.
+         * @param string $slug                The addon slug.
+         * @param array  $option_include_list All the options to be included in tracking.
+         *
+         * @return array
+         */
+        public function get_addon_settings(array $addon_settings, $source_name, $slug, $option_include_list)
+        {
+        }
+        /**
+         * Filter business_type in local addon settings.
+         *
+         * Remove the business_type setting when 'multiple_locations_shared_business_info' setting is turned off.
+         *
+         * @param array  $addon_settings      The current list of addon settings.
+         * @param string $source_name         The option key of the addon.
+         * @param string $slug                The addon slug.
+         * @param array  $option_include_list All the options to be included in tracking.
+         *
+         * @return array
+         */
+        public function get_local_addon_settings(array $addon_settings, $source_name, $slug, $option_include_list)
         {
         }
     }
@@ -12784,6 +12440,16 @@ namespace {
         {
         }
         /**
+         * Returns the number of posts of a certain type.
+         *
+         * @param string $post_type The post type return the count for.
+         *
+         * @return int The count for this post type.
+         */
+        protected function get_post_count($post_type)
+        {
+        }
+        /**
          * Returns the WordPress version.
          *
          * @return string The version.
@@ -12803,6 +12469,12 @@ namespace {
     class WPSEO_Tracking_Plugin_Data implements \WPSEO_Collection
     {
         /**
+         * Plugins with auto updating enabled.
+         *
+         * @var array
+         */
+        private $auto_update_plugin_list;
+        /**
          * Returns the collection data.
          *
          * @return array The collection data.
@@ -12816,6 +12488,14 @@ namespace {
          * @return array The formatted plugins.
          */
         protected function get_plugin_data()
+        {
+        }
+        /**
+         * Sets all auto updating plugin data so it can be used in the tracking list.
+         *
+         * @return void
+         */
+        public function set_auto_update_plugin_list()
         {
         }
         /**
@@ -12888,13 +12568,13 @@ namespace {
          * @var array All of the option_names which need to be
          * anonymized before they can be sent elsewhere.
          */
-        private $anonymous_settings = ['baiduverify', 'googleverify', 'msverify', 'yandexverify', 'myyoast-oauth', 'website_name', 'alternate_website_name', 'company_logo', 'company_name', 'person_name', 'person_logo', 'person_logo_id', 'company_logo_id', 'facebook_site', 'instagram_url', 'linkedin_url', 'myspace_url', 'og_default_image', 'og_default_image_id', 'og_frontpage_title', 'og_frontpage_desc', 'og_frontpage_image', 'og_frontpage_image_id', 'open_graph_frontpage_title', 'open_graph_frontpage_desc', 'open_graph_frontpage_image', 'open_graph_frontpage_image_id', 'other_social_urls', 'pinterest_url', 'pinterestverify', 'twitter_site', 'youtube_url', 'wikipedia_url', 'semrush_tokens', 'zapier_api_key', 'wincher_tokens', 'wincher_website_id'];
+        private $anonymous_settings = ['baiduverify', 'googleverify', 'msverify', 'yandexverify', 'myyoast-oauth', 'website_name', 'alternate_website_name', 'company_logo', 'company_name', 'company_alternate_name', 'person_name', 'person_logo', 'person_logo_id', 'company_logo_id', 'facebook_site', 'instagram_url', 'linkedin_url', 'myspace_url', 'og_default_image', 'og_default_image_id', 'og_frontpage_title', 'og_frontpage_desc', 'og_frontpage_image', 'og_frontpage_image_id', 'open_graph_frontpage_title', 'open_graph_frontpage_desc', 'open_graph_frontpage_image', 'open_graph_frontpage_image_id', 'other_social_urls', 'mastodon_url', 'pinterest_url', 'pinterestverify', 'twitter_site', 'youtube_url', 'wikipedia_url', 'semrush_tokens', 'zapier_api_key', 'wincher_tokens', 'wincher_website_id', 'least_readability_ignore_list', 'least_seo_score_ignore_list', 'most_linked_ignore_list', 'least_linked_ignore_list', 'indexables_page_reading_list'];
         /**
          * The options we want to track.
          *
          * @var array The option_names for the options we want to track.
          */
-        private $include_list = ['ms_defaults_set', 'version', 'disableadvanced_meta', 'ryte_indexability', 'baiduverify', 'googleverify', 'msverify', 'yandexverify', 'site_type', 'has_multiple_authors', 'environment_type', 'content_analysis_active', 'keyword_analysis_active', 'enable_admin_bar_menu', 'enable_cornerstone_content', 'enable_xml_sitemap', 'enable_text_link_counter', 'show_onboarding_notice', 'first_activated_on', 'myyoast-oauth', 'dynamic_permalinks', 'website_name', 'alternate_website_name', 'company_logo', 'company_name', 'company_or_person', 'person_name', 'forcerewritetitle', 'separator', 'title-home-wpseo', 'title-author-wpseo', 'title-archive-wpseo', 'title-search-wpseo', 'title-404-wpseo', 'metadesc-home-wpseo', 'metadesc-author-wpseo', 'metadesc-archive-wpseo', 'rssbefore', 'rssafter', 'noindex-author-wpseo', 'noindex-author-noposts-wpseo', 'noindex-archive-wpseo', 'disable-author', 'disable-date', 'disable-post_format', 'disable-attachment', 'breadcrumbs-404crumb', 'breadcrumbs-display-blog-page', 'breadcrumbs-boldlast', 'breadcrumbs-archiveprefix', 'breadcrumbs-enable', 'breadcrumbs-home', 'breadcrumbs-prefix', 'breadcrumbs-searchprefix', 'breadcrumbs-sep', 'person_logo', 'person_logo_id', 'company_logo_id', 'company_or_person_user_id', 'stripcategorybase', 'noindex-post', 'display-metabox-pt-post', 'noindex-page', 'display-metabox-pt-page', 'noindex-attachment', 'display-metabox-pt-attachment', 'display-metabox-tax-category', 'noindex-tax-category', 'display-metabox-tax-post_tag', 'noindex-tax-post_tag', 'display-metabox-tax-post_format', 'noindex-tax-post_format', 'taxonomy-category-ptparent', 'taxonomy-post_tag-ptparent', 'taxonomy-post_format-ptparent', 'breadcrumbs-blog-remove', 'hideeditbox-post', 'hideeditbox-page', 'hideeditbox-attachment', 'hideeditbox-tax-category', 'hideeditbox-tax-post_tag', 'hideeditbox-tax-post_format', 'facebook_site', 'instagram_url', 'linkedin_url', 'myspace_url', 'og_default_image', 'og_default_image_id', 'og_frontpage_title', 'og_frontpage_desc', 'og_frontpage_image', 'og_frontpage_image_id', 'open_graph_frontpage_title', 'open_graph_frontpage_desc', 'open_graph_frontpage_image', 'open_graph_frontpage_image_id', 'opengraph', 'pinterest_url', 'pinterestverify', 'twitter', 'twitter_site', 'twitter_card_type', 'youtube_url', 'wikipedia_url', 'indexables_indexing_completed', 'semrush_integration_active', 'semrush_tokens', 'semrush_country_code', 'enable_enhanced_slack_sharing', 'zapier_integration_active', 'zapier_api_key', 'enable_metabox_insights', 'enable_link_suggestions', 'enable_index_now', 'workouts', 'wincher_integration_active', 'wincher_tokens', 'wincher_website_id', 'wincher_automatically_add_keyphrases', 'first_time_install', 'other_social_urls', 'remove_feed_global', 'remove_feed_global_comments', 'remove_feed_post_comments', 'remove_feed_authors', 'remove_feed_categories', 'remove_feed_tags', 'remove_feed_custom_taxonomies', 'remove_feed_post_types', 'remove_feed_search', 'remove_atom_rdf_feeds', 'remove_shortlinks', 'remove_rest_api_links', 'remove_rsd_wlw_links', 'remove_oembed_links', 'remove_generator', 'remove_emoji_scripts', 'remove_powered_by_header', 'remove_pingback_header', 'clean_campaign_tracking_urls', 'clean_permalinks', 'clean_permalinks_extra_variables', 'search_cleanup', 'search_cleanup_emoji', 'search_cleanup_patterns', 'search_character_limit', 'wordproof_integration_active'];
+        private $include_list = ['ms_defaults_set', 'version', 'disableadvanced_meta', 'ryte_indexability', 'baiduverify', 'googleverify', 'msverify', 'yandexverify', 'site_type', 'has_multiple_authors', 'environment_type', 'content_analysis_active', 'keyword_analysis_active', 'inclusive_language_analysis_active', 'enable_admin_bar_menu', 'enable_cornerstone_content', 'enable_xml_sitemap', 'enable_text_link_counter', 'show_onboarding_notice', 'first_activated_on', 'myyoast-oauth', 'dynamic_permalinks', 'website_name', 'alternate_website_name', 'company_logo', 'company_name', 'company_or_person', 'person_name', 'forcerewritetitle', 'separator', 'title-home-wpseo', 'title-author-wpseo', 'title-archive-wpseo', 'title-search-wpseo', 'title-404-wpseo', 'metadesc-home-wpseo', 'metadesc-author-wpseo', 'metadesc-archive-wpseo', 'rssbefore', 'rssafter', 'noindex-author-wpseo', 'noindex-author-noposts-wpseo', 'noindex-archive-wpseo', 'disable-author', 'disable-date', 'disable-post_format', 'disable-attachment', 'breadcrumbs-404crumb', 'breadcrumbs-display-blog-page', 'breadcrumbs-boldlast', 'breadcrumbs-archiveprefix', 'breadcrumbs-enable', 'breadcrumbs-home', 'breadcrumbs-prefix', 'breadcrumbs-searchprefix', 'breadcrumbs-sep', 'person_logo', 'person_logo_id', 'company_logo_id', 'company_or_person_user_id', 'stripcategorybase', 'noindex-post', 'display-metabox-pt-post', 'noindex-page', 'display-metabox-pt-page', 'noindex-attachment', 'display-metabox-pt-attachment', 'display-metabox-tax-category', 'noindex-tax-category', 'display-metabox-tax-post_tag', 'noindex-tax-post_tag', 'display-metabox-tax-post_format', 'noindex-tax-post_format', 'taxonomy-category-ptparent', 'taxonomy-post_tag-ptparent', 'taxonomy-post_format-ptparent', 'breadcrumbs-blog-remove', 'hideeditbox-post', 'hideeditbox-page', 'hideeditbox-attachment', 'hideeditbox-tax-category', 'hideeditbox-tax-post_tag', 'hideeditbox-tax-post_format', 'facebook_site', 'instagram_url', 'linkedin_url', 'myspace_url', 'og_default_image', 'og_default_image_id', 'og_frontpage_title', 'og_frontpage_desc', 'og_frontpage_image', 'og_frontpage_image_id', 'open_graph_frontpage_title', 'open_graph_frontpage_desc', 'open_graph_frontpage_image', 'open_graph_frontpage_image_id', 'opengraph', 'pinterest_url', 'pinterestverify', 'twitter', 'twitter_site', 'twitter_card_type', 'youtube_url', 'wikipedia_url', 'mastodon_url', 'indexables_indexing_completed', 'semrush_integration_active', 'semrush_tokens', 'semrush_country_code', 'enable_enhanced_slack_sharing', 'zapier_integration_active', 'zapier_api_key', 'enable_metabox_insights', 'enable_link_suggestions', 'enable_index_now', 'workouts', 'wincher_integration_active', 'wincher_tokens', 'wincher_website_id', 'wincher_automatically_add_keyphrases', 'first_time_install', 'other_social_urls', 'remove_feed_global', 'remove_feed_global_comments', 'remove_feed_post_comments', 'remove_feed_authors', 'remove_feed_categories', 'remove_feed_tags', 'remove_feed_custom_taxonomies', 'remove_feed_post_types', 'remove_feed_search', 'remove_atom_rdf_feeds', 'remove_shortlinks', 'remove_rest_api_links', 'remove_rsd_wlw_links', 'remove_oembed_links', 'remove_generator', 'remove_emoji_scripts', 'remove_powered_by_header', 'remove_pingback_header', 'clean_campaign_tracking_urls', 'clean_permalinks', 'clean_permalinks_extra_variables', 'search_cleanup', 'search_cleanup_emoji', 'search_cleanup_patterns', 'search_character_limit', 'redirect_search_pretty_urls', 'wordproof_integration_active', 'indexables_overview_state', 'deny_search_crawling', 'deny_wp_json_crawling'];
         /**
          * Returns the collection data.
          *
@@ -13010,7 +12690,7 @@ namespace {
          * Sends the tracking data.
          *
          * @param bool $force Whether to send the tracking data ignoring the two
-         *                    weeks time treshhold. Default false.
+         *                    weeks time threshold. Default false.
          */
         public function send($force = \false)
         {
@@ -13059,58 +12739,6 @@ namespace {
         }
     }
     /**
-     * Class Yoast_View_Utils.
-     */
-    class Yoast_View_Utils
-    {
-        /**
-         * Form to use.
-         *
-         * @var Yoast_Form
-         */
-        protected $form;
-        /**
-         * Yoast_View_Utils constructor.
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Shows the search results help question mark and help section.
-         *
-         * Used for all the Help sections for indexable objects like post types, taxonomies, or archives.
-         *
-         * @param string|object $post_type        The post type to show the search results help for.
-         * @param string        $help_text_switch Switch the help text to one that's more appropriate
-         *                                        for the indexable object type the help section is for.
-         *
-         * @return object The help panel instance.
-         */
-        public function search_results_setting_help($post_type, $help_text_switch = '')
-        {
-        }
-        /**
-         * Generates the OpenGraph disabled alert, depending on whether the OpenGraph feature is disabled.
-         *
-         * @param string $type The type of message. Can be altered to homepage, taxonomies or archives. Empty string by default.
-         *
-         * @return string The alert. Returns an empty string if the setting is enabled.
-         */
-        public function generate_opengraph_disabled_alert($type = '')
-        {
-        }
-        /**
-         * Generates the OpenGraph disabled alert text.
-         *
-         * @param string $type The type of message. Can be altered to homepage, taxonomies or archives. Empty string by default.
-         *
-         * @return string The alert. Returns an empty string if the setting is enabled.
-         */
-        private function generate_opengraph_disabled_alert_text($type)
-        {
-        }
-    }
-    /**
      * WPSEO plugin file.
      *
      * @package WPSEO\Admin
@@ -13138,6 +12766,27 @@ namespace {
          * @var bool
          */
         protected $premium = \false;
+        /**
+         * Whether the feature is in beta or not.
+         *
+         * @var bool
+         */
+        protected $in_beta = \false;
+        /**
+         * The Premium version in which this feature has been added.
+         *
+         * @var string
+         */
+        protected $premium_version = '';
+        /**
+         * The languages in which this feature is supported.
+         * E.g. for language specific analysis support.
+         *
+         * If empty, the feature is considered to have support in all languages.
+         *
+         * @var string[]
+         */
+        protected $supported_languages = [];
         /**
          * Feature toggle label.
          *
@@ -13206,18 +12855,21 @@ namespace {
          * @param array $args {
          *     Feature toggle arguments.
          *
-         *     @type string $name               Required. Feature toggle identifier.
-         *     @type string $setting            Required. Name of the setting the feature toggle is associated with.
-         *     @type string $disabled           Whether the feature is premium or not.
-         *     @type string $label              Feature toggle label.
-         *     @type string $read_more_url      URL to learn more about the feature. Default empty string.
-         *     @type string $premium_upsell_url URL to buy premium. Default empty string.
-         *     @type string $read_more_label    Label for the learn more link. Default empty string.
-         *     @type string $extra              Additional help content for the feature. Default empty string.
-         *     @type int    $order              Value to specify the feature toggle order. A lower value indicates
-         *                                      a higher priority. Default 100.
-         *     @type bool   $disabled           Disable the integration toggle. Default false.
-         *     @type string $new                Whether the feature is new or not.
+         *     @type string $name                Required. Feature toggle identifier.
+         *     @type string $setting             Required. Name of the setting the feature toggle is associated with.
+         *     @type string $disabled            Whether the feature is premium or not.
+         *     @type string $label               Feature toggle label.
+         *     @type string $read_more_url       URL to learn more about the feature. Default empty string.
+         *     @type string $premium_upsell_url  URL to buy premium. Default empty string.
+         *     @type string $read_more_label     Label for the learn more link. Default empty string.
+         *     @type string $extra               Additional help content for the feature. Default empty string.
+         *     @type int    $order               Value to specify the feature toggle order. A lower value indicates
+         *                                       a higher priority. Default 100.
+         *     @type bool   $disabled            Disable the integration toggle. Default false.
+         *     @type string $new                 Whether the feature is new or not.
+         *     @type bool   $in_beta             Whether the feature is in beta or not.
+         *     @type array  $supported_languages The languages that this feature supports.
+         *     @type string $premium_version     The Premium version in which this feature was added.
          * }
          *
          * @throws InvalidArgumentException Thrown when a required argument is missing.
@@ -13720,6 +13372,12 @@ namespace {
          */
         protected static $addons = ['wp-seo-premium.php' => self::PREMIUM_SLUG, 'wpseo-news.php' => self::NEWS_SLUG, 'video-seo.php' => self::VIDEO_SLUG, 'wpseo-woocommerce.php' => self::WOOCOMMERCE_SLUG, 'local-seo.php' => self::LOCAL_SLUG];
         /**
+         * The addon data for the shortlinks.
+         *
+         * @var array
+         */
+        private $addon_details = [self::PREMIUM_SLUG => ['name' => 'Yoast SEO Premium', 'short_link_activation' => 'https://yoa.st/13j', 'short_link_renewal' => 'https://yoa.st/4ey'], self::NEWS_SLUG => ['name' => 'Yoast News SEO', 'short_link_activation' => 'https://yoa.st/4xq', 'short_link_renewal' => 'https://yoa.st/4xv'], self::WOOCOMMERCE_SLUG => ['name' => 'Yoast WooCommerce SEO', 'short_link_activation' => 'https://yoa.st/4xs', 'short_link_renewal' => 'https://yoa.st/4xx'], self::VIDEO_SLUG => ['name' => 'Yoast Video SEO', 'short_link_activation' => 'https://yoa.st/4xr', 'short_link_renewal' => 'https://yoa.st/4xw'], self::LOCAL_SLUG => ['name' => 'Yoast Local SEO', 'short_link_activation' => 'https://yoa.st/4xp', 'short_link_renewal' => 'https://yoa.st/4xu']];
+        /**
          * Holds the site information data.
          *
          * @var stdClass
@@ -13891,10 +13549,11 @@ namespace {
          * Creates an instance of Yoast_Notification.
          *
          * @param string $product_name The product to create the notification for.
+         * @param string $short_link   The short link for the addon notification.
          *
          * @return Yoast_Notification The created notification.
          */
-        protected function create_notification($product_name)
+        protected function create_notification($product_name, $short_link)
         {
         }
         /**
@@ -13994,16 +13653,6 @@ namespace {
          * @return stdClass|false The transient value.
          */
         protected function get_site_information_transient()
-        {
-        }
-        /**
-         * Returns the current page.
-         *
-         * @codeCoverageIgnore
-         *
-         * @return string The current page.
-         */
-        protected function get_current_page()
         {
         }
         /**
@@ -14308,6 +13957,22 @@ namespace {
         public static function has_metabox_enabled($post_type)
         {
         }
+        /**
+         * Removes the notification related to the post types which have been made public.
+         *
+         * @return void
+         */
+        public static function remove_post_types_made_public_notification()
+        {
+        }
+        /**
+         * Removes the notification related to the taxonomies which have been made public.
+         *
+         * @return void
+         */
+        public static function remove_taxonomies_made_public_notification()
+        {
+        }
     }
     /**
      * WPSEO plugin file.
@@ -14331,18 +13996,6 @@ namespace {
          * @since 1.2.8
          */
         public function schedule_flush()
-        {
-        }
-        /**
-         * If the flush option is set, flush the rewrite rules.
-         *
-         * @since 1.2.8
-         * @deprecated 17.4
-         * @codeCoverageIgnore
-         *
-         * @return bool
-         */
-        public function flush()
         {
         }
         /**
@@ -14520,7 +14173,7 @@ namespace {
         /**
          * The taxonomy helper.
          *
-         * @var \Yoast\WP\SEO\Helpers\Taxonomy_Helper
+         * @var Taxonomy_Helper
          */
         private $taxonomy_helper;
         /**
@@ -14921,6 +14574,30 @@ namespace {
         {
         }
         /**
+         * Performs the 19.6 upgrade routine.
+         */
+        private function upgrade_196()
+        {
+        }
+        /**
+         * Performs the 19.11 upgrade routine.
+         */
+        private function upgrade_1911()
+        {
+        }
+        /**
+         * Performs the 20.2 upgrade routine.
+         */
+        private function upgrade_202()
+        {
+        }
+        /**
+         * Performs the 20.5 upgrade routine.
+         */
+        private function upgrade_205()
+        {
+        }
+        /**
          * Sets the home_url option for the 15.1 upgrade routine.
          *
          * @return void
@@ -15083,6 +14760,60 @@ namespace {
         public function reset_og_settings_to_default_values()
         {
         }
+        /**
+         * Removes all indexables for posts that are not publicly viewable.
+         * This method should be called after init, because post_types can still be registered.
+         *
+         * @return void
+         */
+        public function remove_indexable_rows_for_non_public_post_types()
+        {
+        }
+        /**
+         * Removes all indexables for terms that are not publicly viewable.
+         * This method should be called after init, because taxonomies can still be registered.
+         *
+         * @return void
+         */
+        public function remove_indexable_rows_for_non_public_taxonomies()
+        {
+        }
+        /**
+         * De-duplicates indexables that have more than one "unindexed" rows for the same object. Keeps the newest indexable.
+         *
+         * @return void
+         */
+        private function deduplicate_unindexed_indexable_rows()
+        {
+        }
+        /**
+         * Cleans up "unindexed" indexable rows when appropriate, aka when there's no object ID even though it should.
+         *
+         * @return void
+         */
+        private function clean_unindexed_indexable_rows_with_no_object_id()
+        {
+        }
+        /**
+         * Removes all user indexable rows when the author archive is disabled.
+         *
+         * @return void
+         */
+        private function remove_indexable_rows_for_disabled_authors_archive()
+        {
+        }
+        /**
+         * Creates a query for de-duplicating indexables for a particular type.
+         *
+         * @param string $object_type The object type to deduplicate.
+         * @param array  $duplicates  The result of the duplicate query.
+         * @param wpdb   $wpdb        The wpdb object.
+         *
+         * @return string The query that removes all but one duplicate for each object of the object type.
+         */
+        private function get_indexable_deduplication_query_for_type($object_type, $duplicates, $wpdb)
+        {
+        }
     }
     /**
      * Class for the Yoast SEO admin bar menu.
@@ -15101,12 +14832,6 @@ namespace {
          * @var string
          */
         const KEYWORD_RESEARCH_SUBMENU_IDENTIFIER = 'wpseo-kwresearch';
-        /**
-         * The identifier used for the frontend inspector submenu.
-         *
-         * @var string
-         */
-        const FRONTEND_INSPECTOR_SUBMENU_IDENTIFIER = 'wpseo-frontend-inspector';
         /**
          * The identifier used for the Analysis submenu.
          *
@@ -15132,13 +14857,81 @@ namespace {
          */
         protected $asset_manager;
         /**
-         * Constructor.
+         * Holds the Score_Icon_Helper instance.
          *
-         * Sets the asset manager to use.
-         *
-         * @param WPSEO_Admin_Asset_Manager|null $asset_manager Optional. Asset manager to use.
+         * @var Score_Icon_Helper
          */
-        public function __construct(\WPSEO_Admin_Asset_Manager $asset_manager = \null)
+        protected $indexable_repository;
+        /**
+         * Holds the Score_Icon_Helper instance.
+         *
+         * @var Score_Icon_Helper
+         */
+        protected $score_icon_helper;
+        /**
+         * Holds the Product_Helper instance.
+         *
+         * @var Product_Helper
+         */
+        protected $product_helper;
+        /**
+         * Holds the shortlinker instance.
+         *
+         * @var WPSEO_Shortlinker
+         */
+        protected $shortlinker;
+        /**
+         * Whether SEO Score is enabled.
+         *
+         * @var bool
+         */
+        protected $is_seo_enabled = \null;
+        /**
+         * Whether readability is enabled.
+         *
+         * @var bool
+         */
+        protected $is_readability_enabled = \null;
+        /**
+         * The indexable for the current WordPress page, if found.
+         *
+         * @var bool|Indexable
+         */
+        protected $current_indexable = \null;
+        /**
+         * Constructs the WPSEO_Admin_Bar_Menu.
+         *
+         * @param WPSEO_Admin_Asset_Manager|null $asset_manager        Optional. Asset manager to use.
+         * @param Indexable_Repository|null      $indexable_repository Optional. The Indexable_Repository.
+         * @param Score_Icon_Helper|null         $score_icon_helper    Optional. The Score_Icon_Helper.
+         * @param Product_Helper|null            $product_helper       Optional. The product helper.
+         * @param WPSEO_Shortlinker|null         $shortlinker          The shortlinker.
+         */
+        public function __construct(\WPSEO_Admin_Asset_Manager $asset_manager = \null, \Yoast\WP\SEO\Repositories\Indexable_Repository $indexable_repository = \null, \Yoast\WP\SEO\Helpers\Score_Icon_Helper $score_icon_helper = \null, \Yoast\WP\SEO\Helpers\Product_Helper $product_helper = \null, \WPSEO_Shortlinker $shortlinker = \null)
+        {
+        }
+        /**
+         * Gets whether SEO score is enabled, with cache applied.
+         *
+         * @return bool True if SEO score is enabled, false otherwise.
+         */
+        protected function get_is_seo_enabled()
+        {
+        }
+        /**
+         * Gets whether readability is enabled, with cache applied.
+         *
+         * @return bool True if readability is enabled, false otherwise.
+         */
+        protected function get_is_readability_enabled()
+        {
+        }
+        /**
+         * Returns the indexable for the current WordPress page, with cache applied.
+         *
+         * @return bool|Indexable The indexable, false if none could be found.
+         */
+        protected function get_current_indexable()
         {
         }
         /**
@@ -15186,26 +14979,6 @@ namespace {
         {
         }
         /**
-         * Adds the admin bar keyword research submenu.
-         *
-         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
-         *
-         * @return void
-         */
-        protected function add_keyword_research_submenu(\WP_Admin_Bar $wp_admin_bar)
-        {
-        }
-        /**
-         * Adds the frontend inspector submenu.
-         *
-         * @param WP_Admin_Bar $wp_admin_bar The admin bar.
-         *
-         * @return void
-         */
-        protected function add_frontend_inspector_submenu(\WP_Admin_Bar $wp_admin_bar)
-        {
-        }
-        /**
          * Adds the admin bar analysis submenu.
          *
          * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
@@ -15213,6 +14986,46 @@ namespace {
          * @return void
          */
         protected function add_analysis_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar tools submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_seo_tools_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar How To submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_how_to_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar How To submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_get_help_submenu(\WP_Admin_Bar $wp_admin_bar)
+        {
+        }
+        /**
+         * Adds the admin bar How To submenu.
+         *
+         * @param WP_Admin_Bar $wp_admin_bar Admin bar instance to add the menu to.
+         *
+         * @return void
+         */
+        protected function add_premium_link(\WP_Admin_Bar $wp_admin_bar)
         {
         }
         /**
@@ -15297,13 +15110,11 @@ namespace {
         {
         }
         /**
-         * Takes the SEO score and makes the score icon for the admin bar for it.
+         * Create the score icon.
          *
-         * @param int $score The 0-100 rating of the score. Can be either SEO score or content score.
-         *
-         * @return string Score markup.
+         * @return string The score icon, or empty string.
          */
-        protected function get_score($score)
+        protected function get_score_icon()
         {
         }
         /**
@@ -15336,6 +15147,18 @@ namespace {
          * @return bool True if capabilities are sufficient, false otherwise.
          */
         protected function can_manage_options()
+        {
+        }
+        /**
+         * Add submenu items to a menu item.
+         *
+         * @param array        $submenu_items Submenu items array.
+         * @param WP_Admin_Bar $wp_admin_bar  Admin bar object.
+         * @param string       $parent_id     Parent menu item ID.
+         *
+         * @return void
+         */
+        protected function add_submenu_items(array $submenu_items, \WP_Admin_Bar $wp_admin_bar, $parent_id)
         {
         }
     }
@@ -15424,41 +15247,6 @@ namespace {
     /**
      * WPSEO plugin file.
      *
-     * @package WPSEO\Internal
-     */
-    /**
-     * Class containing method for WPSEO Features.
-     *
-     * @deprecated 16.0
-     */
-    class WPSEO_Features
-    {
-        /**
-         * Checks if the premium constant exists to make sure if plugin is the premium one.
-         *
-         * @deprecated 16.0
-         * @codeCoverageIgnore
-         *
-         * @return bool
-         */
-        public function is_premium()
-        {
-        }
-        /**
-         * Checks if using the free version of the plugin.
-         *
-         * @deprecated 16.0
-         * @codeCoverageIgnore
-         *
-         * @return bool
-         */
-        public function is_free()
-        {
-        }
-    }
-    /**
-     * WPSEO plugin file.
-     *
      * @package WPSEO
      */
     /**
@@ -15484,6 +15272,16 @@ namespace {
          * @return int The Post ID belonging to the attachment, 0 if not found.
          */
         protected static function attachment_url_to_postid($url)
+        {
+        }
+        /**
+         * Tries getting the ID of a potentially scaled image.
+         *
+         * @param string $url The URL of the image.
+         *
+         * @return int|false The ID of the image or false for failure.
+         */
+        protected static function get_scaled_image_id($url)
         {
         }
         /**
@@ -15521,8 +15319,8 @@ namespace {
         /**
          * Find the right version of an image based on size.
          *
-         * @param int    $attachment_id Attachment ID.
-         * @param string $size          Size name.
+         * @param int          $attachment_id Attachment ID.
+         * @param string|array $size     Size name, or array of width and height in pixels (e.g [800,400]).
          *
          * @return array|false Returns an array with image data on success, false on failure.
          */
@@ -16490,6 +16288,14 @@ namespace {
          *
          * @return array List of replace vars.
          */
+        public function get_replacement_variables_with_labels()
+        {
+        }
+        /**
+         * Generates a list of replacement variables based on the help texts.
+         *
+         * @return array List of replace vars.
+         */
         public function get_replacement_variables_list()
         {
         }
@@ -16879,19 +16685,6 @@ namespace {
         {
         }
         /**
-         * Translates a decimal analysis score into a textual one.
-         *
-         * @since 1.8.0
-         *
-         * @param int  $val       The decimal score to translate.
-         * @param bool $css_value Whether to return the i18n translated score or the CSS class value.
-         *
-         * @return string
-         */
-        public static function translate_score($val, $css_value = \true)
-        {
-        }
-        /**
          * Emulate the WP native sanitize_text_field function in a %%variable%% safe way.
          *
          * Sanitize a string from user input or from the db.
@@ -17108,17 +16901,6 @@ namespace {
         {
         }
         /**
-         * Checks if we are in the premium or free plugin.
-         *
-         * @deprecated 16.0
-         * @codeCoverageIgnore
-         *
-         * @return bool True when we are in the premium plugin.
-         */
-        public static function is_yoast_seo_premium()
-        {
-        }
-        /**
          * Determine if Yoast SEO is in development mode?
          *
          * Inspired by JetPack (https://github.com/Automattic/jetpack/blob/master/class.jetpack.php#L1383-L1406).
@@ -17190,7 +16972,7 @@ namespace {
         /**
          * Determines whether the plugin is active for the entire network.
          *
-         * @return bool Whether or not the plugin is network-active.
+         * @return bool Whether the plugin is network-active.
          */
         public static function is_plugin_network_active()
         {
@@ -17289,169 +17071,18 @@ namespace {
         }
         /* ********************* DEPRECATED METHODS ********************* */
         /**
-         * List all the available user roles.
+         * Translates a decimal analysis score into a textual one.
          *
-         * @since      1.8.0
-         * @deprecated 15.0
+         * @since 1.8.0
+         * @deprecated 19.5
          * @codeCoverageIgnore
          *
-         * @return array
-         */
-        public static function get_roles()
-        {
-        }
-        /**
-         * Checks if the current installation supports MyYoast access tokens.
-         *
-         * @deprecated 15.0
-         * @codeCoverageIgnore
-         *
-         * @return bool True if access_tokens are supported.
-         */
-        public static function has_access_token_support()
-        {
-        }
-        /**
-         * Standardize whitespace in a string.
-         *
-         * Replace line breaks, carriage returns, tabs with a space, then remove double spaces.
-         *
-         * @since      1.8.0
-         * @deprecated 15.2
-         * @codeCoverageIgnore
-         *
-         * @param string $text String input to standardize.
+         * @param int  $val       The decimal score to translate.
+         * @param bool $css_value Whether to return the i18n translated score or the CSS class value.
          *
          * @return string
          */
-        public static function standardize_whitespace($text)
-        {
-        }
-        /**
-         * First strip out registered and enclosing shortcodes using native WordPress strip_shortcodes function.
-         * Then strip out the shortcodes with a filthy regex, because people don't properly register their shortcodes.
-         *
-         * @since      1.8.0
-         * @deprecated 15.2
-         * @codeCoverageIgnore
-         *
-         * @param string $text Input string that might contain shortcodes.
-         *
-         * @return string String without shortcodes.
-         */
-        public static function strip_shortcode($text)
-        {
-        }
-        /**
-         * Retrieves the title separator.
-         *
-         * @since      3.0.0
-         * @deprecated 15.2
-         * @codeCoverageIgnore
-         *
-         * @return string
-         */
-        public static function get_title_separator()
-        {
-        }
-        /**
-         * Flush W3TC cache after successful update/add of taxonomy meta option.
-         *
-         * @since      1.8.0
-         * @deprecated 15.3
-         * @codeCoverageIgnore
-         */
-        public static function flush_w3tc_cache()
-        {
-        }
-        /**
-         * Determines whether or not WooCommerce is active.
-         *
-         * @deprecated 15.3
-         * @codeCoverageIgnore
-         *
-         * @return bool Whether or not WooCommerce is active.
-         */
-        public static function is_woocommerce_active()
-        {
-        }
-        /**
-         * Outputs a Schema blob.
-         *
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @param array  $graph        The Schema graph array to output.
-         * @param string $class_to_add The (optional) class to add to the script tag.
-         *
-         * @return bool
-         */
-        public static function schema_output($graph, $class_to_add = 'yoast-schema-graph')
-        {
-        }
-        /**
-         * Returns a script tag with Schema blob.
-         *
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @param array  $graph        The Schema graph array to output.
-         * @param string $class_to_add The (optional) class to add to the script tag.
-         *
-         * @return false|string A schema blob with script tags.
-         */
-        public static function schema_tag($graph, $class_to_add = 'yoast-schema-graph')
-        {
-        }
-        /**
-         * Returns the SVG for the traffic light in the metabox.
-         *
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @return string
-         */
-        public static function traffic_light_svg()
-        {
-        }
-        /**
-         * Gets the plugin name from file.
-         *
-         * @since      2.3.3
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @param string $plugin Plugin path relative to plugins directory.
-         *
-         * @return string|bool
-         */
-        public static function get_plugin_name($plugin)
-        {
-        }
-        /**
-         * Returns a base64 URL for the svg for use in the menu.
-         *
-         * @since      3.3.0
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @param bool $base64 Whether or not to return base64'd output.
-         *
-         * @return string
-         */
-        public static function get_icon_svg($base64 = \true)
-        {
-        }
-        /**
-         * Checks whether the current user is allowed to access the configuration.
-         *
-         * @since      1.8.0
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @return bool
-         */
-        public static function grant_access()
+        public static function translate_score($val, $css_value = \true)
         {
         }
     }
@@ -17545,23 +17176,6 @@ namespace {
         {
         }
         /**
-         * Returns the user locale for the language to be used in the admin.
-         *
-         * WordPress 4.7 introduced the ability for users to specify an Admin language
-         * different from the language used on the front end. This checks if the feature
-         * is available and returns the user's language, with a fallback to the site's language.
-         * Can be removed when support for WordPress 4.6 will be dropped, in favor
-         * of WordPress get_user_locale() that already fallbacks to the site's locale.
-         *
-         * @deprecated 15.6
-         * @codeCoverageIgnore
-         *
-         * @return string The locale.
-         */
-        public static function get_user_locale()
-        {
-        }
-        /**
          * Returns the full name for the sites' language.
          *
          * @return string The language name.
@@ -17571,6 +17185,9 @@ namespace {
         }
         /**
          * Returns the l10n array for the knowledge graph company info missing.
+         *
+         * @deprecated 20.3
+         * @codeCoverageIgnore
          *
          * @return array The l10n array.
          */
@@ -17790,20 +17407,6 @@ namespace {
          * @param array  $clean Clean data by reference, normally the default values.
          */
         public function validate_url($key, $dirty, $old, &$clean)
-        {
-        }
-        /**
-         * Validates a Facebook App ID.
-         *
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @param string $key   Key to check, in this case: the Facebook App ID field name.
-         * @param array  $dirty Dirty data with the new values.
-         * @param array  $old   Old data.
-         * @param array  $clean Clean data by reference, normally the default values.
-         */
-        public function validate_facebook_app_id($key, $dirty, $old, &$clean)
         {
         }
         /**
@@ -18240,6 +17843,7 @@ namespace {
             'youtube_url' => '',
             'wikipedia_url' => '',
             'other_social_urls' => [],
+            'mastodon_url' => '',
         ];
         /**
          * Array of sub-options which should not be overloaded with multi-site defaults.
@@ -18261,7 +17865,7 @@ namespace {
          *
          * @var array
          */
-        public static $twitter_card_types = ['summary' => '', 'summary_large_image' => ''];
+        public static $twitter_card_types = ['summary_large_image' => ''];
         /**
          * Add the actions and filters for the option.
          */
@@ -18413,7 +18017,7 @@ namespace {
             // Text field.
             'breadcrumbs-searchprefix' => '',
             // Text field.
-            'breadcrumbs-sep' => '&raquo;',
+            'breadcrumbs-sep' => '»',
             // Text field.
             'website_name' => '',
             'person_name' => '',
@@ -18425,6 +18029,7 @@ namespace {
             'company_logo_meta' => \false,
             'person_logo_meta' => \false,
             'company_name' => '',
+            'company_alternate_name' => '',
             'company_or_person' => 'company',
             'company_or_person_user_id' => \false,
             'stripcategorybase' => \false,
@@ -18613,6 +18218,7 @@ namespace {
         protected $defaults = [
             // Non-form fields, set via (ajax) function.
             'tracking' => \null,
+            'toggled_tracking' => \false,
             'license_server_version' => \false,
             'ms_defaults_set' => \false,
             'ignore_search_engines_discouraged_notice' => \false,
@@ -18628,7 +18234,7 @@ namespace {
             // Form fields.
             'disableadvanced_meta' => \true,
             'enable_headless_rest_endpoints' => \true,
-            'ryte_indexability' => \true,
+            'ryte_indexability' => \false,
             'baiduverify' => '',
             // Text field.
             'googleverify' => '',
@@ -18642,6 +18248,7 @@ namespace {
             'environment_type' => '',
             'content_analysis_active' => \true,
             'keyword_analysis_active' => \true,
+            'inclusive_language_analysis_active' => \false,
             'enable_admin_bar_menu' => \true,
             'enable_cornerstone_content' => \true,
             'enable_xml_sitemap' => \true,
@@ -18671,6 +18278,7 @@ namespace {
             'configuration_finished_steps' => [],
             'dismiss_configuration_workout_notice' => \false,
             'dismiss_premium_deactivated_notice' => \false,
+            'dismiss_old_premium_version_notice' => '',
             'importing_completed' => [],
             'wincher_integration_active' => \true,
             'wincher_tokens' => [],
@@ -18706,6 +18314,17 @@ namespace {
             'search_cleanup_emoji' => \false,
             'search_cleanup_patterns' => \false,
             'search_character_limit' => 50,
+            'deny_search_crawling' => \false,
+            'deny_wp_json_crawling' => \false,
+            'redirect_search_pretty_urls' => \false,
+            'least_readability_ignore_list' => [],
+            'least_seo_score_ignore_list' => [],
+            'most_linked_ignore_list' => [],
+            'least_linked_ignore_list' => [],
+            'indexables_page_reading_list' => [\false, \false, \false, \false, \false],
+            'indexables_overview_state' => 'dashboard-not-visited',
+            'last_known_public_post_types' => [],
+            'last_known_public_taxonomies' => [],
         ];
         /**
          * Sub-options which should not be overloaded with multi-site defaults.
@@ -18731,7 +18350,7 @@ namespace {
          *
          * @var array
          */
-        protected $environment_types = ['', 'production', 'staging', 'development'];
+        protected $environment_types = ['', 'local', 'production', 'staging', 'development'];
         /**
          * Possible has_multiple_authors options.
          *
@@ -19207,6 +18826,7 @@ namespace {
             'wpseo_focuskw' => '',
             'wpseo_linkdex' => '',
             'wpseo_content_score' => '',
+            'wpseo_inclusive_language_score' => '',
             'wpseo_focuskeywords' => '[]',
             'wpseo_keywordsynonyms' => '[]',
             'wpseo_is_cornerstone' => '0',
@@ -19427,6 +19047,11 @@ namespace {
          */
         public function get_sitemap_links($type, $max_entries, $current_page);
     }
+    /**
+     * WPSEO plugin file.
+     *
+     * @package WPSEO\XML_Sitemaps
+     */
     /**
      * Sitemap provider for author archives.
      */
@@ -19988,8 +19613,8 @@ namespace {
         /**
          * Get image item array with filters applied.
          *
-         * @param WP_Post $post  Post object for the context.
-         * @param string  $src   Image URL.
+         * @param WP_Post $post Post object for the context.
+         * @param string  $src  Image URL.
          *
          * @return array
          */
@@ -21061,6 +20686,12 @@ namespace Yoast\WP\Lib {
          */
         protected $container;
         /**
+         * A cache for previously requested and constructed surfaces.
+         *
+         * @var mixed[]
+         */
+        private $cached_surfaces = [];
+        /**
          * Loads the plugin.
          *
          * @throws Exception If loading fails and YOAST_ENVIRONMENT is development.
@@ -21069,11 +20700,11 @@ namespace Yoast\WP\Lib {
         {
         }
         /**
-         * Magic getter for retrieving a property.
+         * Magic getter for retrieving a property from a surface.
          *
          * @param string $property The property to retrieve.
          *
-         * @return string The value of the property.
+         * @return mixed The value of the property.
          *
          * @throws Exception When the property doesn't exist.
          */
@@ -21088,6 +20719,33 @@ namespace Yoast\WP\Lib {
          * @return bool True when property is set.
          */
         public function __isset($property)
+        {
+        }
+        /**
+         * Prevents setting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name  The property name.
+         * @param mixed  $value The property value.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Set is never meant to be called.
+         */
+        public function __set($name, $value)
+        {
+        }
+        /**
+         * Prevents unsetting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name The property name.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Unset is never meant to be called.
+         */
+        public function __unset($name)
         {
         }
         /**
@@ -21522,7 +21180,7 @@ namespace Yoast\WP\Lib {
          *
          * @return array The data of this object.
          */
-        #[ReturnTypeWillChange]
+        #[\ReturnTypeWillChange]
         public function jsonSerialize()
         {
         }
@@ -23264,7 +22922,7 @@ namespace Yoast\WP\Lib {
          *
          * @return bool Whether the data has the key.
          */
-        #[ReturnTypeWillChange]
+        #[\ReturnTypeWillChange]
         public function offsetExists($offset)
         {
         }
@@ -23275,7 +22933,7 @@ namespace Yoast\WP\Lib {
          *
          * @return array|mixed|null The value.
          */
-        #[ReturnTypeWillChange]
+        #[\ReturnTypeWillChange]
         public function offsetGet($offset)
         {
         }
@@ -23285,7 +22943,7 @@ namespace Yoast\WP\Lib {
          * @param string|int $offset Key.
          * @param mixed      $value  Value.
          */
-        #[ReturnTypeWillChange]
+        #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
         {
         }
@@ -23294,7 +22952,7 @@ namespace Yoast\WP\Lib {
          *
          * @param mixed $offset Key.
          */
-        #[ReturnTypeWillChange]
+        #[\ReturnTypeWillChange]
         public function offsetUnset($offset)
         {
         }
@@ -23565,7 +23223,7 @@ namespace Yoast\WP\SEO\Actions\Configuration {
         /**
          * The fields for the site representation payload.
          */
-        const SITE_REPRESENTATION_FIELDS = ['company_or_person', 'company_name', 'company_logo', 'company_logo_id', 'person_logo', 'person_logo_id', 'company_or_person_user_id', 'description'];
+        const SITE_REPRESENTATION_FIELDS = ['company_or_person', 'company_name', 'website_name', 'company_logo', 'company_logo_id', 'person_logo', 'person_logo_id', 'company_or_person_user_id', 'description'];
         /**
          * The Options_Helper instance.
          *
@@ -23584,7 +23242,7 @@ namespace Yoast\WP\SEO\Actions\Configuration {
          * @param Options_Helper         $options_helper         The WPSEO options helper.
          * @param Social_Profiles_Helper $social_profiles_helper The social profiles helper.
          */
-        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Integrations\Admin\Social_Profiles_Helper $social_profiles_helper)
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Social_Profiles_Helper $social_profiles_helper)
         {
         }
         /**
@@ -23620,7 +23278,7 @@ namespace Yoast\WP\SEO\Actions\Configuration {
         /**
          * Gets the values for the social profiles.
          *
-         * @param int $user_id the person id.
+         * @param int $user_id The person ID.
          *
          * @return object The response object.
          */
@@ -23663,6 +23321,16 @@ namespace Yoast\WP\SEO\Actions\Configuration {
          * @return object The response object.
          */
         public function get_configuration_state()
+        {
+        }
+        /**
+         * Checks if the current user has the capability to edit a specific user.
+         *
+         * @param int $person_id The id of the person to edit.
+         *
+         * @return bool
+         */
+        private function can_edit_profile($person_id)
         {
         }
     }
@@ -24147,8 +23815,8 @@ namespace Yoast\WP\SEO\Actions\Importing\Aioseo {
         /**
          * Class constructor.
          *
-         * @param wpdb           $wpdb        The WordPress database instance.
-         * @param Options_Helper $options     The options helper.
+         * @param wpdb           $wpdb    The WordPress database instance.
+         * @param Options_Helper $options The options helper.
          */
         public function __construct(\wpdb $wpdb, \Yoast\WP\SEO\Helpers\Options_Helper $options)
         {
@@ -24856,7 +24524,7 @@ namespace Yoast\WP\SEO\Actions\Importing\Aioseo {
         /**
          * Validates AIOSEO data.
          *
-         * @return array|false An array of validated data or false if aioseo data did not pass validation.
+         * @return array An array of validated data or false if aioseo data did not pass validation.
          *
          * @throws Aioseo_Validation_Exception If the validation fails.
          */
@@ -25441,14 +25109,6 @@ namespace Yoast\WP\SEO\Actions\Indexing {
         protected function get_select_query($limit = false)
         {
         }
-        /**
-         * Returns the post types that should be indexed.
-         *
-         * @return array The post types that should be indexed.
-         */
-        protected function get_post_types()
-        {
-        }
     }
     /**
      * Reindexing action for post type archive indexables.
@@ -25850,22 +25510,12 @@ namespace Yoast\WP\SEO\Actions {
         /**
          * Sets an integration state.
          *
-         * @param string $integration_name The name of the integration to activate/deactivate.
-         * @param array  $params           The values to store.
+         * @param string  $integration_name The name of the integration to activate/deactivate.
+         * @param boolean $value            The value to store.
          *
          * @return object The response object.
          */
-        public function set_integration_active($integration_name, $params)
-        {
-        }
-        /**
-         * Returns the option name associated to a plugin activation status.
-         *
-         * @param string $integration_name The name of the integration to activate/deactivate.
-         *
-         * @return string The option name.
-         */
-        private function get_integration_option_name($integration_name)
+        public function set_integration_active($integration_name, $value)
         {
         }
     }
@@ -25985,6 +25635,86 @@ namespace Yoast\WP\SEO\Actions\SEMrush {
          * @return object The result object.
          */
         protected function to_result_object($result)
+        {
+        }
+    }
+}
+namespace Yoast\WP\SEO\Actions {
+    /**
+     * Settings_Introduction_Action class.
+     */
+    class Settings_Introduction_Action
+    {
+        const USER_META_KEY = '_yoast_settings_introduction';
+        const DEFAULT_VALUES = ['wistia_embed_permission' => false, 'show' => true];
+        /**
+         * Holds the User_Helper instance.
+         *
+         * @var User_Helper
+         */
+        private $user_helper;
+        /**
+         * Constructs Settings_Introduction_Action.
+         *
+         * @param User_Helper $user_helper The User_Helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\User_Helper $user_helper)
+        {
+        }
+        /**
+         * Retrieves the Wistia embed permission value.
+         *
+         * @throws Exception If an invalid user ID is supplied.
+         *
+         * @return bool The value of the Wistia embed permission.
+         */
+        public function get_wistia_embed_permission()
+        {
+        }
+        /**
+         * Sets the Wistia embed permission value.
+         *
+         * @param bool $value The value.
+         *
+         * @throws Exception If an invalid user ID is supplied.
+         *
+         * @return bool Whether the update was successful.
+         */
+        public function set_wistia_embed_permission($value)
+        {
+        }
+        /**
+         * Retrieves the show value.
+         *
+         * @throws Exception If an invalid user ID is supplied.
+         *
+         * @return bool The value of show.
+         */
+        public function get_show()
+        {
+        }
+        /**
+         * Sets the show value.
+         *
+         * @param bool $value The value.
+         *
+         * @throws Exception If an invalid user ID is supplied.
+         *
+         * @return bool Whether the update was successful.
+         */
+        public function set_show($value)
+        {
+        }
+        /**
+         * Retrieves the (meta) values for a user.
+         *
+         * @param int $user_id User ID.
+         *
+         * @throws Exception If an invalid user ID is supplied.
+         *
+         * @return array The (meta) values.
+         */
+        private function get_values_for_user($user_id)
         {
         }
     }
@@ -26330,6 +26060,8 @@ namespace Yoast\WP\SEO\Builders {
          * @param Indexable $indexable The indexable to format.
          *
          * @return Indexable The extended indexable.
+         *
+         * @throws Author_Not_Built_Exception When author is not built.
          */
         public function build($user_id, \Yoast\WP\SEO\Models\Indexable $indexable)
         {
@@ -26373,6 +26105,17 @@ namespace Yoast\WP\SEO\Builders {
          * @return object An object with last_modified and published_at timestamps.
          */
         protected function get_object_timestamps($author_id)
+        {
+        }
+        /**
+         * Checks if the user should be indexed.
+         * Returns an exception with an appropriate message if not.
+         *
+         * @param string $user_id The user id.
+         *
+         * @return Author_Not_Built_Exception|null The exception if it should not be indexed, or `null` if it should.
+         */
+        protected function check_if_user_should_be_indexed($user_id)
         {
         }
     }
@@ -26438,6 +26181,12 @@ namespace Yoast\WP\SEO\Builders {
          */
         private $primary_term_builder;
         /**
+         * The link builder
+         *
+         * @var Indexable_Link_Builder
+         */
+        private $link_builder;
+        /**
          * The indexable repository.
          *
          * @var Indexable_Repository
@@ -26469,8 +26218,9 @@ namespace Yoast\WP\SEO\Builders {
          * @param Primary_Term_Builder                $primary_term_builder      The primary term builder for creating primary terms for posts.
          * @param Indexable_Helper                    $indexable_helper          The indexable helper.
          * @param Indexable_Version_Manager           $version_manager           The indexable version manager.
+         * @param Indexable_Link_Builder              $link_builder              The link builder for creating missing SEO links.
          */
-        public function __construct(\Yoast\WP\SEO\Builders\Indexable_Author_Builder $author_builder, \Yoast\WP\SEO\Builders\Indexable_Post_Builder $post_builder, \Yoast\WP\SEO\Builders\Indexable_Term_Builder $term_builder, \Yoast\WP\SEO\Builders\Indexable_Home_Page_Builder $home_page_builder, \Yoast\WP\SEO\Builders\Indexable_Post_Type_Archive_Builder $post_type_archive_builder, \Yoast\WP\SEO\Builders\Indexable_Date_Archive_Builder $date_archive_builder, \Yoast\WP\SEO\Builders\Indexable_System_Page_Builder $system_page_builder, \Yoast\WP\SEO\Builders\Indexable_Hierarchy_Builder $hierarchy_builder, \Yoast\WP\SEO\Builders\Primary_Term_Builder $primary_term_builder, \Yoast\WP\SEO\Helpers\Indexable_Helper $indexable_helper, \Yoast\WP\SEO\Services\Indexables\Indexable_Version_Manager $version_manager)
+        public function __construct(\Yoast\WP\SEO\Builders\Indexable_Author_Builder $author_builder, \Yoast\WP\SEO\Builders\Indexable_Post_Builder $post_builder, \Yoast\WP\SEO\Builders\Indexable_Term_Builder $term_builder, \Yoast\WP\SEO\Builders\Indexable_Home_Page_Builder $home_page_builder, \Yoast\WP\SEO\Builders\Indexable_Post_Type_Archive_Builder $post_type_archive_builder, \Yoast\WP\SEO\Builders\Indexable_Date_Archive_Builder $date_archive_builder, \Yoast\WP\SEO\Builders\Indexable_System_Page_Builder $system_page_builder, \Yoast\WP\SEO\Builders\Indexable_Hierarchy_Builder $hierarchy_builder, \Yoast\WP\SEO\Builders\Primary_Term_Builder $primary_term_builder, \Yoast\WP\SEO\Helpers\Indexable_Helper $indexable_helper, \Yoast\WP\SEO\Services\Indexables\Indexable_Version_Manager $version_manager, \Yoast\WP\SEO\Builders\Indexable_Link_Builder $link_builder)
         {
         }
         /**
@@ -26570,6 +26320,27 @@ namespace Yoast\WP\SEO\Builders {
         {
         }
         /**
+         * Build and author indexable from an author id if it does not exist yet, or if the author indexable needs to be upgraded.
+         *
+         * @param int $author_id The author id.
+         *
+         * @return Indexable|false The author indexable if it has been built, `false` if it could not be built.
+         */
+        protected function maybe_build_author_indexable($author_id)
+        {
+        }
+        /**
+         * Checks if the indexable type is one that is not supposed to have object ID for.
+         *
+         * @param string $type The type of the indexable.
+         *
+         * @return bool Whether the indexable type is one that is not supposed to have object ID for.
+         */
+        private function is_type_with_no_id($type)
+        {
+        }
+        // phpcs:disable Squiz.Commenting.FunctionCommentThrowTag.Missing -- Exceptions are handled by the catch statement in the method.
+        /**
          * Rebuilds an Indexable from scratch.
          *
          * @param Indexable  $indexable The Indexable to (re)build.
@@ -26580,6 +26351,7 @@ namespace Yoast\WP\SEO\Builders {
         public function build($indexable, $defaults = null)
         {
         }
+        // phpcs:enable
     }
     /**
      * Date Archive Builder for the indexables.
@@ -26901,6 +26673,12 @@ namespace Yoast\WP\SEO\Builders {
          */
         protected $post_helper;
         /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        protected $options_helper;
+        /**
          * The indexable repository.
          *
          * @var Indexable_Repository
@@ -26912,8 +26690,9 @@ namespace Yoast\WP\SEO\Builders {
          * @param SEO_Links_Repository $seo_links_repository The SEO links repository.
          * @param Url_Helper           $url_helper           The URL helper.
          * @param Post_Helper          $post_helper          The post helper.
+         * @param Options_Helper       $options_helper       The options helper.
          */
-        public function __construct(\Yoast\WP\SEO\Repositories\SEO_Links_Repository $seo_links_repository, \Yoast\WP\SEO\Helpers\Url_Helper $url_helper, \Yoast\WP\SEO\Helpers\Post_Helper $post_helper)
+        public function __construct(\Yoast\WP\SEO\Repositories\SEO_Links_Repository $seo_links_repository, \Yoast\WP\SEO\Helpers\Url_Helper $url_helper, \Yoast\WP\SEO\Helpers\Post_Helper $post_helper, \Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
         {
         }
         /**
@@ -26948,6 +26727,16 @@ namespace Yoast\WP\SEO\Builders {
          * @return void
          */
         public function delete($indexable)
+        {
+        }
+        /**
+         * Fixes existing SEO links that are supposed to have a target indexable but don't, because of prior indexable cleanup.
+         *
+         * @param Indexable $indexable The indexable to be the target of SEO Links.
+         *
+         * @return void
+         */
+        public function patch_seo_links(\Yoast\WP\SEO\Models\Indexable $indexable)
         {
         }
         /**
@@ -27004,6 +26793,28 @@ namespace Yoast\WP\SEO\Builders {
          * @return SEO_Links The created link.
          */
         protected function create_internal_link($url, $home_url, $indexable, $is_image = false)
+        {
+        }
+        /**
+         * Enhances the link model with information from its indexable.
+         *
+         * @param SEO_Links $model     The link's model.
+         * @param string    $permalink The link's permalink.
+         *
+         * @return SEO_Links The enhanced link model.
+         */
+        protected function enhance_link_from_indexable($model, $permalink)
+        {
+        }
+        /**
+         * Builds the link's permalink.
+         *
+         * @param string $url      The url of the link.
+         * @param array  $home_url The home url, as parsed by wp_parse_url.
+         *
+         * @return string The link's permalink.
+         */
+        protected function build_permalink($url, $home_url)
         {
         }
         /**
@@ -27139,6 +26950,7 @@ namespace Yoast\WP\SEO\Builders {
          * @return bool|Indexable The extended indexable. False when unable to build.
          *
          * @throws Post_Not_Found_Exception When the post could not be found.
+         * @throws Post_Not_Built_Exception When the post should not be indexed.
          */
         public function build($post_id, $indexable)
         {
@@ -27254,11 +27066,11 @@ namespace Yoast\WP\SEO\Builders {
         /**
          * Transforms an empty string into null. Leaves non-empty strings intact.
          *
-         * @param string $string The string.
+         * @param string $text The string.
          *
          * @return string|null The input string or null.
          */
-        protected function empty_string_to_null($string)
+        protected function empty_string_to_null($text)
         {
         }
     }
@@ -27431,7 +27243,8 @@ namespace Yoast\WP\SEO\Builders {
          *
          * @return bool|Indexable The extended indexable. False when unable to build.
          *
-         * @throws Invalid_Term_Exception When the term is invalid.
+         * @throws Invalid_Term_Exception   When the term is invalid.
+         * @throws Term_Not_Built_Exception When the term is not viewable.
          * @throws Term_Not_Found_Exception When the term is not found.
          */
         public function build($term_id, $indexable)
@@ -27571,6 +27384,95 @@ namespace Yoast\WP\SEO\Commands {
          * @return string
          */
         public static function get_namespace();
+    }
+    /**
+     * A WP CLI command that helps with cleaning up unwanted records from our custom tables.
+     */
+    final class Cleanup_Command implements \Yoast\WP\SEO\Commands\Command_Interface
+    {
+        /**
+         * The integration that cleans up on cron.
+         *
+         * @var Cleanup_Integration
+         */
+        private $cleanup_integration;
+        /**
+         * The constructor.
+         *
+         * @param Cleanup_Integration $cleanup_integration The integration that cleans up on cron.
+         */
+        public function __construct(\Yoast\WP\SEO\Integrations\Cleanup_Integration $cleanup_integration)
+        {
+        }
+        /**
+         * Returns the namespace of this command.
+         *
+         * @return string
+         */
+        public static function get_namespace()
+        {
+        }
+        /**
+         * Performs a cleanup of custom Yoast tables.
+         *
+         * This removes unused, unwanted or orphaned database records, which ensures the best performance. Including:
+         * - Indexables
+         * - Indexable hierarchy
+         * - SEO links
+         *
+         * ## OPTIONS
+         *
+         * [--batch-size=<batch-size>]
+         * : The number of database records to clean up in a single sql query.
+         * ---
+         * default: 1000
+         * ---
+         *
+         * [--interval=<interval>]
+         * : The number of microseconds (millionths of a second) to wait between cleanup batches.
+         * ---
+         * default: 500000
+         * ---
+         *
+         * [--network]
+         * : Performs the cleanup on all sites within the network.
+         *
+         * ## EXAMPLES
+         *
+         *     wp yoast cleanup
+         *
+         * @when after_wp_load
+         *
+         * @param array|null $args       The arguments.
+         * @param array|null $assoc_args The associative arguments.
+         *
+         * @return void
+         *
+         * @throws ExitException When the input args are invalid.
+         */
+        public function cleanup($args = null, $assoc_args = null)
+        {
+        }
+        /**
+         * Performs the cleanup for the entire network.
+         *
+         * @param array|null $assoc_args The associative arguments.
+         *
+         * @return int The number of cleaned up records.
+         */
+        private function cleanup_network($assoc_args)
+        {
+        }
+        /**
+         * Performs the cleanup for a single site.
+         *
+         * @param array|null $assoc_args The associative arguments.
+         *
+         * @return int The number of cleaned up records.
+         */
+        private function cleanup_current_site($assoc_args)
+        {
+        }
     }
     /**
      * Command to generate indexables for all posts and terms.
@@ -27821,20 +27723,27 @@ namespace Yoast\WP\SEO\Conditionals\Admin {
          */
         protected $post_conditional;
         /**
-         * The Input Helper.
-         *
-         * @var Input_Helper
-         */
-        protected $input_helper;
-        /**
          * Constructs the Estimated Reading Time Conditional.
          *
          * @param Post_Conditional $post_conditional The post conditional.
-         * @param Input_Helper     $input_helper     The input helper.
          */
-        public function __construct(\Yoast\WP\SEO\Conditionals\Admin\Post_Conditional $post_conditional, \Yoast\WP\SEO\Helpers\Input_Helper $input_helper)
+        public function __construct(\Yoast\WP\SEO\Conditionals\Admin\Post_Conditional $post_conditional)
         {
         }
+        /**
+         * Returns whether this conditional is met.
+         *
+         * @return bool Whether the conditional is met.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
+     * Conditional that is only met when current page is the tools page.
+     */
+    class Licenses_Page_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
         /**
          * Returns whether or not this conditional is met.
          *
@@ -27845,9 +27754,9 @@ namespace Yoast\WP\SEO\Conditionals\Admin {
         }
     }
     /**
-     * Conditional that is only met when current page is the tools page.
+     * Conditional that is only met when not on a network admin page.
      */
-    class Licenses_Page_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    class Non_Network_Admin_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
     {
         /**
          * Returns whether or not this conditional is met.
@@ -27889,6 +27798,34 @@ namespace Yoast\WP\SEO\Conditionals\Admin {
 }
 namespace Yoast\WP\SEO\Conditionals {
     /**
+     * Conditional that is only met when the 'Redirect attachment URLs to the attachment itself' setting is enabled.
+     */
+    class Attachment_Redirections_Enabled_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options;
+        /**
+         * Attachment_Redirections_Enabled_Conditional constructor.
+         *
+         * @param Options_Helper $options The options helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options)
+        {
+        }
+        /**
+         * Returns whether the 'Redirect attachment URLs to the attachment itself' setting has been enabled.
+         *
+         * @return bool `true` when the 'Redirect attachment URLs to the attachment itself' setting has been enabled.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
      * Conditional that is only met when in development mode.
      */
     class Development_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
@@ -27913,20 +27850,6 @@ namespace Yoast\WP\SEO\Conditionals {
          * @return bool `true` when NOT on an admin page.
          */
         public function is_met()
-        {
-        }
-    }
-    /**
-     * Feature flag conditional for the front-end inspector.
-     */
-    class Front_End_Inspector_Conditional extends \Yoast\WP\SEO\Conditionals\Feature_Flag_Conditional
-    {
-        /**
-         * Returns the name of the feature flag.
-         *
-         * @return string The name of the feature flag.
-         */
-        protected function get_feature_flag()
         {
         }
     }
@@ -27998,6 +27921,20 @@ namespace Yoast\WP\SEO\Conditionals {
          * @return bool `true` when the Jetpack plugin exists on this WordPress installation.
          */
         public function is_met()
+        {
+        }
+    }
+    /**
+     * Feature flag conditional for the new settings UI.
+     */
+    class New_Settings_Ui_Conditional extends \Yoast\WP\SEO\Conditionals\Feature_Flag_Conditional
+    {
+        /**
+         * Returns the name of the feature flag.
+         *
+         * @return string The name of the feature flag.
+         */
+        protected function get_feature_flag()
         {
         }
     }
@@ -28100,6 +28037,20 @@ namespace Yoast\WP\SEO\Conditionals {
         }
     }
     /**
+     * Class Premium_Active_Conditional.
+     */
+    class Premium_Active_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
+        /**
+         * Returns whether or not this conditional is met.
+         *
+         * @return bool Whether or not the conditional is met.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
      * Abstract class for creating conditionals based on feature flags.
      */
     class Premium_Inactive_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
@@ -28134,10 +28085,11 @@ namespace Yoast\WP\SEO\Conditionals {
         }
         /**
          * Returns `true` when on the frontend,
-         * or when on the post overview, post edit or new post admin page.
+         * or when on the post overview, post edit or new post admin page,
+         * or when on additional admin pages, allowed by filter.
          *
          * @return bool `true` when on the frontend, or when on the post overview,
-         *          post edit or new post admin page.
+         *          post edit, new post admin page or additional admin pages, allowed by filter.
          */
         public function is_met()
         {
@@ -28184,21 +28136,6 @@ namespace Yoast\WP\SEO\Conditionals {
         }
     }
     /**
-     * Checks if the YOAST_SEO_SCHEMA_BLOCKS constant is set.
-     */
-    class Schema_Blocks_Conditional extends \Yoast\WP\SEO\Conditionals\Feature_Flag_Conditional
-    {
-        /**
-         * Returns the name of the feature flag.
-         * 'YOAST_SEO_' is automatically prepended to it and it will be uppercased.
-         *
-         * @return string the name of the feature flag.
-         */
-        protected function get_feature_flag()
-        {
-        }
-    }
-    /**
      * Conditional that is only met when the SEMrush integration is enabled.
      */
     class SEMrush_Enabled_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
@@ -28215,6 +28152,34 @@ namespace Yoast\WP\SEO\Conditionals {
          * @param Options_Helper $options The options helper.
          */
         public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options)
+        {
+        }
+        /**
+         * Returns whether or not this conditional is met.
+         *
+         * @return bool Whether or not the conditional is met.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
+     * Class Settings_Conditional.
+     */
+    class Settings_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
+        /**
+         * Holds User_Can_Manage_Wpseo_Options_Conditional.
+         *
+         * @var User_Can_Manage_Wpseo_Options_Conditional
+         */
+        protected $user_can_manage_wpseo_options_conditional;
+        /**
+         * Constructs Settings_Conditional.
+         *
+         * @param User_Can_Manage_Wpseo_Options_Conditional $user_can_manage_wpseo_options_conditional The User_Can_Manage_Wpseo_Options_Conditional.
+         */
+        public function __construct(\Yoast\WP\SEO\Conditionals\User_Can_Manage_Wpseo_Options_Conditional $user_can_manage_wpseo_options_conditional)
         {
         }
         /**
@@ -28255,49 +28220,22 @@ namespace Yoast\WP\SEO\Conditionals {
         }
     }
     /**
-     * Conditional that is only met when The Events Calendar exists.
+     * Checks if the YOAST_SEO_TEXT_FORMALITY constant is set.
      */
-    class The_Events_Calendar_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    class Text_Formality_Conditional extends \Yoast\WP\SEO\Conditionals\Feature_Flag_Conditional
     {
         /**
-         * Returns whether or not this conditional is met.
+         * Returns the name of the feature flag.
+         * 'YOAST_SEO_' is automatically prepended to it and it will be uppercased.
          *
-         * @return bool Whether or not the conditional is met.
+         * @return string the name of the feature flag.
          */
-        public function is_met()
+        public function get_feature_flag()
         {
         }
     }
 }
 namespace Yoast\WP\SEO\Conditionals\Third_Party {
-    /**
-     * Conditional that is met when the CoAuthors Plus plugin is installed and activated.
-     */
-    class CoAuthors_Plus_Activated_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
-    {
-        /**
-         * Checks if the CoAuthors Plus plugin is installed and activated.
-         *
-         * @return bool `true` when the CoAuthors Plus plugin is installed and activated.
-         */
-        public function is_met()
-        {
-        }
-    }
-    /**
-     * Feature flag conditional for the CoAuthors Plus integration.
-     */
-    class CoAuthors_Plus_Flag_Conditional extends \Yoast\WP\SEO\Conditionals\Feature_Flag_Conditional
-    {
-        /**
-         * Returns the name of the CoAuthors Plus integration feature flag.
-         *
-         * @return string The name of the feature flag.
-         */
-        protected function get_feature_flag()
-        {
-        }
-    }
     /**
      * Conditional that is met when the Elementor plugin is installed and activated.
      */
@@ -28319,9 +28257,73 @@ namespace Yoast\WP\SEO\Conditionals\Third_Party {
     class Elementor_Edit_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
     {
         /**
-         * Returns whether or not this conditional is met.
+         * Returns whether this conditional is met.
          *
-         * @return bool Whether or not the conditional is met.
+         * @return bool Whether the conditional is met.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
+     * Conditional that is only met when Jetpack_Boost exists.
+     */
+    class Jetpack_Boost_Active_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
+        /**
+         * Returns `true` when the Jetpack_Boost class exists within this WordPress installation.
+         *
+         * @return bool `true` when the Jetpack_Boost class exists within this WordPress installation.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
+     * Conditional that is met when Jetpack Boost is not installed, activated or premium.
+     */
+    class Jetpack_Boost_Not_Premium_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
+        /**
+         * Whether Jetpack Boost is not premium.
+         *
+         * @return bool Whether Jetpack Boost is not premium.
+         */
+        public function is_met()
+        {
+        }
+        /**
+         * Retrieves, if available, if Jetpack Boost has priority feature available.
+         *
+         * @return bool Whether Jetpack Boost is premium.
+         */
+        private function is_premium()
+        {
+        }
+    }
+    /**
+     * Conditional that is only met when the Polylang plugin is active.
+     */
+    class Polylang_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
+        /**
+         * Checks whether the Polylang plugin is installed and active.
+         *
+         * @return bool Whether Polylang is installed and active.
+         */
+        public function is_met()
+        {
+        }
+    }
+    /**
+     * Conditional that is only met when the TranslatePress plugin is active.
+     */
+    class TranslatePress_Conditional implements \Yoast\WP\SEO\Conditionals\Conditional
+    {
+        /**
+         * Checks whether the TranslatePress plugin is active.
+         *
+         * @return bool Whether the TranslatePress plugin is active.
          */
         public function is_met()
         {
@@ -28415,6 +28417,22 @@ namespace Yoast\WP\SEO\Conditionals\Third_Party {
          * @return bool Whether or not the Yoast SEO Multilingual plugin is active.
          */
         public function is_met()
+        {
+        }
+    }
+}
+namespace Yoast\WP\SEO\Conditionals\Traits {
+    /**
+     * Trait for all integration that rely on the Admin-conditional
+     */
+    trait Admin_Conditional_Trait
+    {
+        /**
+         * Returns an empty array, meaning no conditionals are required to load whatever uses this trait.
+         *
+         * @return array The conditionals that must be met to load this.
+         */
+        public static function get_conditionals()
         {
         }
     }
@@ -28836,6 +28854,18 @@ namespace Yoast\WP\SEO\Config {
          * Represents the reason that the home url option is changed.
          */
         const REASON_HOME_URL_OPTION = 'home_url_option_changed';
+        /**
+         * Represents the reason that a post type has been made public.
+         */
+        const REASON_POST_TYPE_MADE_PUBLIC = 'post_type_made_public';
+        /**
+         * Represents the reason that a post type has been made viewable.
+         */
+        const REASON_TAXONOMY_MADE_PUBLIC = 'taxonomy_made_public';
+        /**
+         * Represents the reason that attachments have stopped being redirected.
+         */
+        const REASON_ATTACHMENTS_MADE_ENABLED = 'attachments_made_enabled';
     }
     /**
      * Migration_Status class.
@@ -29035,12 +29065,754 @@ namespace Yoast\WP\SEO\Config {
         /**
          * Gets the values of the article type options.
          *
+         * @deprecated 19.12
+         * @codeCoverageIgnore
+         *
          * @return array[] The values of the Schema article type options.
          */
         public function get_article_type_options_values()
         {
         }
     }
+}
+namespace YoastSEO_Vendor\League\OAuth2\Client\Tool {
+    /**
+     * Provides generic array navigation tools.
+     */
+    trait ArrayAccessorTrait
+    {
+        /**
+         * Returns a value by key using dot notation.
+         *
+         * @param  array      $data
+         * @param  string     $key
+         * @param  mixed|null $default
+         * @return mixed
+         */
+        private function getValueByKey(array $data, $key, $default = null)
+        {
+        }
+    }
+    /**
+     * Provides support for blacklisting explicit properties from the
+     * mass assignment behavior.
+     */
+    trait GuardedPropertyTrait
+    {
+        /**
+         * The properties that aren't mass assignable.
+         *
+         * @var array
+         */
+        protected $guarded = [];
+        /**
+         * Attempts to mass assign the given options to explicitly defined properties,
+         * skipping over any properties that are defined in the guarded array.
+         *
+         * @param array $options
+         * @return mixed
+         */
+        protected function fillProperties(array $options = [])
+        {
+        }
+        /**
+         * Returns current guarded properties.
+         *
+         * @return array
+         */
+        public function getGuarded()
+        {
+        }
+        /**
+         * Determines if the given property is guarded.
+         *
+         * @param  string  $property
+         * @return bool
+         */
+        public function isGuarded($property)
+        {
+        }
+    }
+    /**
+     * Provides a standard way to generate query strings.
+     */
+    trait QueryBuilderTrait
+    {
+        /**
+         * Build a query string from an array.
+         *
+         * @param array $params
+         *
+         * @return string
+         */
+        protected function buildQueryString(array $params)
+        {
+        }
+    }
+}
+namespace YoastSEO_Vendor\League\OAuth2\Client\Provider {
+    /**
+     * Represents a service provider (authorization server).
+     *
+     * @link http://tools.ietf.org/html/rfc6749#section-1.1 Roles (RFC 6749, §1.1)
+     */
+    abstract class AbstractProvider
+    {
+        use \YoastSEO_Vendor\League\OAuth2\Client\Tool\ArrayAccessorTrait;
+        use \YoastSEO_Vendor\League\OAuth2\Client\Tool\GuardedPropertyTrait;
+        use \YoastSEO_Vendor\League\OAuth2\Client\Tool\QueryBuilderTrait;
+        /**
+         * @var string Key used in a token response to identify the resource owner.
+         */
+        const ACCESS_TOKEN_RESOURCE_OWNER_ID = null;
+        /**
+         * @var string HTTP method used to fetch access tokens.
+         */
+        const METHOD_GET = 'GET';
+        /**
+         * @var string HTTP method used to fetch access tokens.
+         */
+        const METHOD_POST = 'POST';
+        /**
+         * @var string
+         */
+        protected $clientId;
+        /**
+         * @var string
+         */
+        protected $clientSecret;
+        /**
+         * @var string
+         */
+        protected $redirectUri;
+        /**
+         * @var string
+         */
+        protected $state;
+        /**
+         * @var GrantFactory
+         */
+        protected $grantFactory;
+        /**
+         * @var RequestFactory
+         */
+        protected $requestFactory;
+        /**
+         * @var HttpClientInterface
+         */
+        protected $httpClient;
+        /**
+         * @var OptionProviderInterface
+         */
+        protected $optionProvider;
+        /**
+         * Constructs an OAuth 2.0 service provider.
+         *
+         * @param array $options An array of options to set on this provider.
+         *     Options include `clientId`, `clientSecret`, `redirectUri`, and `state`.
+         *     Individual providers may introduce more options, as needed.
+         * @param array $collaborators An array of collaborators that may be used to
+         *     override this provider's default behavior. Collaborators include
+         *     `grantFactory`, `requestFactory`, and `httpClient`.
+         *     Individual providers may introduce more collaborators, as needed.
+         */
+        public function __construct(array $options = [], array $collaborators = [])
+        {
+        }
+        /**
+         * Returns the list of options that can be passed to the HttpClient
+         *
+         * @param array $options An array of options to set on this provider.
+         *     Options include `clientId`, `clientSecret`, `redirectUri`, and `state`.
+         *     Individual providers may introduce more options, as needed.
+         * @return array The options to pass to the HttpClient constructor
+         */
+        protected function getAllowedClientOptions(array $options)
+        {
+        }
+        /**
+         * Sets the grant factory instance.
+         *
+         * @param  GrantFactory $factory
+         * @return self
+         */
+        public function setGrantFactory(\YoastSEO_Vendor\League\OAuth2\Client\Grant\GrantFactory $factory)
+        {
+        }
+        /**
+         * Returns the current grant factory instance.
+         *
+         * @return GrantFactory
+         */
+        public function getGrantFactory()
+        {
+        }
+        /**
+         * Sets the request factory instance.
+         *
+         * @param  RequestFactory $factory
+         * @return self
+         */
+        public function setRequestFactory(\YoastSEO_Vendor\League\OAuth2\Client\Tool\RequestFactory $factory)
+        {
+        }
+        /**
+         * Returns the request factory instance.
+         *
+         * @return RequestFactory
+         */
+        public function getRequestFactory()
+        {
+        }
+        /**
+         * Sets the HTTP client instance.
+         *
+         * @param  HttpClientInterface $client
+         * @return self
+         */
+        public function setHttpClient(\YoastSEO_Vendor\GuzzleHttp\ClientInterface $client)
+        {
+        }
+        /**
+         * Returns the HTTP client instance.
+         *
+         * @return HttpClientInterface
+         */
+        public function getHttpClient()
+        {
+        }
+        /**
+         * Sets the option provider instance.
+         *
+         * @param  OptionProviderInterface $provider
+         * @return self
+         */
+        public function setOptionProvider(\YoastSEO_Vendor\League\OAuth2\Client\OptionProvider\OptionProviderInterface $provider)
+        {
+        }
+        /**
+         * Returns the option provider instance.
+         *
+         * @return OptionProviderInterface
+         */
+        public function getOptionProvider()
+        {
+        }
+        /**
+         * Returns the current value of the state parameter.
+         *
+         * This can be accessed by the redirect handler during authorization.
+         *
+         * @return string
+         */
+        public function getState()
+        {
+        }
+        /**
+         * Returns the base URL for authorizing a client.
+         *
+         * Eg. https://oauth.service.com/authorize
+         *
+         * @return string
+         */
+        public abstract function getBaseAuthorizationUrl();
+        /**
+         * Returns the base URL for requesting an access token.
+         *
+         * Eg. https://oauth.service.com/token
+         *
+         * @param array $params
+         * @return string
+         */
+        public abstract function getBaseAccessTokenUrl(array $params);
+        /**
+         * Returns the URL for requesting the resource owner's details.
+         *
+         * @param AccessToken $token
+         * @return string
+         */
+        public abstract function getResourceOwnerDetailsUrl(\YoastSEO_Vendor\League\OAuth2\Client\Token\AccessToken $token);
+        /**
+         * Returns a new random string to use as the state parameter in an
+         * authorization flow.
+         *
+         * @param  int $length Length of the random string to be generated.
+         * @return string
+         */
+        protected function getRandomState($length = 32)
+        {
+        }
+        /**
+         * Returns the default scopes used by this provider.
+         *
+         * This should only be the scopes that are required to request the details
+         * of the resource owner, rather than all the available scopes.
+         *
+         * @return array
+         */
+        protected abstract function getDefaultScopes();
+        /**
+         * Returns the string that should be used to separate scopes when building
+         * the URL for requesting an access token.
+         *
+         * @return string Scope separator, defaults to ','
+         */
+        protected function getScopeSeparator()
+        {
+        }
+        /**
+         * Returns authorization parameters based on provided options.
+         *
+         * @param  array $options
+         * @return array Authorization parameters
+         */
+        protected function getAuthorizationParameters(array $options)
+        {
+        }
+        /**
+         * Builds the authorization URL's query string.
+         *
+         * @param  array $params Query parameters
+         * @return string Query string
+         */
+        protected function getAuthorizationQuery(array $params)
+        {
+        }
+        /**
+         * Builds the authorization URL.
+         *
+         * @param  array $options
+         * @return string Authorization URL
+         */
+        public function getAuthorizationUrl(array $options = [])
+        {
+        }
+        /**
+         * Redirects the client for authorization.
+         *
+         * @param  array $options
+         * @param  callable|null $redirectHandler
+         * @return mixed
+         */
+        public function authorize(array $options = [], callable $redirectHandler = null)
+        {
+        }
+        /**
+         * Appends a query string to a URL.
+         *
+         * @param  string $url The URL to append the query to
+         * @param  string $query The HTTP query string
+         * @return string The resulting URL
+         */
+        protected function appendQuery($url, $query)
+        {
+        }
+        /**
+         * Returns the method to use when requesting an access token.
+         *
+         * @return string HTTP method
+         */
+        protected function getAccessTokenMethod()
+        {
+        }
+        /**
+         * Returns the key used in the access token response to identify the resource owner.
+         *
+         * @return string|null Resource owner identifier key
+         */
+        protected function getAccessTokenResourceOwnerId()
+        {
+        }
+        /**
+         * Builds the access token URL's query string.
+         *
+         * @param  array $params Query parameters
+         * @return string Query string
+         */
+        protected function getAccessTokenQuery(array $params)
+        {
+        }
+        /**
+         * Checks that a provided grant is valid, or attempts to produce one if the
+         * provided grant is a string.
+         *
+         * @param  AbstractGrant|string $grant
+         * @return AbstractGrant
+         */
+        protected function verifyGrant($grant)
+        {
+        }
+        /**
+         * Returns the full URL to use when requesting an access token.
+         *
+         * @param array $params Query parameters
+         * @return string
+         */
+        protected function getAccessTokenUrl(array $params)
+        {
+        }
+        /**
+         * Returns a prepared request for requesting an access token.
+         *
+         * @param array $params Query string parameters
+         * @return RequestInterface
+         */
+        protected function getAccessTokenRequest(array $params)
+        {
+        }
+        /**
+         * Requests an access token using a specified grant and option set.
+         *
+         * @param  mixed $grant
+         * @param  array $options
+         * @throws IdentityProviderException
+         * @return AccessTokenInterface
+         */
+        public function getAccessToken($grant, array $options = [])
+        {
+        }
+        /**
+         * Returns a PSR-7 request instance that is not authenticated.
+         *
+         * @param  string $method
+         * @param  string $url
+         * @param  array $options
+         * @return RequestInterface
+         */
+        public function getRequest($method, $url, array $options = [])
+        {
+        }
+        /**
+         * Returns an authenticated PSR-7 request instance.
+         *
+         * @param  string $method
+         * @param  string $url
+         * @param  AccessTokenInterface|string $token
+         * @param  array $options Any of "headers", "body", and "protocolVersion".
+         * @return RequestInterface
+         */
+        public function getAuthenticatedRequest($method, $url, $token, array $options = [])
+        {
+        }
+        /**
+         * Creates a PSR-7 request instance.
+         *
+         * @param  string $method
+         * @param  string $url
+         * @param  AccessTokenInterface|string|null $token
+         * @param  array $options
+         * @return RequestInterface
+         */
+        protected function createRequest($method, $url, $token, array $options)
+        {
+        }
+        /**
+         * Sends a request instance and returns a response instance.
+         *
+         * WARNING: This method does not attempt to catch exceptions caused by HTTP
+         * errors! It is recommended to wrap this method in a try/catch block.
+         *
+         * @param  RequestInterface $request
+         * @return ResponseInterface
+         */
+        public function getResponse(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * Sends a request and returns the parsed response.
+         *
+         * @param  RequestInterface $request
+         * @throws IdentityProviderException
+         * @return mixed
+         */
+        public function getParsedResponse(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * Attempts to parse a JSON response.
+         *
+         * @param  string $content JSON content from response body
+         * @return array Parsed JSON data
+         * @throws UnexpectedValueException if the content could not be parsed
+         */
+        protected function parseJson($content)
+        {
+        }
+        /**
+         * Returns the content type header of a response.
+         *
+         * @param  ResponseInterface $response
+         * @return string Semi-colon separated join of content-type headers.
+         */
+        protected function getContentType(\YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response)
+        {
+        }
+        /**
+         * Parses the response according to its content-type header.
+         *
+         * @throws UnexpectedValueException
+         * @param  ResponseInterface $response
+         * @return array
+         */
+        protected function parseResponse(\YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response)
+        {
+        }
+        /**
+         * Checks a provider response for errors.
+         *
+         * @throws IdentityProviderException
+         * @param  ResponseInterface $response
+         * @param  array|string $data Parsed response data
+         * @return void
+         */
+        protected abstract function checkResponse(\YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response, $data);
+        /**
+         * Prepares an parsed access token response for a grant.
+         *
+         * Custom mapping of expiration, etc should be done here. Always call the
+         * parent method when overloading this method.
+         *
+         * @param  mixed $result
+         * @return array
+         */
+        protected function prepareAccessTokenResponse(array $result)
+        {
+        }
+        /**
+         * Creates an access token from a response.
+         *
+         * The grant that was used to fetch the response can be used to provide
+         * additional context.
+         *
+         * @param  array $response
+         * @param  AbstractGrant $grant
+         * @return AccessTokenInterface
+         */
+        protected function createAccessToken(array $response, \YoastSEO_Vendor\League\OAuth2\Client\Grant\AbstractGrant $grant)
+        {
+        }
+        /**
+         * Generates a resource owner object from a successful resource owner
+         * details request.
+         *
+         * @param  array $response
+         * @param  AccessToken $token
+         * @return ResourceOwnerInterface
+         */
+        protected abstract function createResourceOwner(array $response, \YoastSEO_Vendor\League\OAuth2\Client\Token\AccessToken $token);
+        /**
+         * Requests and returns the resource owner of given access token.
+         *
+         * @param  AccessToken $token
+         * @return ResourceOwnerInterface
+         */
+        public function getResourceOwner(\YoastSEO_Vendor\League\OAuth2\Client\Token\AccessToken $token)
+        {
+        }
+        /**
+         * Requests resource owner details.
+         *
+         * @param  AccessToken $token
+         * @return mixed
+         */
+        protected function fetchResourceOwnerDetails(\YoastSEO_Vendor\League\OAuth2\Client\Token\AccessToken $token)
+        {
+        }
+        /**
+         * Returns the default headers used by this provider.
+         *
+         * Typically this is used to set 'Accept' or 'Content-Type' headers.
+         *
+         * @return array
+         */
+        protected function getDefaultHeaders()
+        {
+        }
+        /**
+         * Returns the authorization headers used by this provider.
+         *
+         * Typically this is "Bearer" or "MAC". For more information see:
+         * http://tools.ietf.org/html/rfc6749#section-7.1
+         *
+         * No default is provided, providers must overload this method to activate
+         * authorization headers.
+         *
+         * @param  mixed|null $token Either a string or an access token instance
+         * @return array
+         */
+        protected function getAuthorizationHeaders($token = null)
+        {
+        }
+        /**
+         * Returns all headers used by this provider for a request.
+         *
+         * The request will be authenticated if an access token is provided.
+         *
+         * @param  mixed|null $token object or string
+         * @return array
+         */
+        public function getHeaders($token = null)
+        {
+        }
+    }
+}
+namespace YoastSEO_Vendor\League\OAuth2\Client\Tool {
+    /**
+     * Enables `Bearer` header authorization for providers.
+     *
+     * @link http://tools.ietf.org/html/rfc6750 Bearer Token Usage (RFC 6750)
+     */
+    trait BearerAuthorizationTrait
+    {
+        /**
+         * Returns authorization headers for the 'bearer' grant.
+         *
+         * @param  AccessTokenInterface|string|null $token Either a string or an access token instance
+         * @return array
+         */
+        protected function getAuthorizationHeaders($token = null)
+        {
+        }
+    }
+}
+namespace YoastSEO_Vendor\League\OAuth2\Client\Provider {
+    /**
+     * Represents a generic service provider that may be used to interact with any
+     * OAuth 2.0 service provider, using Bearer token authentication.
+     */
+    class GenericProvider extends \YoastSEO_Vendor\League\OAuth2\Client\Provider\AbstractProvider
+    {
+        use \YoastSEO_Vendor\League\OAuth2\Client\Tool\BearerAuthorizationTrait;
+        /**
+         * @var string
+         */
+        private $urlAuthorize;
+        /**
+         * @var string
+         */
+        private $urlAccessToken;
+        /**
+         * @var string
+         */
+        private $urlResourceOwnerDetails;
+        /**
+         * @var string
+         */
+        private $accessTokenMethod;
+        /**
+         * @var string
+         */
+        private $accessTokenResourceOwnerId;
+        /**
+         * @var array|null
+         */
+        private $scopes = null;
+        /**
+         * @var string
+         */
+        private $scopeSeparator;
+        /**
+         * @var string
+         */
+        private $responseError = 'error';
+        /**
+         * @var string
+         */
+        private $responseCode;
+        /**
+         * @var string
+         */
+        private $responseResourceOwnerId = 'id';
+        /**
+         * @param array $options
+         * @param array $collaborators
+         */
+        public function __construct(array $options = [], array $collaborators = [])
+        {
+        }
+        /**
+         * Returns all options that can be configured.
+         *
+         * @return array
+         */
+        protected function getConfigurableOptions()
+        {
+        }
+        /**
+         * Returns all options that are required.
+         *
+         * @return array
+         */
+        protected function getRequiredOptions()
+        {
+        }
+        /**
+         * Verifies that all required options have been passed.
+         *
+         * @param  array $options
+         * @return void
+         * @throws InvalidArgumentException
+         */
+        private function assertRequiredOptions(array $options)
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        public function getBaseAuthorizationUrl()
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        public function getBaseAccessTokenUrl(array $params)
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        public function getResourceOwnerDetailsUrl(\YoastSEO_Vendor\League\OAuth2\Client\Token\AccessToken $token)
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        public function getDefaultScopes()
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        protected function getAccessTokenMethod()
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        protected function getAccessTokenResourceOwnerId()
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        protected function getScopeSeparator()
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        protected function checkResponse(\YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response, $data)
+        {
+        }
+        /**
+         * @inheritdoc
+         */
+        protected function createResourceOwner(array $response, \YoastSEO_Vendor\League\OAuth2\Client\Token\AccessToken $token)
+        {
+        }
+    }
+}
+namespace Yoast\WP\SEO\Config {
     /**
      * Class Wincher_PKCE_Provider
      *
@@ -29257,7 +30029,7 @@ namespace Yoast\WP\SEO\Config {
         /**
          * Returns if the WordProof Uikit should be loaded from a cdn.
          *
-         * @return boolean True or false.
+         * @return bool True or false.
          */
         public function getLoadUikitFromCdn()
         {
@@ -29355,6 +30127,7 @@ namespace Yoast\WP\SEO\Presentations {
     /**
      * The abstract presentation class.
      */
+    #[\AllowDynamicProperties]
     class Abstract_Presentation
     {
         /**
@@ -29423,33 +30196,36 @@ namespace Yoast\WP\SEO\Context {
      *
      * Class that contains all relevant data for rendering the meta tags.
      *
-     * @property string       $canonical
-     * @property string       $permalink
-     * @property string       $title
-     * @property string       $description
-     * @property string       $id
-     * @property string       $site_name
-     * @property string       $wordpress_site_name
-     * @property string       $site_url
-     * @property string       $company_name
-     * @property int          $company_logo_id
-     * @property array        $company_logo_meta
-     * @property int          $person_logo_id
-     * @property array        $person_logo_meta
-     * @property int          $site_user_id
-     * @property string       $site_represents
-     * @property array|false  $site_represents_reference
-     * @property string       schema_page_type
-     * @property string       $main_schema_id
-     * @property string|array $main_entity_of_page
-     * @property bool         $open_graph_enabled
-     * @property string       $open_graph_publisher
-     * @property string       $twitter_card
-     * @property string       $page_type
-     * @property bool         $has_article
-     * @property bool         $has_image
-     * @property int          $main_image_id
-     * @property string       $main_image_url
+     * @property string          $canonical
+     * @property string          $permalink
+     * @property string          $title
+     * @property string          $description
+     * @property string          $id
+     * @property string          $site_name
+     * @property string          $alternate_site_name
+     * @property string          $wordpress_site_name
+     * @property string          $site_url
+     * @property string          $company_name
+     * @property string          $company_alternate_name
+     * @property int             $company_logo_id
+     * @property array           $company_logo_meta
+     * @property int             $person_logo_id
+     * @property array           $person_logo_meta
+     * @property int             $site_user_id
+     * @property string          $site_represents
+     * @property array|false     $site_represents_reference
+     * @property string          $schema_page_type
+     * @property string|string[] $schema_article_type      Represents the type of article.
+     * @property string          $main_schema_id
+     * @property string|array    $main_entity_of_page
+     * @property bool            $open_graph_enabled
+     * @property string          $open_graph_publisher
+     * @property string          $twitter_card
+     * @property string          $page_type
+     * @property bool            $has_article
+     * @property bool            $has_image
+     * @property int             $main_image_id
+     * @property string          $main_image_url
      */
     class Meta_Tags_Context extends \Yoast\WP\SEO\Presentations\Abstract_Presentation
     {
@@ -29609,6 +30385,14 @@ namespace Yoast\WP\SEO\Context {
         {
         }
         /**
+         * Generates the alternate site name.
+         *
+         * @return string The alternate site name.
+         */
+        public function generate_alternate_site_name()
+        {
+        }
+        /**
          * Generates the site name from the WordPress options.
          *
          * @return string The site name from the WordPress options.
@@ -29630,6 +30414,14 @@ namespace Yoast\WP\SEO\Context {
          * @return string The company name.
          */
         public function generate_company_name()
+        {
+        }
+        /**
+         * Generates the alternate company name.
+         *
+         * @return string
+         */
+        public function generate_company_alternate_name()
         {
         }
         /**
@@ -29775,7 +30567,7 @@ namespace Yoast\WP\SEO\Context {
          *
          * @return false|int
          */
-        private function fallback_to_site_logo()
+        public function fallback_to_site_logo()
         {
         }
         /**
@@ -29786,18 +30578,6 @@ namespace Yoast\WP\SEO\Context {
          * @return int|null
          */
         private function get_singular_post_image($id)
-        {
-        }
-        /* ********************* DEPRECATED METHODS ********************* */
-        /**
-         * Generates whether or not breadcrumbs are enabled.
-         *
-         * @deprecated 15.8
-         * @codeCoverageIgnore
-         *
-         * @return bool Whether or not breadcrumbs are enabled.
-         */
-        public function generate_breadcrumbs_enabled()
         {
         }
     }
@@ -29834,6 +30614,35 @@ namespace Yoast\WP\SEO\Exceptions\Addon_Installation {
     {
     }
 }
+namespace Yoast\WP\SEO\Exceptions {
+    /**
+     * Exception for attempting a mutation on properties that are made readonly through magic getters and setters.
+     */
+    class Forbidden_Property_Mutation_Exception extends \RuntimeException
+    {
+        /**
+         * Creates a Forbidden_Property_Mutation_Exception exception when an attempt is made
+         * to assign a value to an immutable property.
+         *
+         * @param string $property_name The name of the immutable property.
+         *
+         * @return Forbidden_Property_Mutation_Exception The exception.
+         */
+        public static function cannot_set_because_property_is_immutable($property_name)
+        {
+        }
+        /**
+         * Creates a Forbidden_Property_Mutation_Exception exception when an attempt is made to unset an immutable property.
+         *
+         * @param string $property_name The name of the immutable property.
+         *
+         * @return Forbidden_Property_Mutation_Exception The exception.
+         */
+        public static function cannot_unset_because_property_is_immutable($property_name)
+        {
+        }
+    }
+}
 namespace Yoast\WP\SEO\Exceptions\Importing {
     /**
      * Class Aioseo_Validation_Exception
@@ -29855,6 +30664,62 @@ namespace Yoast\WP\SEO\Exceptions\Indexable {
      */
     abstract class Indexable_Exception extends \Exception
     {
+    }
+    /**
+     * Class Not_Built_Exception
+     */
+    class Not_Built_Exception extends \Yoast\WP\SEO\Exceptions\Indexable\Indexable_Exception
+    {
+        /**
+         * Creates an exception that should be thrown when an indexable
+         * was not built because of an invalid object id.
+         *
+         * @param int $object_id The invalid object id.
+         *
+         * @return Not_Built_Exception The exception.
+         */
+        public static function invalid_object_id($object_id)
+        {
+        }
+    }
+    /**
+     * For when an author indexable is not being built.
+     */
+    class Author_Not_Built_Exception extends \Yoast\WP\SEO\Exceptions\Indexable\Not_Built_Exception
+    {
+        /**
+         * Named constructor for creating an Author_Not_Built_Exception
+         * when author archives are disabled for users without posts.
+         *
+         * @param string $user_id The user id.
+         *
+         * @return Author_Not_Built_Exception The exception.
+         */
+        public static function author_archives_are_not_indexed_for_users_without_posts($user_id)
+        {
+        }
+        /**
+         * Named constructor for creating an Author_Not_Built_Exception
+         * when author archives are disabled.
+         *
+         * @param string $user_id The user id.
+         *
+         * @return Author_Not_Built_Exception The exception.
+         */
+        public static function author_archives_are_disabled($user_id)
+        {
+        }
+        /**
+         * Named constructor for creating an Author_Not_Build_Exception
+         * when an author is excluded because of the `'wpseo_should_build_and_save_user_indexable'` filter.
+         *
+         * @param string $user_id The user id.
+         *
+         * @return Author_Not_Built_Exception The exception.
+         */
+        public static function author_not_built_because_of_filter($user_id)
+        {
+        }
     }
     /**
      * Class Indexable_Source_Exception
@@ -29879,6 +30744,33 @@ namespace Yoast\WP\SEO\Exceptions\Indexable {
         }
     }
     /**
+     * Exception that is thrown whenever a post could not be built
+     * in the context of the indexables.
+     */
+    class Post_Not_Built_Exception extends \Yoast\WP\SEO\Exceptions\Indexable\Not_Built_Exception
+    {
+        /**
+         * Throws an exception if the post is not indexable.
+         *
+         * @param int $post_id ID of the post.
+         *
+         * @throws Post_Not_Built_Exception When the post is not indexable.
+         */
+        public static function because_not_indexable($post_id)
+        {
+        }
+        /**
+         * Throws an exception if the post type is excluded from indexing.
+         *
+         * @param int $post_id ID of the post.
+         *
+         * @throws Post_Not_Built_Exception When the post type is excluded.
+         */
+        public static function because_post_type_excluded($post_id)
+        {
+        }
+    }
+    /**
      * Exception that is thrown whenever a post could not be found
      * in the context of the indexables.
      */
@@ -29889,6 +30781,23 @@ namespace Yoast\WP\SEO\Exceptions\Indexable {
          * in the context of the indexables.
          */
         public function __construct()
+        {
+        }
+    }
+    /**
+     * Exception that is thrown whenever a term could not be built
+     * in the context of the indexables.
+     */
+    class Term_Not_Built_Exception extends \Yoast\WP\SEO\Exceptions\Indexable\Not_Built_Exception
+    {
+        /**
+         * Throws an exception if the term is not indexable.
+         *
+         * @param int $term_id ID of the term.
+         *
+         * @throws Term_Not_Built_Exception When the term is not built.
+         */
+        public static function because_not_indexable($term_id)
         {
         }
     }
@@ -30560,6 +31469,16 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Actions\Indexables_Page_Action' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Actions\Indexables_Page_Action
+         *
+         * @deprecated Yoast\WP\SEO\Actions\Indexables_Page_Action is deprecated since version 20.4!
+         */
+        protected function getIndexablesPageActionService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Actions\Indexing\Indexable_General_Indexation_Action' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Actions\Indexing\Indexable_General_Indexation_Action
@@ -30661,6 +31580,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Actions\SEMrush\SEMrush_Phrases_Action
          */
         protected function getSEMrushPhrasesActionService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Actions\Settings_Introduction_Action' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Actions\Settings_Introduction_Action
+         */
+        protected function getSettingsIntroductionActionService()
         {
         }
         /**
@@ -30776,6 +31703,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Commands\Cleanup_Command' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Commands\Cleanup_Command
+         */
+        protected function getCleanupCommandService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Commands\Index_Command' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Commands\Index_Command
@@ -30816,6 +31751,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Admin\Non_Network_Admin_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Admin\Non_Network_Admin_Conditional
+         */
+        protected function getNonNetworkAdminConditionalService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Conditionals\Admin\Post_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Admin\Post_Conditional
@@ -30840,6 +31783,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Attachment_Redirections_Enabled_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Attachment_Redirections_Enabled_Conditional
+         */
+        protected function getAttachmentRedirectionsEnabledConditionalService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Conditionals\Development_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Development_Conditional
@@ -30859,6 +31810,8 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Conditionals\Front_End_Inspector_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Front_End_Inspector_Conditional
+         *
+         * @deprecated Yoast\WP\SEO\Conditionals\Front_End_Inspector_Conditional is deprecated since version 19.5!
          */
         protected function getFrontEndInspectorConditionalService()
         {
@@ -30888,6 +31841,16 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Indexables_Page_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Indexables_Page_Conditional
+         *
+         * @deprecated Yoast\WP\SEO\Conditionals\Indexables_Page_Conditional is deprecated since version 20.4!
+         */
+        protected function getIndexablesPageConditionalService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Conditionals\Jetpack_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Jetpack_Conditional
@@ -30901,6 +31864,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Conditionals\Migrations_Conditional
          */
         protected function getMigrationsConditionalService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\New_Settings_Ui_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\New_Settings_Ui_Conditional
+         */
+        protected function getNewSettingsUiConditionalService()
         {
         }
         /**
@@ -30944,6 +31915,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Premium_Active_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Premium_Active_Conditional
+         */
+        protected function getPremiumActiveConditionalService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Conditionals\Premium_Inactive_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Premium_Inactive_Conditional
@@ -30979,8 +31958,18 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Conditionals\Schema_Blocks_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Schema_Blocks_Conditional
+         *
+         * @deprecated Yoast\WP\SEO\Conditionals\Schema_Blocks_Conditional is deprecated since version 20.5!
          */
         protected function getSchemaBlocksConditionalService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Settings_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Settings_Conditional
+         */
+        protected function getSettingsConditionalService()
         {
         }
         /**
@@ -30992,9 +31981,19 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Text_Formality_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Text_Formality_Conditional
+         */
+        protected function getTextFormalityConditionalService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Conditionals\The_Events_Calendar_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\The_Events_Calendar_Conditional
+         *
+         * @deprecated Yoast\WP\SEO\Conditionals\The_Events_Calendar_Conditional is deprecated since version 19.12!
          */
         protected function getTheEventsCalendarConditionalService()
         {
@@ -31003,6 +32002,8 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Conditionals\Third_Party\CoAuthors_Plus_Activated_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Third_Party\CoAuthors_Plus_Activated_Conditional
+         *
+         * @deprecated Yoast\WP\SEO\Conditionals\Third_Party\CoAuthors_Plus_Activated_Conditional is deprecated since version 19.12!
          */
         protected function getCoAuthorsPlusActivatedConditionalService()
         {
@@ -31011,6 +32012,8 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Conditionals\Third_Party\CoAuthors_Plus_Flag_Conditional' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Conditionals\Third_Party\CoAuthors_Plus_Flag_Conditional
+         *
+         * @deprecated Yoast\WP\SEO\Conditionals\Third_Party\CoAuthors_Plus_Flag_Conditional is deprecated since version 19.12!
          */
         protected function getCoAuthorsPlusFlagConditionalService()
         {
@@ -31029,6 +32032,38 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Conditionals\Third_Party\Elementor_Edit_Conditional
          */
         protected function getElementorEditConditionalService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Third_Party\Jetpack_Boost_Active_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Third_Party\Jetpack_Boost_Active_Conditional
+         */
+        protected function getJetpackBoostActiveConditionalService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Third_Party\Jetpack_Boost_Not_Premium_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Third_Party\Jetpack_Boost_Not_Premium_Conditional
+         */
+        protected function getJetpackBoostNotPremiumConditionalService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Third_Party\Polylang_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Third_Party\Polylang_Conditional
+         */
+        protected function getPolylangConditionalService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Conditionals\Third_Party\TranslatePress_Conditional' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Conditionals\Third_Party\TranslatePress_Conditional
+         */
+        protected function getTranslatePressConditionalService()
         {
         }
         /**
@@ -31547,6 +32582,8 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Generators\Schema\Third_Party\CoAuthor' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Generators\Schema\Third_Party\CoAuthor
+         *
+         * @deprecated Yoast\WP\SEO\Generators\Schema\Third_Party\CoAuthor is deprecated since version 19.12!
          */
         protected function getCoAuthorService()
         {
@@ -31555,6 +32592,8 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Generators\Schema\Third_Party\Events_Calendar_Schema' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Generators\Schema\Third_Party\Events_Calendar_Schema
+         *
+         * @deprecated Yoast\WP\SEO\Generators\Schema\Third_Party\Events_Calendar_Schema is deprecated since version 19.12!
          */
         protected function getEventsCalendarSchemaService()
         {
@@ -31608,6 +32647,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Helpers\Attachment_Cleanup_Helper' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Helpers\Attachment_Cleanup_Helper
+         */
+        protected function getAttachmentCleanupHelperService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Helpers\Author_Archive_Helper' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Helpers\Author_Archive_Helper
@@ -31629,6 +32676,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Helpers\Capability_Helper
          */
         protected function getCapabilityHelperService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Helpers\Crawl_Cleanup_Helper' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Helpers\Crawl_Cleanup_Helper
+         */
+        protected function getCrawlCleanupHelperService()
         {
         }
         /**
@@ -31661,6 +32716,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Helpers\Environment_Helper
          */
         protected function getEnvironmentHelperService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Helpers\First_Time_Configuration_Notice_Helper' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Helpers\First_Time_Configuration_Notice_Helper
+         */
+        protected function getFirstTimeConfigurationNoticeHelperService()
         {
         }
         /**
@@ -31712,19 +32775,21 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Helpers\Indexables_Page_Helper' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Helpers\Indexables_Page_Helper
+         *
+         * @deprecated Yoast\WP\SEO\Helpers\Indexables_Page_Helper is deprecated since version 20.4!
+         */
+        protected function getIndexablesPageHelperService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Helpers\Indexing_Helper' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Helpers\Indexing_Helper
          */
         protected function getIndexingHelperService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Helpers\Input_Helper' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Helpers\Input_Helper
-         */
-        protected function getInputHelperService()
         {
         }
         /**
@@ -31856,6 +32921,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Helpers\Robots_Txt_Helper' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Helpers\Robots_Txt_Helper
+         */
+        protected function getRobotsTxtHelperService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Helpers\Sanitization_Helper' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Helpers\Sanitization_Helper
@@ -31912,6 +32985,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Helpers\Score_Icon_Helper' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Helpers\Score_Icon_Helper
+         */
+        protected function getScoreIconHelperService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Helpers\Short_Link_Helper' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Helpers\Short_Link_Helper
@@ -31925,6 +33006,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Helpers\Site_Helper
          */
         protected function getSiteHelperService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Helpers\Social_Profiles_Helper' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Helpers\Social_Profiles_Helper
+         */
+        protected function getSocialProfilesHelperService()
         {
         }
         /**
@@ -32008,6 +33097,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Initializers\Crawl_Cleanup_Permalinks' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Initializers\Crawl_Cleanup_Permalinks
+         */
+        protected function getCrawlCleanupPermalinksService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Initializers\Disable_Core_Sitemaps' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Initializers\Disable_Core_Sitemaps
@@ -32021,6 +33118,22 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Initializers\Migration_Runner
          */
         protected function getMigrationRunnerService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Initializers\Woocommerce' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Initializers\Woocommerce
+         */
+        protected function getWoocommerceService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Activation_Cleanup_Integration' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Admin\Activation_Cleanup_Integration
+         */
+        protected function getActivationCleanupIntegrationService()
         {
         }
         /**
@@ -32136,6 +33249,24 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Indexables_Exclude_Taxonomy_Integration' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Admin\Indexables_Exclude_Taxonomy_Integration
+         */
+        protected function getIndexablesExcludeTaxonomyIntegrationService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Indexables_Page_Integration' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Admin\Indexables_Page_Integration
+         *
+         * @deprecated Yoast\WP\SEO\Integrations\Admin\Indexables_Page_Integration is deprecated since version 20.4!
+         */
+        protected function getIndexablesPageIntegrationService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Indexing_Notification_Integration' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Admin\Indexing_Notification_Integration
@@ -32200,33 +33331,35 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
-         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Redirects_Integration' shared autowired service.
+         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Old_Premium_Integration' shared autowired service.
          *
-         * @return \Yoast\WP\SEO\Integrations\Admin\Redirects_Integration
+         * @return \Yoast\WP\SEO\Integrations\Admin\Old_Premium_Integration
          */
-        protected function getRedirectsIntegrationService()
+        protected function getOldPremiumIntegrationService()
         {
         }
         /**
-         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Ryte_Integration' shared autowired service.
+         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Redirect_Integration' shared autowired service.
          *
-         * @return \Yoast\WP\SEO\Integrations\Admin\Ryte_Integration
+         * @return \Yoast\WP\SEO\Integrations\Admin\Redirect_Integration
          */
-        protected function getRyteIntegrationService()
+        protected function getRedirectIntegrationService()
         {
         }
         /**
-         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Social_Profiles_Helper' shared autowired service.
+         * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Redirects_Page_Integration' shared autowired service.
          *
-         * @return \Yoast\WP\SEO\Integrations\Admin\Social_Profiles_Helper
+         * @return \Yoast\WP\SEO\Integrations\Admin\Redirects_Page_Integration
          */
-        protected function getSocialProfilesHelperService()
+        protected function getRedirectsPageIntegrationService()
         {
         }
         /**
          * Gets the public 'Yoast\WP\SEO\Integrations\Admin\Social_Templates_Integration' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Admin\Social_Templates_Integration
+         *
+         * @deprecated Yoast\WP\SEO\Integrations\Admin\Social_Templates_Integration is deprecated since version 20.3!
          */
         protected function getSocialTemplatesIntegrationService()
         {
@@ -32237,6 +33370,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Integrations\Admin\Workouts_Integration
          */
         protected function getWorkoutsIntegrationService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Alerts\Jetpack_Boost_Pre_Publish' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Alerts\Jetpack_Boost_Pre_Publish
+         */
+        protected function getJetpackBoostPrePublishService()
         {
         }
         /**
@@ -32304,6 +33445,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Exclude_Attachment_Post_Type' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Exclude_Attachment_Post_Type
+         */
+        protected function getExcludeAttachmentPostTypeService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Integrations\Exclude_Oembed_Cache_Post_Type' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Exclude_Oembed_Cache_Post_Type
@@ -32341,6 +33490,30 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Integrations\Front_End\Comment_Link_Fixer
          */
         protected function getCommentLinkFixerService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Front_End\Crawl_Cleanup_Basic' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Front_End\Crawl_Cleanup_Basic
+         */
+        protected function getCrawlCleanupBasicService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Front_End\Crawl_Cleanup_Rss' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Front_End\Crawl_Cleanup_Rss
+         */
+        protected function getCrawlCleanupRssService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Front_End\Crawl_Cleanup_Searches' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Front_End\Crawl_Cleanup_Searches
+         */
+        protected function getCrawlCleanupSearchesService()
         {
         }
         /**
@@ -32416,14 +33589,6 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
-         * Gets the public 'Yoast\WP\SEO\Integrations\Front_End\Theme_Titles' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Integrations\Front_End\Theme_Titles
-         */
-        protected function getThemeTitlesService()
-        {
-        }
-        /**
          * Gets the public 'Yoast\WP\SEO\Integrations\Front_End\WP_Robots_Integration' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Front_End\WP_Robots_Integration
@@ -32451,8 +33616,18 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Integrations\Schema_Blocks' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Schema_Blocks
+         *
+         * @deprecated Yoast\WP\SEO\Integrations\Schema_Blocks is deprecated since version 20.5!
          */
         protected function getSchemaBlocksService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Settings_Integration' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Settings_Integration
+         */
+        protected function getSettingsIntegrationService()
         {
         }
         /**
@@ -32475,6 +33650,8 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Integrations\Third_Party\CoAuthors_Plus' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Third_Party\CoAuthors_Plus
+         *
+         * @deprecated Yoast\WP\SEO\Integrations\Third_Party\CoAuthors_Plus is deprecated since version 19.12!
          */
         protected function getCoAuthorsPlusService()
         {
@@ -32485,16 +33662,6 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Integrations\Third_Party\Elementor
          */
         protected function getElementorService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Integrations\Third_Party\Elementor_Exclude_Post_Types' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Integrations\Third_Party\Elementor_Exclude_Post_Types
-         *
-         * @deprecated Yoast\WP\SEO\Integrations\Third_Party\Elementor_Exclude_Post_Types is deprecated since version 16.7! Use Yoast\WP\SEO\Integrations\Third_Party\Exclude_Elementor_Post_Types instead.
-         */
-        protected function getElementorExcludePostTypesService()
         {
         }
         /**
@@ -32525,6 +33692,8 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Integrations\Third_Party\The_Events_Calendar' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Third_Party\The_Events_Calendar
+         *
+         * @deprecated Yoast\WP\SEO\Integrations\Third_Party\The_Events_Calendar is deprecated since version 19.12!
          */
         protected function getTheEventsCalendarService()
         {
@@ -32562,6 +33731,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Third_Party\Web_Stories_Post_Edit' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Third_Party\Web_Stories_Post_Edit
+         */
+        protected function getWebStoriesPostEditService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Integrations\Third_Party\Wincher' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Third_Party\Wincher
@@ -32582,7 +33759,7 @@ namespace Yoast\WP\SEO\Generated {
          *
          * @return \Yoast\WP\SEO\Integrations\Third_Party\WooCommerce
          */
-        protected function getWooCommerceService()
+        protected function getWooCommerce2Service()
         {
         }
         /**
@@ -32650,6 +33827,22 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Watchers\Indexable_Attachment_Watcher' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Watchers\Indexable_Attachment_Watcher
+         */
+        protected function getIndexableAttachmentWatcherService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Watchers\Indexable_Author_Archive_Watcher' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Watchers\Indexable_Author_Archive_Watcher
+         */
+        protected function getIndexableAuthorArchiveWatcherService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Integrations\Watchers\Indexable_Author_Watcher' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Watchers\Indexable_Author_Watcher
@@ -32714,6 +33907,14 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Watchers\Indexable_Post_Type_Change_Watcher' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Watchers\Indexable_Post_Type_Change_Watcher
+         */
+        protected function getIndexablePostTypeChangeWatcherService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Integrations\Watchers\Indexable_Post_Watcher' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Integrations\Watchers\Indexable_Post_Watcher
@@ -32735,6 +33936,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Integrations\Watchers\Indexable_System_Page_Watcher
          */
         protected function getIndexableSystemPageWatcherService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Watchers\Indexable_Taxonomy_Change_Watcher' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Watchers\Indexable_Taxonomy_Change_Watcher
+         */
+        protected function getIndexableTaxonomyChangeWatcherService()
         {
         }
         /**
@@ -32775,6 +33984,14 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Integrations\Watchers\Primary_Term_Watcher
          */
         protected function getPrimaryTermWatcherService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Integrations\Watchers\Search_Engines_Discouraged_Watcher' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Integrations\Watchers\Search_Engines_Discouraged_Watcher
+         */
+        protected function getSearchEnginesDiscouragedWatcherService()
         {
         }
         /**
@@ -32946,14 +34163,6 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
-         * Gets the public 'Yoast\WP\SEO\Repositories\SEO_Meta_Repository' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Repositories\SEO_Meta_Repository
-         */
-        protected function getSEOMetaRepositoryService()
-        {
-        }
-        /**
          * Gets the public 'Yoast\WP\SEO\Routes\Alert_Dismissal_Route' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Routes\Alert_Dismissal_Route
@@ -32986,6 +34195,16 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Routes\Indexables_Page_Route' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Routes\Indexables_Page_Route
+         *
+         * @deprecated Yoast\WP\SEO\Routes\Indexables_Page_Route is deprecated since version 20.4!
+         */
+        protected function getIndexablesPageRouteService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Routes\Indexing_Route' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Routes\Indexing_Route
@@ -33002,11 +34221,27 @@ namespace Yoast\WP\SEO\Generated {
         {
         }
         /**
+         * Gets the public 'Yoast\WP\SEO\Routes\Meta_Search_Route' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Routes\Meta_Search_Route
+         */
+        protected function getMetaSearchRouteService()
+        {
+        }
+        /**
          * Gets the public 'Yoast\WP\SEO\Routes\SEMrush_Route' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Routes\SEMrush_Route
          */
         protected function getSEMrushRouteService()
+        {
+        }
+        /**
+         * Gets the public 'Yoast\WP\SEO\Routes\Settings_Introduction_Route' shared autowired service.
+         *
+         * @return \Yoast\WP\SEO\Routes\Settings_Introduction_Route
+         */
+        protected function getSettingsIntroductionRouteService()
         {
         }
         /**
@@ -33045,32 +34280,10 @@ namespace Yoast\WP\SEO\Generated {
          * Gets the public 'Yoast\WP\SEO\Schema_Templates\Assets\Icons' shared autowired service.
          *
          * @return \Yoast\WP\SEO\Schema_Templates\Assets\Icons
+         *
+         * @deprecated Yoast\WP\SEO\Schema_Templates\Assets\Icons is deprecated since version 20.5!
          */
         protected function getIconsService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Services\Health_Check\Curl_Check' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Services\Health_Check\Curl_Check
-         */
-        protected function getCurlCheckService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Services\Health_Check\Curl_Reports' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Services\Health_Check\Curl_Reports
-         */
-        protected function getCurlReportsService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Services\Health_Check\Curl_Runner' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Services\Health_Check\Curl_Runner
-         */
-        protected function getCurlRunnerService()
         {
         }
         /**
@@ -33191,30 +34404,6 @@ namespace Yoast\WP\SEO\Generated {
          * @return \Yoast\WP\SEO\Services\Health_Check\Report_Builder_Factory
          */
         protected function getReportBuilderFactoryService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Services\Health_Check\Ryte_Check' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Services\Health_Check\Ryte_Check
-         */
-        protected function getRyteCheckService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Services\Health_Check\Ryte_Reports' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Services\Health_Check\Ryte_Reports
-         */
-        protected function getRyteReportsService()
-        {
-        }
-        /**
-         * Gets the public 'Yoast\WP\SEO\Services\Health_Check\Ryte_Runner' shared autowired service.
-         *
-         * @return \Yoast\WP\SEO\Services\Health_Check\Ryte_Runner
-         */
-        protected function getRyteRunnerService()
         {
         }
         /**
@@ -33755,6 +34944,28 @@ namespace Yoast\WP\SEO\Generators {
         {
         }
         /**
+         * Finalizes the schema graph after all filtering is done.
+         *
+         * @param array             $graph   The current schema graph.
+         * @param Meta_Tags_Context $context The meta tags context.
+         *
+         * @return array The schema graph.
+         */
+        protected function finalize_graph($graph, $context)
+        {
+        }
+        /**
+         * Removes the breadcrumb schema if empty.
+         *
+         * @param array             $graph   The current schema graph.
+         * @param Meta_Tags_Context $context The meta tags context.
+         *
+         * @return array The schema graph with empty breadcrumbs taken out.
+         */
+        protected function remove_empty_breadcrumb($graph, $context)
+        {
+        }
+        /**
          * Adapts the WebPage graph piece for password-protected posts.
          *
          * It should only have certain whitelisted properties.
@@ -33838,6 +35049,14 @@ namespace Yoast\WP\SEO\Generators\Schema {
          * @var Helpers_Surface
          */
         public $helpers;
+        /**
+         * Optional identifier for this schema piece.
+         *
+         * Used in the `Schema_Generator::filter_graph_pieces_to_generate()` method.
+         *
+         * @var string
+         */
+        public $identifier;
         /**
          * Generates the schema piece.
          *
@@ -34183,6 +35402,16 @@ namespace Yoast\WP\SEO\Generators\Schema {
         private function not_hidden($breadcrumb)
         {
         }
+        /**
+         * Checks whether the breadcrumb has a not empty text.
+         *
+         * @param array $breadcrumb The breadcrumb array.
+         *
+         * @return bool If the breadcrumb has a not empty text.
+         */
+        private function not_empty_text($breadcrumb)
+        {
+        }
     }
     /**
      * Returns schema FAQ data.
@@ -34367,121 +35596,6 @@ namespace Yoast\WP\SEO\Generators\Schema {
         {
         }
     }
-}
-namespace Yoast\WP\SEO\Generators\Schema\Third_Party {
-    /**
-     * Returns schema Author data for the CoAuthor Plus assigned user on a post.
-     */
-    class CoAuthor extends \Yoast\WP\SEO\Generators\Schema\Author
-    {
-        /**
-         * The user ID of the author we're generating data for.
-         *
-         * @var int $user_id
-         */
-        private $user_id;
-        /**
-         * Determine whether we should return Person schema.
-         *
-         * @return bool
-         */
-        public function is_needed()
-        {
-        }
-        /**
-         * Returns Person Schema data.
-         *
-         * @return bool|array Person data on success, false on failure.
-         */
-        public function generate()
-        {
-        }
-        /**
-         * Generate the Person data given a user ID.
-         *
-         * @param int $user_id User ID.
-         *
-         * @return array|bool
-         */
-        public function generate_from_user_id($user_id)
-        {
-        }
-        /**
-         * Determines a User ID for the Person data.
-         *
-         * @return bool|int User ID or false upon return.
-         */
-        protected function determine_user_id()
-        {
-        }
-    }
-    /**
-     * A class to handle textdomains and other Yoast Event Schema related logic..
-     */
-    class Events_Calendar_Schema extends \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece
-    {
-        /**
-         * The meta tags context.
-         *
-         * @var Meta_Tags_Context
-         */
-        public $context;
-        /**
-         * The helpers surface
-         *
-         * @var Helpers_Surface
-         */
-        public $helpers;
-        /**
-         * Determines whether or not a piece should be added to the graph.
-         *
-         * @return bool
-         */
-        public function is_needed()
-        {
-        }
-        /**
-         * Adds our Event piece of the graph.
-         * Partially lifted from the 'Tribe__JSON_LD__Abstract' class.
-         *
-         * @see https://docs.theeventscalendar.com/reference/classes/tribe__json_ld__abstract/
-         * @return array Event Schema markup
-         */
-        public function generate()
-        {
-        }
-        /**
-         * Get and return the schema markup for a collection of posts.
-         * If the posts array is empty, only the current post is returned.
-         *
-         * @param  array $posts The collection of posts we want schema markup for.
-         *
-         * @return array        The tribe schema for these posts.
-         */
-        private function get_tribe_schema(array $posts = [])
-        {
-        }
-        /**
-         * Transform the tribe schema markup and adapt it to the Yoast SEO standard.
-         *
-         * @param  array $data The data retrieved from the TEC plugin.
-         *
-         * @return array       The transformed event data.
-         */
-        private function transform_tribe_schema(array $data = [])
-        {
-        }
-        /**
-         * Get an array of events for the requested month.
-         *
-         * @return array An array of posts of the custom post type event.
-         */
-        private function get_month_events()
-        {
-        }
-    }
-}
-namespace Yoast\WP\SEO\Generators\Schema {
     /**
      * Returns schema WebPage data.
      */
@@ -34752,10 +35866,57 @@ namespace Yoast\WP\SEO\Helpers {
         }
     }
     /**
+     * A helper object for the cleanup of attachments.
+     */
+    class Attachment_Cleanup_Helper
+    {
+        /**
+         * Removes all indexables for attachments.
+         *
+         * @param bool $suppress_errors Whether to suppress db errors when running the cleanup query.
+         *
+         * @return void
+         */
+        public function remove_attachment_indexables($suppress_errors)
+        {
+        }
+        /**
+         * Cleans all attachment links in the links table from target indexable ids.
+         *
+         * @param bool $suppress_errors Whether to suppress db errors when running the cleanup query.
+         *
+         * @return void
+         */
+        public function clean_attachment_links_from_target_indexable_ids($suppress_errors)
+        {
+        }
+    }
+    /**
      * A helper object for author archives.
      */
     class Author_Archive_Helper
     {
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * The post type helper.
+         *
+         * @var Post_Type_Helper
+         */
+        private $post_type_helper;
+        /**
+         * Creates a new author archive helper.
+         *
+         * @param Options_Helper   $options_helper   The options helper.
+         * @param Post_Type_Helper $post_type_helper The post type helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Post_Type_Helper $post_type_helper)
+        {
+        }
         /**
          * Gets the array of post types that are shown on an author's archive.
          *
@@ -34772,6 +35933,27 @@ namespace Yoast\WP\SEO\Helpers {
          * @return bool|null Whether the author has at least one public post.
          */
         public function author_has_public_posts($author_id)
+        {
+        }
+        /**
+         * Returns whether the author has at least one public post.
+         *
+         * **Note**: It uses WP_Query to determine the number of posts,
+         * not the indexables table.
+         *
+         * @param string $user_id The user ID.
+         *
+         * @return bool Whether the author has at least one public post.
+         */
+        public function author_has_public_posts_wp($user_id)
+        {
+        }
+        /**
+         * Checks whether author archives are disabled.
+         *
+         * @return bool `true` if author archives are disabled, `false` if not.
+         */
+        public function are_disabled()
         {
         }
         /**
@@ -34905,6 +36087,158 @@ namespace Yoast\WP\SEO\Helpers {
          * @return bool True if the user has at least one capability.
          */
         private function has_any(array $capabilities)
+        {
+        }
+    }
+    /**
+     * Class Crawl_Cleanup_Helper.
+     *
+     * Used by the Crawl_Cleanup_Permalinks class.
+     */
+    class Crawl_Cleanup_Helper
+    {
+        /**
+         * The current page helper
+         *
+         * @var Current_Page_Helper
+         */
+        private $current_page_helper;
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * The URL helper.
+         *
+         * @var Url_Helper
+         */
+        private $url_helper;
+        /**
+         * The Redirect Helper.
+         *
+         * @var Redirect_Helper
+         */
+        private $redirect_helper;
+        /**
+         * Crawl Cleanup Basic integration constructor.
+         *
+         * @param Current_Page_Helper $current_page_helper The current page helper.
+         * @param Options_Helper      $options_helper      The option helper.
+         * @param Url_Helper          $url_helper          The URL helper.
+         * @param Redirect_Helper     $redirect_helper     The Redirect Helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Current_Page_Helper $current_page_helper, \Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Url_Helper $url_helper, \Yoast\WP\SEO\Helpers\Redirect_Helper $redirect_helper)
+        {
+        }
+        /**
+         * Checks if the current URL is not robots, sitemap, empty or user is logged in.
+         *
+         * @return bool True if the current URL is a valid URL.
+         */
+        public function should_avoid_redirect()
+        {
+        }
+        /**
+         * Returns the list of the allowed extra vars.
+         *
+         * @return array The list of the allowed extra vars.
+         */
+        public function get_allowed_extravars()
+        {
+        }
+        /**
+         * Gets the allowed query vars from the current URL.
+         *
+         * @param string $current_url The current URL.
+         * @return array is_allowed and allowed_query.
+         */
+        public function allowed_params($current_url)
+        {
+        }
+        /**
+         * Returns the proper URL for singular pages.
+         *
+         * @return string The proper URL.
+         */
+        public function singular_url()
+        {
+        }
+        /**
+         * Returns the proper URL for front page.
+         *
+         * @return string The proper URL.
+         */
+        public function front_page_url()
+        {
+        }
+        /**
+         * Returns the proper URL for 404 page.
+         *
+         * @param string $current_url The current URL.
+         * @return string The proper URL.
+         */
+        public function page_not_found_url($current_url)
+        {
+        }
+        /**
+         * Returns the proper URL for taxonomy page.
+         *
+         * @return string The proper URL.
+         */
+        public function taxonomy_url()
+        {
+        }
+        /**
+         * Returns the proper URL for search page.
+         *
+         * @return string The proper URL.
+         */
+        public function search_url()
+        {
+        }
+        /**
+         * Returns the proper URL for url with page param.
+         *
+         * @param string $proper_url The proper URL.
+         * @return string The proper URL.
+         */
+        public function query_var_page_url($proper_url)
+        {
+        }
+        /**
+         * Returns true if query is with page param.
+         *
+         * @param string $proper_url The proper URL.
+         * @return bool is query with page param.
+         */
+        public function is_query_var_page($proper_url)
+        {
+        }
+        /**
+         * Redirects clean permalink.
+         *
+         * @param string $proper_url The proper URL.
+         * @return void.
+         */
+        public function do_clean_redirect($proper_url)
+        {
+        }
+        /**
+         * Gets the type of URL.
+         *
+         * @return string The type of URL.
+         */
+        public function get_url_type()
+        {
+        }
+        /**
+         * Returns the proper URL for posts page.
+         *
+         * @return string The proper URL.
+         */
+        public function page_for_posts_url()
         {
         }
     }
@@ -35309,6 +36643,103 @@ namespace Yoast\WP\SEO\Helpers {
         }
     }
     /**
+     * A helper to determine the status of ftc and front-end related configuration.
+     */
+    class First_Time_Configuration_Notice_Helper
+    {
+        /**
+         * The options' helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * The indexing helper.
+         *
+         * @var Indexing_Helper
+         */
+        private $indexing_helper;
+        /**
+         * Whether we show the alternate mesage.
+         *
+         * @var bool
+         */
+        private $show_alternate_message;
+        /**
+         * First_Time_Configuration_Notice_Integration constructor.
+         *
+         * @param Options_Helper  $options_helper  The options helper.
+         * @param Indexing_Helper $indexing_helper The indexing helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Indexing_Helper $indexing_helper)
+        {
+        }
+        /**
+         * Determines whether and where the "First-time SEO Configuration" admin notice should be displayed.
+         *
+         * @return bool Whether the "First-time SEO Configuration" admin notice should be displayed.
+         */
+        public function should_display_first_time_configuration_notice()
+        {
+        }
+        /**
+         * Gets the first time configuration title based on the show_alternate_message boolean
+         *
+         * @return string
+         */
+        public function get_first_time_configuration_title()
+        {
+        }
+        /**
+         * Determines if the first time configuration is completely finished.
+         *
+         * @return bool
+         */
+        public function first_time_configuration_not_finished()
+        {
+        }
+        /**
+         * Whether the user can do the first-time configuration.
+         *
+         * @return bool Whether the current user can do the first-time configuration.
+         */
+        private function user_can_do_first_time_configuration()
+        {
+        }
+        /**
+         * Whether the user is currently visiting one of our admin pages or the WordPress dashboard.
+         *
+         * @return bool Whether the current page is a Yoast SEO admin page
+         */
+        private function on_wpseo_admin_page_or_dashboard()
+        {
+        }
+        /**
+         * Whether all steps of the first-time configuration have been finished.
+         *
+         * @return bool Whether the first-time configuration has been finished.
+         */
+        private function is_first_time_configuration_finished()
+        {
+        }
+        /**
+         * Whether the site representation name and logo have been set.
+         *
+         * @return bool  Whether the site representation name and logo have been set.
+         */
+        private function are_site_representation_name_and_logo_set()
+        {
+        }
+        /**
+         * Getter for the show alternate message boolean.
+         *
+         * @return bool
+         */
+        public function should_show_alternate_message()
+        {
+        }
+    }
+    /**
      * A helper object for the home URL.
      */
     class Home_Url_Helper
@@ -35366,6 +36797,12 @@ namespace Yoast\WP\SEO\Helpers {
          */
         protected $indexable_repository;
         /**
+         * Represents the SEO Links repository.
+         *
+         * @var SEO_Links_Repository
+         */
+        protected $seo_links_repository;
+        /**
          * The options helper.
          *
          * @var Options_Helper
@@ -35381,10 +36818,11 @@ namespace Yoast\WP\SEO\Helpers {
          * Image_Helper constructor.
          *
          * @param Indexable_Repository $indexable_repository The indexable repository.
+         * @param SEO_Links_Repository $seo_links_repository The SEO Links repository.
          * @param Options_Helper       $options              The options helper.
          * @param Url_Helper           $url_helper           The URL helper.
          */
-        public function __construct(\Yoast\WP\SEO\Repositories\Indexable_Repository $indexable_repository, \Yoast\WP\SEO\Helpers\Options_Helper $options, \Yoast\WP\SEO\Helpers\Url_Helper $url_helper)
+        public function __construct(\Yoast\WP\SEO\Repositories\Indexable_Repository $indexable_repository, \Yoast\WP\SEO\Repositories\SEO_Links_Repository $seo_links_repository, \Yoast\WP\SEO\Helpers\Options_Helper $options, \Yoast\WP\SEO\Helpers\Url_Helper $url_helper)
         {
         }
         /**
@@ -35527,11 +36965,12 @@ namespace Yoast\WP\SEO\Helpers {
         /**
          * Find an attachment ID for a given URL.
          *
-         * @param string $url The URL to find the attachment for.
+         * @param string $url             The URL to find the attachment for.
+         * @param bool   $use_link_table  Whether the SEO Links table will be used to retrieve the id.
          *
          * @return int The found attachment ID, or 0 if none was found.
          */
-        public function get_attachment_by_url($url)
+        public function get_attachment_by_url($url, $use_link_table = true)
         {
         }
         /**
@@ -35589,6 +37028,12 @@ namespace Yoast\WP\SEO\Helpers {
      */
     class Import_Cursor_Helper
     {
+        /**
+         * The Options_Helper.
+         *
+         * @var Options_Helper
+         */
+        public $options;
         /**
          * Class constructor.
          *
@@ -35882,6 +37327,12 @@ namespace Yoast\WP\SEO\Helpers {
          */
         protected $indexing_actions;
         /**
+         * The indexable repository.
+         *
+         * @var Indexable_Repository
+         */
+        protected $indexable_repository;
+        /**
          * Indexing_Helper constructor.
          *
          * @param Options_Helper            $options_helper      The options helper.
@@ -35907,14 +37358,13 @@ namespace Yoast\WP\SEO\Helpers {
         {
         }
         /**
-         * Sets several database options when the indexing process is started.
+         * Sets the indexable repository for the indexing helper class.
          *
-         * @deprecated 17.4 This method was renamed to prepare for internal consistency.
-         * @codeCoverageIgnore
+         * @required
          *
-         * @return void
+         * @param Indexable_Repository $indexable_repository The indexable repository.
          */
-        public function start()
+        public function set_indexable_repository(\Yoast\WP\SEO\Repositories\Indexable_Repository $indexable_repository)
         {
         }
         /**
@@ -35923,17 +37373,6 @@ namespace Yoast\WP\SEO\Helpers {
          * @return void
          */
         public function prepare()
-        {
-        }
-        /**
-         * Sets several database options when the indexing process is finished.
-         *
-         * @deprecated 17.4 This method was renamed to complete for internal consistency.
-         * @codeCoverageIgnore
-         *
-         * @return void
-         */
-        public function finish()
         {
         }
         /**
@@ -36037,6 +37476,24 @@ namespace Yoast\WP\SEO\Helpers {
         {
         }
         /**
+         * Returns the amount of un-indexed posts expressed in percentage, which will be needed to set a threshold.
+         *
+         * @param int $unindexed_count The number of unindexed objects.
+         *
+         * @return int The amount of unindexed posts expressed in percentage.
+         */
+        public function get_unindexed_percentage($unindexed_count)
+        {
+        }
+        /**
+         * Returns whether the SEO optimization button should show.
+         *
+         * @return bool Whether the SEO optimization button should show.
+         */
+        public function should_show_optimization_button()
+        {
+        }
+        /**
          * Returns the total number of unindexed objects and applies a filter for third party integrations.
          *
          * @return int The total number of unindexed objects.
@@ -36066,28 +37523,16 @@ namespace Yoast\WP\SEO\Helpers {
         }
     }
     /**
-     * A helper object for the filter_input.
-     */
-    class Input_Helper
-    {
-        /**
-         * Returns the result of the filter_input. This is mostly a wrapper so we can test.
-         *
-         * @param int    $input_type    The type of input constant (e.g. INPUT_POST, INPUT_GET ).
-         * @param string $search_string The property to get from the input.
-         * @param int    $filter        Optional. The constant that defines the sanitization.
-         *
-         * @return string The result of the get input.
-         */
-        public function filter($input_type, $search_string, $filter = \FILTER_DEFAULT)
-        {
-        }
-    }
-    /**
      * A helper object for language features.
      */
     class Language_Helper
     {
+        /**
+         * The languages with inclusive language analysis support.
+         *
+         * @var string[]
+         */
+        public static $languages_with_inclusive_language_support = ['en'];
         /**
          * Checks whether word form recognition is active for the used language.
          *
@@ -36110,12 +37555,31 @@ namespace Yoast\WP\SEO\Helpers {
         {
         }
         /**
+         * Checks whether the given language has inclusive language support.
+         *
+         * @param string $language The language to check if inclusive language is supported.
+         *
+         * @return bool Whether the language has inclusive language support.
+         */
+        public function has_inclusive_language_support($language)
+        {
+        }
+        /**
          * Checks whether we have a specific researcher for the current locale and returns that language.
          * If there is no researcher for the current locale, returns default as the researcher.
          *
          * @return string The language to use to select a researcher.
          */
         public function get_researcher_language()
+        {
+        }
+        /**
+         * Returns The site language code without region
+         * (e.g. 'en' for 'en_US' or 'en_GB').
+         *
+         * @return string The site language code without region.
+         */
+        public function get_language()
         {
         }
     }
@@ -36398,24 +37862,23 @@ namespace Yoast\WP\SEO\Helpers {
         {
         }
         /**
-         * Validates a social URL.
+         * Checks whether a social URL is valid, with empty strings being valid social URLs.
          *
-         * @param string $url The url to be validated.
+         * @param string $url The url to be checked.
          *
-         * @return string|false The validated URL or false if the URL is not valid.
+         * @return bool Whether the URL is valid.
          */
-        public function validate_social_url($url)
+        public function is_social_url_valid($url)
         {
         }
         /**
-         * Validates a twitter id.
+         * Checks whether a twitter id is valid, with empty strings being valid twitter id.
          *
-         * @param string $twitter_id    The twitter id to be validated.
-         * @param bool   $strip_at_sign Whether or not to strip the `@` sign.
+         * @param string $twitter_id The twitter id to be checked.
          *
-         * @return string|false The validated twitter id or false if it is not valid.
+         * @return bool Whether the twitter id is valid.
          */
-        public function validate_twitter_id($twitter_id, $strip_at_sign = true)
+        public function is_twitter_id_valid($twitter_id)
         {
         }
     }
@@ -36529,6 +37992,12 @@ namespace Yoast\WP\SEO\Helpers {
          */
         private $string;
         /**
+         * Holds the Post_Type_Helper instance.
+         *
+         * @var Post_Type_Helper
+         */
+        private $post_type;
+        /**
          * Represents the indexables repository.
          *
          * @var Indexable_Repository
@@ -36539,9 +38008,10 @@ namespace Yoast\WP\SEO\Helpers {
          *
          * @codeCoverageIgnore It only sets dependencies.
          *
-         * @param String_Helper $string_helper The string helper.
+         * @param String_Helper    $string_helper    The string helper.
+         * @param Post_Type_Helper $post_type_helper The string helper.
          */
-        public function __construct(\Yoast\WP\SEO\Helpers\String_Helper $string_helper)
+        public function __construct(\Yoast\WP\SEO\Helpers\String_Helper $string_helper, \Yoast\WP\SEO\Helpers\Post_Type_Helper $post_type_helper)
         {
         }
         /**
@@ -36688,6 +38158,16 @@ namespace Yoast\WP\SEO\Helpers {
         {
         }
         /**
+         * Checks if the request post type has the Yoast Metabox enabled.
+         *
+         * @param string $post_type_name The name of the post type to lookup.
+         *
+         * @return bool True if metabox is enabled.
+         */
+        public function has_metabox($post_type_name)
+        {
+        }
+        /**
          * Returns an array with the public post types.
          *
          * @codeCoverageIgnore It only wraps a WordPress function.
@@ -36736,6 +38216,32 @@ namespace Yoast\WP\SEO\Helpers {
          * @return bool True when the post type has an archive page.
          */
         public function has_archive($post_type)
+        {
+        }
+        /**
+         * Returns the post types that should be indexed.
+         *
+         * @return array The post types that should be indexed.
+         */
+        public function get_indexable_post_types()
+        {
+        }
+        /**
+         * Filters the post types that are included to be indexed.
+         *
+         * @param array $included_post_types The post types that are included to be indexed.
+         *
+         * @return array The filtered post types that are included to be indexed.
+         */
+        protected function filter_included_post_types($included_post_types)
+        {
+        }
+        /**
+         * Returns an array of complete post type objects for all indexable post types.
+         *
+         * @return array List of indexable post type objects.
+         */
+        public function get_indexable_post_type_objects()
         {
         }
     }
@@ -36833,15 +38339,25 @@ namespace Yoast\WP\SEO\Helpers {
         {
         }
         /**
-         * Wraps wp_redirect to allow testing for redirects.
+         * Sets a header.
+         * This is a tiny helper function to enable better testing.
          *
-         * @deprecated 16.x
          * @codeCoverageIgnore It only wraps a WordPress function.
          *
-         * @param string $location The path to redirect to.
-         * @param int    $status   The status code to use.
+         * @param string $header The header to set.
          */
-        public function do_redirect($location, $status = 302)
+        public function set_header($header)
+        {
+        }
+        /**
+         * Removes a header.
+         * This is a tiny helper function to enable better testing.
+         *
+         * @codeCoverageIgnore It only wraps a WordPress function.
+         *
+         * @param string $header The header to remove.
+         */
+        public function remove_header($header)
         {
         }
     }
@@ -36879,6 +38395,37 @@ namespace Yoast\WP\SEO\Helpers {
     class Robots_Helper
     {
         /**
+         * Holds the Post_Type_Helper.
+         *
+         * @var Post_Type_Helper
+         */
+        protected $post_type_helper;
+        /**
+         * Holds the Taxonomy_Helper.
+         *
+         * @var Taxonomy_Helper
+         */
+        protected $taxonomy_helper;
+        /**
+         * Constructs a Score_Helper.
+         *
+         * @param Post_Type_Helper $post_type_helper The Post_Type_Helper.
+         * @param Taxonomy_Helper  $taxonomy_helper  The Taxonomy_Helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Post_Type_Helper $post_type_helper, \Yoast\WP\SEO\Helpers\Taxonomy_Helper $taxonomy_helper)
+        {
+        }
+        /**
+         * Retrieves whether the Indexable is indexable.
+         *
+         * @param Indexable $indexable The Indexable.
+         *
+         * @return bool Whether the Indexable is indexable.
+         */
+        public function is_indexable(\Yoast\WP\SEO\Models\Indexable $indexable)
+        {
+        }
+        /**
          * Sets the robots index to noindex.
          *
          * @param array $robots The current robots value.
@@ -36886,6 +38433,94 @@ namespace Yoast\WP\SEO\Helpers {
          * @return array The altered robots string.
          */
         public function set_robots_no_index($robots)
+        {
+        }
+    }
+    /**
+     * A helper object for the robots txt file.
+     */
+    class Robots_Txt_Helper
+    {
+        /**
+         * Holds a list of user agents with directives.
+         *
+         * @var User_Agent_List
+         */
+        protected $robots_txt_user_agents;
+        /**
+         * Holds an array with absolute URLs of sitemaps.
+         *
+         * @var array
+         */
+        protected $robots_txt_sitemaps;
+        /**
+         * Constructor for Robots_Txt_Helper.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Add a disallow rule for a specific user agent if it does not exist yet.
+         *
+         * @param string $user_agent The user agent to add the disallow rule to.
+         * @param string $path       The path to add as a disallow rule.
+         *
+         * @return void
+         */
+        public function add_disallow($user_agent, $path)
+        {
+        }
+        /**
+         * Add an allow rule for a specific user agent if it does not exist yet.
+         *
+         * @param string $user_agent The user agent to add the allow rule to.
+         * @param string $path       The path to add as a allow rule.
+         *
+         * @return void
+         */
+        public function add_allow($user_agent, $path)
+        {
+        }
+        /**
+         * Add sitemap to robots.txt if it does not exist yet.
+         *
+         * @param string $absolute_path The absolute path to the sitemap to add.
+         *
+         * @return void
+         */
+        public function add_sitemap($absolute_path)
+        {
+        }
+        /**
+         * Get all registered disallow directives per user agent.
+         *
+         * @return array The registered disallow directives per user agent.
+         */
+        public function get_disallow_directives()
+        {
+        }
+        /**
+         * Get all registered allow directives per user agent.
+         *
+         * @return array The registered allow directives per user agent.
+         */
+        public function get_allow_directives()
+        {
+        }
+        /**
+         * Get all registered sitemap rules.
+         *
+         * @return array The registered sitemap rules.
+         */
+        public function get_sitemap_rules()
+        {
+        }
+        /**
+         * Get all registered user agents
+         *
+         * @return array The registered user agents.
+         */
+        public function get_robots_txt_user_agents()
         {
         }
     }
@@ -37040,14 +38675,15 @@ namespace Yoast\WP\SEO\Helpers\Schema {
         /**
          * Find an image based on its URL and generate a Schema object for it.
          *
-         * @param string $schema_id The `@id` to use for the returned image.
-         * @param string $url       The image URL to base our object on.
-         * @param string $caption   An optional caption.
-         * @param bool   $add_hash  Whether a hash will be added as a suffix in the @id.
+         * @param string $schema_id       The `@id` to use for the returned image.
+         * @param string $url             The image URL to base our object on.
+         * @param string $caption         An optional caption.
+         * @param bool   $add_hash        Whether a hash will be added as a suffix in the @id.
+         * @param bool   $use_link_table  Whether the SEO Links table will be used to retrieve the id.
          *
          * @return array Schema ImageObject array.
          */
-        public function generate_from_url($schema_id, $url, $caption = '', $add_hash = false)
+        public function generate_from_url($schema_id, $url, $caption = '', $add_hash = false, $use_link_table = true)
         {
         }
         /**
@@ -37219,6 +38855,49 @@ namespace Yoast\WP\SEO\Helpers\Schema {
 }
 namespace Yoast\WP\SEO\Helpers {
     /**
+     * A helper object for score icons.
+     */
+    class Score_Icon_Helper
+    {
+        /**
+         * Holds the Robots_Helper.
+         *
+         * @var Robots_Helper
+         */
+        protected $robots_helper;
+        /**
+         * Constructs a Score_Helper.
+         *
+         * @param Robots_Helper $robots_helper The Robots_Helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Robots_Helper $robots_helper)
+        {
+        }
+        /**
+         * Creates a Score_Icon_Presenter for the readability analysis.
+         *
+         * @param int    $score       The readability analysis score.
+         * @param string $extra_class Optional. Any extra class.
+         *
+         * @return Score_Icon_Presenter The Score_Icon_Presenter.
+         */
+        public function for_readability($score, $extra_class = '')
+        {
+        }
+        /**
+         * Creates a Score_Icon_Presenter for the SEO analysis from an indexable.
+         *
+         * @param Indexable|false $indexable      The Indexable.
+         * @param string          $extra_class    Optional. Any extra class.
+         * @param string          $no_index_title Optional. Override the title when not indexable.
+         *
+         * @return Score_Icon_Presenter The Score_Icon_Presenter.
+         */
+        public function for_seo($indexable, $extra_class = '', $no_index_title = '')
+        {
+        }
+    }
+    /**
      * Helper to get shortlinks for Yoast SEO.
      */
     class Short_Link_Helper
@@ -37341,6 +39020,161 @@ namespace Yoast\WP\SEO\Helpers {
          * @return bool True when there was a switch between the multisites.
          */
         public function is_multisite_and_switched()
+        {
+        }
+    }
+    /**
+     * Class Social_Profiles_Helper.
+     */
+    class Social_Profiles_Helper
+    {
+        /**
+         * The fields for the person social profiles payload.
+         *
+         * @var array
+         */
+        private $person_social_profile_fields = ['facebook' => 'get_non_valid_url', 'instagram' => 'get_non_valid_url', 'linkedin' => 'get_non_valid_url', 'myspace' => 'get_non_valid_url', 'pinterest' => 'get_non_valid_url', 'soundcloud' => 'get_non_valid_url', 'tumblr' => 'get_non_valid_url', 'twitter' => 'get_non_valid_twitter', 'youtube' => 'get_non_valid_url', 'wikipedia' => 'get_non_valid_url'];
+        /**
+         * The fields for the organization social profiles payload.
+         *
+         * @var array
+         */
+        private $organization_social_profile_fields = ['facebook_site' => 'get_non_valid_url', 'twitter_site' => 'get_non_valid_twitter', 'other_social_urls' => 'get_non_valid_url_array'];
+        /**
+         * The Options_Helper instance.
+         *
+         * @var Options_Helper
+         */
+        protected $options_helper;
+        /**
+         * Social_Profiles_Helper constructor.
+         *
+         * @param Options_Helper $options_helper The WPSEO options helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
+        {
+        }
+        /**
+         * Gets the person social profile fields supported by us.
+         *
+         * @return array The social profile fields.
+         */
+        public function get_person_social_profile_fields()
+        {
+        }
+        /**
+         * Gets the organization social profile fields supported by us.
+         *
+         * @return array The organization profile fields.
+         */
+        public function get_organization_social_profile_fields()
+        {
+        }
+        /**
+         * Gets the person social profiles stored in the database.
+         *
+         * @param int $person_id The id of the person.
+         *
+         * @return array The person's social profiles.
+         */
+        public function get_person_social_profiles($person_id)
+        {
+        }
+        /**
+         * Gets the organization social profiles stored in the database.
+         *
+         * @return array The social profiles for the organization.
+         */
+        public function get_organization_social_profiles()
+        {
+        }
+        /**
+         * Stores the values for the person's social profiles.
+         *
+         * @param int   $person_id       The id of the person to edit.
+         * @param array $social_profiles The array of the person's social profiles to be set.
+         *
+         * @return string[] An array of field names which failed to be saved in the db.
+         */
+        public function set_person_social_profiles($person_id, $social_profiles)
+        {
+        }
+        /**
+         * Stores the values for the organization's social profiles.
+         *
+         * @param array $social_profiles An array with the social profiles values to be saved in the db.
+         *
+         * @return string[] An array of field names which failed to be saved in the db.
+         */
+        public function set_organization_social_profiles($social_profiles)
+        {
+        }
+        /**
+         * Returns a sanitized social field.
+         *
+         * @param string|array $social_field The social field to sanitize.
+         *
+         * @return string|array The sanitized social field.
+         */
+        protected function sanitize_social_field($social_field)
+        {
+        }
+        /**
+         * Checks if url is not valid and returns the name of the setting if it's not.
+         *
+         * @param string $url         The url to be validated.
+         * @param string $url_setting The name of the setting to be updated with the url.
+         *
+         * @return array An array with the setting that the non-valid url is about to update.
+         */
+        protected function get_non_valid_url($url, $url_setting)
+        {
+        }
+        /**
+         * Checks if urls in an array are not valid and return the name of the setting if one of them is not, including the non-valid url's index in the array
+         *
+         * @param array  $urls         The urls to be validated.
+         * @param string $urls_setting The name of the setting to be updated with the urls.
+         *
+         * @return array An array with the settings that the non-valid urls are about to update, suffixed with a dash-separated index of the positions of those settings, eg. other_social_urls-2.
+         */
+        protected function get_non_valid_url_array($urls, $urls_setting)
+        {
+        }
+        /**
+         * Checks if the twitter value is not valid and returns the name of the setting if it's not.
+         *
+         * @param array  $twitter_site    The twitter value to be validated.
+         * @param string $twitter_setting The name of the twitter setting to be updated with the value.
+         *
+         * @return array An array with the setting that the non-valid twitter value is about to update.
+         */
+        protected function get_non_valid_twitter($twitter_site, $twitter_setting)
+        {
+        }
+        /*** DEPRECATED METHODS ***/
+        /**
+         * Gets the person social profile fields supported by us after WP filtering.
+         *
+         * @deprecated 20.1
+         * @codeCoverageIgnore
+         *
+         * @return array The supported social profile fields.
+         */
+        public function get_supported_person_social_profile_fields()
+        {
+        }
+        /**
+         * Checks if the current user has the capability to edit a specific user.
+         *
+         * @deprecated 20.2
+         * @codeCoverageIgnore
+         *
+         * @param int $person_id The id of the person to edit.
+         *
+         * @return bool
+         */
+        public function can_edit_profile($person_id)
         {
         }
     }
@@ -37476,6 +39310,41 @@ namespace Yoast\WP\SEO\Helpers {
         public function get_custom_taxonomies($output = 'names')
         {
         }
+        /**
+         * Returns an array of taxonomies that are excluded from being indexed for the
+         * indexables.
+         *
+         * @return array The excluded taxonomies.
+         */
+        public function get_excluded_taxonomies_for_indexables()
+        {
+        }
+        /**
+         * Checks if the taxonomy is excluded.
+         *
+         * @param string $taxonomy The taxonomy to check.
+         *
+         * @return bool If the taxonomy is excluded.
+         */
+        public function is_excluded($taxonomy)
+        {
+        }
+        /**
+         * This builds a list of indexable taxonomies.
+         *
+         * @return array The indexable taxonomies.
+         */
+        public function get_indexable_taxonomies()
+        {
+        }
+        /**
+         * Returns an array of complete taxonomy objects for all indexable taxonomies.
+         *
+         * @return array List of indexable indexables objects.
+         */
+        public function get_indexable_taxonomy_objects()
+        {
+        }
     }
 }
 namespace Yoast\WP\SEO\Helpers\Twitter {
@@ -37576,6 +39445,16 @@ namespace Yoast\WP\SEO\Helpers {
         {
         }
         /**
+         * Gets the host from the passed URL.
+         *
+         * @param string $url The URL to get the host from.
+         *
+         * @return string The host of the URL. Returns an empty string if URL parsing fails.
+         */
+        public function get_url_host($url)
+        {
+        }
+        /**
          * Determines the file extension of the given url.
          *
          * @param string $url The URL.
@@ -37625,6 +39504,15 @@ namespace Yoast\WP\SEO\Helpers {
          * @return string
          */
         public function recreate_current_url($with_request_uri = true)
+        {
+        }
+        /**
+         * Parses a URL and returns its components, this wrapper function was created to support unit tests.
+         *
+         * @param string $parsed_url The URL to parse.
+         * @return array The parsed components of the URL.
+         */
+        public function parse_str_params($parsed_url)
         {
         }
     }
@@ -37955,6 +39843,87 @@ namespace Yoast\WP\SEO\Initializers {
         public function initialize();
     }
     /**
+     * Class Crawl_Cleanup_Permalinks.
+     */
+    class Crawl_Cleanup_Permalinks implements \Yoast\WP\SEO\Initializers\Initializer_Interface
+    {
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * The URL helper.
+         *
+         * @var Url_Helper
+         */
+        private $url_helper;
+        /**
+         * The Redirect_Helper.
+         *
+         * @var Redirect_Helper
+         */
+        private $redirect_helper;
+        /**
+         * The Crawl_Cleanup_Helper.
+         *
+         * @var Crawl_Cleanup_Helper
+         */
+        private $crawl_cleanup_helper;
+        /**
+         * Crawl Cleanup Basic integration constructor.
+         *
+         * @param Options_Helper       $options_helper      The option helper.
+         * @param Url_Helper           $url_helper          The URL helper.
+         * @param Redirect_Helper      $redirect_helper     The Redirect Helper.
+         * @param Crawl_Cleanup_Helper $crawl_cleanup_helper The Crawl_Cleanup_Helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Url_Helper $url_helper, \Yoast\WP\SEO\Helpers\Redirect_Helper $redirect_helper, \Yoast\WP\SEO\Helpers\Crawl_Cleanup_Helper $crawl_cleanup_helper)
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * @return void
+         */
+        public function initialize()
+        {
+        }
+        /**
+         * Hooks our required hooks.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Returns the conditionals based in which this loadable should be active.
+         *
+         * @return array The array of conditionals.
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Redirect utm variables away.
+         */
+        public function utm_redirect()
+        {
+        }
+        /**
+         * Removes unneeded query variables from the URL.
+         *
+         * @return void
+         */
+        public function clean_permalinks()
+        {
+        }
+    }
+    /**
      * Disables the WP core sitemaps.
      */
     class Disable_Core_Sitemaps implements \Yoast\WP\SEO\Initializers\Initializer_Interface
@@ -38105,6 +40074,25 @@ namespace Yoast\WP\SEO\Initializers {
         {
         }
     }
+    /**
+     * Declares compatibility with the WooCommerce HPOS feature.
+     */
+    class Woocommerce implements \Yoast\WP\SEO\Initializers\Initializer_Interface
+    {
+        use \Yoast\WP\SEO\Conditionals\No_Conditionals;
+        /**
+         * Hooks into WooCommerce.
+         */
+        public function initialize()
+        {
+        }
+        /**
+         * Declares compatibility with the WooCommerce HPOS feature.
+         */
+        public function declare_custom_order_tables_compatibility()
+        {
+        }
+    }
 }
 namespace Yoast\WP\SEO\Integrations {
     /**
@@ -38159,6 +40147,45 @@ namespace Yoast\WP\SEO\Integrations {
          * @return array The names of the post types.
          */
         public abstract function get_post_type();
+    }
+}
+namespace Yoast\WP\SEO\Integrations\Admin {
+    /**
+     * This integration registers a run of the cleanup routine whenever the plugin is activated.
+     */
+    class Activation_Cleanup_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        use \Yoast\WP\SEO\Conditionals\No_Conditionals;
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * Activation_Cleanup_Integration constructor.
+         *
+         * @param Options_Helper $options_helper The options helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
+        {
+        }
+        /**
+         * Registers the action to register a cleanup routine run after the plugin is activated.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Registers a run of the cleanup routine if this has not happened yet.
+         *
+         * @return void
+         */
+        public function register_cleanup_routine()
+        {
+        }
     }
 }
 namespace Yoast\WP\SEO\Integrations\Admin\Addon_Installation {
@@ -38540,6 +40567,12 @@ namespace Yoast\WP\SEO\Integrations\Admin {
     class Crawl_Settings_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
     {
         /**
+         * The admin asset manager.
+         *
+         * @var WPSEO_Admin_Asset_Manager
+         */
+        private $admin_asset_manager;
+        /**
          * Holds the settings + labels for the head clean up piece.
          *
          * @var array
@@ -38564,19 +40597,17 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          */
         private $search_cleanup_settings;
         /**
-         * The product helper.
+         * Holds the settings + labels for unused resources settings.
          *
-         * @var Product_Helper
+         * @var array
          */
-        private $product_helper;
+        private $unused_resources_settings;
         /**
-         * Crawl_Settings_Integration constructor.
+         * The shortlinker.
          *
-         * @param Product_Helper $product_helper The product helper.
+         * @var WPSEO_Shortlinker
          */
-        public function __construct(\Yoast\WP\SEO\Helpers\Product_Helper $product_helper)
-        {
-        }
+        private $shortlinker;
         /**
          * Returns the conditionals based in which this loadable should be active.
          *
@@ -38586,17 +40617,24 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         {
         }
         /**
+         * Crawl_Settings_Integration constructor.
+         *
+         * @param WPSEO_Admin_Asset_Manager $admin_asset_manager The admin asset manager.
+         * @param WPSEO_Shortlinker         $shortlinker         The shortlinker.
+         */
+        public function __construct(\WPSEO_Admin_Asset_Manager $admin_asset_manager, \WPSEO_Shortlinker $shortlinker)
+        {
+        }
+        /**
          * Registers an action to add a new tab to the General page.
          */
         public function register_hooks()
         {
         }
         /**
-         * Checks if Premium is installed and upgraded to the right version.
-         *
-         * @return bool Whether Premium is installed and upgraded to the right version.
+         * Enqueue the workouts app.
          */
-        public function is_premium_upgraded()
+        public function enqueue_assets()
         {
         }
         /**
@@ -38608,15 +40646,10 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         {
         }
         /**
-         * Adds a dedicated tab in the General sub-page.
-         *
-         * @param WPSEO_Option_Tabs $dashboard_tabs Object representing the tabs of the General sub-page.
-         */
-        public function add_crawl_settings_tab($dashboard_tabs)
-        {
-        }
-        /**
          * Adds content to the Crawl Cleanup tab.
+         *
+         * @deprecated 20.4
+         * @codeCoverageIgnore
          *
          * @param Yoast_Form $yform The yoast form object.
          */
@@ -38634,33 +40667,45 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         /**
          * Print the settings sections.
          *
-         * @param Yoast_Form $yform        The Yoast form class.
-         * @param boolean    $is_network   Whether we're on the network site.
+         * @param Yoast_Form $yform      The Yoast form class.
          *
          * @return void
          */
-        private function add_crawl_settings($yform, $is_network)
+        private function add_crawl_settings($yform)
         {
         }
         /**
          * Prints a list of toggles for an array of settings with labels.
          *
-         * @param array      $settings     The settings being displayed.
-         * @param Yoast_Form $yform        The Yoast form class.
-         * @param boolean    $is_network   Whether we're on the network site.
-         * @param string     $title        Optional title for the settings being displayed.
-         * @param string     $description  Optional description of the settings being displayed.
-         * @param array      $toggles      Optional naming of the toggle buttons.
+         * @param array      $settings    The settings being displayed.
+         * @param Yoast_Form $yform       The Yoast form class.
+         * @param string     $title       Optional title for the settings being displayed.
+         * @param array      $toggles     Optional naming of the toggle buttons.
+         * @param string     $warning     Optional warning to be displayed above the toggles.
          *
          * @return void
          */
-        private function print_toggles(array $settings, \Yoast_Form $yform, $is_network, $title = '', $description = '', $toggles = [])
+        private function print_toggles(array $settings, \Yoast_Form $yform, $title = '', $toggles = [], $warning = '')
         {
         }
         /**
-         * Displays the Premium upsell button.
+         * Checks if the feature should be disabled due to non-pretty permalinks.
+         *
+         * @param string $setting The setting to be displayed.
+         *
+         * @return bool
          */
-        public function display_premium_upsell_btn()
+        protected function should_feature_be_disabled_permalink($setting)
+        {
+        }
+        /**
+         * Checks if the feature should be disabled due to the site being a multisite.
+         *
+         * @param string $setting The setting to be displayed.
+         *
+         * @return bool
+         */
+        protected function should_feature_be_disabled_multisite($setting)
         {
         }
     }
@@ -38755,7 +40800,7 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          *
          * @param string $premium_file The premium file.
          *
-         * @return boolean Whether or not premium is installed and not activated.
+         * @return bool Whether or not premium is installed and not activated.
          */
         protected function premium_is_installed_not_activated($premium_file)
         {
@@ -38835,6 +40880,12 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          */
         private $product_helper;
         /**
+         * The meta tags context helper.
+         *
+         * @var Meta_Tags_Context
+         */
+        private $meta_tags_context;
+        /**
          * {@inheritDoc}
          */
         public static function get_conditionals()
@@ -38849,8 +40900,9 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * @param Options_Helper            $options_helper         The options helper.
          * @param Social_Profiles_Helper    $social_profiles_helper The social profile helper.
          * @param Product_Helper            $product_helper         The product helper.
+         * @param Meta_Tags_Context         $meta_tags_context      The meta tags context helper.
          */
-        public function __construct(\WPSEO_Admin_Asset_Manager $admin_asset_manager, \WPSEO_Addon_Manager $addon_manager, \WPSEO_Shortlinker $shortlinker, \Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Integrations\Admin\Social_Profiles_Helper $social_profiles_helper, \Yoast\WP\SEO\Helpers\Product_Helper $product_helper)
+        public function __construct(\WPSEO_Admin_Asset_Manager $admin_asset_manager, \WPSEO_Addon_Manager $addon_manager, \WPSEO_Shortlinker $shortlinker, \Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Social_Profiles_Helper $social_profiles_helper, \Yoast\WP\SEO\Helpers\Product_Helper $product_helper, \Yoast\WP\SEO\Context\Meta_Tags_Context $meta_tags_context)
         {
         }
         /**
@@ -38907,6 +40959,34 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         {
         }
         /**
+         * Gets the fallback company name from the option in the database if there is no company name.
+         *
+         * @param string $company_name The given company name by the user, default empty string.
+         *
+         * @return string|false The company name.
+         */
+        private function get_fallback_company_name($company_name)
+        {
+        }
+        /**
+         * Gets the website name from the option in the database.
+         *
+         * @return string The website name.
+         */
+        private function get_website_name()
+        {
+        }
+        /**
+         * Gets the fallback website name from the option in the database if there is no website name.
+         *
+         * @param string $website_name The given website name by the user, default empty string.
+         *
+         * @return string|false The website name.
+         */
+        private function get_fallback_website_name($website_name)
+        {
+        }
+        /**
          * Gets the company logo from the option in the database.
          *
          * @return string The company logo.
@@ -38920,6 +41000,16 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * @return string The company logo id.
          */
         private function get_company_logo_id()
+        {
+        }
+        /**
+         * Gets the company logo url from the option in the database.
+         *
+         * @param string $company_logo The given company logo by the user, default empty.
+         *
+         * @return string|false The company logo URL.
+         */
+        private function get_company_fallback_logo($company_logo)
         {
         }
         /**
@@ -38944,6 +41034,16 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * @return string The person logo.
          */
         private function get_person_logo()
+        {
+        }
+        /**
+         * Gets the person logo url from the option in the database.
+         *
+         * @param string $person_logo The given person logo by the user, default empty.
+         *
+         * @return string|false The person logo URL.
+         */
+        private function get_person_fallback_logo($person_logo)
         {
         }
         /**
@@ -39011,6 +41111,16 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         private function should_force_company()
         {
         }
+        /**
+         * Checks if the current user has the capability to edit a specific user.
+         *
+         * @param int $person_id The id of the person to edit.
+         *
+         * @return bool
+         */
+        private function can_edit_profile($person_id)
+        {
+        }
     }
     /**
      * First_Time_Configuration_Notice_Integration class
@@ -39024,23 +41134,17 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          */
         private $options_helper;
         /**
-         * The indexing helper.
-         *
-         * @var Indexing_Helper
-         */
-        private $indexing_helper;
-        /**
          * The admin asset manager.
          *
          * @var WPSEO_Admin_Asset_Manager
          */
         private $admin_asset_manager;
         /**
-         * Whether we show the alternate mesage.
+         * The first time configuration notice helper.
          *
-         * @var bool
+         * @var \Yoast\WP\SEO\Helpers\First_Time_Configuration_Notice_Helper
          */
-        private $show_alternate_message;
+        private $first_time_configuration_notice_helper;
         /**
          * {@inheritDoc}
          */
@@ -39050,11 +41154,11 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         /**
          * First_Time_Configuration_Notice_Integration constructor.
          *
-         * @param Options_Helper            $options_helper      The options helper.
-         * @param Indexing_Helper           $indexing_helper     The indexing helper.
-         * @param WPSEO_Admin_Asset_Manager $admin_asset_manager The admin asset manager.
+         * @param Options_Helper                         $options_helper      The options helper.
+         * @param First_Time_Configuration_Notice_Helper $first_time_configuration_notice_helper      The first time configuration notice helper.
+         * @param WPSEO_Admin_Asset_Manager              $admin_asset_manager The admin asset manager.
          */
-        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Indexing_Helper $indexing_helper, \WPSEO_Admin_Asset_Manager $admin_asset_manager)
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\First_Time_Configuration_Notice_Helper $first_time_configuration_notice_helper, \WPSEO_Admin_Asset_Manager $admin_asset_manager)
         {
         }
         /**
@@ -39085,38 +41189,6 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * @return void
          */
         public function first_time_configuration_notice()
-        {
-        }
-        /**
-         * Whether the user can do the first-time configuration.
-         *
-         * @return bool Whether the current user can do the first-time configuration.
-         */
-        private function user_can_do_first_time_configuration()
-        {
-        }
-        /**
-         * Whether the user is currently visiting one of our admin pages or the WordPress dashboard.
-         *
-         * @return bool Whether the current page is a Yoast SEO admin page
-         */
-        private function on_wpseo_admin_page_or_dashboard()
-        {
-        }
-        /**
-         * Whether all steps of the first-time configuration have been finished.
-         *
-         * @return bool Whether the first-time configuration has been finished.
-         */
-        private function is_first_time_configuration_finished()
-        {
-        }
-        /**
-         * Whether the site representation name and logo have been set.
-         *
-         * @return bool  Whether the site representation name and logo have been set.
-         */
-        private function are_site_representation_name_and_logo_set()
         {
         }
     }
@@ -39165,7 +41237,6 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * Uses the dependency injection container to obtain all available implementations of the Health_Check interface.
          *
          * @param  Health_Check ...$health_checks The available health checks implementations.
-         * @return void
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Health_Check ...$health_checks)
         {
@@ -39240,7 +41311,7 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          */
         protected $products = [];
         /**
-         * Whether to asks the user's consent before loading in HelpScout.
+         * Whether to ask the user's consent before loading in HelpScout.
          *
          * @var bool
          */
@@ -39262,11 +41333,11 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          *
          * @var array
          */
-        protected $base_pages = ['wpseo_dashboard', 'wpseo_titles', 'wpseo_search_console', 'wpseo_social', 'wpseo_tools', 'wpseo_licenses', 'wpseo_workouts'];
+        protected $base_pages = ['wpseo_dashboard', \Yoast\WP\SEO\Integrations\Settings_Integration::PAGE, 'wpseo_search_console', 'wpseo_tools', 'wpseo_licenses', 'wpseo_workouts'];
         /**
          * The current admin page
          *
-         * @var string
+         * @var string|null
          */
         protected $page;
         /**
@@ -39509,6 +41580,43 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         }
     }
     /**
+     * Indexables_Exclude_Taxonomy_Integration class
+     */
+    class Indexables_Exclude_Taxonomy_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        use \Yoast\WP\SEO\Conditionals\No_Conditionals;
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * Indexables_Exclude_Taxonomy_Integration constructor.
+         *
+         * @param Options_Helper $options_helper The options helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Exclude the taxonomy from the indexable table.
+         *
+         * @param array $excluded_taxonomies The excluded taxonomies.
+         *
+         * @return array The excluded post types, including the specific post type.
+         */
+        public function exclude_taxonomies_for_indexation($excluded_taxonomies)
+        {
+        }
+    }
+    /**
      * Class Indexing_Notification_Integration.
      *
      * @package Yoast\WP\SEO\Integrations\Admin
@@ -39519,36 +41627,6 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * The notification ID.
          */
         const NOTIFICATION_ID = 'wpseo-reindex';
-        /**
-         * Represents the reason that the indexing process failed and should be tried again.
-         *
-         * @deprecated 15.3
-         */
-        const REASON_INDEXING_FAILED = \Yoast\WP\SEO\Config\Indexing_Reasons::REASON_INDEXING_FAILED;
-        /**
-         * Represents the reason that the permalink settings are changed.
-         *
-         * @deprecated 15.3
-         */
-        const REASON_PERMALINK_SETTINGS = \Yoast\WP\SEO\Config\Indexing_Reasons::REASON_PERMALINK_SETTINGS;
-        /**
-         * Represents the reason that the category base is changed.
-         *
-         * @deprecated 15.3
-         */
-        const REASON_CATEGORY_BASE_PREFIX = \Yoast\WP\SEO\Config\Indexing_Reasons::REASON_CATEGORY_BASE_PREFIX;
-        /**
-         * Represents the reason that the tag base is changed.
-         *
-         * @deprecated 15.3
-         */
-        const REASON_TAG_BASE_PREFIX = \Yoast\WP\SEO\Config\Indexing_Reasons::REASON_TAG_BASE_PREFIX;
-        /**
-         * Represents the reason that the home url option is changed.
-         *
-         * @deprecated 15.3
-         */
-        const REASON_HOME_URL_OPTION = \Yoast\WP\SEO\Config\Indexing_Reasons::REASON_HOME_URL_OPTION;
         /**
          * The Yoast notification center.
          *
@@ -39803,32 +41881,6 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         protected function get_importing_endpoints()
         {
         }
-        /**
-         * Returns the total number of unindexed objects.
-         *
-         * @deprecated 15.3
-         * @codeCoverageIgnore
-         *
-         * @param int $unindexed_count The total number of unindexed indexables.
-         *
-         * @return int The total number of unindexed objects.
-         */
-        public function get_unindexed_indexables_count($unindexed_count = 0)
-        {
-        }
-        /**
-         * Returns the total number of unindexed objects and applies a filter for third party integrations.
-         *
-         * @deprecated 15.3
-         * @codeCoverageIgnore
-         *
-         * @param int $unindexed_count The total number of unindexed objects.
-         *
-         * @return int The total number of unindexed objects.
-         */
-        public function get_unindexed_count($unindexed_count = 0)
-        {
-        }
     }
     /**
      * Installation_Success_Integration class
@@ -39963,6 +42015,14 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * Renders the target for the React to mount to.
          */
         public function render_target()
+        {
+        }
+        /**
+         * Checks whether the Mastodon profile field has been filled in.
+         *
+         * @return bool
+         */
+        private function is_mastodon_active()
         {
         }
     }
@@ -40207,9 +42267,151 @@ namespace Yoast\WP\SEO\Integrations\Admin {
         }
     }
     /**
-     * Redirects_Integration class.
+     * Old_Premium_Integration class
      */
-    class Redirects_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    class Old_Premium_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * The minimum Premium version.
+         */
+        const MINIMUM_PREMIUM_VERSION = '20.1-RC0';
+        /**
+         * The options' helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * The product helper.
+         *
+         * @var Product_Helper
+         */
+        private $product_helper;
+        /**
+         * The capability helper.
+         *
+         * @var Capability_Helper
+         */
+        private $capability_helper;
+        /**
+         * The admin asset manager.
+         *
+         * @var WPSEO_Admin_Asset_Manager
+         */
+        private $admin_asset_manager;
+        /**
+         * The Current_Page_Helper.
+         *
+         * @var Current_Page_Helper
+         */
+        private $current_page_helper;
+        /**
+         * {@inheritDoc}
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Old_Premium_Integration constructor.
+         *
+         * @param Options_Helper            $options_helper      The options helper.
+         * @param Product_Helper            $product_helper      The product helper.
+         * @param Capability_Helper         $capability_helper   The capability helper.
+         * @param WPSEO_Admin_Asset_Manager $admin_asset_manager The admin asset manager.
+         * @param Current_Page_Helper       $current_page_helper The Current_Page_Helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Product_Helper $product_helper, \Yoast\WP\SEO\Helpers\Capability_Helper $capability_helper, \WPSEO_Admin_Asset_Manager $admin_asset_manager, \Yoast\WP\SEO\Helpers\Current_Page_Helper $current_page_helper)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Shows a notice if Premium is older than 20.0-RC1 so Settings might be missing from the UI.
+         *
+         * @return void
+         */
+        public function old_premium_notice()
+        {
+        }
+        /**
+         * Dismisses the old premium notice.
+         *
+         * @return bool
+         */
+        public function dismiss_old_premium_notice()
+        {
+        }
+        /**
+         * Returns whether Premium is installed but older than the minimum premium version.
+         *
+         * @return bool Whether premium is installed but older than minimum premium version.
+         */
+        protected function premium_is_old()
+        {
+        }
+        /**
+         * Returns whether the notification was dismissed in a version later than the minimum premium version.
+         *
+         * @return bool Whether the notification was dismissed in a version later than the minimum premium version.
+         */
+        protected function notice_was_dismissed_after_current_min_premium_version()
+        {
+        }
+    }
+    /**
+     * Class Redirect_Integration.
+     */
+    class Redirect_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * The redirect helper.
+         *
+         * @var Redirect_Helper
+         */
+        private $redirect;
+        /**
+         * Sets the helpers.
+         *
+         * @param Redirect_Helper $redirect The redirect helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Redirect_Helper $redirect)
+        {
+        }
+        /**
+         * Returns the conditionals based in which this loadable should be active.
+         *
+         * @return array
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Redirect to new settings URLs. We're adding this, so that not-updated add-ons don't point to non-existent pages.
+         *
+         * @return void
+         */
+        public function old_settings_redirect()
+        {
+        }
+    }
+    /**
+     * Redirects_Page_Integration class.
+     */
+    class Redirects_Page_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
     {
         /**
          * Sets up the hooks.
@@ -40245,363 +42447,6 @@ namespace Yoast\WP\SEO\Integrations\Admin {
          * @return void
          */
         public function display()
-        {
-        }
-    }
-    /**
-     * Handles the request for getting the Ryte status.
-     */
-    class Ryte_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
-    {
-        /**
-         * Holds the Ryte API response.
-         *
-         * @var array
-         */
-        private $ryte_response = null;
-        /**
-         * The options helper object used to determine if Ryte is active or not.
-         *
-         * @var Options_Helper
-         */
-        private $options_helper;
-        /**
-         * Constructor.
-         *
-         * @param Options_Helper $options_helper The options helper object used to determine if Ryte is active or not.
-         */
-        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
-        {
-        }
-        /**
-         * Sets up the hooks.
-         *
-         * @return void
-         */
-        public function register_hooks()
-        {
-        }
-        /**
-         * Returns the conditionals based on which this loadable should be active.
-         *
-         * In this case: only when on an admin page.
-         *
-         * @return array The conditionals.
-         */
-        public static function get_conditionals()
-        {
-        }
-        /**
-         * Determines if we can use the functionality.
-         *
-         * @return bool True if this functionality can be used.
-         */
-        public function is_active()
-        {
-        }
-        /**
-         * Hooks to run on plugin activation.
-         */
-        public function activate_hooks()
-        {
-        }
-        /**
-         * Determines whether to add a custom cron weekly schedule.
-         *
-         * @return void
-         */
-        public function maybe_add_weekly_schedule()
-        {
-        }
-        /**
-         * Adds a custom weekly cron schedule.
-         *
-         * @param array $schedules The existing custom cron schedules.
-         *
-         * @return array Enriched list of custom cron schedules.
-         */
-        public function add_weekly_schedule($schedules)
-        {
-        }
-        /**
-         * Fetches the data from Ryte.
-         *
-         * @return bool Whether the request ran.
-         */
-        public function fetch_from_ryte()
-        {
-        }
-        /**
-         * Retrieves the option to use.
-         *
-         * @return WPSEO_Ryte_Option The option.
-         */
-        public function get_option()
-        {
-        }
-        /**
-         * Sends a request to Ryte to get the indexability status.
-         *
-         * @return int The indexability status value.
-         */
-        protected function request_indexability()
-        {
-        }
-        /**
-         * Schedules the cronjob to get the new indexability status.
-         *
-         * @return void
-         */
-        private function schedule_cron()
-        {
-        }
-        /**
-         * Unschedules the cronjob to get the new indexability status.
-         *
-         * @return void
-         */
-        private function unschedule_cron()
-        {
-        }
-        /**
-         * Checks if WordFence protects the site against 'fake' Google crawlers.
-         *
-         * @return bool True if WordFence protects the site.
-         */
-        private function wordfence_protection_enabled()
-        {
-        }
-        /**
-         * Retrieves the Ryte API response property.
-         *
-         * @return array|WP_Error The response or WP_Error on failure.
-         */
-        public function get_response()
-        {
-        }
-    }
-    /**
-     * Class Social_Profiles_Helper.
-     */
-    class Social_Profiles_Helper
-    {
-        /**
-         * The fields for the person social profiles payload.
-         *
-         * @var array
-         */
-        private $person_social_profile_fields = ['facebook' => 'get_non_valid_url', 'instagram' => 'get_non_valid_url', 'linkedin' => 'get_non_valid_url', 'myspace' => 'get_non_valid_url', 'pinterest' => 'get_non_valid_url', 'soundcloud' => 'get_non_valid_url', 'tumblr' => 'get_non_valid_url', 'twitter' => 'get_non_valid_twitter', 'youtube' => 'get_non_valid_url', 'wikipedia' => 'get_non_valid_url'];
-        /**
-         * The fields for the organization social profiles payload.
-         *
-         * @var array
-         */
-        private $organization_social_profile_fields = ['facebook_site' => 'get_non_valid_url', 'twitter_site' => 'get_non_valid_twitter', 'other_social_urls' => 'get_non_valid_url_array'];
-        /**
-         * The Options_Helper instance.
-         *
-         * @var Options_Helper
-         */
-        protected $options_helper;
-        /**
-         * Social_Profiles_Helper constructor.
-         *
-         * @param Options_Helper $options_helper The WPSEO options helper.
-         */
-        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
-        {
-        }
-        /**
-         * Gets the person social profiles stored in the database.
-         *
-         * @param int $person_id The id of the person.
-         * @return array The person's social profiles.
-         */
-        public function get_person_social_profiles($person_id)
-        {
-        }
-        /**
-         * Stores the values for the person's social profiles.
-         *
-         * @param int   $person_id       The id of the person to edit.
-         * @param array $social_profiles The array of the person's social profiles to be set.
-         *
-         * @return string[] An array of field names which failed to be saved in the db.
-         */
-        public function set_person_social_profiles($person_id, $social_profiles)
-        {
-        }
-        /**
-         * Stores the values for the organization's social profiles.
-         *
-         * @param array $social_profiles An array with the social profiles values to be saved in the db.
-         *
-         * @return string[] An array of field names which failed to be saved in the db.
-         */
-        public function set_organization_social_profiles($social_profiles)
-        {
-        }
-        /**
-         * Returns a sanitized social field.
-         *
-         * @param string|array $social_field The social field to sanitize.
-         *
-         * @return string|array The sanitized social field.
-         */
-        protected function sanitize_social_field($social_field)
-        {
-        }
-        /**
-         * Checks if the current user has the capability to edit a specific user.
-         *
-         * @param int $person_id The id of the person to edit.
-         *
-         * @return bool
-         */
-        public function can_edit_profile($person_id)
-        {
-        }
-        /**
-         * Checks if url is not valid and returns the name of the setting if it's not.
-         *
-         * @param string $url         The url to be validated.
-         * @param string $url_setting The name of the setting to be updated with the url.
-         *
-         * @return array An array with the setting that the non-valid url is about to update.
-         */
-        protected function get_non_valid_url($url, $url_setting)
-        {
-        }
-        /**
-         * Checks if urls in an array are not valid and return the name of the setting if one of them is not, including the non-valid url's index in the array
-         *
-         * @param array  $urls         The urls to be validated.
-         * @param string $urls_setting The name of the setting to be updated with the urls.
-         *
-         * @return array An array with the settings that the non-valid urls are about to update, suffixed with a dash-separated index of the positions of those settings, eg. other_social_urls-2.
-         */
-        protected function get_non_valid_url_array($urls, $urls_setting)
-        {
-        }
-        /**
-         * Checks if the twitter value is not valid and returns the name of the setting if it's not.
-         *
-         * @param array  $twitter_site    The twitter value to be validated.
-         * @param string $twitter_setting The name of the twitter setting to be updated with the value.
-         *
-         * @return array An array with the setting that the non-valid twitter value is about to update.
-         */
-        protected function get_non_valid_twitter($twitter_site, $twitter_setting)
-        {
-        }
-    }
-    /**
-     * Class Social_Templates_Integration.
-     *
-     * Adds the social fields to the meta tabs for post types, taxonomies and archives.
-     */
-    class Social_Templates_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
-    {
-        /**
-         * Service that can be used to recommend a set of variables for a WPSEO_Replacevar_Editor.
-         *
-         * @var WPSEO_Admin_Recommended_Replace_Vars
-         */
-        private $recommended_replace_vars;
-        /**
-         * Service that can be used to recommend an editor specific set of variables for a WPSEO_Replacevar_Editor.
-         *
-         * @var WPSEO_Admin_Editor_Specific_Replace_Vars
-         */
-        private $editor_specific_replace_vars;
-        /**
-         * Group to which the 'New' badges belong to.
-         *
-         * @var string
-         */
-        private $group = 'global-templates';
-        /**
-         * Returns the conditionals based in which this loadable should be active.
-         *
-         * @return array
-         */
-        public static function get_conditionals()
-        {
-        }
-        /**
-         * Initializes the integration.
-         */
-        public function register_hooks()
-        {
-        }
-        /**
-         * Returns the recommended replacements variables object, creating it if needed.
-         *
-         * @return WPSEO_Admin_Recommended_Replace_Vars
-         */
-        protected function get_admin_recommended_replace_vars()
-        {
-        }
-        /**
-         * Returns the editor specific replacements variables object, creating it if needed.
-         *
-         * @return WPSEO_Admin_Editor_Specific_Replace_Vars
-         */
-        protected function get_admin_editor_specific_replace_vars()
-        {
-        }
-        /**
-         * Build a set of social fields for the author archives in the Search Appearance section.
-         *
-         * @param Yoast_Form $yform The form builder.
-         */
-        public function social_author_archives($yform)
-        {
-        }
-        /**
-         * Build a set of social fields for the date archives in the Search Appearance section.
-         *
-         * @param Yoast_Form $yform The form builder.
-         */
-        public function social_date_archives($yform)
-        {
-        }
-        /**
-         * Build a set of social fields for the post types in the Search Appearance section.
-         *
-         * @param Yoast_Form $yform          The form builder.
-         * @param string     $post_type_name The name of the current post_type that gets the social fields added.
-         */
-        public function social_post_type($yform, $post_type_name)
-        {
-        }
-        /**
-         * Build a set of social fields for the post types archives in the Search Appearance section.
-         *
-         * @param Yoast_Form $yform          The form builder.
-         * @param string     $post_type_name The name of the current post_type that gets the social fields added.
-         */
-        public function social_post_types_archive($yform, $post_type_name)
-        {
-        }
-        /**
-         * Build a set of social fields for the taxonomies in the Search Appearance section.
-         *
-         * @param Yoast_Form  $yform    The form builder.
-         * @param WP_Taxonomy $taxonomy The taxonomy that gets the social fields added.
-         */
-        public function social_taxonomies($yform, $taxonomy)
-        {
-        }
-        /**
-         * Build a set of social fields for the Search Appearance section.
-         *
-         * @param Yoast_Form $yform                 The form builder.
-         * @param string     $identifier            A page-wide unique identifier for data storage and unique DOM elements.
-         * @param string     $page_type_recommended Recommended type of page for a list of replaceable variables.
-         * @param string     $page_type_specific    Editor specific type of page for a list of replaceable variables.
-         */
-        protected function build_social_fields(\Yoast_Form $yform, $identifier, $page_type_recommended, $page_type_specific)
         {
         }
     }
@@ -40783,6 +42628,24 @@ namespace Yoast\WP\SEO\Integrations\Alerts {
         }
     }
     /**
+     * Jetpack_Boost_Pre_Publish class.
+     */
+    class Jetpack_Boost_Pre_Publish extends \Yoast\WP\SEO\Integrations\Alerts\Abstract_Dismissable_Alert
+    {
+        /**
+         * Holds the alert identifier.
+         *
+         * @var string
+         */
+        protected $alert_identifier = 'get-jetpack-boost-pre-publish-notification';
+        /**
+         * {@inheritDoc}
+         */
+        public static function get_conditionals()
+        {
+        }
+    }
+    /**
      * Webinar_Promo_Notification class.
      */
     class Webinar_Promo_Notification extends \Yoast\WP\SEO\Integrations\Alerts\Abstract_Dismissable_Alert
@@ -40848,20 +42711,6 @@ namespace Yoast\WP\SEO\Integrations\Blocks {
      */
     class Internal_Linking_Category implements \Yoast\WP\SEO\Integrations\Integration_Interface
     {
-        /**
-         * Represents the WordPress helper.
-         *
-         * @var Wordpress_Helper
-         */
-        protected $wordpress_helper;
-        /**
-         * Internal_Linking_Category constructor.
-         *
-         * @param Wordpress_Helper $wordpress_helper The WordPress helper.
-         */
-        public function __construct(\Yoast\WP\SEO\Helpers\Wordpress_Helper $wordpress_helper)
-        {
-        }
         /**
          * {@inheritDoc}
          */
@@ -41166,6 +43015,41 @@ namespace Yoast\WP\SEO\Integrations {
          */
         const START_HOOK = 'wpseo_start_cleanup_indexables';
         /**
+         * A helper for taxonomies.
+         *
+         * @var Taxonomy_Helper
+         */
+        private $taxonomy;
+        /**
+         * A helper for post types.
+         *
+         * @var Post_Type_Helper
+         */
+        private $post_type;
+        /**
+         * A helper for author archives.
+         *
+         * @var Author_Archive_Helper
+         */
+        private $author_archive;
+        /**
+         * The indexables repository.
+         *
+         * @var Indexable_Repository
+         */
+        private $indexable_repository;
+        /**
+         * The constructor.
+         *
+         * @param Taxonomy_Helper       $taxonomy       A helper for taxonomies.
+         * @param Post_Type_Helper      $post_type      A helper for post types.
+         * @param Author_Archive_Helper $author_archive A helper for author archives.
+         * @param Indexable_Repository  $indexable_repository The indexables repository.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Taxonomy_Helper $taxonomy, \Yoast\WP\SEO\Helpers\Post_Type_Helper $post_type, \Yoast\WP\SEO\Helpers\Author_Archive_Helper $author_archive, \Yoast\WP\SEO\Repositories\Indexable_Repository $indexable_repository)
+        {
+        }
+        /**
          * Initializes the integration.
          *
          * This is the place to register hooks and filters.
@@ -41196,7 +43080,7 @@ namespace Yoast\WP\SEO\Integrations {
          *
          * @return Closure[] The cleanup tasks.
          */
-        protected function get_cleanup_tasks()
+        public function get_cleanup_tasks()
         {
         }
         /**
@@ -41265,6 +43149,46 @@ namespace Yoast\WP\SEO\Integrations {
         {
         }
         /**
+         * Cleans up any indexables that belong to post types that are not/no longer publicly viewable.
+         *
+         * @param int $limit The limit we'll apply to the queries.
+         *
+         * @return bool|int The number of deleted rows, false if the query fails.
+         */
+        protected function clean_indexables_for_non_publicly_viewable_post($limit)
+        {
+        }
+        /**
+         * Cleans up any indexables that belong to taxonomies that are not/no longer publicly viewable.
+         *
+         * @param int $limit The limit we'll apply to the queries.
+         *
+         * @return bool|int The number of deleted rows, false if the query fails.
+         */
+        protected function clean_indexables_for_non_publicly_viewable_taxonomies($limit)
+        {
+        }
+        /**
+         * Cleans up any user indexables when the author archives have been disabled.
+         *
+         * @param int $limit The limit we'll apply to the queries.
+         *
+         * @return bool|int The number of deleted rows, false if the query fails.
+         */
+        protected function clean_indexables_for_authors_archive_disabled($limit)
+        {
+        }
+        /**
+         * Cleans up any indexables that belong to users that have their author archives disabled.
+         *
+         * @param int $limit The limit we'll apply to the queries.
+         *
+         * @return bool|int The number of deleted rows, false if the query fails.
+         */
+        protected function clean_indexables_for_authors_without_archive($limit)
+        {
+        }
+        /**
          * Cleans orphaned rows from a yoast table.
          *
          * @param string $table  The table to clean up.
@@ -41274,6 +43198,51 @@ namespace Yoast\WP\SEO\Integrations {
          * @return int|bool The number of deleted rows, false if the query fails.
          */
         protected function cleanup_orphaned_from_table($table, $column, $limit)
+        {
+        }
+        /**
+         * Updates the author_id of indexables which author_id is not in the wp_users table with the id of the reassingned user.
+         *
+         * @param int $limit The limit we'll apply to the queries.
+         *
+         * @return int|bool The number of updated rows, false if query to get data fails.
+         */
+        protected function update_indexables_author_to_reassigned($limit)
+        {
+        }
+        /**
+         * Deletes rows from the indexable table where the source is no longer there.
+         *
+         * @param string $source_table The source table which we need to check the indexables against.
+         * @param string $source_identifier The identifier which the indexables are matched to.
+         * @param string $object_type The indexable object type.
+         * @param int    $limit The limit we'll apply to the delete query.
+         *
+         * @return int|bool The number of rows that was deleted or false if the query failed.
+         */
+        protected function clean_indexables_for_object_type_and_source_table($source_table, $source_identifier, $object_type, $limit)
+        {
+        }
+        /**
+         * Fetches pairs of old_id -> new_id indexed by old_id.
+         * By using the old_id (i.e. the id of the user that has been deleted) as key of the associative array, we can easily compose an array of unique pairs of old_id -> new_id.
+         *
+         * @param int $limit The limit we'll apply to the queries.
+         *
+         * @return int|bool The associative array with shape [ old_id => [ old_id, new_author ] ] or false if query to get data fails.
+         */
+        private function get_reassigned_authors($limit)
+        {
+        }
+        /**
+         * Updates the indexable's author_id referring to a deleted author with the id of the reassigned user.
+         *
+         * @param array $reassigned_authors_objs The array of objects with shape [ old_id => [ old_id, new_id ] ].
+         * @param int   $limit                   The limit we'll apply to the queries.
+         *
+         * @return int|bool The associative array with shape [ old_id => [ old_id, new_author ] ] or false if query to get data fails.
+         */
+        private function update_indexable_authors($reassigned_authors_objs, $limit)
         {
         }
     }
@@ -41335,6 +43304,31 @@ namespace Yoast\WP\SEO\Integrations {
          * @return array
          */
         public function add_estimated_reading_time_hidden_fields($field_defs)
+        {
+        }
+    }
+    /**
+     * Excludes Attachment post types from the indexable table.
+     *
+     * Posts with these post types will not be saved to the indexable table.
+     */
+    class Exclude_Attachment_Post_Type extends \Yoast\WP\SEO\Integrations\Abstract_Exclude_Post_Type
+    {
+        /**
+         * Returns the conditionals based in which this loadable should be active.
+         *
+         * @return array
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Returns the names of the post types to be excluded.
+         * To be used in the wpseo_indexable_excluded_post_types filter.
+         *
+         * @return array The names of the post types.
+         */
+        public function get_post_type()
         {
         }
     }
@@ -41631,6 +43625,14 @@ namespace Yoast\WP\SEO\Integrations {
         {
         }
         /**
+         * Whether the title presenter should be removed.
+         *
+         * @return bool True when the title presenter should be removed, false otherwise.
+         */
+        public function should_title_presenter_be_removed()
+        {
+        }
+        /**
          * Checks if the Title presenter needs to be removed.
          *
          * @param string[] $presenters The presenters.
@@ -41785,9 +43787,9 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
          *
          * @codeCoverageIgnore Wraps the filter input.
          *
-         * @return string The value of replytocom.
+         * @return string|null The value of replytocom or null if it does not exist.
          */
-        protected function has_replytocom_parameter()
+        protected function get_replytocom_parameter()
         {
         }
         /**
@@ -41818,6 +43820,257 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
          * @return bool True to remove, false not to remove.
          */
         private function clean_reply_to_com()
+        {
+        }
+    }
+    /**
+     * Class Crawl_Cleanup_Basic.
+     */
+    class Crawl_Cleanup_Basic implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * Crawl Cleanup Basic integration constructor.
+         *
+         * @param Options_Helper $options_helper The option helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Returns the conditionals based in which this loadable should be active.
+         *
+         * @return array The array of conditionals.
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Removes X-Pingback and X-Powered-By headers as they're unneeded.
+         */
+        public function clean_headers()
+        {
+        }
+        /**
+         * Remove the core s.w.org hint as it's only used for emoji stuff we don't use.
+         *
+         * @param array $hints The hints we're adding to.
+         *
+         * @return array
+         */
+        public function resource_hints_plain_cleanup($hints)
+        {
+        }
+        /**
+         * Checks if the value of an option is set to true.
+         *
+         * @param string $option_name The option name.
+         *
+         * @return bool
+         */
+        private function is_true($option_name)
+        {
+        }
+    }
+    /**
+     * Adds actions that cleanup unwanted rss feed links.
+     */
+    class Crawl_Cleanup_Rss implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * Crawl Cleanup RSS integration constructor.
+         *
+         * @param Options_Helper $options_helper The option helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
+        {
+        }
+        /**
+         * Returns the conditionals based on which this loadable should be active.
+         *
+         * @return array The conditionals.
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Register our RSS related hooks.
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Disable feeds on selected cases.
+         */
+        public function maybe_disable_feeds()
+        {
+        }
+        /**
+         * Redirect feeds we don't want away.
+         */
+        public function maybe_redirect_feeds()
+        {
+        }
+        /**
+         * Sends a cache control header.
+         *
+         * @param int $expiration The expiration time.
+         */
+        public function cache_control_header($expiration)
+        {
+        }
+        /**
+         * Redirect a feed result to somewhere else.
+         *
+         * @param string $url    The location we're redirecting to.
+         * @param string $reason The reason we're redirecting.
+         */
+        private function redirect_feed($url, $reason)
+        {
+        }
+        /**
+         * Retrieves the queried post type.
+         *
+         * @return string The queried post type.
+         */
+        private function get_queried_post_type()
+        {
+        }
+        /**
+         * Checks if the value of an option is set to true.
+         *
+         * @param string $option_name The option name.
+         *
+         * @return bool
+         */
+        private function is_true($option_name)
+        {
+        }
+    }
+    /**
+     * Class Crawl_Cleanup_Searches.
+     */
+    class Crawl_Cleanup_Searches implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * Patterns to match against to find spam.
+         *
+         * @var array
+         */
+        private $patterns = ['/[：（）【】［］]+/u', '/(TALK|QQ)\\:/iu'];
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        private $options_helper;
+        /**
+         * The redirect helper.
+         *
+         * @var Redirect_Helper
+         */
+        private $redirect_helper;
+        /**
+         * Crawl_Cleanup_Searches integration constructor.
+         *
+         * @param Options_Helper  $options_helper  The option helper.
+         * @param Redirect_Helper $redirect_helper The redirect helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Redirect_Helper $redirect_helper)
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Returns the conditionals based in which this loadable should be active.
+         *
+         * @return array The array of conditionals.
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Check if we want to allow this search to happen.
+         *
+         * @param WP_Query $query The main query.
+         *
+         * @return WP_Query
+         */
+        public function validate_search(\WP_Query $query)
+        {
+        }
+        /**
+         * Redirect pretty search URLs to the "raw" equivalent
+         */
+        public function maybe_redirect_searches()
+        {
+        }
+        /**
+         * Check query against unwanted search patterns.
+         *
+         * @param WP_Query $query The main WordPress query.
+         *
+         * @return void
+         */
+        private function check_unwanted_patterns(\WP_Query $query)
+        {
+        }
+        /**
+         * Redirect to the homepage for invalid searches.
+         *
+         * @param string $reason The reason for redirecting away.
+         * @param string $to_url The URL to redirect to.
+         *
+         * @return void
+         */
+        private function redirect_away($reason, $to_url = '')
+        {
+        }
+        /**
+         * Limits the number of characters in the search query.
+         *
+         * @return void
+         */
+        private function limit_characters()
+        {
+        }
+        /**
+         * Determines if a text string contains an emoji or not.
+         *
+         * @param string $text The text string to detect emoji in.
+         *
+         * @return bool
+         */
+        private function has_emoji($text)
         {
         }
     }
@@ -41877,9 +44130,32 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
         {
         }
         /**
-         * Adds a canonical link header to the main canonical URL for the requested feed object.
+         * Makes sure send canonical header always runs, because this RSS hook does not support the for_comments parameter
+         *
+         * @return void
          */
-        public function send_canonical_header()
+        public function handle_rss_feed()
+        {
+        }
+        /**
+         * Adds a canonical link header to the main canonical URL for the requested feed object. If it is not a comment
+         * feed.
+         *
+         * @param bool $for_comments If the RRS feed is meant for a comment feed.
+         *
+         * @return void
+         */
+        public function send_canonical_header($for_comments)
+        {
+        }
+        /**
+         * Adds noindex, follow tag for comment feeds.
+         *
+         * @param bool $for_comments If the RSS feed is meant for a comment feed.
+         *
+         * @return void
+         */
+        public function add_robots_headers($for_comments)
         {
         }
         /**
@@ -42181,6 +44457,12 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
          */
         private $post_id;
         /**
+         * The post meta.
+         *
+         * @var Meta|false
+         */
+        private $post_meta;
+        /**
          * Returns the conditionals based in which this loadable should be active.
          *
          * @return array
@@ -42363,12 +44645,18 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
         /**
          * Redirects away query variables that shouldn't work.
          *
-         * @param array  $query_vars   The query variables in the current URL.
-         * @param string $base_url     The base URL without query string.
+         * @param array  $query_vars The query variables in the current URL.
+         * @param string $base_url   The base URL without query string.
          *
          * @return void
          */
         private function do_date_redirect($query_vars, $base_url)
+        {
+        }
+        /**
+         * Strips `cat=-1` from the URL and redirects to the resulting URL.
+         */
+        public function category_redirect()
         {
         }
     }
@@ -42384,11 +44672,25 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
          */
         protected $options_helper;
         /**
+         * Holds the robots txt helper.
+         *
+         * @var Robots_Txt_Helper
+         */
+        protected $robots_txt_helper;
+        /**
+         * Holds the robots txt presenter.
+         *
+         * @var Robots_Txt_Presenter
+         */
+        protected $robots_txt_presenter;
+        /**
          * Sets the helpers.
          *
-         * @param Options_Helper $options_helper Options helper.
+         * @param Options_Helper       $options_helper       Options helper.
+         * @param Robots_Txt_Helper    $robots_txt_helper    Robots txt helper.
+         * @param Robots_Txt_Presenter $robots_txt_presenter Robots txt presenter.
          */
-        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Robots_Txt_Helper $robots_txt_helper, \Yoast\WP\SEO\Presenters\Robots_Txt_Presenter $robots_txt_presenter)
         {
         }
         /**
@@ -42413,11 +44715,30 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
          * Filters the robots.txt output.
          *
          * @param string $robots_txt The robots.txt output from WordPress.
-         * @param string $public     Option that says whether the site is public or not.
          *
-         * @return string $output Filtered robots.txt output.
+         * @return string Filtered robots.txt output.
          */
-        public function filter_robots($robots_txt, $public)
+        public function filter_robots($robots_txt)
+        {
+        }
+        /**
+         * Add a disallow rule for search to robots.txt.
+         *
+         * @param Robots_Txt_Helper $robots_txt_helper The robots txt helper.
+         *
+         * @return void
+         */
+        public function add_disallow_search_to_robots(\Yoast\WP\SEO\Helpers\Robots_Txt_Helper $robots_txt_helper)
+        {
+        }
+        /**
+         * Add a disallow rule for /wp-json/ to robots.txt.
+         *
+         * @param Robots_Txt_Helper $robots_txt_helper The robots txt helper.
+         *
+         * @return void
+         */
+        public function add_disallow_wp_json_to_robots(\Yoast\WP\SEO\Helpers\Robots_Txt_Helper $robots_txt_helper)
         {
         }
         /**
@@ -42427,27 +44748,23 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
          *
          * @return string
          */
-        protected function change_default_robots($robots_txt)
+        protected function remove_default_robots($robots_txt)
         {
         }
         /**
          * Adds XML sitemap reference to robots.txt.
          *
-         * @param string $robots_txt Robots.txt input.
-         *
-         * @return string
+         * @return void
          */
-        protected function add_xml_sitemap($robots_txt)
+        protected function maybe_add_xml_sitemap()
         {
         }
         /**
          * Adds subdomain multisite' XML sitemap references to robots.txt.
          *
-         * @param string $robots_txt Robots.txt input.
-         *
-         * @return string
+         * @return void
          */
-        protected function add_subdirectory_multisite_xml_sitemaps($robots_txt)
+        protected function add_subdirectory_multisite_xml_sitemaps()
         {
         }
         /**
@@ -42671,44 +44988,6 @@ namespace Yoast\WP\SEO\Integrations\Front_End {
         }
     }
     /**
-     * Notify the user by giving a deprecated notice.
-     */
-    class Theme_Titles implements \Yoast\WP\SEO\Integrations\Integration_Interface
-    {
-        /**
-         * Returns the conditionals based in which this loadable should be active.
-         *
-         * @return array
-         */
-        public static function get_conditionals()
-        {
-        }
-        /**
-         * Initializes the integration.
-         *
-         * This is the place to register hooks and filters.
-         *
-         * @return void
-         */
-        public function register_hooks()
-        {
-        }
-        /**
-         * Filters the title for woo_title and the thematic_doctitle.
-         *
-         * @deprecated 14.0
-         *
-         * @codeCoverageIgnore
-         *
-         * @param string $title The title.
-         *
-         * @return string The title.
-         */
-        public function title($title)
-        {
-        }
-    }
-    /**
      * Class WP_Robots_Integration
      *
      * @package Yoast\WP\SEO\Integrations\Front_End
@@ -42853,50 +45132,132 @@ namespace Yoast\WP\SEO\Integrations {
         }
     }
     /**
-     * Loads schema block templates into Gutenberg.
+     * Class Settings_Integration.
      */
-    class Schema_Blocks implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    class Settings_Integration implements \Yoast\WP\SEO\Integrations\Integration_Interface
     {
+        const PAGE = 'wpseo_page_settings';
         /**
-         * The registered templates.
+         * Holds the included WordPress options.
          *
          * @var string[]
          */
-        protected $templates = [];
+        const WP_OPTIONS = ['blogdescription'];
         /**
-         * Contains the asset manager.
+         * Holds the allowed option groups.
+         *
+         * @var array
+         */
+        const ALLOWED_OPTION_GROUPS = ['wpseo', 'wpseo_titles', 'wpseo_social'];
+        /**
+         * Holds the disallowed settings, per option group.
+         *
+         * @var array
+         */
+        const DISALLOWED_SETTINGS = ['wpseo' => ['myyoast-oauth', 'semrush_tokens', 'custom_taxonomy_slugs', 'zapier_subscription', 'import_cursors', 'workouts_data', 'configuration_finished_steps', 'importing_completed', 'wincher_tokens', 'least_readability_ignore_list', 'least_seo_score_ignore_list', 'most_linked_ignore_list', 'least_linked_ignore_list', 'indexables_page_reading_list'], 'wpseo_titles' => ['company_logo_meta', 'person_logo_meta']];
+        /**
+         * Holds the disabled on multisite settings, per option group.
+         *
+         * @var array
+         */
+        const DISABLED_ON_MULTISITE_SETTINGS = ['wpseo' => ['deny_search_crawling', 'deny_wp_json_crawling']];
+        /**
+         * Holds the WPSEO_Admin_Asset_Manager.
          *
          * @var WPSEO_Admin_Asset_Manager
          */
         protected $asset_manager;
         /**
-         * Represents the schema blocks conditional.
+         * Holds the WPSEO_Replace_Vars.
          *
-         * @var Schema_Blocks_Conditional
+         * @var WPSEO_Replace_Vars
          */
-        protected $blocks_conditional;
+        protected $replace_vars;
         /**
-         * Represents the short link helper.
+         * Holds the Schema_Types.
          *
-         * @var Short_Link_Helper
+         * @var Schema_Types
          */
-        protected $short_link_helper;
+        protected $schema_types;
+        /**
+         * Holds the Current_Page_Helper.
+         *
+         * @var Current_Page_Helper
+         */
+        protected $current_page_helper;
+        /**
+         * Holds the Post_Type_Helper.
+         *
+         * @var Post_Type_Helper
+         */
+        protected $post_type_helper;
+        /**
+         * Holds the Language_Helper.
+         *
+         * @var Language_Helper
+         */
+        protected $language_helper;
+        /**
+         * Holds the Taxonomy_Helper.
+         *
+         * @var Taxonomy_Helper
+         */
+        protected $taxonomy_helper;
+        /**
+         * Holds the Product_Helper.
+         *
+         * @var Product_Helper
+         */
+        protected $product_helper;
+        /**
+         * Holds the Woocommerce_Helper.
+         *
+         * @var Woocommerce_Helper
+         */
+        protected $woocommerce_helper;
+        /**
+         * Holds the Article_Helper.
+         *
+         * @var Article_Helper
+         */
+        protected $article_helper;
+        /**
+         * Holds the User_Helper.
+         *
+         * @var User_Helper
+         */
+        protected $user_helper;
+        /**
+         * Holds the Settings_Introduction_Action.
+         *
+         * @var Settings_Introduction_Action
+         */
+        protected $settings_introduction_action;
+        /**
+         * Constructs Settings_Integration.
+         *
+         * @param WPSEO_Admin_Asset_Manager    $asset_manager                The WPSEO_Admin_Asset_Manager.
+         * @param WPSEO_Replace_Vars           $replace_vars                 The WPSEO_Replace_Vars.
+         * @param Schema_Types                 $schema_types                 The Schema_Types.
+         * @param Current_Page_Helper          $current_page_helper          The Current_Page_Helper.
+         * @param Post_Type_Helper             $post_type_helper             The Post_Type_Helper.
+         * @param Language_Helper              $language_helper              The Language_Helper.
+         * @param Taxonomy_Helper              $taxonomy_helper              The Taxonomy_Helper.
+         * @param Product_Helper               $product_helper               The Product_Helper.
+         * @param Woocommerce_Helper           $woocommerce_helper           The Woocommerce_Helper.
+         * @param Article_Helper               $article_helper               The Article_Helper.
+         * @param User_Helper                  $user_helper                  The User_Helper.
+         * @param Settings_Introduction_Action $settings_introduction_action The Settings_Introduction_Action.
+         */
+        public function __construct(\WPSEO_Admin_Asset_Manager $asset_manager, \WPSEO_Replace_Vars $replace_vars, \Yoast\WP\SEO\Config\Schema_Types $schema_types, \Yoast\WP\SEO\Helpers\Current_Page_Helper $current_page_helper, \Yoast\WP\SEO\Helpers\Post_Type_Helper $post_type_helper, \Yoast\WP\SEO\Helpers\Language_Helper $language_helper, \Yoast\WP\SEO\Helpers\Taxonomy_Helper $taxonomy_helper, \Yoast\WP\SEO\Helpers\Product_Helper $product_helper, \Yoast\WP\SEO\Helpers\Woocommerce_Helper $woocommerce_helper, \Yoast\WP\SEO\Helpers\Schema\Article_Helper $article_helper, \Yoast\WP\SEO\Helpers\User_Helper $user_helper, \Yoast\WP\SEO\Actions\Settings_Introduction_Action $settings_introduction_action)
+        {
+        }
         /**
          * Returns the conditionals based on which this loadable should be active.
          *
          * @return array
          */
         public static function get_conditionals()
-        {
-        }
-        /**
-         * Schema_Blocks constructor.
-         *
-         * @param WPSEO_Admin_Asset_Manager $asset_manager      The asset manager.
-         * @param Schema_Blocks_Conditional $blocks_conditional The schema blocks conditional.
-         * @param Short_Link_Helper         $short_link_helper  The short link helper.
-         */
-        public function __construct(\WPSEO_Admin_Asset_Manager $asset_manager, \Yoast\WP\SEO\Conditionals\Schema_Blocks_Conditional $blocks_conditional, \Yoast\WP\SEO\Helpers\Short_Link_Helper $short_link_helper)
         {
         }
         /**
@@ -42910,38 +45271,226 @@ namespace Yoast\WP\SEO\Integrations {
         {
         }
         /**
-         * Registers a schema template.
-         *
-         * @param string $template The template to be registered.
-         *                         If starting with a / is assumed to be an absolute path.
-         *                         If not starting with a / is assumed to be relative to WPSEO_PATH.
+         * Registers the different options under the setting.
          *
          * @return void
          */
-        public function register_template($template)
+        public function register_setting()
         {
         }
         /**
-         * Loads all schema block templates and the required JS library for them.
+         * Adds the page.
+         *
+         * @param array $pages The pages.
+         *
+         * @return array The pages.
+         */
+        public function add_page($pages)
+        {
+        }
+        /**
+         * Adds a dummy page.
+         *
+         * Because the options route NEEDS to redirect to something.
+         *
+         * @param array $pages The pages.
+         *
+         * @return array The pages.
+         */
+        public function add_settings_saved_page($pages)
+        {
+        }
+        /**
+         * Displays the page.
+         */
+        public function display_page()
+        {
+        }
+        /**
+         * Enqueues the assets.
          *
          * @return void
          */
-        public function load()
+        public function enqueue_assets()
         {
         }
         /**
-         * Outputs the set templates.
-         */
-        public function output()
-        {
-        }
-        /**
-         * Loads the translations and localizes the schema-blocks script file.
+         * Removes all current WP notices.
          *
-         * @codeCoverageIgnore
-         * @deprecated 18.0
+         * @return void
          */
-        public function load_translations()
+        public function remove_notices()
+        {
+        }
+        /**
+         * Creates the script data.
+         *
+         * @return array The script data.
+         */
+        protected function get_script_data()
+        {
+        }
+        /**
+         * Retrieves the preferences.
+         *
+         * @param array $settings The settings.
+         *
+         * @return array The preferences.
+         */
+        protected function get_preferences($settings)
+        {
+        }
+        /**
+         * Retrieves the preferences.
+         *
+         * @return array The preferences.
+         */
+        protected function get_introduction_data()
+        {
+        }
+        /**
+         * Retrieves the currently represented person.
+         *
+         * @param array $settings The settings.
+         *
+         * @return array The currently represented person's ID and name.
+         */
+        protected function get_site_represents_person($settings)
+        {
+        }
+        /**
+         * Returns settings for the Call to Buy (CTB) buttons.
+         *
+         * @return string[] The array of CTB settings.
+         */
+        public function get_upsell_settings()
+        {
+        }
+        /**
+         * Retrieves the default setting values.
+         *
+         * These default values are currently being used in the UI for dummy fields.
+         * Dummy fields should not expose or reflect the actual data.
+         *
+         * @return array The default setting values.
+         */
+        protected function get_default_setting_values()
+        {
+        }
+        /**
+         * Retrieves the settings and their values.
+         *
+         * @param array $default_setting_values The default setting values.
+         *
+         * @return array The settings.
+         */
+        protected function get_settings($default_setting_values)
+        {
+        }
+        /**
+         * Transforms setting values.
+         *
+         * @param array $settings The settings.
+         *
+         * @return array The settings.
+         */
+        protected function transform_settings($settings)
+        {
+        }
+        /**
+         * Retrieves the disabled settings.
+         *
+         * @param array $settings The settings.
+         *
+         * @return array The settings.
+         */
+        protected function get_disabled_settings($settings)
+        {
+        }
+        /**
+         * Retrieves the replacement variables.
+         *
+         * @return array The replacement variables.
+         */
+        protected function get_replacement_variables()
+        {
+        }
+        /**
+         * Retrieves the schema.
+         *
+         * @param array $post_types The post types.
+         *
+         * @return array The schema.
+         */
+        protected function get_schema(array $post_types)
+        {
+        }
+        /**
+         * Transforms the post types, to represent them.
+         *
+         * @param WP_Post_Type[] $post_types The WP_Post_Type array to transform.
+         *
+         * @return array The post types.
+         */
+        protected function transform_post_types($post_types)
+        {
+        }
+        /**
+         * Compares two post types.
+         *
+         * @param array $a The first post type.
+         * @param array $b The second post type.
+         *
+         * @return int The order.
+         */
+        protected function compare_post_types($a, $b)
+        {
+        }
+        /**
+         * Transforms the taxonomies, to represent them.
+         *
+         * @param WP_Taxonomy[] $taxonomies      The WP_Taxonomy array to transform.
+         * @param string[]      $post_type_names The post type names.
+         *
+         * @return array The taxonomies.
+         */
+        protected function transform_taxonomies($taxonomies, $post_type_names)
+        {
+        }
+        /**
+         * Gets the route from a name, rewrite and rest_base.
+         *
+         * @param string $name      The name.
+         * @param array  $rewrite   The rewrite data.
+         * @param string $rest_base The rest base.
+         *
+         * @return string The route.
+         */
+        protected function get_route($name, $rewrite, $rest_base)
+        {
+        }
+        /**
+         * Retrieves the fallbacks.
+         *
+         * @return array The fallbacks.
+         */
+        protected function get_fallbacks()
+        {
+        }
+        /**
+         * Removes the notification related to the post types which have been made public.
+         *
+         * @return void
+         */
+        private function remove_post_types_made_public_notification()
+        {
+        }
+        /**
+         * Removes the notification related to the taxonomies which have been made public.
+         *
+         * @return void
+         */
+        private function remove_taxonomies_made_public_notification()
         {
         }
     }
@@ -43034,68 +45583,6 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         }
     }
     /**
-     * Integrates the multiple authors capability from CoAuthors Plus into Yoast SEO schema.
-     */
-    class CoAuthors_Plus implements \Yoast\WP\SEO\Integrations\Integration_Interface
-    {
-        /**
-         * The helpers surface.
-         *
-         * @var Helpers_Surface
-         */
-        protected $helpers;
-        /**
-         * Initializes the integration.
-         *
-         * @return void
-         */
-        public function register_hooks()
-        {
-        }
-        /**
-         * Returns the conditionals based in which this loadable should be active.
-         *
-         * @return array
-         */
-        public static function get_conditionals()
-        {
-        }
-        /**
-         * CoAuthors_Plus constructor.
-         *
-         * @codeCoverageIgnore It only sets dependencies.
-         *
-         * @param Helpers_Surface $helpers The helper surface.
-         */
-        public function __construct(\Yoast\WP\SEO\Surfaces\Helpers_Surface $helpers)
-        {
-        }
-        /**
-         * Filters the graph output to add authors.
-         *
-         * @param array                   $data                   The schema graph.
-         * @param Meta_Tags_Context       $context                The context object.
-         * @param Abstract_Schema_Piece   $graph_piece_generator  The graph piece generator.
-         * @param Abstract_Schema_Piece[] $graph_piece_generators The graph piece generators.
-         *
-         * @return array The (potentially altered) schema graph.
-         */
-        public function filter_author_graph($data, $context, $graph_piece_generator, $graph_piece_generators)
-        {
-        }
-        /**
-         * Filters the graph output to add authors.
-         *
-         * @param array             $data    The schema graph.
-         * @param Meta_Tags_Context $context Context object.
-         *
-         * @return array The (potentially altered) schema graph.
-         */
-        public function filter_graph($data, $context)
-        {
-        }
-    }
-    /**
      * Integrates the Yoast SEO metabox in the Elementor editor.
      */
     class Elementor implements \Yoast\WP\SEO\Integrations\Integration_Interface
@@ -43153,11 +45640,11 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
          */
         protected $readability_analysis;
         /**
-         * Represents the estimated_reading_time_conditional.
+         * Helper to determine whether or not the inclusive language analysis is enabled.
          *
-         * @var Estimated_Reading_Time_Conditional
+         * @var WPSEO_Metabox_Analysis_Inclusive_Language
          */
-        protected $estimated_reading_time_conditional;
+        protected $inclusive_language_analysis;
         /**
          * Returns the conditionals based in which this loadable should be active.
          *
@@ -43169,13 +45656,11 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * Constructor.
          *
-         * @param WPSEO_Admin_Asset_Manager          $asset_manager                      The asset manager.
-         * @param Options_Helper                     $options                            The options helper.
-         * @param Capability_Helper                  $capability                         The capability helper.
-         * @param Estimated_Reading_Time_Conditional $estimated_reading_time_conditional The Estimated Reading Time
-         *                                                                               conditional.
+         * @param WPSEO_Admin_Asset_Manager $asset_manager                      The asset manager.
+         * @param Options_Helper            $options                            The options helper.
+         * @param Capability_Helper         $capability                         The capability helper.
          */
-        public function __construct(\WPSEO_Admin_Asset_Manager $asset_manager, \Yoast\WP\SEO\Helpers\Options_Helper $options, \Yoast\WP\SEO\Helpers\Capability_Helper $capability, \Yoast\WP\SEO\Conditionals\Admin\Estimated_Reading_Time_Conditional $estimated_reading_time_conditional)
+        public function __construct(\WPSEO_Admin_Asset_Manager $asset_manager, \Yoast\WP\SEO\Helpers\Options_Helper $options, \Yoast\WP\SEO\Helpers\Capability_Helper $capability)
         {
         }
         /**
@@ -43220,12 +45705,12 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * Determines whether the metabox should be shown for the passed identifier.
          *
-         * By default the check is done for post types, but can also be used for taxonomies.
+         * By default, the check is done for post types, but can also be used for taxonomies.
          *
          * @param string|null $identifier The identifier to check.
          * @param string      $type       The type of object to check. Defaults to post_type.
          *
-         * @return bool Whether or not the metabox should be displayed.
+         * @return bool Whether the metabox should be displayed.
          */
         public function display_metabox($identifier = null, $type = 'post_type')
         {
@@ -43449,41 +45934,6 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         }
     }
     /**
-     * Class The_Events_Calendar
-     */
-    class The_Events_Calendar implements \Yoast\WP\SEO\Integrations\Integration_Interface
-    {
-        /**
-         * Returns the conditionals based in which this loadable should be active.
-         *
-         * @return array
-         */
-        public static function get_conditionals()
-        {
-        }
-        /**
-         * Initializes the integration.
-         *
-         * This is the place to register hooks and filters.
-         *
-         * @return void
-         */
-        public function register_hooks()
-        {
-        }
-        /**
-         * Adds the events graph pieces to the schema collector.
-         *
-         * @param array  $pieces  The current graph pieces.
-         * @param string $context The current context.
-         *
-         * @return array Extended graph pieces.
-         */
-        public function add_graph_pieces($pieces, $context)
-        {
-        }
-    }
-    /**
      * W3 Total Cache integration.
      */
     class W3_Total_Cache implements \Yoast\WP\SEO\Integrations\Integration_Interface
@@ -43504,6 +45954,40 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
          * @return void
          */
         public function register_hooks()
+        {
+        }
+    }
+    /**
+     * Web Stories integration.
+     */
+    class Web_Stories_Post_Edit implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * Returns the conditionals based in which this loadable should be active.
+         *
+         * @return array
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Adds a isWebStoriesIntegrationActive variable to the Adminl10n array.
+         *
+         * @param array $input The array to add the isWebStoriesIntegrationActive to.
+         *
+         * @return array The passed array with the additional isWebStoriesIntegrationActive variable set to 1 if we are editing a web story.
+         */
+        public function add_admin_l10n($input)
         {
         }
     }
@@ -43542,6 +46026,16 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
          * @return void
          */
         public function register_hooks()
+        {
+        }
+        /**
+         * Filter 'wpseo_frontend_presenters' - Allow filtering the presenter instances in or out of the request.
+         *
+         * @param array             $presenters The presenters.
+         * @param Meta_Tags_Context $context    The meta tags context for the current page.
+         * @return array Filtered presenters.
+         */
+        public function filter_frontend_presenters($presenters, $context)
         {
         }
         /**
@@ -43722,6 +46216,9 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * Adds the disabled note when the integration toggle is disabled.
          *
+         * @deprecated 20.3
+         * @codeCoverageIgnore
+         *
          * @param Yoast_Feature_Toggle $integration The integration toggle class.
          */
         public function after_integration_toggle($integration)
@@ -43834,8 +46331,8 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
          * Don't show the date in the Google preview for WooCommerce products,
          * since Google does not show dates for product pages in the search results.
          *
-         * @param array    $values Key-value map of variables we enqueue in the JavaScript of the post editor.
-         * @param \WP_Post $post   The post currently opened in the editor.
+         * @param array   $values Key-value map of variables we enqueue in the JavaScript of the post editor.
+         * @param WP_Post $post   The post currently opened in the editor.
          *
          * @return array The values, where the `metaDescriptionDate` is set to the empty string.
          */
@@ -43879,6 +46376,12 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
          */
         protected $pagination_helper;
         /**
+         * The WooCommerce helper.
+         *
+         * @var Woocommerce_Helper
+         */
+        private $woocommerce_helper;
+        /**
          * Returns the conditionals based in which this loadable should be active.
          *
          * @return array
@@ -43889,13 +46392,14 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * WooCommerce constructor.
          *
-         * @param Options_Helper             $options           The options helper.
-         * @param WPSEO_Replace_Vars         $replace_vars      The replace vars helper.
-         * @param Meta_Tags_Context_Memoizer $context_memoizer  The meta tags context memoizer.
-         * @param Indexable_Repository       $repository        The indexable repository.
-         * @param Pagination_Helper          $pagination_helper The paginataion helper.
+         * @param Options_Helper             $options            The options helper.
+         * @param WPSEO_Replace_Vars         $replace_vars       The replace vars helper.
+         * @param Meta_Tags_Context_Memoizer $context_memoizer   The meta tags context memoizer.
+         * @param Indexable_Repository       $repository         The indexable repository.
+         * @param Pagination_Helper          $pagination_helper  The paginataion helper.
+         * @param Woocommerce_Helper         $woocommerce_helper The WooCommerce helper.
          */
-        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options, \WPSEO_Replace_Vars $replace_vars, \Yoast\WP\SEO\Memoizers\Meta_Tags_Context_Memoizer $context_memoizer, \Yoast\WP\SEO\Repositories\Indexable_Repository $repository, \Yoast\WP\SEO\Helpers\Pagination_Helper $pagination_helper)
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options, \WPSEO_Replace_Vars $replace_vars, \Yoast\WP\SEO\Memoizers\Meta_Tags_Context_Memoizer $context_memoizer, \Yoast\WP\SEO\Repositories\Indexable_Repository $repository, \Yoast\WP\SEO\Helpers\Pagination_Helper $pagination_helper, \Yoast\WP\SEO\Helpers\Woocommerce_Helper $woocommerce_helper)
         {
         }
         /**
@@ -43974,14 +46478,6 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         {
         }
         /**
-         * Checks if the current page is a WooCommerce shop page.
-         *
-         * @return bool True when the page is a shop page.
-         */
-        protected function is_shop_page()
-        {
-        }
-        /**
          * Uses template for the given option name and replace the replacement variables on it.
          *
          * @param string $option_name  The option name to get the template for.
@@ -43990,14 +46486,6 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
          * @return string The rendered value.
          */
         protected function get_product_template($option_name, $shop_page_id)
-        {
-        }
-        /**
-         * Returns the id of the set WooCommerce shop page.
-         *
-         * @return int The ID of the set page.
-         */
-        protected function get_shop_page_id()
         {
         }
         /**
@@ -44032,7 +46520,7 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * The WordProof helper instance.
          *
-         * @var Wordproof_Helper $wordproof The helper instance.
+         * @var Wordproof_Helper
          */
         protected $wordproof;
         /**
@@ -44084,6 +46572,9 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * Add an explainer when the integration toggle is disabled.
          *
+         * @deprecated 20.3
+         * @codeCoverageIgnore
+         *
          * @param Yoast_Feature_Toggle $integration The integration toggle class.
          */
         public function after_integration_toggle($integration)
@@ -44114,7 +46605,7 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * The WordProof helper instance.
          *
-         * @var Wordproof_Helper $wordproof The helper instance.
+         * @var Wordproof_Helper
          */
         protected $wordproof;
         /**
@@ -44126,7 +46617,7 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * The WordProof integration constructor.
          *
-         * @param Wordproof_Helper          $wordproof The WordProof helper instance.
+         * @param Wordproof_Helper          $wordproof     The WordProof helper instance.
          * @param WPSEO_Admin_Asset_Manager $asset_manager The WPSEO admin asset manager instance.
          */
         public function __construct(\Yoast\WP\SEO\Helpers\Wordproof_Helper $wordproof, \WPSEO_Admin_Asset_Manager $asset_manager = null)
@@ -44168,19 +46659,19 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * Return the Yoast post meta key for the SDK to determine if the post should be timestamped.
          *
-         * @param array $array The array containing meta keys that should be used.
+         * @param array $meta_keys The array containing meta keys that should be used.
          * @return array
          */
-        public function add_post_meta_key($array)
+        public function add_post_meta_key($meta_keys)
         {
         }
         /**
          * Return an empty array to disable automatically timestamping selected post types.
          *
-         * @param array $array The array containing post types that should be automatically timestamped.
+         * @param array $post_types The array containing post types that should be automatically timestamped.
          * @return array
          */
-        public function wordproof_timestamp_post_types($array)
+        public function wordproof_timestamp_post_types($post_types)
         {
         }
         /**
@@ -44214,9 +46705,9 @@ namespace Yoast\WP\SEO\Integrations\Third_Party {
         /**
          * Adds async to the wordproof-uikit script.
          *
-         * @param string $tag The script tag for the enqueued script.
+         * @param string $tag    The script tag for the enqueued script.
          * @param string $handle The script's registered handle.
-         * @param string $src The script's source URL.
+         * @param string $src    The script's source URL.
          *
          * @return string The script's tag.
          *
@@ -44527,18 +47018,11 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
          */
         protected $notification_center;
         /**
-         * The notification helper.
-         *
-         * @var Notification_Helper
-         */
-        protected $notification_helper;
-        /**
          * Auto_Update constructor.
          *
          * @param Yoast_Notification_Center $notification_center The notification center.
-         * @param Notification_Helper       $notification_helper The notification helper.
          */
-        public function __construct(\Yoast_Notification_Center $notification_center, \Yoast\WP\SEO\Helpers\Notification_Helper $notification_helper)
+        public function __construct(\Yoast_Notification_Center $notification_center)
         {
         }
         /**
@@ -44554,80 +47038,11 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
         {
         }
         /**
-         * Handles the Yoast SEO auto-update notification when the user toggles the auto-update setting for WordPress Core.
-         *
-         * If it should be shown, this will be done even if the notification has been dismissed in the past.
-         *
-         * @return void
-         */
-        public function auto_update_notification_even_if_dismissed()
-        {
-        }
-        /**
-         * Handles the Yoast SEO auto-update notification on all admin pages,
-         * as well as when the user toggles the Yoast SEO auto-update setting.
-         *
-         * If it should be shown, this will only be done if the notification has not been dismissed in the past.
-         *
-         * @return void
-         */
-        public function auto_update_notification_not_if_dismissed()
-        {
-        }
-        /**
-         * Checks whether the Yoast SEO auto-update notification should be shown.
-         *
-         * @return bool Whether the notification should be shown.
-         */
-        protected function should_show_notification()
-        {
-        }
-        /**
-         * Saves the dismissal status of the notification in an option in wp_usermeta, if the notification gets dismissed.
-         *
-         * @return void
-         */
-        protected function save_dismissal_status()
-        {
-        }
-        /**
          * Removes the notification from the notification center, if it exists.
          *
          * @return void
          */
-        protected function maybe_remove_notification()
-        {
-        }
-        /**
-         * Creates the notification if it doesn't exist already.
-         *
-         * @return void
-         */
-        protected function maybe_create_notification()
-        {
-        }
-        /**
-         * Creates the notification when Yoast SEO auto-updates are enabled, if it hasn't been dismissed in the past.
-         *
-         * @return void
-         */
-        protected function maybe_create_notification_if_not_dismissed()
-        {
-        }
-        /**
-         * Checks whether auto-updates are enabled for Yoast SEO.
-         *
-         * @return bool True if they are enabled, false if not.
-         */
-        protected function yoast_auto_updates_enabled()
-        {
-        }
-        /**
-         * Returns an instance of the notification.
-         *
-         * @return Yoast_Notification The notification to show.
-         */
-        protected function notification()
+        public function remove_notification()
         {
         }
     }
@@ -44724,19 +47139,6 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
         {
         }
         /**
-         * Builds the hierarchy for a post.
-         *
-         * @deprecated 16.4
-         *
-         * @codeCoverageIgnore
-         *
-         * @param int $object_id The post id.
-         * @param int $post_type The post type.
-         */
-        public function build_post_hierarchy($object_id, $post_type)
-        {
-        }
-        /**
          * Updates the indexable hierarchy and indexable permalink.
          *
          * @param Indexable $indexable The indexable to update the hierarchy and permalink for.
@@ -44753,6 +47155,109 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
          * @return array List with object ids for the term.
          */
         protected function get_object_ids_for_term($term_id, $child_indexables)
+        {
+        }
+    }
+    /**
+     * Watches the disable-attachment key in wpseo_titles, in order to clear the permalink of the category indexables.
+     */
+    class Indexable_Attachment_Watcher implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * The indexing helper.
+         *
+         * @var Indexing_Helper
+         */
+        protected $indexing_helper;
+        /**
+         * The attachment cleanup helper.
+         *
+         * @var Attachment_Cleanup_Helper
+         */
+        protected $attachment_cleanup;
+        /**
+         * The notifications center.
+         *
+         * @var Yoast_Notification_Center
+         */
+        private $notification_center;
+        /**
+         * Returns the conditionals based on which this loadable should be active.
+         *
+         * @return array
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Indexable_Attachment_Watcher constructor.
+         *
+         * @param Indexing_Helper           $indexing_helper     The indexing helper.
+         * @param Attachment_Cleanup_Helper $attachment_cleanup  The attachment cleanup helper.
+         * @param Yoast_Notification_Center $notification_center The notification center.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Indexing_Helper $indexing_helper, \Yoast\WP\SEO\Helpers\Attachment_Cleanup_Helper $attachment_cleanup, \Yoast_Notification_Center $notification_center)
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Checks if the disable-attachment key in wpseo_titles has a change in value, and if so,
+         * either it cleans up attachment indexables when it has been toggled to true,
+         * or it starts displaying a notification for the user to start a new SEO optimization.
+         *
+         * @param array $old_value The old value of the wpseo_titles option.
+         * @param array $new_value The new value of the wpseo_titles option.
+         *
+         * @return void
+         */
+        public function check_option($old_value, $new_value)
+        {
+        }
+    }
+    /**
+     * Watches the `wpseo_titles` option for changes to the author archive settings.
+     */
+    class Indexable_Author_Archive_Watcher implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * Check if the author archives are disabled whenever the `wpseo_titles` option
+         * changes.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * This watcher should only be run when the migrations have been run.
+         * (Otherwise there may not be an indexable table to clean).
+         *
+         * @return string[] The conditionals.
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Reschedule the indexable cleanup routine if the author archives are disabled.
+         * to make sure that all authors are removed from the indexables table.
+         *
+         * When author archives are disabled, they can never be indexed.
+         *
+         * @param array $old_value The old `wpseo_titles` option value.
+         * @param array $new_value The new `wpseo_titles` option value.
+         *
+         * @return void
+         */
+        public function reschedule_indexable_cleanup_when_author_archives_are_disabled($old_value, $new_value)
         {
         }
     }
@@ -44816,6 +47321,28 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
          * @return void
          */
         public function build_indexable($user_id)
+        {
+        }
+        /**
+         * Handles the case in which an author is deleted.
+         *
+         * @param int      $user_id     User ID.
+         * @param int|null $new_user_id The ID of the user the old author's posts are reassigned to.
+         *
+         * @return void
+         */
+        public function handle_user_delete($user_id, $new_user_id = null)
+        {
+        }
+        /**
+         * Reassigns the indexables of a user to another user.
+         *
+         * @param int $user_id     The user ID.
+         * @param int $new_user_id The user ID to reassign the indexables to.
+         *
+         * @return void
+         */
+        public function maybe_reassign_user_indexables($user_id, $new_user_id)
         {
         }
     }
@@ -45334,6 +47861,89 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
         }
     }
     /**
+     * Post type change watcher.
+     */
+    class Indexable_Post_Type_Change_Watcher implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * The indexing helper.
+         *
+         * @var Indexing_Helper
+         */
+        protected $indexing_helper;
+        /**
+         * Holds the Options_Helper instance.
+         *
+         * @var Options_Helper
+         */
+        private $options;
+        /**
+         * Holds the Post_Type_Helper instance.
+         *
+         * @var Post_Type_Helper
+         */
+        private $post_type_helper;
+        /**
+         * The notifications center.
+         *
+         * @var Yoast_Notification_Center
+         */
+        private $notification_center;
+        /**
+         * Returns the conditionals based on which this loadable should be active.
+         *
+         * @return array
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Indexable_Post_Type_Change_Watcher constructor.
+         *
+         * @param Options_Helper            $options             The options helper.
+         * @param Indexing_Helper           $indexing_helper     The indexing helper.
+         * @param Post_Type_Helper          $post_type_helper    The post_typehelper.
+         * @param Yoast_Notification_Center $notification_center The notification center.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Options_Helper $options, \Yoast\WP\SEO\Helpers\Indexing_Helper $indexing_helper, \Yoast\WP\SEO\Helpers\Post_Type_Helper $post_type_helper, \Yoast_Notification_Center $notification_center)
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Checks if one or more post types change visibility.
+         *
+         * @return void
+         */
+        public function check_post_types_public_availability()
+        {
+        }
+        /**
+         * Decides if a notification should be added in the notification center.
+         *
+         * @return void
+         */
+        private function maybe_add_notification()
+        {
+        }
+        /**
+         * Adds a notification to be shown on the next page request since posts are updated in an ajax request.
+         *
+         * @return void
+         */
+        private function add_notification()
+        {
+        }
+    }
+    /**
      * WordPress Post watcher.
      *
      * Fills the Indexable according to Post data.
@@ -45449,6 +48059,18 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
          * @param Indexable $indexable The indexable to check.
          */
         protected function update_has_public_posts($indexable)
+        {
+        }
+        /**
+         * Reschedule indexable cleanup if the author does not have any public posts.
+         * This should remove the author from the indexable table, since we do not
+         * want to store authors without public facing posts in the table.
+         *
+         * @param Indexable $author_indexable The author indexable.
+         *
+         * @return void
+         */
+        protected function reschedule_cleanup_if_author_has_no_posts($author_indexable)
         {
         }
         /**
@@ -45598,6 +48220,91 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
          * @return void
          */
         public function build_indexable($type)
+        {
+        }
+    }
+    /**
+     * Taxonomy watcher.
+     *
+     * Responds to changes in taxonomies public availability.
+     */
+    class Indexable_Taxonomy_Change_Watcher implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        /**
+         * The indexing helper.
+         *
+         * @var Indexing_Helper
+         */
+        protected $indexing_helper;
+        /**
+         * Holds the Options_Helper instance.
+         *
+         * @var Options_Helper
+         */
+        private $options;
+        /**
+         * Holds the Taxonomy_Helper instance.
+         *
+         * @var Taxonomy_Helper
+         */
+        private $taxonomy_helper;
+        /**
+         * The notifications center.
+         *
+         * @var Yoast_Notification_Center
+         */
+        private $notification_center;
+        /**
+         * Returns the conditionals based on which this loadable should be active.
+         *
+         * @return array
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Indexable_Taxonomy_Change_Watcher constructor.
+         *
+         * @param Indexing_Helper           $indexing_helper     The indexing helper.
+         * @param Options_Helper            $options             The options helper.
+         * @param Taxonomy_Helper           $taxonomy_helper     The taxonomy helper.
+         * @param Yoast_Notification_Center $notification_center The notification center.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Indexing_Helper $indexing_helper, \Yoast\WP\SEO\Helpers\Options_Helper $options, \Yoast\WP\SEO\Helpers\Taxonomy_Helper $taxonomy_helper, \Yoast_Notification_Center $notification_center)
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * This is the place to register hooks and filters.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Checks if one or more taxonomies change visibility.
+         *
+         * @return void
+         */
+        public function check_taxonomy_public_availability()
+        {
+        }
+        /**
+         * Decides if a notification should be added in the notification center.
+         *
+         * @return void
+         */
+        private function maybe_add_notification()
+        {
+        }
+        /**
+         * Adds a notification to be shown on the next page request since posts are updated in an ajax request.
+         *
+         * @return void
+         */
+        private function add_notification()
         {
         }
     }
@@ -45809,6 +48516,17 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
         {
         }
         /**
+         * Checks if the usage tracking feature is toggled; if so, set an option to stop us from messing with it.
+         *
+         * @param array $old_value The old value of the option.
+         * @param array $new_value The new value of the option.
+         *
+         * @return bool Whether the option is set.
+         */
+        public function check_toggle_usage_tracking($old_value, $new_value)
+        {
+        }
+        /**
          * Checks if the passed integration is disabled; if so, deletes the tokens.
          *
          * We delete the tokens if the integration is disabled, no matter if
@@ -46017,6 +48735,152 @@ namespace Yoast\WP\SEO\Integrations\Watchers {
         {
         }
     }
+    /**
+     * Shows a notification for users who have access for robots disabled.
+     *
+     * @class Search_Engines_Discouraged_Watcher
+     */
+    class Search_Engines_Discouraged_Watcher implements \Yoast\WP\SEO\Integrations\Integration_Interface
+    {
+        use \Yoast\WP\SEO\Conditionals\No_Conditionals;
+        /**
+         * The notification ID.
+         */
+        const NOTIFICATION_ID = 'wpseo-search-engines-discouraged';
+        /**
+         * The Yoast notification center.
+         *
+         * @var Yoast_Notification_Center
+         */
+        protected $notification_center;
+        /**
+         * The notification helper.
+         *
+         * @var Notification_Helper
+         */
+        protected $notification_helper;
+        /**
+         * The search engines discouraged presenter.
+         *
+         * @var Search_Engines_Discouraged_Presenter
+         */
+        protected $presenter;
+        /**
+         * The current page helper.
+         *
+         * @var Current_Page_Helper
+         */
+        protected $current_page_helper;
+        /**
+         * The options helper.
+         *
+         * @var Options_Helper
+         */
+        protected $options_helper;
+        /**
+         * The capability helper.
+         *
+         * @var Capability_Helper
+         */
+        protected $capability_helper;
+        /**
+         * Search_Engines_Discouraged_Watcher constructor.
+         *
+         * @param Yoast_Notification_Center $notification_center The notification center.
+         * @param Notification_Helper       $notification_helper The notification helper.
+         * @param Current_Page_Helper       $current_page_helper The current page helper.
+         * @param Options_Helper            $options_helper      The options helper.
+         * @param Capability_Helper         $capability_helper   The capability helper.
+         */
+        public function __construct(\Yoast_Notification_Center $notification_center, \Yoast\WP\SEO\Helpers\Notification_Helper $notification_helper, \Yoast\WP\SEO\Helpers\Current_Page_Helper $current_page_helper, \Yoast\WP\SEO\Helpers\Options_Helper $options_helper, \Yoast\WP\SEO\Helpers\Capability_Helper $capability_helper)
+        {
+        }
+        /**
+         * Initializes the integration.
+         *
+         * On admin_init, it is checked whether the notification about search engines being discouraged should be shown.
+         * On admin_notices, the notice about the search engines being discouraged will be shown when necessary.
+         *
+         * @return void
+         */
+        public function register_hooks()
+        {
+        }
+        /**
+         * Manage the search engines discouraged notification.
+         *
+         * Shows the notification if needed and deletes it if needed.
+         *
+         * @return void
+         */
+        public function manage_search_engines_discouraged_notification()
+        {
+        }
+        /**
+         * Show the search engine discouraged notice when needed.
+         *
+         * @return void
+         */
+        public function maybe_show_search_engines_discouraged_notice()
+        {
+        }
+        /**
+         * Whether the search engines discouraged notification should be shown.
+         *
+         * @return bool
+         */
+        protected function should_show_search_engines_discouraged_notification()
+        {
+        }
+        /**
+         * Remove the search engines discouraged notification if it exists.
+         *
+         * @return void
+         */
+        protected function remove_search_engines_discouraged_notification_if_exists()
+        {
+        }
+        /**
+         * Add the search engines discouraged notification if it does not exist yet.
+         *
+         * @return void
+         */
+        protected function maybe_add_search_engines_discouraged_notification()
+        {
+        }
+        /**
+         * Checks whether search engines are discouraged from indexing the site.
+         *
+         * @return bool Whether search engines are discouraged from indexing the site.
+         */
+        protected function search_engines_are_discouraged()
+        {
+        }
+        /**
+         * Whether the search engines notice should be shown.
+         *
+         * @return bool
+         */
+        protected function should_show_search_engines_discouraged_notice()
+        {
+        }
+        /**
+         * Show the search engines discouraged notice.
+         *
+         * @return void
+         */
+        protected function show_search_engines_discouraged_notice()
+        {
+        }
+        /**
+         * Returns an instance of the notification.
+         *
+         * @return Yoast_Notification The notification to show.
+         */
+        protected function notification()
+        {
+        }
+    }
 }
 namespace Yoast\WP\SEO\Integrations {
     /**
@@ -46211,13 +49075,26 @@ namespace Yoast\WP\SEO {
         {
         }
         /**
-         * Checks if all conditionals of a given integration are met.
+         * Checks if all conditionals of a given loadable are met.
          *
-         * @param Loadable_Interface $integration_class The class name of the integration.
+         * @param string $loadable_class The class name of the loadable.
          *
-         * @return bool Whether or not all conditionals of the integration are met.
+         * @return bool Whether all conditionals of the loadable are met.
          */
-        protected function conditionals_are_met($integration_class)
+        protected function conditionals_are_met($loadable_class)
+        {
+        }
+        /**
+         * Gets a class from the container.
+         *
+         * @param string $class The class name.
+         *
+         * @return object|null The class or, in production environments, null if it does not exist.
+         *
+         * @throws Throwable If the class does not exist in development environments.
+         * @throws Exception If the class does not exist in development environments.
+         */
+        protected function get_class($class)
         {
         }
     }
@@ -46939,15 +49816,6 @@ namespace Yoast\WP\SEO\Models {
          * @var array
          */
         protected $int_columns = ['object_id', 'internal_link_count', 'incoming_link_count'];
-        /**
-         * SEO_Meta constructor.
-         *
-         * @deprecated 14.8
-         * @codeCoverageIgnore
-         */
-        public function __construct()
-        {
-        }
     }
 }
 namespace Yoast\WP\SEO\Presentations {
@@ -46959,6 +49827,8 @@ namespace Yoast\WP\SEO\Presentations {
      * @property Indexable         $model      The indexable.
      * @property Pagination_Helper $pagination The pagination helper. Should be defined in the parent
      *                                         class because of trait issues in PHP 5.6.
+     *                                         For a detailed explanation of the issue, see
+     *                                         {@link https://github.com/Yoast/wordpress-seo/pull/18820}.
      */
     trait Archive_Adjacent
     {
@@ -46996,35 +49866,39 @@ namespace Yoast\WP\SEO\Presentations {
      *
      * Presentation object for indexables.
      *
-     * @property string $title
-     * @property string $meta_description
-     * @property array  $robots
-     * @property string $canonical
-     * @property string $rel_next
-     * @property string $rel_prev
-     * @property string $open_graph_type
-     * @property string $open_graph_title
-     * @property string $open_graph_description
-     * @property array  $open_graph_images
-     * @property string $open_graph_url
-     * @property string $open_graph_site_name
-     * @property string $open_graph_article_publisher
-     * @property string $open_graph_article_author
-     * @property string $open_graph_article_published_time
-     * @property string $open_graph_article_modified_time
-     * @property string $open_graph_locale
-     * @property string $open_graph_fb_app_id
-     * @property string $permalink
-     * @property array  $schema
-     * @property string $twitter_card
-     * @property string $twitter_title
-     * @property string $twitter_description
-     * @property string $twitter_image
-     * @property string $twitter_creator
-     * @property string $twitter_site
-     * @property array  $source
-     * @property array  $breadcrumbs
-     * @property int    $estimated_reading_time_minutes
+     * @property string       $title
+     * @property string       $meta_description
+     * @property array        $robots
+     * @property string       $canonical
+     * @property string       $rel_next
+     * @property string       $rel_prev
+     * @property string       $open_graph_type
+     * @property string       $open_graph_title
+     * @property string       $open_graph_description
+     * @property array        $open_graph_images
+     * @property int          $open_graph_image_id
+     * @property string       $open_graph_image
+     * @property string       $open_graph_url
+     * @property string       $open_graph_site_name
+     * @property string       $open_graph_article_publisher
+     * @property string       $open_graph_article_author
+     * @property string       $open_graph_article_published_time
+     * @property string       $open_graph_article_modified_time
+     * @property string       $open_graph_locale
+     * @property string       $open_graph_fb_app_id
+     * @property string       $permalink
+     * @property array        $schema
+     * @property string       $twitter_card
+     * @property string       $twitter_title
+     * @property string       $twitter_description
+     * @property string       $twitter_image
+     * @property string       $twitter_creator
+     * @property string       $twitter_site
+     * @property object|array $source
+     * @property array        $breadcrumbs
+     * @property int          $estimated_reading_time_minutes
+     * @property array        $googlebot
+     * @property array        $bingbot
      */
     class Indexable_Presentation extends \Yoast\WP\SEO\Presentations\Abstract_Presentation
     {
@@ -47200,28 +50074,6 @@ namespace Yoast\WP\SEO\Presentations {
         {
         }
         /**
-         * Generates the robots value for the googlebot tag.
-         *
-         * @deprecated 14.9 Values merged into the robots meta tag.
-         * @codeCoverageIgnore
-         *
-         * @return array The robots value with opt-in snippets.
-         */
-        public function generate_googlebot()
-        {
-        }
-        /**
-         * Generates the value for the bingbot tag.
-         *
-         * @deprecated 14.9 Values merged into the robots meta tag.
-         * @codeCoverageIgnore
-         *
-         * @return array The robots value with opt-in snippets.
-         */
-        public function generate_bingbot()
-        {
-        }
-        /**
          * Generates the canonical.
          *
          * @return string The canonical.
@@ -47339,17 +50191,6 @@ namespace Yoast\WP\SEO\Presentations {
          * @return string The open graph locale.
          */
         public function generate_open_graph_locale()
-        {
-        }
-        /**
-         * Generates the open graph Facebook app ID.
-         *
-         * @deprecated 15.5
-         * @codeCoverageIgnore
-         *
-         * @return string The open graph Facebook app ID.
-         */
-        public function generate_open_graph_fb_app_id()
         {
         }
         /**
@@ -47475,6 +50316,12 @@ namespace Yoast\WP\SEO\Presentations {
          * @var Author_Archive_Helper
          */
         protected $author_archive;
+        /**
+         * Holds the Pagination_Helper instance.
+         *
+         * @var Pagination_Helper
+         */
+        protected $pagination;
         /**
          * Indexable_Author_Archive_Presentation constructor.
          *
@@ -47646,6 +50493,12 @@ namespace Yoast\WP\SEO\Presentations {
     {
         use \Yoast\WP\SEO\Presentations\Archive_Adjacent;
         /**
+         * Holds the Pagination_Helper instance.
+         *
+         * @var Pagination_Helper
+         */
+        protected $pagination;
+        /**
          * Generates the canonical.
          *
          * @return string The canonical.
@@ -47678,6 +50531,12 @@ namespace Yoast\WP\SEO\Presentations {
     class Indexable_Post_Type_Archive_Presentation extends \Yoast\WP\SEO\Presentations\Indexable_Presentation
     {
         use \Yoast\WP\SEO\Presentations\Archive_Adjacent;
+        /**
+         * Holds the Pagination_Helper instance.
+         *
+         * @var Pagination_Helper
+         */
+        protected $pagination;
         /**
          * Generates the canonical.
          *
@@ -48022,6 +50881,12 @@ namespace Yoast\WP\SEO\Presentations {
     {
         use \Yoast\WP\SEO\Presentations\Archive_Adjacent;
         /**
+         * Holds the Pagination_Helper instance.
+         *
+         * @var Pagination_Helper
+         */
+        protected $pagination;
+        /**
          * Holds the WP query wrapper instance.
          *
          * @var WP_Query_Wrapper
@@ -48208,9 +51073,9 @@ namespace Yoast\WP\SEO\Presenters {
      */
     abstract class Abstract_Indexable_Tag_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Indexable_Presenter
     {
-        const META_PROPERTY_CONTENT = '<meta property="%2$s" content="%1$s" />';
-        const META_NAME_CONTENT = '<meta name="%2$s" content="%1$s" />';
-        const LINK_REL_HREF = '<link rel="%2$s" href="%1$s" />';
+        const META_PROPERTY_CONTENT = '<meta property="%2$s" content="%1$s"%3$s />';
+        const META_NAME_CONTENT = '<meta name="%2$s" content="%1$s"%3$s />';
+        const LINK_REL_HREF = '<link rel="%2$s" href="%1$s"%3$s />';
         const DEFAULT_TAG_FORMAT = self::META_NAME_CONTENT;
         /**
          * The tag format including placeholders.
@@ -48286,28 +51151,6 @@ namespace Yoast\WP\SEO\Presenters\Admin {
          * @return string The styled Alert.
          */
         public function present()
-        {
-        }
-    }
-    /**
-     * Class Auto_Update_Notification_Presenter.
-     */
-    class Auto_Update_Notification_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Presenter
-    {
-        /**
-         * Returns the notification as an HTML string.
-         *
-         * @return string The notification in an HTML string representation.
-         */
-        public function present()
-        {
-        }
-        /**
-         * Returns the message to show.
-         *
-         * @return string The message.
-         */
-        protected function get_message()
         {
         }
     }
@@ -48938,46 +51781,44 @@ namespace Yoast\WP\SEO\Presenters\Admin {
         {
         }
     }
-}
-namespace Yoast\WP\SEO\Presenters {
     /**
-     * Presenter class for the bingbot output.
+     * Class Search_Engines_Discouraged_Presenter.
      */
-    class Bingbot_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Indexable_Presenter
+    class Search_Engines_Discouraged_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Presenter
     {
         /**
-         * Returns the bingbot output.
+         * Returns the notification as an HTML string.
          *
-         * @deprecated 14.9 Values merged into the robots meta tag.
-         * @codeCoverageIgnore
-         *
-         * @return string The bingbot output tag.
+         * @return string The notification in an HTML string representation.
          */
         public function present()
         {
         }
         /**
-         * Gets the raw value of a presentation.
+         * Returns the message to show.
          *
-         * @deprecated 14.9 Values merged into the robots meta tag.
-         * @codeCoverageIgnore
-         *
-         * @return array The raw value.
+         * @return string The message.
          */
-        public function get()
-        {
-        }
-        /**
-         * Run the bingbot output content through the `wpseo_bingbot` filter.
-         *
-         * @param string $bingbot The meta bingbot output to filter.
-         *
-         * @return string The filtered meta bingbot output.
-         */
-        private function filter($bingbot)
+        protected function get_message()
         {
         }
     }
+    /**
+     * Presenter class for the Yoast SEO sidebar.
+     */
+    class Sidebar_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Presenter
+    {
+        /**
+         * Presents the sidebar.
+         *
+         * @return string The sidebar HTML.
+         */
+        public function present()
+        {
+        }
+    }
+}
+namespace Yoast\WP\SEO\Presenters {
     /**
      * Presenter class for the breadcrumbs.
      */
@@ -49183,44 +52024,6 @@ namespace Yoast\WP\SEO\Presenters\Debug {
     }
 }
 namespace Yoast\WP\SEO\Presenters {
-    /**
-     * Presenter class for the googlebot output.
-     */
-    class Googlebot_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Indexable_Presenter
-    {
-        /**
-         * Returns the googlebot output.
-         *
-         * @deprecated 14.9 Values merged into the robots meta tag.
-         * @codeCoverageIgnore
-         *
-         * @return string The googlebot output tag.
-         */
-        public function present()
-        {
-        }
-        /**
-         * Gets the raw value of a presentation.
-         *
-         * @deprecated 14.9 Values merged into the robots meta tag.
-         * @codeCoverageIgnore
-         *
-         * @return array The raw value.
-         */
-        public function get()
-        {
-        }
-        /**
-         * Run the googlebot output content through the `wpseo_googlebot` filter.
-         *
-         * @param string $googlebot The meta googlebot output to filter.
-         *
-         * @return string The filtered meta googlebot output.
-         */
-        private function filter($googlebot)
-        {
-        }
-    }
     /**
      * Presenter class for the meta author tag.
      */
@@ -49702,6 +52505,103 @@ namespace Yoast\WP\SEO\Presenters {
         }
     }
     /**
+     * Presenter class for the robots.txt file helper.
+     */
+    class Robots_Txt_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Presenter
+    {
+        const YOAST_OUTPUT_BEFORE_COMMENT = '# START YOAST BLOCK' . \PHP_EOL . '# ---------------------------' . \PHP_EOL;
+        const YOAST_OUTPUT_AFTER_COMMENT = '# ---------------------------' . \PHP_EOL . '# END YOAST BLOCK';
+        /**
+         * Text to be outputted for the allow directive.
+         *
+         * @var string
+         */
+        const ALLOW_DIRECTIVE = 'Allow';
+        /**
+         * Text to be outputted for the disallow directive.
+         *
+         * @var string
+         */
+        const DISALLOW_DIRECTIVE = 'Disallow';
+        /**
+         * Text to be outputted for the user-agent rule.
+         *
+         * @var string
+         */
+        const USER_AGENT_FIELD = 'User-agent';
+        /**
+         * Text to be outputted for the sitemap rule.
+         *
+         * @var string
+         */
+        const SITEMAP_FIELD = 'Sitemap';
+        /**
+         * Holds the Robots_Txt_Helper.
+         *
+         * @var Robots_Txt_Helper
+         */
+        protected $robots_txt_helper;
+        /**
+         * Constructor.
+         *
+         * @param Robots_Txt_Helper $robots_txt_helper The robots txt helper.
+         */
+        public function __construct(\Yoast\WP\SEO\Helpers\Robots_Txt_Helper $robots_txt_helper)
+        {
+        }
+        /**
+         * Generate content to be placed in a robots.txt file.
+         *
+         * @return string Content to be placed in a robots.txt file.
+         */
+        public function present()
+        {
+        }
+        /**
+         * Adds user agent directives to the robots txt output string.
+         *
+         * @param array  $user_agents        The list if available user agents.
+         * @param string $robots_txt_content The current working robots txt string.
+         *
+         * @return string
+         */
+        private function add_user_agent_directives($user_agents, $robots_txt_content)
+        {
+        }
+        /**
+         *  Adds user agent directives path content to the robots txt output string.
+         *
+         * @param string $robots_txt_content   The current working robots txt string.
+         * @param array  $paths                The list of paths for which to add a txt entry.
+         * @param string $directive_identifier The identifier for the directives. (Disallow of Allow).
+         *
+         * @return string
+         */
+        private function add_directive_path($robots_txt_content, $paths, $directive_identifier)
+        {
+        }
+        /**
+         * Handles adding user agent content to the robots txt content if there is any.
+         *
+         * @param string $robots_txt_content The current working robots txt string.
+         *
+         * @return string
+         */
+        private function handle_user_agents($robots_txt_content)
+        {
+        }
+        /**
+         * Handles adding sitemap content to the robots txt content.
+         *
+         * @param string $robots_txt_content The current working robots txt string.
+         *
+         * @return string
+         */
+        private function handle_site_maps($robots_txt_content)
+        {
+        }
+    }
+    /**
      * Presenter class for the schema object.
      */
     class Schema_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Indexable_Presenter
@@ -49726,6 +52626,41 @@ namespace Yoast\WP\SEO\Presenters {
          * @return array The raw value.
          */
         public function get()
+        {
+        }
+    }
+    /**
+     * Presenter class for a score icon.
+     */
+    class Score_Icon_Presenter extends \Yoast\WP\SEO\Presenters\Abstract_Presenter
+    {
+        /**
+         * Holds the title.
+         *
+         * @var string
+         */
+        protected $title;
+        /**
+         * Holds the CSS class.
+         *
+         * @var string
+         */
+        protected $css_class;
+        /**
+         * Constructs a Score_Icon_Presenter.
+         *
+         * @param string $title     The title and screen reader text.
+         * @param string $css_class The CSS class.
+         */
+        public function __construct($title, $css_class)
+        {
+        }
+        /**
+         * Presents the score icon.
+         *
+         * @return string The score icon.
+         */
+        public function present()
         {
         }
     }
@@ -50246,7 +53181,7 @@ namespace Yoast\WP\SEO\Repositories {
          * This may be the result of the indexable not existing or of being unable to determine what type of page the
          * current page is.
          *
-         * @return bool|Indexable The indexable, false if none could be found.
+         * @return bool|Indexable The indexable. If no indexable is found returns an empty indexable. Returns false if there is a database error.
          */
         public function for_current_page()
         {
@@ -50425,6 +53360,14 @@ namespace Yoast\WP\SEO\Repositories {
         public function reset_permalink($type = null, $subtype = null)
         {
         }
+        /**
+         * Gets the total number of stored indexables.
+         *
+         * @return int The total number of stored indexables.
+         */
+        public function get_total_number_of_indexables()
+        {
+        }
     }
     /**
      * Class Primary_Term_Repository.
@@ -50483,6 +53426,37 @@ namespace Yoast\WP\SEO\Repositories {
          * @return SEO_Links[] The SEO Links.
          */
         public function find_all_by_indexable_id($indexable_id)
+        {
+        }
+        /**
+         * Retrieves an SEO Link by url.
+         *
+         * @param string $url The SEO Link's url.
+         *
+         * @return SEO_Links|false The SEO Link, or false if none found.
+         */
+        public function find_one_by_url($url)
+        {
+        }
+        /**
+         * Retrieves all SEO Links by target post ID.
+         *
+         * @param string $target_post_id The SEO Link's target post ID.
+         *
+         * @return SEO_Links[] The SEO Links.
+         */
+        public function find_all_by_target_post_id($target_post_id)
+        {
+        }
+        /**
+         * Updates the ID of the target indexable of a link.
+         *
+         * @param int $link_id             The ID of the link to be updated.
+         * @param int $target_indexable_id The ID of the target indexable.
+         *
+         * @return bool Whether or not the update was succeful.
+         */
+        public function update_target_indexable_id($link_id, $target_indexable_id)
         {
         }
         /**
@@ -50553,32 +53527,6 @@ namespace Yoast\WP\SEO\Repositories {
          * @return bool Whether or not the insert was succesfull.
          */
         public function insert_many($links)
-        {
-        }
-    }
-    /**
-     * Class SEO_Meta_Repository.
-     */
-    class SEO_Meta_Repository
-    {
-        /**
-         * SEO_Meta_Repository constructor.
-         *
-         * @deprecated 14.8
-         * @codeCoverageIgnore
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Starts a query for this repository.
-         *
-         * @deprecated 14.8
-         * @codeCoverageIgnore
-         *
-         * @return ORM
-         */
-        public function query()
         {
         }
     }
@@ -50726,6 +53674,7 @@ namespace Yoast\WP\SEO\Routes {
         /**
          * Represents a person's social profiles route.
          *
+         * @deprecated 20.2
          * @var string
          */
         const PERSON_SOCIAL_PROFILES_ROUTE = '/person_social_profiles';
@@ -50796,26 +53745,6 @@ namespace Yoast\WP\SEO\Routes {
         {
         }
         /**
-         * Gets a person's social profiles values.
-         *
-         * @param WP_REST_Request $request The request.
-         *
-         * @return WP_REST_Response
-         */
-        public function get_person_social_profiles(\WP_REST_Request $request)
-        {
-        }
-        /**
-         * Sets a person's social profiles values.
-         *
-         * @param WP_REST_Request $request The request.
-         *
-         * @return WP_REST_Response
-         */
-        public function set_person_social_profiles(\WP_REST_Request $request)
-        {
-        }
-        /**
          * Checks if the current user has the correct capability to edit a specific user.
          *
          * @param WP_REST_Request $request The request.
@@ -50877,6 +53806,33 @@ namespace Yoast\WP\SEO\Routes {
          * @return WP_REST_Response the state of the configuration.
          */
         public function get_configuration_state()
+        {
+        }
+        /*** DEPRECATED METHODS ***/
+        /**
+         * Gets a person's social profiles values.
+         *
+         * @deprecated 20.2
+         * @codeCoverageIgnore
+         *
+         * @param WP_REST_Request $request The request.
+         *
+         * @return WP_REST_Response
+         */
+        public function get_person_social_profiles(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Sets a person's social profiles values.
+         *
+         * @deprecated 20.2
+         * @codeCoverageIgnore
+         *
+         * @param WP_REST_Request $request The request.
+         *
+         * @return WP_REST_Response
+         */
+        public function set_person_social_profiles(\WP_REST_Request $request)
         {
         }
     }
@@ -51343,41 +54299,11 @@ namespace Yoast\WP\SEO\Routes {
          */
         const INTEGRATIONS_ROUTE = '/integrations';
         /**
-         * Represents a route to set the state of Semrush integration.
+         * Represents a route to set the state of an integration.
          *
          * @var string
          */
-        const SET_SEMRUSH_ACTIVE_ROUTE = '/set_semrush_active';
-        /**
-         * Represents a route to set the state of Wincher integration.
-         *
-         * @var string
-         */
-        const SET_WINCHER_ACTIVE_ROUTE = '/set_wincher_active';
-        /**
-         * Represents a route to set the state of Ryte integration.
-         *
-         * @var string
-         */
-        const SET_RYTE_ACTIVE_ROUTE = '/set_ryte_active';
-        /**
-         * Represents a route to set the state of WordProof integration.
-         *
-         * @var string
-         */
-        const SET_WORDPROOF_ACTIVE_ROUTE = '/set_wordproof_active';
-        /**
-         * Represents a route to set the state of Zapier integration.
-         *
-         * @var string
-         */
-        const SET_ZAPIER_ACTIVE_ROUTE = '/set_zapier_active';
-        /**
-         * Represents a route to set the state of Algolia integration.
-         *
-         * @var string
-         */
-        const SET_ALGOLIA_ACTIVE_ROUTE = '/set_algolia_active';
+        const SET_ACTIVE_ROUTE = '/set_active';
         /**
          *  The integrations action.
          *
@@ -51409,63 +54335,54 @@ namespace Yoast\WP\SEO\Routes {
         {
         }
         /**
-         * Sets Semrush integration state.
+         * Sets integration state.
          *
          * @param WP_REST_Request $request The request.
          *
          * @return WP_REST_Response
          */
-        public function set_semrush_active(\WP_REST_Request $request)
+        public function set_integration_active(\WP_REST_Request $request)
+        {
+        }
+    }
+    /**
+     * Meta_Search_Route class
+     */
+    class Meta_Search_Route implements \Yoast\WP\SEO\Routes\Route_Interface
+    {
+        use \Yoast\WP\SEO\Conditionals\No_Conditionals;
+        /**
+         * Represents meta search route.
+         *
+         * @var string
+         */
+        const META_SEARCH_ROUTE = '/meta/search';
+        /**
+         * Registers routes with WordPress.
+         *
+         * @return void
+         */
+        public function register_routes()
         {
         }
         /**
-         * Sets Wincher integration state.
+         * Performs the permission check.
          *
          * @param WP_REST_Request $request The request.
          *
-         * @return WP_REST_Response
+         * @return bool
          */
-        public function set_wincher_active(\WP_REST_Request $request)
+        public function permission_check($request)
         {
         }
         /**
-         * Sets Ryte integration state.
+         * Searches meta fields of a given post.
          *
-         * @param WP_REST_Request $request The request.
-         *
-         * @return WP_REST_Response
-         */
-        public function set_ryte_active(\WP_REST_Request $request)
-        {
-        }
-        /**
-         * Sets WordProof integration state.
-         *
-         * @param WP_REST_Request $request The request.
+         * @param WP_REST_Request $request The REST request.
          *
          * @return WP_REST_Response
          */
-        public function set_wordproof_active(\WP_REST_Request $request)
-        {
-        }
-        /**
-         * Sets Zapier integration state.
-         *
-         * @param WP_REST_Request $request The request.
-         *
-         * @return WP_REST_Response
-         */
-        public function set_zapier_active(\WP_REST_Request $request)
-        {
-        }
-        /**
-         * Sets Algolia integration state.
-         *
-         * @param WP_REST_Request $request The request.
-         *
-         * @return WP_REST_Response
-         */
-        public function set_algolia_active(\WP_REST_Request $request)
+        public function search_meta($request)
         {
         }
     }
@@ -51620,6 +54537,102 @@ namespace Yoast\WP\SEO\Routes {
          * @return bool Whether or not the current user is allowed to use SEMrush.
          */
         public function can_use_semrush()
+        {
+        }
+    }
+    /**
+     * Settings_Introduction_Route class.
+     */
+    class Settings_Introduction_Route implements \Yoast\WP\SEO\Routes\Route_Interface
+    {
+        /**
+         * Represents the Settings_Introduction_Route prefix.
+         *
+         * @var string
+         */
+        const ROUTE_PREFIX = '/settings_introduction';
+        /**
+         * Represents the Wistia embed permission.
+         *
+         * @var string
+         */
+        const WISTIA_EMBED_PERMISSION = self::ROUTE_PREFIX . '/wistia_embed_permission';
+        /**
+         * Represents showing the introduction.
+         *
+         * @var string
+         */
+        const SHOW = self::ROUTE_PREFIX . '/show';
+        /**
+         * Holds the Settings_Introduction_Action.
+         *
+         * @var Settings_Introduction_Action
+         */
+        private $settings_introduction_action;
+        /**
+         * Constructs Settings_Introduction_Route.
+         *
+         * @param Settings_Introduction_Action $settings_introduction_action The $settings_introduction_action.
+         */
+        public function __construct(\Yoast\WP\SEO\Actions\Settings_Introduction_Action $settings_introduction_action)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public static function get_conditionals()
+        {
+        }
+        /**
+         * Permission callback.
+         *
+         * @return bool True when user has 'wpseo_manage_options' permission.
+         */
+        public static function permission_manage_options()
+        {
+        }
+        /**
+         * Registers routes with WordPress.
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Gets the value of the wistia embed permission.
+         *
+         * @return WP_REST_Response|WP_Error The response, or an error.
+         */
+        public function get_wistia_embed_permission()
+        {
+        }
+        /**
+         * Sets the value of the wistia embed permission.
+         *
+         * @param WP_REST_Request $request The request object.
+         *
+         * @return WP_REST_Response|WP_Error The success or failure response.
+         */
+        public function set_wistia_embed_permission(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Gets the value of show.
+         *
+         * @return WP_REST_Response|WP_Error The response, or an error.
+         */
+        public function get_show()
+        {
+        }
+        /**
+         * Sets the value of show.
+         *
+         * @param WP_REST_Request $request The request object.
+         *
+         * @return WP_REST_Response|WP_Error The success or failure response.
+         */
+        public function set_show(\WP_REST_Request $request)
         {
         }
     }
@@ -52022,221 +55035,6 @@ namespace Yoast\WP\SEO\Routes {
         }
     }
 }
-namespace Yoast\WP\SEO\Schema_Templates\Assets {
-    /**
-     * Class Icons.
-     *
-     * Provides SVG icons as strings.
-     */
-    class Icons
-    {
-        /**
-         * Represents the start of the SVG tag.
-         */
-        const SVG_START_TAG = "<svg xmlns='http://www.w3.org/2000/svg' fill='none' style='fill:none' viewBox='0 0 24 24' stroke='currentColor' height='%SIZE%' width='%SIZE%' >";
-        /**
-         * The default height and width of an icon.
-         */
-        const SIZE_DEFAULT = 24;
-        /**
-         * The height and width of an icon in a variation picker.
-         */
-        const SIZE_VARIATION = 36;
-        /**
-         * The Heroicons academic cap svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_academic_cap($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons annotation svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_annotation($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons ban svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_ban($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons briefcase svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_briefcase($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons calendar svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_calendar($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons clipboard check svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_clipboard_check($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons clipboard copy svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_clipboard_copy($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons clipboard list svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_clipboard_list($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons clock svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_clock($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons currency dollar svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_currency_dollar($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons cursor_click svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_cursor_click($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons document text svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_document_text($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons globe svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_globe($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons identification svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_identification($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons location marker svg icon
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_location_marker($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons office building svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_office_building($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons photograph svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_photograph($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons switch horizontal svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         * @return string
-         */
-        public static function heroicons_switch_horizontal($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons grid svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         *
-         * @return string The generated icon.
-         */
-        public static function heroicons_grid($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * The Heroicons book open svg icon.
-         *
-         * @param int $size The Height and Width of the SVG icon.
-         *
-         * @return string The generated icon.
-         */
-        public static function heroicons_book_open($size = self::SIZE_DEFAULT)
-        {
-        }
-        /**
-         * Generates the SVG based on given path.
-         *
-         * @param string $path     The path to generate svg for.
-         * @param int    $svg_size The Height and Width of the SVG icon.
-         *
-         * @return string The generated icon svg.
-         */
-        protected static function svg($path, $svg_size = self::SIZE_DEFAULT)
-        {
-        }
-    }
-}
 namespace Yoast\WP\SEO\Services\Health_Check {
     /**
      * Abstract class for all health checks. Provides a uniform interface for the Health_Check_Integration.
@@ -52292,30 +55090,29 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         protected abstract function get_result();
     }
     /**
-     * Passes if the health check can reach the MyYoast API using a recent enough cURL version.
+     * Passes when the tagline is set to something other than the WordPress default tagline.
      */
-    class Curl_Check extends \Yoast\WP\SEO\Services\Health_Check\Health_Check
+    class Default_Tagline_Check extends \Yoast\WP\SEO\Services\Health_Check\Health_Check
     {
         /**
          * Runs the health check.
          *
-         * @var Curl_Runner
+         * @var Default_Tagline_Runner
          */
         private $runner;
         /**
          * Generates WordPress-friendly health check results.
          *
-         * @var Curl_Reports
+         * @var Default_Tagline_Reports
          */
         private $reports;
         /**
          * Constructor.
          *
-         * @param Curl_Runner  $runner The object that implements the actual health check.
-         * @param Curl_Reports $reports The object that generates WordPress-friendly results.
-         * @return void
+         * @param  Default_Tagline_Runner  $runner  The object that implements the actual health check.
+         * @param  Default_Tagline_Reports $reports The object that generates WordPress-friendly results.
          */
-        public function __construct(\Yoast\WP\SEO\Services\Health_Check\Curl_Runner $runner, \Yoast\WP\SEO\Services\Health_Check\Curl_Reports $reports)
+        public function __construct(\Yoast\WP\SEO\Services\Health_Check\Default_Tagline_Runner $runner, \Yoast\WP\SEO\Services\Health_Check\Default_Tagline_Reports $reports)
         {
         }
         /**
@@ -52371,264 +55168,6 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         }
     }
     /**
-     * Presents a set of different messages for the cURL health check.
-     */
-    class Curl_Reports
-    {
-        use \Yoast\WP\SEO\Services\Health_Check\Reports_Trait;
-        /**
-         * The WPSEO_Shortlinker object used to generate short links.
-         *
-         * @var WPSEO_Shortlinker
-         */
-        private $shortlinker;
-        /**
-         * Constructor
-         *
-         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects. This class uses the report builder to generate WordPress-friendly health check results.
-         * @param  WPSEO_Shortlinker      $shortlinker The WPSEO_Shortlinker object used to generate short links.
-         * @return void
-         */
-        public function __construct(\Yoast\WP\SEO\Services\Health_Check\Report_Builder_Factory $report_builder_factory, \WPSEO_Shortlinker $shortlinker)
-        {
-        }
-        /**
-         * Returns the message for a successful health check.
-         *
-         * @return string[] The message as a WordPress site status report.
-         */
-        public function get_success_result()
-        {
-        }
-        /**
-         * Returns the message for when the health check was unable to reach the MyYoast API.
-         *
-         * @return string[] The message as a WordPress site status report.
-         */
-        public function get_my_yoast_api_not_reachable_result()
-        {
-        }
-        /**
-         * Returns the description for when the health check was unable to reach the MyYoast API.
-         *
-         * @return string The description containing a link to a Yoast help page about keeping cURL up to date.
-         */
-        private function get_my_yoast_api_not_reachable_description()
-        {
-        }
-        /**
-         * Returns the message for a successful health check.
-         *
-         * @return string[] The message as a WordPress site status report.
-         */
-        public function get_no_recent_curl_version_installed_result()
-        {
-        }
-        /**
-         * Returns the description for when the health check couldn't find a recent enough version of cURL installed on the server.
-         *
-         * @return string The description containing a link to a Yoast help page about keeping cURL up to date.
-         */
-        private function get_no_recent_curl_version_installed_description()
-        {
-        }
-    }
-    /**
-     * Interface for the health check runner. The abstract Health_Check uses this to run a health check.
-     */
-    interface Runner_Interface
-    {
-        /**
-         * Runs the health check.
-         *
-         * @return void
-         */
-        public function run();
-    }
-    /**
-     * Runs the Curl health check.
-     */
-    class Curl_Runner implements \Yoast\WP\SEO\Services\Health_Check\Runner_Interface
-    {
-        /**
-         * Sets the minimum cURL version for this health check to pass.
-         */
-        const MINIMUM_CURL_VERSION = '7.34.0';
-        /**
-         * Sets the target URL for testing whether the MyYoast API is reachable.
-         */
-        const MYYOAST_API_REQUEST_URL = 'sites/current';
-        /**
-         * True when cURL is installed.
-         *
-         * @var bool
-         */
-        private $curl_installed = false;
-        /**
-         * True when cURL is equal to or more recent than MINIMUM_CURL_VERSION.
-         *
-         * @var bool
-         */
-        private $curl_is_recent = false;
-        /**
-         * True when the health check got a response from the MyYoast API.
-         *
-         * @var bool
-         */
-        private $got_my_yoast_api_response = false;
-        /**
-         * True when there are Yoast add-ons installed.
-         *
-         * @var bool
-         */
-        private $has_installed_addons = false;
-        /**
-         * The add-on manger that the health check uses to determine if there are any add-ons installed.
-         *
-         * @var WPSEO_Addon_Manager
-         */
-        private $addon_manager;
-        /**
-         * Factory for the MyYoast API request object that the health check uses to check if cURL works correctly.
-         *
-         * @var MyYoast_Api_Request_Factory
-         */
-        private $my_yoast_api_request_factory;
-        /**
-         * The cURL helper from which the health check gets information about the installed cURL version.
-         *
-         * @var Curl_Helper
-         */
-        private $curl_helper;
-        /**
-         * Constructor.
-         *
-         * @psalm-suppress InvalidClass MyYoast is a product name, so it's an exception to the class naming conventions.
-         * @param WPSEO_Addon_Manager         $addon_manager The add-on manager.
-         * @param MyYoast_Api_Request_Factory $my_yoast_api_request_factory A MyYoast API request object.
-         * @param Curl_Helper                 $curl_helper A cURL helper object for obtaining cURL installation information.
-         */
-        public function __construct(\WPSEO_Addon_Manager $addon_manager, \Yoast\WP\SEO\Services\Health_Check\MyYoast_Api_Request_Factory $my_yoast_api_request_factory, \Yoast\WP\SEO\Helpers\Curl_Helper $curl_helper)
-        {
-        }
-        /**
-         * Runs the health check. Checks if cURL is installed and up to date, and if it's able to reach the MyYoast API
-         *
-         * @return void
-         */
-        public function run()
-        {
-        }
-        /**
-         * Checks if there are installed Yoast add-ons.
-         *
-         * @return void
-         */
-        private function check_has_installed_addons()
-        {
-        }
-        /**
-         * Checks if cURL is installed.
-         *
-         * @return void
-         */
-        private function check_curl_installed()
-        {
-        }
-        /**
-         * Checks if the installed cURL version is equal to or more recent than MINIMUM_CURL_VERSION.
-         *
-         * @return void
-         */
-        private function check_curl_is_recent()
-        {
-        }
-        /**
-         * Checks if cURL is able to reach the MyYoast API.
-         *
-         * @return void
-         */
-        private function check_can_reach_my_yoast_api()
-        {
-        }
-        /**
-         * Returns whether the health check was successful.
-         *
-         * @return bool True if all the routines for this health check were successful.
-         */
-        public function is_successful()
-        {
-        }
-        /**
-         * Returns whether there are premium plugins installed.
-         *
-         * @return bool True if there are premium plugins installed.
-         */
-        public function has_premium_plugins_installed()
-        {
-        }
-        /**
-         * Returns whether cURL was able to reach the MyYoast API.
-         *
-         * @return bool True if cURL was able to reach the MyYoast API.
-         */
-        public function can_reach_my_yoast_api()
-        {
-        }
-        /**
-         * Returns whether the installed cURL version is recent enough.
-         *
-         * @return bool True if the installed cURL version is more recent than MINIMUM_CURL_VERSION.
-         */
-        public function has_recent_curl_version_installed()
-        {
-        }
-    }
-    /**
-     * Passes when the tagline is set to something other than the WordPress default tagline.
-     */
-    class Default_Tagline_Check extends \Yoast\WP\SEO\Services\Health_Check\Health_Check
-    {
-        /**
-         * Runs the health check.
-         *
-         * @var Default_Tagline_Runner
-         */
-        private $runner;
-        /**
-         * Generates WordPress-friendly health check results.
-         *
-         * @var Default_Tagline_Reports
-         */
-        private $reports;
-        /**
-         * Constructor.
-         *
-         * @param  Default_Tagline_Runner  $runner The object that implements the actual health check.
-         * @param  Default_Tagline_Reports $reports The object that generates WordPress-friendly results.
-         * @return void
-         */
-        public function __construct(\Yoast\WP\SEO\Services\Health_Check\Default_Tagline_Runner $runner, \Yoast\WP\SEO\Services\Health_Check\Default_Tagline_Reports $reports)
-        {
-        }
-        /**
-         * Returns a human-readable label for this health check.
-         *
-         * @return string The human-readable label.
-         */
-        public function get_test_label()
-        {
-        }
-        /**
-         * Returns the WordPress-friendly health check result.
-         *
-         * @return string[] The WordPress-friendly health check result.
-         */
-        protected function get_result()
-        {
-        }
-    }
-    /**
      * Presents a set of different messages for the Default_Tagline health check.
      */
     class Default_Tagline_Reports
@@ -52637,8 +55176,9 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Constructor
          *
-         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects. This class uses the report builder to generate WordPress-friendly health check results.
-         * @return void
+         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects.
+         *                                                        This class uses the report builder to generate WordPress-friendly
+         *                                                        health check results.
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Report_Builder_Factory $report_builder_factory)
         {
@@ -52667,6 +55207,18 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         private function get_actions()
         {
         }
+    }
+    /**
+     * Interface for the health check runner. The abstract Health_Check uses this to run a health check.
+     */
+    interface Runner_Interface
+    {
+        /**
+         * Runs the health check.
+         *
+         * @return void
+         */
+        public function run();
     }
     /**
      * Runs the Default_Tagline health check.
@@ -52720,9 +55272,8 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Constructor.
          *
-         * @param Links_Table_Runner  $runner The object that implements the actual health check.
+         * @param Links_Table_Runner  $runner  The object that implements the actual health check.
          * @param Links_Table_Reports $reports The object that generates WordPress-friendly results.
-         * @return void
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Links_Table_Runner $runner, \Yoast\WP\SEO\Services\Health_Check\Links_Table_Reports $reports)
         {
@@ -52759,9 +55310,10 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Constructor
          *
-         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects. This class uses the report builder to generate WordPress-friendly health check results.
-         * @param  WPSEO_Shortlinker      $shortlinker Object used to add short links to the report description.
-         * @return void
+         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects.
+         *                                                        This class uses the report builder to generate WordPress-friendly
+         *                                                        health check results.
+         * @param  WPSEO_Shortlinker      $shortlinker            Object used to add short links to the report description.
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Report_Builder_Factory $report_builder_factory, \WPSEO_Shortlinker $shortlinker)
         {
@@ -52834,7 +55386,7 @@ namespace Yoast\WP\SEO\Services\Health_Check {
          * Constructor.
          *
          * @param Migration_Status $migration_status Object used to determine whether the links table is accessible.
-         * @param Options_Helper   $options_helper Object used to determine whether the health check should run.
+         * @param Options_Helper   $options_helper   Object used to determine whether the health check should run.
          */
         public function __construct(\Yoast\WP\SEO\Config\Migration_Status $migration_status, \Yoast\WP\SEO\Helpers\Options_Helper $options_helper)
         {
@@ -52872,7 +55424,7 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Creates a new WPSEO_MyYoast_API_Request.
          *
-         * @param string $url The URL for the request.
+         * @param string $url  The URL for the request.
          * @param array  $args Optional arguments for the request.
          * @return WPSEO_MyYoast_Api_Request
          */
@@ -52900,9 +55452,8 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Constructor.
          *
-         * @param  Page_Comments_Runner  $runner The object that implements the actual health check.
+         * @param  Page_Comments_Runner  $runner  The object that implements the actual health check.
          * @param  Page_Comments_Reports $reports The object that generates WordPress-friendly results.
-         * @return void
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Page_Comments_Runner $runner, \Yoast\WP\SEO\Services\Health_Check\Page_Comments_Reports $reports)
         {
@@ -52933,7 +55484,9 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Constructor.
          *
-         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects. This class uses the report builder to generate WordPress-friendly health check results.
+         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects.
+         *                                                        This class uses the report builder to generate WordPress-friendly
+         *                                                        health check results.
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Report_Builder_Factory $report_builder_factory)
         {
@@ -53017,9 +55570,8 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Constructor.
          *
-         * @param  Postname_Permalink_Runner  $runner The object that implements the actual health check.
+         * @param  Postname_Permalink_Runner  $runner  The object that implements the actual health check.
          * @param  Postname_Permalink_Reports $reports The object that generates WordPress-friendly results.
-         * @return void
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Postname_Permalink_Runner $runner, \Yoast\WP\SEO\Services\Health_Check\Postname_Permalink_Reports $reports)
         {
@@ -53050,7 +55602,9 @@ namespace Yoast\WP\SEO\Services\Health_Check {
         /**
          * Constructor.
          *
-         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects. This class uses the report builder to generate WordPress-friendly health check results.
+         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects.
+         *                                                        This class uses the report builder to generate WordPress-friendly
+         *                                                        health check results.
          */
         public function __construct(\Yoast\WP\SEO\Services\Health_Check\Report_Builder_Factory $report_builder_factory)
         {
@@ -53290,288 +55844,6 @@ namespace Yoast\WP\SEO\Services\Health_Check {
          * @return string Yoast's signature as an HTML string.
          */
         private function get_signature()
-        {
-        }
-    }
-    /**
-     * Passes if the health check determines that the site is indexable using Ryte.
-     */
-    class Ryte_Check extends \Yoast\WP\SEO\Services\Health_Check\Health_Check
-    {
-        /**
-         * Runs the health check.
-         *
-         * @var Ryte_Runner
-         */
-        private $runner;
-        /**
-         * Generates WordPress-friendly health check results.
-         *
-         * @var Ryte_Reports
-         */
-        private $reports;
-        /**
-         * Constructor.
-         *
-         * @param Ryte_Runner  $runner The object that implements the actual health check.
-         * @param Ryte_Reports $reports The object that generates WordPress-friendly results.
-         * @return void
-         */
-        public function __construct(\Yoast\WP\SEO\Services\Health_Check\Ryte_Runner $runner, \Yoast\WP\SEO\Services\Health_Check\Ryte_Reports $reports)
-        {
-        }
-        /**
-         * Returns a human-readable label for this health check.
-         *
-         * @return string The human-readable label.
-         */
-        public function get_test_label()
-        {
-        }
-        /**
-         * Returns the WordPress-friendly health check result.
-         *
-         * @return string[] The WordPress-friendly health check result.
-         */
-        protected function get_result()
-        {
-        }
-    }
-    /**
-     * Presents a set of different messages for the Ryte health check.
-     */
-    class Ryte_Reports
-    {
-        use \Yoast\WP\SEO\Services\Health_Check\Reports_Trait;
-        /**
-         * The WPSEO_Shortlinker object used to generate short links.
-         *
-         * @var WPSEO_Shortlinker
-         */
-        private $shortlinker;
-        /**
-         * Constructor
-         *
-         * @param  Report_Builder_Factory $report_builder_factory The factory for result builder objects. This class uses the report builder to generate WordPress-friendly health check results.
-         * @param  WPSEO_Shortlinker      $shortlinker The WPSEO_Shortlinker object used to generate short links.
-         * @return void
-         */
-        public function __construct(\Yoast\WP\SEO\Services\Health_Check\Report_Builder_Factory $report_builder_factory, \WPSEO_Shortlinker $shortlinker)
-        {
-        }
-        /**
-         * Returns the message for a successful health check.
-         *
-         * @return string[] The message as a WordPress site status report.
-         */
-        public function get_success_result()
-        {
-        }
-        /**
-         * Returns the report for a health check result in which the site was not indexable.
-         *
-         * @return string[] The message as a WordPress site status report.
-         */
-        public function get_not_indexable_result()
-        {
-        }
-        /**
-         * Returns the report for when the health check was unable to determine indexability.
-         *
-         * @return string[] The message as a WordPress site status report.
-         */
-        public function get_unknown_indexability_result()
-        {
-        }
-        /**
-         * Returns the result for when the health check got an error response from Ryte.
-         *
-         * @param array $response_error The error response from Ryte.
-         * @return string[] The message as a WordPress site status report.
-         */
-        public function get_response_error_result($response_error)
-        {
-        }
-        /**
-         * Returns the description for a successful result.
-         *
-         * @return string The description for a successful result.
-         */
-        private function get_success_result_description()
-        {
-        }
-        /**
-         * Returns the description for when the site is not indexable.
-         *
-         * @return string The description for when the site is not indexable.
-         */
-        private function get_not_indexable_result_description()
-        {
-        }
-        /**
-         * Returns the actions for when the site is not indexable.
-         *
-         * @return string The actions for when the site is not indexable.
-         */
-        private function get_not_indexable_result_actions()
-        {
-        }
-        /**
-         * Returns the description for when the site's indexability couldn't be determined.
-         *
-         * @return string The description for when the site's indexability couldn't be determined.
-         */
-        private function get_unknown_indexability_result_description()
-        {
-        }
-        /**
-         * Returns an alert for when the health check was unable to determine indexability.
-         *
-         * @return string An alert for when the health check was unable to determine indexability.
-         */
-        private function get_unknown_indexability_description_alert()
-        {
-        }
-        /**
-         * Returns the description for when the health check got an error response from Ryte.
-         *
-         * @param array $error_response The error response from Ryte.
-         * @return string The description.
-         */
-        private function get_response_error_result_description($error_response)
-        {
-        }
-        /**
-         * Returns the actions for when the health check got an error response from Ryte.
-         *
-         * @return string The actions for when the health check got an error response from Ryte.
-         */
-        private function get_response_error_result_actions()
-        {
-        }
-        /**
-         * Returns the link to Ryte that's appended to every report.
-         *
-         * @return string The link to Ryte as an action.
-         */
-        private function get_ryte_actions()
-        {
-        }
-    }
-    /**
-     * Runs the Ryte health check.
-     */
-    class Ryte_Runner implements \Yoast\WP\SEO\Services\Health_Check\Runner_Interface
-    {
-        /**
-         * The Ryte_Integration object that the health check uses to check the site's indexability.
-         *
-         * @var Ryte_Integration
-         */
-        private $ryte;
-        /**
-         * Set to true when the health check gets a valid response from Ryte.
-         *
-         * @var bool
-         */
-        private $got_valid_response;
-        /**
-         * The error that is set when the health check gets a response error from Ryte.
-         *
-         * @var array|null
-         */
-        private $response_error;
-        /**
-         * The Ryte option that represents the site's indexability.
-         *
-         * @var WPSEO_Ryte_Option
-         */
-        private $ryte_option;
-        /**
-         * The WPSEO_Utils class used to determine whether the site is in development mode.
-         *
-         * @var WPSEO_Utils
-         */
-        private $utils;
-        /**
-         * Constructor.
-         *
-         * @param Ryte_Integration $ryte The Ryte_Integration object that the health check uses to check indexability.
-         * @param WPSEO_Utils      $utils The WPSEO_Utils object used to determine whether the site is in development mode.
-         */
-        public function __construct(\Yoast\WP\SEO\Integrations\Admin\Ryte_Integration $ryte, \WPSEO_Utils $utils)
-        {
-        }
-        /**
-         * Runs the health check. Checks if Ryte is accessible and whether the site is indexable.
-         *
-         * @return void
-         */
-        public function run()
-        {
-        }
-        /**
-         * Attempts to get a new indexability status from Ryte.
-         *
-         * @return void
-         */
-        private function fetch_from_ryte()
-        {
-        }
-        /**
-         * Sets the Ryte option based on the response from Ryte.
-         *
-         * @return void
-         */
-        private function set_ryte_option()
-        {
-        }
-        /**
-         * Checks if the site is a live production site that has Ryte enabled.
-         *
-         * @return bool
-         */
-        public function should_run()
-        {
-        }
-        /**
-         * Checks if the site is indexable.
-         *
-         * @return bool
-         */
-        public function is_successful()
-        {
-        }
-        /**
-         * Checks if the site's indexability is unknown.
-         *
-         * @return bool Returns true if the site indexability is unknown even though getting a response from Ryte was successful.
-         */
-        public function has_unknown_indexability()
-        {
-        }
-        /**
-         * Checks if the health check was able to get a valid response from Ryte.
-         *
-         * @return bool
-         */
-        private function could_fetch()
-        {
-        }
-        /**
-         * Checks whether there was a response error when attempting a request to Ryte.
-         *
-         * @return bool True if the health check got a valid error response.
-         */
-        public function got_response_error()
-        {
-        }
-        /**
-         * Returns the error response is there was one.
-         *
-         * @return array|null
-         */
-        public function get_error_response()
         {
         }
     }
@@ -53885,6 +56157,12 @@ namespace Yoast\WP\SEO\Surfaces {
     class Classes_Surface
     {
         /**
+         * The dependency injection container.
+         *
+         * @var ContainerInterface
+         */
+        public $container;
+        /**
          * Loader constructor.
          *
          * @param ContainerInterface $container The dependency injection container.
@@ -53908,40 +56186,42 @@ namespace Yoast\WP\SEO\Surfaces {
      *
      * Surface for the indexables.
      *
-     * @property Helpers\Asset_Helper          $asset
-     * @property Helpers\Author_Archive_Helper $author_archive
-     * @property Helpers\Blocks_Helper         $blocks
-     * @property Helpers\Capability_Helper     $capability
-     * @property Helpers\Current_Page_Helper   $current_page
-     * @property Helpers\Date_Helper           $date
-     * @property Helpers\Environment_Helper    $environment
-     * @property Helpers\Home_Url_Helper       $home_url
-     * @property Helpers\Image_Helper          $image
-     * @property Helpers\Indexable_Helper      $indexable
-     * @property Helpers\Indexing_Helper       $indexing
-     * @property Helpers\Input_Helper          $input
-     * @property Helpers\Language_Helper       $language
-     * @property Helpers\Meta_Helper           $meta
-     * @property Helpers\Notification_Helper   $notification
-     * @property Helpers\Options_Helper        $options
-     * @property Helpers\Pagination_Helper     $pagination
-     * @property Helpers\Permalink_Helper      $permalink
-     * @property Helpers\Post_Helper           $post
-     * @property Helpers\Post_Type_Helper      $post_type
-     * @property Helpers\Primary_Term_Helper   $primary_term
-     * @property Helpers\Product_Helper        $product
-     * @property Helpers\Redirect_Helper       $redirect
-     * @property Helpers\Request_Helper      $request
-     * @property Helpers\Require_File_Helper $require_file
-     * @property Helpers\Robots_Helper       $robots
-     * @property Helpers\Short_Link_Helper   $short_link
-     * @property Helpers\Site_Helper         $site
-     * @property Helpers\String_Helper       $string
-     * @property Helpers\Taxonomy_Helper     $taxonomy
-     * @property Helpers\Url_Helper          $url
-     * @property Helpers\User_Helper         $user
-     * @property Helpers\Woocommerce_Helper  $woocommerce
-     * @property Helpers\Wordpress_Helper    $wordpress
+     * @property Helpers\Asset_Helper                           $asset
+     * @property Helpers\Author_Archive_Helper                  $author_archive
+     * @property Helpers\Blocks_Helper                          $blocks
+     * @property Helpers\Capability_Helper                      $capability
+     * @property Helpers\Current_Page_Helper                    $current_page
+     * @property Helpers\Date_Helper                            $date
+     * @property Helpers\Environment_Helper                     $environment
+     * @property Helpers\First_Time_Configuration_Notice_Helper $first_time_configuration_notice
+     * @property Helpers\Home_Url_Helper                        $home_url
+     * @property Helpers\Image_Helper                           $image
+     * @property Helpers\Indexable_Helper                       $indexable
+     * @property Helpers\Indexing_Helper                        $indexing
+     * @property Helpers\Input_Helper                           $input
+     * @property Helpers\Language_Helper                        $language
+     * @property Helpers\Meta_Helper                            $meta
+     * @property Helpers\Notification_Helper                    $notification
+     * @property Helpers\Options_Helper                         $options
+     * @property Helpers\Pagination_Helper                      $pagination
+     * @property Helpers\Permalink_Helper                       $permalink
+     * @property Helpers\Post_Helper                            $post
+     * @property Helpers\Post_Type_Helper                       $post_type
+     * @property Helpers\Primary_Term_Helper                    $primary_term
+     * @property Helpers\Product_Helper                         $product
+     * @property Helpers\Redirect_Helper                        $redirect
+     * @property Helpers\Request_Helper                         $request
+     * @property Helpers\Require_File_Helper                    $require_file
+     * @property Helpers\Robots_Helper                          $robots
+     * @property Helpers\Short_Link_Helper                      $short_link
+     * @property Helpers\Site_Helper                            $site
+     * @property Helpers\String_Helper                          $string
+     * @property Helpers\Social_Profiles_Helper                 $social_profiles
+     * @property Helpers\Taxonomy_Helper                        $taxonomy
+     * @property Helpers\Url_Helper                             $url
+     * @property Helpers\User_Helper                            $user
+     * @property Helpers\Woocommerce_Helper                     $woocommerce
+     * @property Helpers\Wordpress_Helper                       $wordpress
      */
     class Helpers_Surface
     {
@@ -53995,9 +56275,36 @@ namespace Yoast\WP\SEO\Surfaces {
          *
          * @param string $helper The helper to get.
          *
-         * @return bool The helper class.
+         * @return bool Whether the helper exists.
          */
         public function __isset($helper)
+        {
+        }
+        /**
+         * Prevents setting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name  The property name.
+         * @param mixed  $value The property value.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Set is never meant to be called.
+         */
+        public function __set($name, $value)
+        {
+        }
+        /**
+         * Prevents unsetting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name The property name.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Unset is never meant to be called.
+         */
+        public function __unset($name)
         {
         }
         /**
@@ -54241,9 +56548,36 @@ namespace Yoast\WP\SEO\Surfaces {
          *
          * @param string $helper The helper to get.
          *
-         * @return bool The helper class.
+         * @return bool Whether the helper exists.
          */
         public function __isset($helper)
+        {
+        }
+        /**
+         * Prevents setting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name  The property name.
+         * @param mixed  $value The property value.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Set is never meant to be called.
+         */
+        public function __set($name, $value)
+        {
+        }
+        /**
+         * Prevents unsetting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name The property name.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Unset is never meant to be called.
+         */
+        public function __unset($name)
         {
         }
         /**
@@ -54305,9 +56639,36 @@ namespace Yoast\WP\SEO\Surfaces {
          *
          * @param string $helper The helper to get.
          *
-         * @return bool The helper class.
+         * @return bool Whether the helper exists.
          */
         public function __isset($helper)
+        {
+        }
+        /**
+         * Prevents setting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name  The property name.
+         * @param mixed  $value The property value.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Set is never meant to be called.
+         */
+        public function __set($name, $value)
+        {
+        }
+        /**
+         * Prevents unsetting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name The property name.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Unset is never meant to be called.
+         */
+        public function __unset($name)
         {
         }
         /**
@@ -54359,9 +56720,36 @@ namespace Yoast\WP\SEO\Surfaces {
          *
          * @param string $helper The helper to get.
          *
-         * @return bool The helper class.
+         * @return bool Whether the helper exists.
          */
         public function __isset($helper)
+        {
+        }
+        /**
+         * Prevents setting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name  The property name.
+         * @param mixed  $value The property value.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Set is never meant to be called.
+         */
+        public function __set($name, $value)
+        {
+        }
+        /**
+         * Prevents unsetting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name The property name.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Unset is never meant to be called.
+         */
+        public function __unset($name)
         {
         }
         /**
@@ -54456,6 +56844,12 @@ namespace Yoast\WP\SEO\Surfaces\Values {
          */
         protected $replace_vars;
         /**
+         * Collection of properties dynamically set via the magic __get() method.
+         *
+         * @var array<string, mixed> Key is the property name.
+         */
+        private $properties_bin = [];
+        /**
          * Create a meta value object.
          *
          * @param Meta_Tags_Context  $context   The indexable presentation.
@@ -54477,9 +56871,7 @@ namespace Yoast\WP\SEO\Surfaces\Values {
          *
          * @param string $name The property to get.
          *
-         * @return mixed The value, as presented by teh appropriate presenter.
-         *
-         * @throws Exception If an invalid property is accessed.
+         * @return mixed The value, as presented by the appropriate presenter.
          */
         public function __get($name)
         {
@@ -54492,6 +56884,33 @@ namespace Yoast\WP\SEO\Surfaces\Values {
          * @return bool Whether or not the requested property exists.
          */
         public function __isset($name)
+        {
+        }
+        /**
+         * Prevents setting dynamic properties and overwriting the value of declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name  The property name.
+         * @param mixed  $value The property value.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Set is never meant to be called.
+         */
+        public function __set($name, $value)
+        {
+        }
+        /**
+         * Prevents unsetting dynamic properties and unsetting declared properties
+         * from an inaccessible context.
+         *
+         * @param string $name The property name.
+         *
+         * @return void
+         *
+         * @throws Forbidden_Property_Mutation_Exception Unset is never meant to be called.
+         */
+        public function __unset($name)
         {
         }
         /**
@@ -54646,6 +57065,182 @@ namespace Yoast\WP\SEO\Values\OAuth {
         }
     }
 }
+namespace Yoast\WP\SEO\Values\Robots {
+    /**
+     * Class Directive
+     */
+    class Directive
+    {
+        /**
+         * Paths list.
+         *
+         * @var array All paths affected by this directive.
+         */
+        private $paths;
+        /**
+         * Sets up the path array
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Adds a path to the directive path list.
+         *
+         * @param string $path A path to add in the path list.
+         *
+         * @return void
+         */
+        public function add_path($path)
+        {
+        }
+        /**
+         * Returns all paths.
+         *
+         * @return array
+         */
+        public function get_paths()
+        {
+        }
+    }
+    /**
+     * Class User_Agent_List
+     */
+    class User_Agent_List
+    {
+        /**
+         * The list of user agents.
+         *
+         * @var array
+         */
+        private $user_agent_list;
+        /**
+         * User Agent list constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Checks if given user_agent is already registered.
+         *
+         * @param string $user_agent The user agent identifier.
+         *
+         * @return bool
+         */
+        public function has_user_agent($user_agent)
+        {
+        }
+        /**
+         * Gets the user agent object. If it is not yet registered it creates it.
+         *
+         * @param string $user_agent The user agent identifier.
+         *
+         * @return User_Agent
+         */
+        public function get_user_agent($user_agent)
+        {
+        }
+        /**
+         * Gets the list of user agents.
+         *
+         * @return array
+         */
+        public function get_user_agents()
+        {
+        }
+        /**
+         * Gets a list of all disallow directives by user agent.
+         *
+         * @return array
+         */
+        public function get_disallow_directives()
+        {
+        }
+        /**
+         * Gets a list of all sallow directives by user agent.
+         *
+         * @return array
+         */
+        public function get_allow_directives()
+        {
+        }
+    }
+    /**
+     * Class Directive
+     */
+    class User_Agent
+    {
+        /**
+         * The user agent identifier.
+         *
+         * @var string
+         */
+        private $user_agent;
+        /**
+         * All directives that are allowed for this user agent.
+         *
+         * @var Directive
+         */
+        private $allow_directive;
+        /**
+         * All directives that are disallowed for this user agent.
+         *
+         * @var Directive
+         */
+        private $disallow_directive;
+        /**
+         * Constructor of the user agent value object.
+         *
+         * @param string $user_agent The user agent identifier.
+         */
+        public function __construct($user_agent)
+        {
+        }
+        /**
+         * Gets the user agent identifier.
+         *
+         * @return string
+         */
+        public function get_user_agent()
+        {
+        }
+        /**
+         * Adds a path to the directive object.
+         *
+         * @param string $path The path to add to the disallow directive.
+         *
+         * @return void
+         */
+        public function add_disallow_directive($path)
+        {
+        }
+        /**
+         * Adds a path to the directive object.
+         *
+         * @param string $path The path to add to the allow directive.
+         *
+         * @return void
+         */
+        public function add_allow_directive($path)
+        {
+        }
+        /**
+         * Gets all disallow paths for this user agent.
+         *
+         * @return array
+         */
+        public function get_disallow_paths()
+        {
+        }
+        /**
+         * Gets all sallow paths for this user agent.
+         *
+         * @return array
+         */
+        public function get_allow_paths()
+        {
+        }
+    }
+}
 namespace Yoast\WP\SEO\WordPress {
     /**
      * Wrapper class for WordPress globals.
@@ -54777,8407 +57372,274 @@ namespace Yoast\WP\SEO\Wrappers {
         }
     }
 }
-namespace YoastSEO_Vendor\chillerlan\QRCode\Data {
+namespace YoastSEO_Vendor\League\OAuth2\Client\Provider\Exception {
     /**
-     *
+     * Exception thrown if the provider response contains errors.
      */
-    interface QRDataInterface
+    class IdentityProviderException extends \Exception
     {
         /**
-         * @link http://www.qrcode.com/en/about/version.html
+         * @var mixed
          */
-        const MAX_LENGTH = [
-            1 => [[41, 34, 27, 17], [25, 20, 16, 10], [17, 14, 11, 7], [10, 8, 7, 4]],
-            //  21
-            [[77, 63, 48, 34], [47, 38, 29, 20], [32, 26, 20, 14], [20, 16, 12, 8]],
-            //  25
-            [[127, 101, 77, 58], [77, 61, 47, 35], [53, 42, 32, 24], [32, 26, 20, 15]],
-            //  29
-            [[187, 149, 111, 82], [114, 90, 67, 50], [78, 62, 46, 34], [48, 38, 28, 21]],
-            //  33
-            [[255, 202, 144, 106], [154, 122, 87, 64], [106, 84, 60, 44], [65, 52, 37, 27]],
-            //  37
-            [[322, 255, 178, 139], [195, 154, 108, 84], [134, 106, 74, 58], [82, 65, 45, 36]],
-            //  41
-            [[370, 293, 207, 154], [224, 178, 125, 93], [154, 122, 86, 64], [95, 75, 53, 39]],
-            //  45
-            [[461, 365, 259, 202], [279, 221, 157, 122], [192, 152, 108, 84], [118, 93, 66, 52]],
-            //  49
-            [[552, 432, 312, 235], [335, 262, 189, 143], [230, 180, 130, 98], [141, 111, 80, 60]],
-            //  53
-            [[652, 513, 364, 288], [395, 311, 221, 174], [271, 213, 151, 119], [167, 131, 93, 74]],
-            //  57
-            [[772, 604, 427, 331], [468, 366, 259, 200], [321, 251, 177, 137], [198, 155, 109, 85]],
-            //  61
-            [[883, 691, 489, 374], [535, 419, 296, 227], [367, 287, 203, 155], [226, 177, 125, 96]],
-            //  65
-            [[1022, 796, 580, 427], [619, 483, 352, 259], [425, 331, 241, 177], [262, 204, 149, 109]],
-            //  69 NICE!
-            [[1101, 871, 621, 468], [667, 528, 376, 283], [458, 362, 258, 194], [282, 223, 159, 120]],
-            //  73
-            [[1250, 991, 703, 530], [758, 600, 426, 321], [520, 412, 292, 220], [320, 254, 180, 136]],
-            //  77
-            [[1408, 1082, 775, 602], [854, 656, 470, 365], [586, 450, 322, 250], [361, 277, 198, 154]],
-            //  81
-            [[1548, 1212, 876, 674], [938, 734, 531, 408], [644, 504, 364, 280], [397, 310, 224, 173]],
-            //  85
-            [[1725, 1346, 948, 746], [1046, 816, 574, 452], [718, 560, 394, 310], [442, 345, 243, 191]],
-            //  89
-            [[1903, 1500, 1063, 813], [1153, 909, 644, 493], [792, 624, 442, 338], [488, 384, 272, 208]],
-            //  93
-            [[2061, 1600, 1159, 919], [1249, 970, 702, 557], [858, 666, 482, 382], [528, 410, 297, 235]],
-            //  97
-            [[2232, 1708, 1224, 969], [1352, 1035, 742, 587], [929, 711, 509, 403], [572, 438, 314, 248]],
-            // 101
-            [[2409, 1872, 1358, 1056], [1460, 1134, 823, 640], [1003, 779, 565, 439], [618, 480, 348, 270]],
-            // 105
-            [[2620, 2059, 1468, 1108], [1588, 1248, 890, 672], [1091, 857, 611, 461], [672, 528, 376, 284]],
-            // 109
-            [[2812, 2188, 1588, 1228], [1704, 1326, 963, 744], [1171, 911, 661, 511], [721, 561, 407, 315]],
-            // 113
-            [[3057, 2395, 1718, 1286], [1853, 1451, 1041, 779], [1273, 997, 715, 535], [784, 614, 440, 330]],
-            // 117
-            [[3283, 2544, 1804, 1425], [1990, 1542, 1094, 864], [1367, 1059, 751, 593], [842, 652, 462, 365]],
-            // 121
-            [[3517, 2701, 1933, 1501], [2132, 1637, 1172, 910], [1465, 1125, 805, 625], [902, 692, 496, 385]],
-            // 125
-            [[3669, 2857, 2085, 1581], [2223, 1732, 1263, 958], [1528, 1190, 868, 658], [940, 732, 534, 405]],
-            // 129
-            [[3909, 3035, 2181, 1677], [2369, 1839, 1322, 1016], [1628, 1264, 908, 698], [1002, 778, 559, 430]],
-            // 133
-            [[4158, 3289, 2358, 1782], [2520, 1994, 1429, 1080], [1732, 1370, 982, 742], [1066, 843, 604, 457]],
-            // 137
-            [[4417, 3486, 2473, 1897], [2677, 2113, 1499, 1150], [1840, 1452, 1030, 790], [1132, 894, 634, 486]],
-            // 141
-            [[4686, 3693, 2670, 2022], [2840, 2238, 1618, 1226], [1952, 1538, 1112, 842], [1201, 947, 684, 518]],
-            // 145
-            [[4965, 3909, 2805, 2157], [3009, 2369, 1700, 1307], [2068, 1628, 1168, 898], [1273, 1002, 719, 553]],
-            // 149
-            [[5253, 4134, 2949, 2301], [3183, 2506, 1787, 1394], [2188, 1722, 1228, 958], [1347, 1060, 756, 590]],
-            // 153
-            [[5529, 4343, 3081, 2361], [3351, 2632, 1867, 1431], [2303, 1809, 1283, 983], [1417, 1113, 790, 605]],
-            // 157
-            [[5836, 4588, 3244, 2524], [3537, 2780, 1966, 1530], [2431, 1911, 1351, 1051], [1496, 1176, 832, 647]],
-            // 161
-            [[6153, 4775, 3417, 2625], [3729, 2894, 2071, 1591], [2563, 1989, 1423, 1093], [1577, 1224, 876, 673]],
-            // 165
-            [[6479, 5039, 3599, 2735], [3927, 3054, 2181, 1658], [2699, 2099, 1499, 1139], [1661, 1292, 923, 701]],
-            // 169
-            [[6743, 5313, 3791, 2927], [4087, 3220, 2298, 1774], [2809, 2213, 1579, 1219], [1729, 1362, 972, 750]],
-            // 173
-            [[7089, 5596, 3993, 3057], [4296, 3391, 2420, 1852], [2953, 2331, 1663, 1273], [1817, 1435, 1024, 784]],
-        ];
-        const MAX_BITS = [1 => [152, 128, 104, 72], [272, 224, 176, 128], [440, 352, 272, 208], [640, 512, 384, 288], [864, 688, 496, 368], [1088, 864, 608, 480], [1248, 992, 704, 528], [1552, 1232, 880, 688], [1856, 1456, 1056, 800], [2192, 1728, 1232, 976], [2592, 2032, 1440, 1120], [2960, 2320, 1648, 1264], [3424, 2672, 1952, 1440], [3688, 2920, 2088, 1576], [4184, 3320, 2360, 1784], [4712, 3624, 2600, 2024], [5176, 4056, 2936, 2264], [5768, 4504, 3176, 2504], [6360, 5016, 3560, 2728], [6888, 5352, 3880, 3080], [7456, 5712, 4096, 3248], [8048, 6256, 4544, 3536], [8752, 6880, 4912, 3712], [9392, 7312, 5312, 4112], [10208, 8000, 5744, 4304], [10960, 8496, 6032, 4768], [11744, 9024, 6464, 5024], [12248, 9544, 6968, 5288], [13048, 10136, 7288, 5608], [13880, 10984, 7880, 5960], [14744, 11640, 8264, 6344], [15640, 12328, 8920, 6760], [16568, 13048, 7208, 9368], [17528, 13800, 9848, 7688], [18448, 14496, 10288, 7888], [19472, 15312, 10832, 8432], [20528, 15936, 11408, 8768], [21616, 16816, 12016, 9136], [22496, 17728, 12656, 9776], [23648, 18672, 13328, 10208]];
+        protected $response;
         /**
-         * @link http://www.thonky.com/qr-code-tutorial/error-correction-table
+         * @param string $message
+         * @param int $code
+         * @param array|string $response The response body
          */
-        const RSBLOCKS = [
-            1 => [[1, 0, 26, 19], [1, 0, 26, 16], [1, 0, 26, 13], [1, 0, 26, 9]],
-            //  1
-            [[1, 0, 44, 34], [1, 0, 44, 28], [1, 0, 44, 22], [1, 0, 44, 16]],
-            //
-            [[1, 0, 70, 55], [1, 0, 70, 44], [2, 0, 35, 17], [2, 0, 35, 13]],
-            //
-            [[1, 0, 100, 80], [2, 0, 50, 32], [2, 0, 50, 24], [4, 0, 25, 9]],
-            //
-            [[1, 0, 134, 108], [2, 0, 67, 43], [2, 2, 33, 15], [2, 2, 33, 11]],
-            //  5
-            [[2, 0, 86, 68], [4, 0, 43, 27], [4, 0, 43, 19], [4, 0, 43, 15]],
-            //
-            [[2, 0, 98, 78], [4, 0, 49, 31], [2, 4, 32, 14], [4, 1, 39, 13]],
-            //
-            [[2, 0, 121, 97], [2, 2, 60, 38], [4, 2, 40, 18], [4, 2, 40, 14]],
-            //
-            [[2, 0, 146, 116], [3, 2, 58, 36], [4, 4, 36, 16], [4, 4, 36, 12]],
-            //
-            [[2, 2, 86, 68], [4, 1, 69, 43], [6, 2, 43, 19], [6, 2, 43, 15]],
-            // 10
-            [[4, 0, 101, 81], [1, 4, 80, 50], [4, 4, 50, 22], [3, 8, 36, 12]],
-            //
-            [[2, 2, 116, 92], [6, 2, 58, 36], [4, 6, 46, 20], [7, 4, 42, 14]],
-            //
-            [[4, 0, 133, 107], [8, 1, 59, 37], [8, 4, 44, 20], [12, 4, 33, 11]],
-            //
-            [[3, 1, 145, 115], [4, 5, 64, 40], [11, 5, 36, 16], [11, 5, 36, 12]],
-            //
-            [[5, 1, 109, 87], [5, 5, 65, 41], [5, 7, 54, 24], [11, 7, 36, 12]],
-            // 15
-            [[5, 1, 122, 98], [7, 3, 73, 45], [15, 2, 43, 19], [3, 13, 45, 15]],
-            //
-            [[1, 5, 135, 107], [10, 1, 74, 46], [1, 15, 50, 22], [2, 17, 42, 14]],
-            //
-            [[5, 1, 150, 120], [9, 4, 69, 43], [17, 1, 50, 22], [2, 19, 42, 14]],
-            //
-            [[3, 4, 141, 113], [3, 11, 70, 44], [17, 4, 47, 21], [9, 16, 39, 13]],
-            //
-            [[3, 5, 135, 107], [3, 13, 67, 41], [15, 5, 54, 24], [15, 10, 43, 15]],
-            // 20
-            [[4, 4, 144, 116], [17, 0, 68, 42], [17, 6, 50, 22], [19, 6, 46, 16]],
-            //
-            [[2, 7, 139, 111], [17, 0, 74, 46], [7, 16, 54, 24], [34, 0, 37, 13]],
-            //
-            [[4, 5, 151, 121], [4, 14, 75, 47], [11, 14, 54, 24], [16, 14, 45, 15]],
-            //
-            [[6, 4, 147, 117], [6, 14, 73, 45], [11, 16, 54, 24], [30, 2, 46, 16]],
-            //
-            [[8, 4, 132, 106], [8, 13, 75, 47], [7, 22, 54, 24], [22, 13, 45, 15]],
-            // 25
-            [[10, 2, 142, 114], [19, 4, 74, 46], [28, 6, 50, 22], [33, 4, 46, 16]],
-            //
-            [[8, 4, 152, 122], [22, 3, 73, 45], [8, 26, 53, 23], [12, 28, 45, 15]],
-            //
-            [[3, 10, 147, 117], [3, 23, 73, 45], [4, 31, 54, 24], [11, 31, 45, 15]],
-            //
-            [[7, 7, 146, 116], [21, 7, 73, 45], [1, 37, 53, 23], [19, 26, 45, 15]],
-            //
-            [[5, 10, 145, 115], [19, 10, 75, 47], [15, 25, 54, 24], [23, 25, 45, 15]],
-            // 30
-            [[13, 3, 145, 115], [2, 29, 74, 46], [42, 1, 54, 24], [23, 28, 45, 15]],
-            //
-            [[17, 0, 145, 115], [10, 23, 74, 46], [10, 35, 54, 24], [19, 35, 45, 15]],
-            //
-            [[17, 1, 145, 115], [14, 21, 74, 46], [29, 19, 54, 24], [11, 46, 45, 15]],
-            //
-            [[13, 6, 145, 115], [14, 23, 74, 46], [44, 7, 54, 24], [59, 1, 46, 16]],
-            //
-            [[12, 7, 151, 121], [12, 26, 75, 47], [39, 14, 54, 24], [22, 41, 45, 15]],
-            // 35
-            [[6, 14, 151, 121], [6, 34, 75, 47], [46, 10, 54, 24], [2, 64, 45, 15]],
-            //
-            [[17, 4, 152, 122], [29, 14, 74, 46], [49, 10, 54, 24], [24, 46, 45, 15]],
-            //
-            [[4, 18, 152, 122], [13, 32, 74, 46], [48, 14, 54, 24], [42, 32, 45, 15]],
-            //
-            [[20, 4, 147, 117], [40, 7, 75, 47], [43, 22, 54, 24], [10, 67, 45, 15]],
-            //
-            [[19, 6, 148, 118], [18, 31, 75, 47], [34, 34, 54, 24], [20, 61, 45, 15]],
-        ];
+        public function __construct($message, $code, $response)
+        {
+        }
         /**
-         * @param string $data
+         * Returns the exception's response body.
          *
-         * @return \chillerlan\QRCode\Data\QRDataInterface
+         * @return array|string
          */
-        public function setData($data);
-        /**
-         * @param int  $maskPattern
-         * @param bool $test
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function initMatrix($maskPattern, $test = null);
-    }
-}
-namespace YoastSEO_Vendor\chillerlan\QRCode\Traits {
-    trait ClassLoader
-    {
-        /**
-         * Instances an object of $class/$type with an arbitrary number of $params
-         *
-         * @param string $class  class FQCN
-         * @param string $type   class/parent/interface FQCN
-         *
-         * @param mixed $params [optional] the following arguments will be passed to the $class constructor
-         *
-         * @return mixed of type $type
-         * @throws \Exception
-         */
-        public function loadClass($class, $type = null, ...$params)
+        public function getResponseBody()
         {
         }
     }
 }
-namespace YoastSEO_Vendor\chillerlan\QRCode\Data {
+namespace YoastSEO_Vendor\League\OAuth2\Client\Provider {
     /**
-     * Processes the binary data and maps it on a matrix which is then being returned
+     * Classes implementing `ResourceOwnerInterface` may be used to represent
+     * the resource owner authenticated with a service provider.
      */
-    abstract class QRDataAbstract implements \YoastSEO_Vendor\chillerlan\QRCode\Data\QRDataInterface
-    {
-        use \YoastSEO_Vendor\chillerlan\QRCode\Traits\ClassLoader;
-        /**
-         * the string byte count
-         *
-         * @var int
-         */
-        protected $strlen;
-        /**
-         * the current data mode: Num, Alphanum, Kanji, Byte
-         *
-         * @var int
-         */
-        protected $datamode;
-        /**
-         * mode length bits for the version breakpoints 1-9, 10-26 and 27-40
-         *
-         * @var array
-         */
-        protected $lengthBits = [0, 0, 0];
-        /**
-         * current QR Code version
-         *
-         * @var int
-         */
-        protected $version;
-        /**
-         * the raw data that's being passed to QRMatrix::mapData()
-         *
-         * @var array
-         */
-        protected $matrixdata;
-        /**
-         * ECC temp data
-         *
-         * @var array
-         */
-        protected $ecdata;
-        /**
-         * ECC temp data
-         *
-         * @var array
-         */
-        protected $dcdata;
-        /**
-         * @var \chillerlan\QRCode\QROptions
-         */
-        protected $options;
-        /**
-         * @var \chillerlan\QRCode\Helpers\BitBuffer
-         */
-        protected $bitBuffer;
-        /**
-         * QRDataInterface constructor.
-         *
-         * @param \chillerlan\QRCode\QROptions $options
-         * @param string|null                  $data
-         */
-        public function __construct(\YoastSEO_Vendor\chillerlan\QRCode\QROptions $options, $data = null)
-        {
-        }
-        /**
-         * Sets the data string (internally called by the constructor)
-         *
-         * @param string $data
-         *
-         * @return \chillerlan\QRCode\Data\QRDataInterface
-         */
-        public function setData($data)
-        {
-        }
-        /**
-         * returns a fresh matrix object with the data written for the given $maskPattern
-         *
-         * @param int       $maskPattern
-         * @param bool|null $test
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function initMatrix($maskPattern, $test = null)
-        {
-        }
-        /**
-         * returns the length bits for the version breakpoints 1-9, 10-26 and 27-40
-         *
-         * @return int
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         * @codeCoverageIgnore
-         */
-        protected function getLengthBits()
-        {
-        }
-        /**
-         * returns the byte count of the $data string
-         *
-         * @param string $data
-         *
-         * @return int
-         */
-        protected function getLength($data)
-        {
-        }
-        /**
-         * returns the minimum version number for the given string
-         *
-         * @return int
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        protected function getMinimumVersion()
-        {
-        }
-        /**
-         * @see \chillerlan\QRCode\Data\QRDataAbstract::writeBitBuffer()
-         *
-         * @param string $data
-         *
-         * @return void
-         */
-        protected abstract function write($data);
-        /**
-         * writes the string data to the BitBuffer
-         *
-         * @param string $data
-         *
-         * @return \chillerlan\QRCode\Data\QRDataAbstract
-         * @throws \chillerlan\QRCode\QRCodeException
-         */
-        protected function writeBitBuffer($data)
-        {
-        }
-        /**
-         * ECC masking
-         *
-         * @see \chillerlan\QRCode\Data\QRDataAbstract::writeBitBuffer()
-         *
-         * @link http://www.thonky.com/qr-code-tutorial/error-correction-coding
-         *
-         * @return array
-         */
-        protected function maskECC()
-        {
-        }
-        /**
-         * @param int $key
-         * @param int $count
-         *
-         * @return int[]
-         */
-        protected function poly($key, $count)
-        {
-        }
-    }
-    /**
-     * Alphanumeric mode: 0 to 9, A to Z, space, $ % * + - . / :
-     */
-    class AlphaNum extends \YoastSEO_Vendor\chillerlan\QRCode\Data\QRDataAbstract
-    {
-        const CHAR_MAP = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ', '$', '%', '*', '+', '-', '.', '/', ':'];
-        /**
-         * @inheritdoc
-         */
-        protected $datamode = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::DATA_ALPHANUM;
-        /**
-         * @inheritdoc
-         */
-        protected $lengthBits = [9, 11, 13];
-        /**
-         * @inheritdoc
-         */
-        protected function write($data)
-        {
-        }
-        /**
-         * @param string $chr
-         *
-         * @return int
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        protected function getCharCode($chr)
-        {
-        }
-    }
-    /**
-     * Byte mode, ISO-8859-1 or UTF-8
-     */
-    class Byte extends \YoastSEO_Vendor\chillerlan\QRCode\Data\QRDataAbstract
+    interface ResourceOwnerInterface
     {
         /**
-         * @inheritdoc
-         */
-        protected $datamode = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::DATA_BYTE;
-        /**
-         * @inheritdoc
-         */
-        protected $lengthBits = [8, 16, 16];
-        /**
-         * @inheritdoc
-         */
-        protected function write($data)
-        {
-        }
-    }
-    /**
-     * Kanji mode: double-byte characters from the Shift JIS character set
-     */
-    class Kanji extends \YoastSEO_Vendor\chillerlan\QRCode\Data\QRDataAbstract
-    {
-        /**
-         * @inheritdoc
-         */
-        protected $datamode = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::DATA_KANJI;
-        /**
-         * @inheritdoc
-         */
-        protected $lengthBits = [8, 10, 12];
-        /**
-         * @inheritdoc
-         */
-        protected function getLength($data)
-        {
-        }
-        /**
-         * @param string $data
-         *
-         * @return void
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        protected function write($data)
-        {
-        }
-    }
-    /**
-     * The sole purpose of this class is to receive a QRMatrix object and run the pattern tests on it.
-     *
-     * @link http://www.thonky.com/qr-code-tutorial/data-masking
-     */
-    class MaskPatternTester
-    {
-        /**
-         * @var \chillerlan\QRCode\Data\QRMatrix
-         */
-        protected $matrix;
-        /**
-         * @var int
-         */
-        protected $moduleCount;
-        /**
-         * Receives the matrix an sets the module count
-         *
-         * @see \chillerlan\QRCode\QROptions::$maskPattern
-         * @see \chillerlan\QRCode\Data\QRMatrix::$maskPattern
-         * @see \chillerlan\QRCode\QRCode::getBestMaskPattern()
-         *
-         * @param \chillerlan\QRCode\Data\QRMatrix $matrix
-         *
-         * @return \chillerlan\QRCode\Data\MaskPatternTester
-         */
-        public function setMatrix(\YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix $matrix)
-        {
-        }
-        /**
-         * Returns the penalty for the given mask pattern
-         *
-         * @see \chillerlan\QRCode\QROptions::$maskPattern
-         * @see \chillerlan\QRCode\Data\QRMatrix::$maskPattern
-         * @see \chillerlan\QRCode\QRCode::getBestMaskPattern()
-         *
-         * @return int
-         */
-        public function testPattern()
-        {
-        }
-        /**
-         * Checks for each group of five or more same-colored modules in a row (or column)
-         *
-         * @return int
-         */
-        protected function testLevel1(array $m)
-        {
-        }
-        /**
-         * Checks for each 2x2 area of same-colored modules in the matrix
-         *
-         * @return int
-         */
-        protected function testLevel2(array $m)
-        {
-        }
-        /**
-         * Checks if there are patterns that look similar to the finder patterns (1:1:3:1:1 ratio)
-         *
-         * @return int
-         */
-        protected function testLevel3(array $m)
-        {
-        }
-        /**
-         * Checks if more than half of the modules are dark or light, with a larger penalty for a larger difference
-         *
-         * @return float
-         */
-        protected function testLevel4(array $m)
-        {
-        }
-    }
-    /**
-     * Numeric mode: decimal digits 0 through 9
-     */
-    class Number extends \YoastSEO_Vendor\chillerlan\QRCode\Data\QRDataAbstract
-    {
-        /**
-         * @inheritdoc
-         */
-        protected $datamode = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::DATA_NUMBER;
-        /**
-         * @inheritdoc
-         */
-        protected $lengthBits = [10, 12, 14];
-        /**
-         * @inheritdoc
-         */
-        protected function write($data)
-        {
-        }
-        /**
-         * @param string $string
-         *
-         * @return int
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        protected function parseInt($string)
-        {
-        }
-    }
-    /**
-     * Placeholder
-     */
-    class QRCodeDataException extends \Exception
-    {
-    }
-    /**
-     * @link http://www.thonky.com/qr-code-tutorial/format-version-information
-     */
-    class QRMatrix
-    {
-        const M_NULL = 0x0;
-        const M_DARKMODULE = 0x2;
-        const M_DATA = 0x4;
-        const M_FINDER = 0x6;
-        const M_SEPARATOR = 0x8;
-        const M_ALIGNMENT = 0xa;
-        const M_TIMING = 0xc;
-        const M_FORMAT = 0xe;
-        const M_VERSION = 0x10;
-        const M_QUIETZONE = 0x12;
-        const M_LOGO = 0x14;
-        // @todo
-        const M_TEST = 0xff;
-        /**
-         * @link http://www.thonky.com/qr-code-tutorial/alignment-pattern-locations
-         */
-        const alignmentPattern = [1 => [], [6, 18], [6, 22], [6, 26], [6, 30], [6, 34], [6, 22, 38], [6, 24, 42], [6, 26, 46], [6, 28, 50], [6, 30, 54], [6, 32, 58], [6, 34, 62], [6, 26, 46, 66], [6, 26, 48, 70], [6, 26, 50, 74], [6, 30, 54, 78], [6, 30, 56, 82], [6, 30, 58, 86], [6, 34, 62, 90], [6, 28, 50, 72, 94], [6, 26, 50, 74, 98], [6, 30, 54, 78, 102], [6, 28, 54, 80, 106], [6, 32, 58, 84, 110], [6, 30, 58, 86, 114], [6, 34, 62, 90, 118], [6, 26, 50, 74, 98, 122], [6, 30, 54, 78, 102, 126], [6, 26, 52, 78, 104, 130], [6, 30, 56, 82, 108, 134], [6, 34, 60, 86, 112, 138], [6, 30, 58, 86, 114, 142], [6, 34, 62, 90, 118, 146], [6, 30, 54, 78, 102, 126, 150], [6, 24, 50, 76, 102, 128, 154], [6, 28, 54, 80, 106, 132, 158], [6, 32, 58, 84, 110, 136, 162], [6, 26, 54, 82, 110, 138, 166], [6, 30, 58, 86, 114, 142, 170]];
-        /**
-         * @link http://www.thonky.com/qr-code-tutorial/format-version-tables
-         */
-        const versionPattern = [
-            7 => 0x7c94,
-            0x85bc,
-            0x9a99,
-            0xa4d3,
-            // 7-10
-            0xbbf6,
-            0xc762,
-            0xd847,
-            0xe60d,
-            0xf928,
-            0x10b78,
-            0x1145d,
-            0x12a17,
-            0x13532,
-            0x149a6,
-            0x15683,
-            0x168c9,
-            0x177ec,
-            0x18ec4,
-            0x191e1,
-            0x1afab,
-            0x1b08e,
-            0x1cc1a,
-            0x1d33f,
-            0x1ed75,
-            0x1f250,
-            0x209d5,
-            0x216f0,
-            0x228ba,
-            0x2379f,
-            0x24b0b,
-            0x2542e,
-            0x26a64,
-            0x27541,
-            0x28c69,
-        ];
-        const formatPattern = [
-            [0x77c4, 0x72f3, 0x7daa, 0x789d, 0x662f, 0x6318, 0x6c41, 0x6976],
-            // L
-            [0x5412, 0x5125, 0x5e7c, 0x5b4b, 0x45f9, 0x40ce, 0x4f97, 0x4aa0],
-            // M
-            [0x355f, 0x3068, 0x3f31, 0x3a06, 0x24b4, 0x2183, 0x2eda, 0x2bed],
-            // Q
-            [0x1689, 0x13be, 0x1ce7, 0x19d0, 0x762, 0x255, 0xd0c, 0x83b],
-        ];
-        /**
-         * @var int
-         */
-        protected $version;
-        /**
-         * @var int
-         */
-        protected $eclevel;
-        /**
-         * @var int
-         */
-        protected $maskPattern = -1;
-        /**
-         * @var int
-         */
-        protected $moduleCount;
-        /**
-         * @var mixed[]
-         */
-        protected $matrix;
-        /**
-         * QRMatrix constructor.
-         *
-         * @param int $version
-         * @param int $eclevel
-         *
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        public function __construct($version, $eclevel)
-        {
-        }
-        /**
-         * Returns the data matrix, returns a pure boolean representation if $boolean is set to true
-         *
-         * @param bool $boolean
-         *
-         * @return int[][]|bool[][]
-         */
-        public function matrix($boolean = \false)
-        {
-        }
-        /**
-         * @return int
-         */
-        public function version()
-        {
-        }
-        /**
-         * @return int
-         */
-        public function eccLevel()
-        {
-        }
-        /**
-         * @return int
-         */
-        public function maskPattern()
-        {
-        }
-        /**
-         * Returns the absoulute size of the matrix, including quiet zone (after setting it).
-         *
-         * size = version * 4 + 17 [ + 2 * quietzone size]
-         *
-         * @return int
-         */
-        public function size()
-        {
-        }
-        /**
-         * Returns the value of the module at position [$x, $y]
-         *
-         * @param int $x
-         * @param int $y
-         *
-         * @return int
-         */
-        public function get($x, $y)
-        {
-        }
-        /**
-         * Sets the $M_TYPE value for the module at position [$x, $y]
-         *
-         *   true  => $M_TYPE << 8
-         *   false => $M_TYPE
-         *
-         * @param int  $x
-         * @param int  $y
-         * @param int  $M_TYPE
-         * @param bool $value
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function set($x, $y, $value, $M_TYPE)
-        {
-        }
-        /**
-         * Checks whether a module is true (dark) or false (light)
-         *
-         *   true  => $value >> 8 === $M_TYPE
-         *            $value >> 8 > 0
-         *
-         *   false => $value === $M_TYPE
-         *            $value >> 8 === 0
-         *
-         * @param int $x
-         * @param int $y
-         *
-         * @return bool
-         */
-        public function check($x, $y)
-        {
-        }
-        /**
-         * Sets the "dark module", that is always on the same position 1x1px away from the bottom left finder
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function setDarkModule()
-        {
-        }
-        /**
-         * Draws the 7x7 finder patterns in the corners top left/right and bottom left
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function setFinderPattern()
-        {
-        }
-        /**
-         * Draws the separator lines around the finder patterns
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function setSeparators()
-        {
-        }
-        /**
-         * Draws the 5x5 alignment patterns
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function setAlignmentPattern()
-        {
-        }
-        /**
-         * Draws the timing pattern (h/v checkered line between the finder patterns)
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function setTimingPattern()
-        {
-        }
-        /**
-         * Draws the version information, 2x 3x6 pixel
-         *
-         * @param bool|null  $test
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function setVersionNumber($test = null)
-        {
-        }
-        /**
-         * Draws the format info along the finder patterns
-         *
-         * @param int        $maskPattern
-         * @param bool|null  $test
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function setFormatInfo($maskPattern, $test = null)
-        {
-        }
-        /**
-         * Draws the "quiet zone" of $size around the matrix
-         *
-         * @param int|null $size
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        public function setQuietZone($size = null)
-        {
-        }
-        /**
-         * Maps the binary $data array from QRDataInterface::maskECC() on the matrix, using $maskPattern
-         *
-         * @see \chillerlan\QRCode\Data\QRDataAbstract::maskECC()
-         *
-         * @param int[] $data
-         * @param int   $maskPattern
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         */
-        public function mapData(array $data, $maskPattern)
-        {
-        }
-        /**
-         * ISO/IEC 18004:2000 Section 8.8.1
-         *
-         * Note that some versions of the QR code standard have had errors in the section about mask patterns.
-         * The information below has been corrected. (https://www.thonky.com/qr-code-tutorial/mask-patterns)
-         *
-         * @see \chillerlan\QRCode\QRMatrix::mapData()
-         *
-         * @internal
-         *
-         * @param int $maskPattern
-         *
-         * @return \Closure
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        protected function getMask($maskPattern)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\chillerlan\QRCode\Helpers {
-    /**
-     * @property int[] $buffer
-     * @property int   $length
-     */
-    class BitBuffer
-    {
-        /**
-         * @var  int[]
-         */
-        public $buffer = [];
-        /**
-         * @var int
-         */
-        public $length = 0;
-        /**
-         * @return \chillerlan\QRCode\Helpers\BitBuffer
-         */
-        public function clear()
-        {
-        }
-        /**
-         * @param int $num
-         * @param int $length
-         *
-         * @return \chillerlan\QRCode\Helpers\BitBuffer
-         */
-        public function put($num, $length)
-        {
-        }
-        /**
-         * @param bool $bit
-         *
-         * @return \chillerlan\QRCode\Helpers\BitBuffer
-         */
-        public function putBit($bit)
-        {
-        }
-    }
-    /**
-     * @link http://www.thonky.com/qr-code-tutorial/error-correction-coding
-     */
-    class Polynomial
-    {
-        /**
-         * @link http://www.thonky.com/qr-code-tutorial/log-antilog-table
-         */
-        const table = [[1, 0], [2, 0], [4, 1], [8, 25], [16, 2], [32, 50], [64, 26], [128, 198], [29, 3], [58, 223], [116, 51], [232, 238], [205, 27], [135, 104], [19, 199], [38, 75], [76, 4], [152, 100], [45, 224], [90, 14], [180, 52], [117, 141], [234, 239], [201, 129], [143, 28], [3, 193], [6, 105], [12, 248], [24, 200], [48, 8], [96, 76], [192, 113], [157, 5], [39, 138], [78, 101], [156, 47], [37, 225], [74, 36], [148, 15], [53, 33], [106, 53], [212, 147], [181, 142], [119, 218], [238, 240], [193, 18], [159, 130], [35, 69], [70, 29], [140, 181], [5, 194], [10, 125], [20, 106], [40, 39], [80, 249], [160, 185], [93, 201], [186, 154], [105, 9], [210, 120], [185, 77], [111, 228], [222, 114], [161, 166], [95, 6], [190, 191], [97, 139], [194, 98], [153, 102], [47, 221], [94, 48], [188, 253], [101, 226], [202, 152], [137, 37], [15, 179], [30, 16], [60, 145], [120, 34], [240, 136], [253, 54], [231, 208], [211, 148], [187, 206], [107, 143], [214, 150], [177, 219], [127, 189], [254, 241], [225, 210], [223, 19], [163, 92], [91, 131], [182, 56], [113, 70], [226, 64], [217, 30], [175, 66], [67, 182], [134, 163], [17, 195], [34, 72], [68, 126], [136, 110], [13, 107], [26, 58], [52, 40], [104, 84], [208, 250], [189, 133], [103, 186], [206, 61], [129, 202], [31, 94], [62, 155], [124, 159], [248, 10], [237, 21], [199, 121], [147, 43], [59, 78], [118, 212], [236, 229], [197, 172], [151, 115], [51, 243], [102, 167], [204, 87], [133, 7], [23, 112], [46, 192], [92, 247], [184, 140], [109, 128], [218, 99], [169, 13], [79, 103], [158, 74], [33, 222], [66, 237], [132, 49], [21, 197], [42, 254], [84, 24], [168, 227], [77, 165], [154, 153], [41, 119], [82, 38], [164, 184], [85, 180], [170, 124], [73, 17], [146, 68], [57, 146], [114, 217], [228, 35], [213, 32], [183, 137], [115, 46], [230, 55], [209, 63], [191, 209], [99, 91], [198, 149], [145, 188], [63, 207], [126, 205], [252, 144], [229, 135], [215, 151], [179, 178], [123, 220], [246, 252], [241, 190], [255, 97], [227, 242], [219, 86], [171, 211], [75, 171], [150, 20], [49, 42], [98, 93], [196, 158], [149, 132], [55, 60], [110, 57], [220, 83], [165, 71], [87, 109], [174, 65], [65, 162], [130, 31], [25, 45], [50, 67], [100, 216], [200, 183], [141, 123], [7, 164], [14, 118], [28, 196], [56, 23], [112, 73], [224, 236], [221, 127], [167, 12], [83, 111], [166, 246], [81, 108], [162, 161], [89, 59], [178, 82], [121, 41], [242, 157], [249, 85], [239, 170], [195, 251], [155, 96], [43, 134], [86, 177], [172, 187], [69, 204], [138, 62], [9, 90], [18, 203], [36, 89], [72, 95], [144, 176], [61, 156], [122, 169], [244, 160], [245, 81], [247, 11], [243, 245], [251, 22], [235, 235], [203, 122], [139, 117], [11, 44], [22, 215], [44, 79], [88, 174], [176, 213], [125, 233], [250, 230], [233, 231], [207, 173], [131, 232], [27, 116], [54, 214], [108, 244], [216, 234], [173, 168], [71, 80], [142, 88], [1, 175]];
-        /**
-         * @var array
-         */
-        protected $num = [];
-        /**
-         * Polynomial constructor.
-         *
-         * @param array $num
-         * @param int   $shift
-         */
-        public function __construct(array $num = [1], $shift = 0)
-        {
-        }
-        /**
-         * @return array
-         */
-        public function getNum()
-        {
-        }
-        /**
-         * @param array $num
-         * @param int   $shift
-         *
-         * @return \chillerlan\QRCode\Helpers\Polynomial
-         */
-        public function setNum(array $num, $shift = 0)
-        {
-        }
-        /**
-         * @param array $e
-         *
-         * @return \chillerlan\QRCode\Helpers\Polynomial
-         */
-        public function multiply(array $e)
-        {
-        }
-        /**
-         * @param array $e
-         *
-         * @return \chillerlan\QRCode\Helpers\Polynomial
-         */
-        public function mod(array $e)
-        {
-        }
-        /**
-         * @param int $n
-         *
-         * @return int
-         * @throws \chillerlan\QRCode\QRCodeException
-         */
-        public function glog($n)
-        {
-        }
-        /**
-         * @param int $n
-         *
-         * @return int
-         */
-        public function gexp($n)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\chillerlan\QRCode\Output {
-    /**
-     * Placeholder
-     */
-    class QRCodeOutputException extends \Exception
-    {
-    }
-    /**
-     * Converts the data matrix into readable output
-     */
-    interface QROutputInterface
-    {
-        /**
-         * @return mixed
-         */
-        public function dump();
-    }
-    /**
-     *
-     */
-    abstract class QROutputAbstract implements \YoastSEO_Vendor\chillerlan\QRCode\Output\QROutputInterface
-    {
-        /**
-         * @var int
-         */
-        protected $moduleCount;
-        /**
-         * @param \chillerlan\QRCode\Data\QRMatrix $matrix
-         */
-        protected $matrix;
-        /**
-         * @var \chillerlan\QRCode\QROptions
-         */
-        protected $options;
-        /**
-         * QROutputAbstract constructor.
-         *
-         * @param \chillerlan\QRCode\QROptions     $options
-         * @param \chillerlan\QRCode\Data\QRMatrix $matrix
-         */
-        public function __construct(\YoastSEO_Vendor\chillerlan\QRCode\QROptions $options, \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix $matrix)
-        {
-        }
-        /**
-         * @see file_put_contents()
-         *
-         * @param string $data
-         * @return bool|int
-         */
-        protected function saveToFile($data)
-        {
-        }
-    }
-    /**
-     * Converts the matrix into images, raw or base64 output
-     */
-    class QRImage extends \YoastSEO_Vendor\chillerlan\QRCode\Output\QROutputAbstract
-    {
-        const transparencyTypes = [\YoastSEO_Vendor\chillerlan\QRCode\QRCode::OUTPUT_IMAGE_PNG, \YoastSEO_Vendor\chillerlan\QRCode\QRCode::OUTPUT_IMAGE_GIF];
-        protected $moduleValues = [
-            // light
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_DATA => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FINDER => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_SEPARATOR => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_ALIGNMENT => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TIMING => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FORMAT => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_VERSION => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_QUIETZONE => [255, 255, 255],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TEST => [255, 255, 255],
-            // dark
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_DARKMODULE << 8 => [0, 0, 0],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_DATA << 8 => [0, 0, 0],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FINDER << 8 => [0, 0, 0],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_ALIGNMENT << 8 => [0, 0, 0],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TIMING << 8 => [0, 0, 0],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FORMAT << 8 => [0, 0, 0],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_VERSION << 8 => [0, 0, 0],
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TEST << 8 => [0, 0, 0],
-        ];
-        /**
-         * @see imagecreatetruecolor()
-         * @var resource
-         */
-        protected $image;
-        /**
-         * @var int
-         */
-        protected $scale;
-        /**
-         * @var int
-         */
-        protected $length;
-        /**
-         * @see imagecolorallocate()
-         * @var int
-         */
-        protected $background;
-        /**
-         * @return string
-         * @throws \chillerlan\QRCode\Output\QRCodeOutputException
-         */
-        public function dump()
-        {
-        }
-        /**
-         * @return void
-         */
-        protected function setImage()
-        {
-        }
-        /**
-         * @param $x
-         * @param $y
-         * @param $color
-         * @return void
-         */
-        protected function setPixel($x, $y, $color)
-        {
-        }
-        /**
-         * @return string
-         * @throws \chillerlan\QRCode\Output\QRCodeOutputException
-         */
-        protected function dumpImage()
-        {
-        }
-        /**
-         * @return void
-         */
-        protected function png()
-        {
-        }
-        /**
-         * Jiff - like... JitHub!
-         * @return void
-         */
-        protected function gif()
-        {
-        }
-        /**
-         * @return void
-         */
-        protected function jpg()
-        {
-        }
-    }
-    /**
-     * Converts the matrix into markup types: HTML, SVG, ...
-     */
-    class QRMarkup extends \YoastSEO_Vendor\chillerlan\QRCode\Output\QROutputAbstract
-    {
-        /**
-         * @return string
-         * @throws \chillerlan\QRCode\Output\QRCodeOutputException
-         */
-        public function dump()
-        {
-        }
-        /**
-         * @return string|bool
-         */
-        protected function toHTML()
-        {
-        }
-        /**
-         * @link https://github.com/codemasher/php-qrcode/pull/5
-         *
-         * @return string|bool
-         */
-        protected function toSVG()
-        {
-        }
-    }
-    /**
-     * Converts the matrix data into string types
-     */
-    class QRString extends \YoastSEO_Vendor\chillerlan\QRCode\Output\QROutputAbstract
-    {
-        /**
-         * @return string
-         * @throws \chillerlan\QRCode\Output\QRCodeOutputException
-         */
-        public function dump()
-        {
-        }
-        /**
-         * @return string
-         */
-        protected function toString()
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\chillerlan\QRCode {
-    /**
-     * Turns a text string into a Model 2 QR Code
-     *
-     * @link https://github.com/kazuhikoarase/qrcode-generator/tree/master/php
-     * @link http://www.qrcode.com/en/codes/model12.html
-     * @link http://www.thonky.com/qr-code-tutorial/
-     */
-    class QRCode
-    {
-        use \YoastSEO_Vendor\chillerlan\QRCode\Traits\ClassLoader;
-        /**
-         * API constants
-         */
-        const OUTPUT_MARKUP_HTML = 'html';
-        const OUTPUT_MARKUP_SVG = 'svg';
-        #	const OUTPUT_MARKUP_XML   = 'xml'; // anyone?
-        const OUTPUT_IMAGE_PNG = 'png';
-        const OUTPUT_IMAGE_JPG = 'jpg';
-        const OUTPUT_IMAGE_GIF = 'gif';
-        const OUTPUT_STRING_JSON = 'json';
-        const OUTPUT_STRING_TEXT = 'text';
-        const OUTPUT_CUSTOM = 'custom';
-        const VERSION_AUTO = -1;
-        const MASK_PATTERN_AUTO = -1;
-        const ECC_L = 0b1;
-        // 7%.
-        const ECC_M = 0b0;
-        // 15%.
-        const ECC_Q = 0b11;
-        // 25%.
-        const ECC_H = 0b10;
-        // 30%.
-        const DATA_NUMBER = 0b1;
-        const DATA_ALPHANUM = 0b10;
-        const DATA_BYTE = 0b100;
-        const DATA_KANJI = 0b1000;
-        const ECC_MODES = [self::ECC_L => 0, self::ECC_M => 1, self::ECC_Q => 2, self::ECC_H => 3];
-        const DATA_MODES = [self::DATA_NUMBER => 0, self::DATA_ALPHANUM => 1, self::DATA_BYTE => 2, self::DATA_KANJI => 3];
-        const OUTPUT_MODES = [\YoastSEO_Vendor\chillerlan\QRCode\Output\QRMarkup::class => [self::OUTPUT_MARKUP_SVG, self::OUTPUT_MARKUP_HTML], \YoastSEO_Vendor\chillerlan\QRCode\Output\QRImage::class => [self::OUTPUT_IMAGE_PNG, self::OUTPUT_IMAGE_GIF, self::OUTPUT_IMAGE_JPG], \YoastSEO_Vendor\chillerlan\QRCode\Output\QRString::class => [self::OUTPUT_STRING_JSON, self::OUTPUT_STRING_TEXT]];
-        /**
-         * @var \chillerlan\QRCode\QROptions
-         */
-        protected $options;
-        /**
-         * @var \chillerlan\QRCode\Data\QRDataInterface
-         */
-        protected $dataInterface;
-        /**
-         * QRCode constructor.
-         *
-         * @param \chillerlan\QRCode\QROptions|null $options
-         */
-        public function __construct(\YoastSEO_Vendor\chillerlan\QRCode\QROptions $options = null)
-        {
-        }
-        /**
-         * Sets the options, called internally by the constructor
-         *
-         * @param \chillerlan\QRCode\QROptions $options
-         *
-         * @return \chillerlan\QRCode\QRCode
-         * @throws \chillerlan\QRCode\QRCodeException
-         */
-        public function setOptions(\YoastSEO_Vendor\chillerlan\QRCode\QROptions $options)
-        {
-        }
-        /**
-         * Renders a QR Code for the given $data and QROptions
-         *
-         * @param string $data
+         * Returns the identifier of the authorized resource owner.
          *
          * @return mixed
          */
-        public function render($data)
-        {
-        }
+        public function getId();
         /**
-         * Returns a QRMatrix object for the given $data and current QROptions
-         *
-         * @param string $data
-         *
-         * @return \chillerlan\QRCode\Data\QRMatrix
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        public function getMatrix($data)
-        {
-        }
-        /**
-         * shoves a QRMatrix through the MaskPatternTester to find the lowest penalty mask pattern
-         *
-         * @see \chillerlan\QRCode\Data\MaskPatternTester
-         *
-         * @return int
-         */
-        protected function getBestMaskPattern()
-        {
-        }
-        /**
-         * returns a fresh QRDataInterface for the given $data
-         *
-         * @param string                       $data
-         *
-         * @return \chillerlan\QRCode\Data\QRDataInterface
-         * @throws \chillerlan\QRCode\Data\QRCodeDataException
-         */
-        public function initDataInterface($data)
-        {
-        }
-        /**
-         * returns a fresh (built-in) QROutputInterface
-         *
-         * @param string $data
-         *
-         * @return \chillerlan\QRCode\Output\QROutputInterface
-         * @throws \chillerlan\QRCode\Output\QRCodeOutputException
-         */
-        protected function initOutputInterface($data)
-        {
-        }
-        /**
-         * checks if a string qualifies as numeric
-         *
-         * @param string $string
-         *
-         * @return bool
-         */
-        public function isNumber($string)
-        {
-        }
-        /**
-         * checks if a string qualifies as alphanumeric
-         *
-         * @param string $string
-         *
-         * @return bool
-         */
-        public function isAlphaNum($string)
-        {
-        }
-        /**
-         * checks if a string qualifies as Kanji
-         *
-         * @param string $string
-         *
-         * @return bool
-         */
-        public function isKanji($string)
-        {
-        }
-        /**
-         * a dummy
-         *
-         * @param $data
-         *
-         * @return bool
-         */
-        protected function isByte($data)
-        {
-        }
-    }
-    /**
-     * Placeholder
-     */
-    class QRCodeException extends \Exception
-    {
-    }
-}
-namespace YoastSEO_Vendor\chillerlan\QRCode\Traits {
-    /**
-     * a generic container with magic getter and setter
-     */
-    trait Container
-    {
-        /**
-         * @param array                          $properties
-         */
-        public function __construct(array $properties = null)
-        {
-        }
-        /**
-         * @param string $property
-         *
-         * @return mixed
-         */
-        public function __get($property)
-        {
-        }
-        /**
-         * @param string $property
-         * @param mixed  $value
-         *
-         * @return void
-         */
-        public function __set($property, $value)
-        {
-        }
-        /**
-         * @param string $property
-         *
-         * @return bool
-         */
-        public function __isset($property)
-        {
-        }
-        /**
-         * @param string $property
-         *
-         * @return bool
-         */
-        protected function __isPrivate($property)
-        {
-        }
-        /**
-         * @param string $property
-         *
-         * @return void
-         */
-        public function __unset($property)
-        {
-        }
-        /**
-         * @return string
-         */
-        public function __toString()
-        {
-        }
-        /**
-         * @return array
-         */
-        public function __toArray()
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\chillerlan\QRCode {
-    /**
-     * @property int    $version
-     * @property int    $versionMin
-     * @property int    $versionMax
-     * @property int    $eccLevel
-     * @property int    $maskPattern
-     * @property bool   $addQuietzone
-     * @property bool   $quietzoneSize
-     *
-     * @property string $outputType
-     * @property string $outputInterface
-     * @property string $cachefile
-     *
-     * @property string $eol
-     * @property int    $scale
-     *
-     * @property string $cssClass
-     * @property string $svgOpacity
-     * @property string $svgDefs
-     *
-     * @property string $textDark
-     * @property string $textLight
-     *
-     * @property bool   $imageBase64
-     * @property bool   $imageTransparent
-     * @property array  $imageTransparencyBG
-     * @property int    $pngCompression
-     * @property int    $jpegQuality
-     *
-     * @property array  $moduleValues
-     */
-    class QROptions
-    {
-        use \YoastSEO_Vendor\chillerlan\QRCode\Traits\Container;
-        /**
-         * QR Code version number
-         *
-         *   [1 ... 40] or QRCode::VERSION_AUTO
-         *
-         * @var int
-         */
-        protected $version = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::VERSION_AUTO;
-        /**
-         * Minimum QR version (if $version = QRCode::VERSION_AUTO)
-         *
-         * @var int
-         */
-        protected $versionMin = 1;
-        /**
-         * Maximum QR version
-         *
-         * @var int
-         */
-        protected $versionMax = 40;
-        /**
-         * Error correct level
-         *
-         *   QRCode::ECC_X where X is
-         *    L =>  7%
-         *    M => 15%
-         *    Q => 25%
-         *    H => 30%
-         *
-         * @var int
-         */
-        protected $eccLevel = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::ECC_L;
-        /**
-         * Mask Pattern to use
-         *
-         *  [0...7] or QRCode::MASK_PATTERN_AUTO
-         *
-         * @var int
-         */
-        protected $maskPattern = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::MASK_PATTERN_AUTO;
-        /**
-         * Add a "quiet zone" (margin) according to the QR code spec
-         *
-         * @var bool
-         */
-        protected $addQuietzone = \true;
-        /**
-         *  Size of the quiet zone
-         *
-         *   internally clamped to [0 ... $moduleCount / 2], defaults to 4 modules
-         *
-         * @var int
-         */
-        protected $quietzoneSize = 4;
-        /**
-         * QRCode::OUTPUT_MARKUP_XXXX where XXXX = HTML, SVG
-         * QRCode::OUTPUT_IMAGE_XXX where XXX = PNG, GIF, JPG
-         * QRCode::OUTPUT_STRING_XXXX where XXXX = TEXT, JSON
-         * QRCode::OUTPUT_CUSTOM
-         *
-         * @var string
-         */
-        protected $outputType = \YoastSEO_Vendor\chillerlan\QRCode\QRCode::OUTPUT_IMAGE_PNG;
-        /**
-         * the FQCN of the custom QROutputInterface if $outputType is set to QRCode::OUTPUT_CUSTOM
-         *
-         * @var string
-         */
-        protected $outputInterface;
-        /**
-         * /path/to/cache.file
-         *
-         * @var string
-         */
-        protected $cachefile;
-        /**
-         * newline string [HTML, SVG, TEXT]
-         *
-         * @var string
-         */
-        protected $eol = \PHP_EOL;
-        /**
-         * size of a QR code pixel [SVG, IMAGE_*]
-         * HTML -> via CSS
-         *
-         * @var int
-         */
-        protected $scale = 5;
-        /**
-         * a common css class
-         *
-         * @var string
-         */
-        protected $cssClass;
-        /**
-         * SVG opacity
-         *
-         * @var float
-         */
-        protected $svgOpacity = 1.0;
-        /**
-         * anything between <defs>
-         *
-         * @see https://developer.mozilla.org/docs/Web/SVG/Element/defs
-         *
-         * @var string
-         */
-        protected $svgDefs = '<style>rect{shape-rendering:crispEdges}</style>';
-        /**
-         * string substitute for dark
-         *
-         * @var string
-         */
-        protected $textDark = '🔴';
-        /**
-         * string substitute for light
-         *
-         * @var string
-         */
-        protected $textLight = '⭕';
-        /**
-         * toggle base64 or raw image data
-         *
-         * @var bool
-         */
-        protected $imageBase64 = \true;
-        /**
-         * toggle transparency, not supported by jpg
-         *
-         * @var bool
-         */
-        protected $imageTransparent = \true;
-        /**
-         * @see imagecolortransparent()
-         *
-         * @var array [R, G, B]
-         */
-        protected $imageTransparencyBG = [255, 255, 255];
-        /**
-         * @see imagepng()
-         *
-         * @var int
-         */
-        protected $pngCompression = -1;
-        /**
-         * @see imagejpeg()
-         *
-         * @var int
-         */
-        protected $jpegQuality = 85;
-        /**
-         * Module values map
-         *
-         *   HTML : #ABCDEF, cssname, rgb(), rgba()...
-         *   IMAGE: [63, 127, 255] // R, G, B
-         *
-         * @var array
-         */
-        protected $moduleValues = [
-            // light
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_DATA => \false,
-            // 4
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FINDER => \false,
-            // 6
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_SEPARATOR => \false,
-            // 8
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_ALIGNMENT => \false,
-            // 10
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TIMING => \false,
-            // 12
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FORMAT => \false,
-            // 14
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_VERSION => \false,
-            // 16
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_QUIETZONE => \false,
-            // 18
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TEST => \false,
-            // 255
-            // dark
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_DARKMODULE << 8 => \true,
-            // 512
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_DATA << 8 => \true,
-            // 1024
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FINDER << 8 => \true,
-            // 1536
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_ALIGNMENT << 8 => \true,
-            // 2560
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TIMING << 8 => \true,
-            // 3072
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_FORMAT << 8 => \true,
-            // 3584
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_VERSION << 8 => \true,
-            // 4096
-            \YoastSEO_Vendor\chillerlan\QRCode\Data\QRMatrix::M_TEST << 8 => \true,
-        ];
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp {
-    /**
-     * Client interface for sending HTTP requests.
-     */
-    interface ClientInterface
-    {
-        /**
-         * @deprecated Will be removed in Guzzle 7.0.0
-         */
-        const VERSION = '6.5.5';
-        /**
-         * Send an HTTP request.
-         *
-         * @param RequestInterface $request Request to send
-         * @param array            $options Request options to apply to the given
-         *                                  request and to the transfer.
-         *
-         * @return ResponseInterface
-         * @throws GuzzleException
-         */
-        public function send(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options = []);
-        /**
-         * Asynchronously send an HTTP request.
-         *
-         * @param RequestInterface $request Request to send
-         * @param array            $options Request options to apply to the given
-         *                                  request and to the transfer.
-         *
-         * @return PromiseInterface
-         */
-        public function sendAsync(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options = []);
-        /**
-         * Create and send an HTTP request.
-         *
-         * Use an absolute path to override the base path of the client, or a
-         * relative path to append to the base path of the client. The URL can
-         * contain the query string as well.
-         *
-         * @param string              $method  HTTP method.
-         * @param string|UriInterface $uri     URI object or string.
-         * @param array               $options Request options to apply.
-         *
-         * @return ResponseInterface
-         * @throws GuzzleException
-         */
-        public function request($method, $uri, array $options = []);
-        /**
-         * Create and send an asynchronous HTTP request.
-         *
-         * Use an absolute path to override the base path of the client, or a
-         * relative path to append to the base path of the client. The URL can
-         * contain the query string as well. Use an array to provide a URL
-         * template and additional variables to use in the URL template expansion.
-         *
-         * @param string              $method  HTTP method
-         * @param string|UriInterface $uri     URI object or string.
-         * @param array               $options Request options to apply.
-         *
-         * @return PromiseInterface
-         */
-        public function requestAsync($method, $uri, array $options = []);
-        /**
-         * Get a client configuration option.
-         *
-         * These options include default request options of the client, a "handler"
-         * (if utilized by the concrete client), and a "base_uri" if utilized by
-         * the concrete client.
-         *
-         * @param string|null $option The config option to retrieve.
-         *
-         * @return mixed
-         */
-        public function getConfig($option = null);
-    }
-    /**
-     * @method ResponseInterface get(string|UriInterface $uri, array $options = [])
-     * @method ResponseInterface head(string|UriInterface $uri, array $options = [])
-     * @method ResponseInterface put(string|UriInterface $uri, array $options = [])
-     * @method ResponseInterface post(string|UriInterface $uri, array $options = [])
-     * @method ResponseInterface patch(string|UriInterface $uri, array $options = [])
-     * @method ResponseInterface delete(string|UriInterface $uri, array $options = [])
-     * @method Promise\PromiseInterface getAsync(string|UriInterface $uri, array $options = [])
-     * @method Promise\PromiseInterface headAsync(string|UriInterface $uri, array $options = [])
-     * @method Promise\PromiseInterface putAsync(string|UriInterface $uri, array $options = [])
-     * @method Promise\PromiseInterface postAsync(string|UriInterface $uri, array $options = [])
-     * @method Promise\PromiseInterface patchAsync(string|UriInterface $uri, array $options = [])
-     * @method Promise\PromiseInterface deleteAsync(string|UriInterface $uri, array $options = [])
-     */
-    class Client implements \YoastSEO_Vendor\GuzzleHttp\ClientInterface
-    {
-        /** @var array Default request options */
-        private $config;
-        /**
-         * Clients accept an array of constructor parameters.
-         *
-         * Here's an example of creating a client using a base_uri and an array of
-         * default request options to apply to each request:
-         *
-         *     $client = new Client([
-         *         'base_uri'        => 'http://www.foo.com/1.0/',
-         *         'timeout'         => 0,
-         *         'allow_redirects' => false,
-         *         'proxy'           => '192.168.16.1:10'
-         *     ]);
-         *
-         * Client configuration settings include the following options:
-         *
-         * - handler: (callable) Function that transfers HTTP requests over the
-         *   wire. The function is called with a Psr7\Http\Message\RequestInterface
-         *   and array of transfer options, and must return a
-         *   GuzzleHttp\Promise\PromiseInterface that is fulfilled with a
-         *   Psr7\Http\Message\ResponseInterface on success.
-         *   If no handler is provided, a default handler will be created
-         *   that enables all of the request options below by attaching all of the
-         *   default middleware to the handler.
-         * - base_uri: (string|UriInterface) Base URI of the client that is merged
-         *   into relative URIs. Can be a string or instance of UriInterface.
-         * - **: any request option
-         *
-         * @param array $config Client configuration settings.
-         *
-         * @see \GuzzleHttp\RequestOptions for a list of available request options.
-         */
-        public function __construct(array $config = [])
-        {
-        }
-        /**
-         * @param string $method
-         * @param array  $args
-         *
-         * @return Promise\PromiseInterface
-         */
-        public function __call($method, $args)
-        {
-        }
-        /**
-         * Asynchronously send an HTTP request.
-         *
-         * @param array $options Request options to apply to the given
-         *                       request and to the transfer. See \GuzzleHttp\RequestOptions.
-         *
-         * @return Promise\PromiseInterface
-         */
-        public function sendAsync(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options = [])
-        {
-        }
-        /**
-         * Send an HTTP request.
-         *
-         * @param array $options Request options to apply to the given
-         *                       request and to the transfer. See \GuzzleHttp\RequestOptions.
-         *
-         * @return ResponseInterface
-         * @throws GuzzleException
-         */
-        public function send(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options = [])
-        {
-        }
-        /**
-         * Create and send an asynchronous HTTP request.
-         *
-         * Use an absolute path to override the base path of the client, or a
-         * relative path to append to the base path of the client. The URL can
-         * contain the query string as well. Use an array to provide a URL
-         * template and additional variables to use in the URL template expansion.
-         *
-         * @param string              $method  HTTP method
-         * @param string|UriInterface $uri     URI object or string.
-         * @param array               $options Request options to apply. See \GuzzleHttp\RequestOptions.
-         *
-         * @return Promise\PromiseInterface
-         */
-        public function requestAsync($method, $uri = '', array $options = [])
-        {
-        }
-        /**
-         * Create and send an HTTP request.
-         *
-         * Use an absolute path to override the base path of the client, or a
-         * relative path to append to the base path of the client. The URL can
-         * contain the query string as well.
-         *
-         * @param string              $method  HTTP method.
-         * @param string|UriInterface $uri     URI object or string.
-         * @param array               $options Request options to apply. See \GuzzleHttp\RequestOptions.
-         *
-         * @return ResponseInterface
-         * @throws GuzzleException
-         */
-        public function request($method, $uri = '', array $options = [])
-        {
-        }
-        /**
-         * Get a client configuration option.
-         *
-         * These options include default request options of the client, a "handler"
-         * (if utilized by the concrete client), and a "base_uri" if utilized by
-         * the concrete client.
-         *
-         * @param string|null $option The config option to retrieve.
-         *
-         * @return mixed
-         */
-        public function getConfig($option = null)
-        {
-        }
-        /**
-         * @param  string|null $uri
-         *
-         * @return UriInterface
-         */
-        private function buildUri($uri, array $config)
-        {
-        }
-        /**
-         * Configures the default options for a client.
-         *
-         * @param array $config
-         * @return void
-         */
-        private function configureDefaults(array $config)
-        {
-        }
-        /**
-         * Merges default options into the array.
-         *
-         * @param array $options Options to modify by reference
-         *
-         * @return array
-         */
-        private function prepareDefaults(array $options)
-        {
-        }
-        /**
-         * Transfers the given request and applies request options.
-         *
-         * The URI of the request is not modified and the request options are used
-         * as-is without merging in default options.
-         *
-         * @param array $options See \GuzzleHttp\RequestOptions.
-         *
-         * @return Promise\PromiseInterface
-         */
-        private function transfer(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        /**
-         * Applies the array of request options to a request.
-         *
-         * @param RequestInterface $request
-         * @param array            $options
-         *
-         * @return RequestInterface
-         */
-        private function applyOptions(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array &$options)
-        {
-        }
-        /**
-         * Throw Exception with pre-set message.
-         * @return void
-         * @throws \InvalidArgumentException Invalid body.
-         */
-        private function invalidBody()
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Cookie {
-    /**
-     * Stores HTTP cookies.
-     *
-     * It extracts cookies from HTTP requests, and returns them in HTTP responses.
-     * CookieJarInterface instances automatically expire contained cookies when
-     * necessary. Subclasses are also responsible for storing and retrieving
-     * cookies from a file, database, etc.
-     *
-     * @link http://docs.python.org/2/library/cookielib.html Inspiration
-     */
-    interface CookieJarInterface extends \Countable, \IteratorAggregate
-    {
-        /**
-         * Create a request with added cookie headers.
-         *
-         * If no matching cookies are found in the cookie jar, then no Cookie
-         * header is added to the request and the same request is returned.
-         *
-         * @param RequestInterface $request Request object to modify.
-         *
-         * @return RequestInterface returns the modified request.
-         */
-        public function withCookieHeader(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request);
-        /**
-         * Extract cookies from an HTTP response and store them in the CookieJar.
-         *
-         * @param RequestInterface  $request  Request that was sent
-         * @param ResponseInterface $response Response that was received
-         */
-        public function extractCookies(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response);
-        /**
-         * Sets a cookie in the cookie jar.
-         *
-         * @param SetCookie $cookie Cookie to set.
-         *
-         * @return bool Returns true on success or false on failure
-         */
-        public function setCookie(\YoastSEO_Vendor\GuzzleHttp\Cookie\SetCookie $cookie);
-        /**
-         * Remove cookies currently held in the cookie jar.
-         *
-         * Invoking this method without arguments will empty the whole cookie jar.
-         * If given a $domain argument only cookies belonging to that domain will
-         * be removed. If given a $domain and $path argument, cookies belonging to
-         * the specified path within that domain are removed. If given all three
-         * arguments, then the cookie with the specified name, path and domain is
-         * removed.
-         *
-         * @param string|null $domain Clears cookies matching a domain
-         * @param string|null $path   Clears cookies matching a domain and path
-         * @param string|null $name   Clears cookies matching a domain, path, and name
-         *
-         * @return CookieJarInterface
-         */
-        public function clear($domain = null, $path = null, $name = null);
-        /**
-         * Discard all sessions cookies.
-         *
-         * Removes cookies that don't have an expire field or a have a discard
-         * field set to true. To be called when the user agent shuts down according
-         * to RFC 2965.
-         */
-        public function clearSessionCookies();
-        /**
-         * Converts the cookie jar to an array.
+         * Return all of the owner details available as an array.
          *
          * @return array
          */
         public function toArray();
     }
     /**
-     * Cookie jar that stores cookies as an array
+     * Represents a generic resource owner for use with the GenericProvider.
      */
-    class CookieJar implements \YoastSEO_Vendor\GuzzleHttp\Cookie\CookieJarInterface
-    {
-        /** @var SetCookie[] Loaded cookie data */
-        private $cookies = [];
-        /** @var bool */
-        private $strictMode;
-        /**
-         * @param bool $strictMode   Set to true to throw exceptions when invalid
-         *                           cookies are added to the cookie jar.
-         * @param array $cookieArray Array of SetCookie objects or a hash of
-         *                           arrays that can be used with the SetCookie
-         *                           constructor
-         */
-        public function __construct($strictMode = \false, $cookieArray = [])
-        {
-        }
-        /**
-         * Create a new Cookie jar from an associative array and domain.
-         *
-         * @param array  $cookies Cookies to create the jar from
-         * @param string $domain  Domain to set the cookies to
-         *
-         * @return self
-         */
-        public static function fromArray(array $cookies, $domain)
-        {
-        }
-        /**
-         * @deprecated
-         */
-        public static function getCookieValue($value)
-        {
-        }
-        /**
-         * Evaluate if this cookie should be persisted to storage
-         * that survives between requests.
-         *
-         * @param SetCookie $cookie Being evaluated.
-         * @param bool $allowSessionCookies If we should persist session cookies
-         * @return bool
-         */
-        public static function shouldPersist(\YoastSEO_Vendor\GuzzleHttp\Cookie\SetCookie $cookie, $allowSessionCookies = \false)
-        {
-        }
-        /**
-         * Finds and returns the cookie based on the name
-         *
-         * @param string $name cookie name to search for
-         * @return SetCookie|null cookie that was found or null if not found
-         */
-        public function getCookieByName($name)
-        {
-        }
-        public function toArray()
-        {
-        }
-        public function clear($domain = null, $path = null, $name = null)
-        {
-        }
-        public function clearSessionCookies()
-        {
-        }
-        public function setCookie(\YoastSEO_Vendor\GuzzleHttp\Cookie\SetCookie $cookie)
-        {
-        }
-        public function count()
-        {
-        }
-        public function getIterator()
-        {
-        }
-        public function extractCookies(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response)
-        {
-        }
-        /**
-         * Computes cookie path following RFC 6265 section 5.1.4
-         *
-         * @link https://tools.ietf.org/html/rfc6265#section-5.1.4
-         *
-         * @param RequestInterface $request
-         * @return string
-         */
-        private function getCookiePathFromRequest(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request)
-        {
-        }
-        public function withCookieHeader(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request)
-        {
-        }
-        /**
-         * If a cookie already exists and the server asks to set it again with a
-         * null value, the cookie must be deleted.
-         *
-         * @param SetCookie $cookie
-         */
-        private function removeCookieIfEmpty(\YoastSEO_Vendor\GuzzleHttp\Cookie\SetCookie $cookie)
-        {
-        }
-    }
-    /**
-     * Persists non-session cookies using a JSON formatted file
-     */
-    class FileCookieJar extends \YoastSEO_Vendor\GuzzleHttp\Cookie\CookieJar
-    {
-        /** @var string filename */
-        private $filename;
-        /** @var bool Control whether to persist session cookies or not. */
-        private $storeSessionCookies;
-        /**
-         * Create a new FileCookieJar object
-         *
-         * @param string $cookieFile        File to store the cookie data
-         * @param bool $storeSessionCookies Set to true to store session cookies
-         *                                  in the cookie jar.
-         *
-         * @throws \RuntimeException if the file cannot be found or created
-         */
-        public function __construct($cookieFile, $storeSessionCookies = \false)
-        {
-        }
-        /**
-         * Saves the file when shutting down
-         */
-        public function __destruct()
-        {
-        }
-        /**
-         * Saves the cookies to a file.
-         *
-         * @param string $filename File to save
-         * @throws \RuntimeException if the file cannot be found or created
-         */
-        public function save($filename)
-        {
-        }
-        /**
-         * Load cookies from a JSON formatted file.
-         *
-         * Old cookies are kept unless overwritten by newly loaded ones.
-         *
-         * @param string $filename Cookie file to load.
-         * @throws \RuntimeException if the file cannot be loaded.
-         */
-        public function load($filename)
-        {
-        }
-    }
-    /**
-     * Persists cookies in the client session
-     */
-    class SessionCookieJar extends \YoastSEO_Vendor\GuzzleHttp\Cookie\CookieJar
-    {
-        /** @var string session key */
-        private $sessionKey;
-        /** @var bool Control whether to persist session cookies or not. */
-        private $storeSessionCookies;
-        /**
-         * Create a new SessionCookieJar object
-         *
-         * @param string $sessionKey        Session key name to store the cookie
-         *                                  data in session
-         * @param bool $storeSessionCookies Set to true to store session cookies
-         *                                  in the cookie jar.
-         */
-        public function __construct($sessionKey, $storeSessionCookies = \false)
-        {
-        }
-        /**
-         * Saves cookies to session when shutting down
-         */
-        public function __destruct()
-        {
-        }
-        /**
-         * Save cookies to the client session
-         */
-        public function save()
-        {
-        }
-        /**
-         * Load the contents of the client session into the data array
-         */
-        protected function load()
-        {
-        }
-    }
-    /**
-     * Set-Cookie object
-     */
-    class SetCookie
-    {
-        /** @var array */
-        private static $defaults = ['Name' => null, 'Value' => null, 'Domain' => null, 'Path' => '/', 'Max-Age' => null, 'Expires' => null, 'Secure' => \false, 'Discard' => \false, 'HttpOnly' => \false];
-        /** @var array Cookie data */
-        private $data;
-        /**
-         * Create a new SetCookie object from a string
-         *
-         * @param string $cookie Set-Cookie header string
-         *
-         * @return self
-         */
-        public static function fromString($cookie)
-        {
-        }
-        /**
-         * @param array $data Array of cookie data provided by a Cookie parser
-         */
-        public function __construct(array $data = [])
-        {
-        }
-        public function __toString()
-        {
-        }
-        public function toArray()
-        {
-        }
-        /**
-         * Get the cookie name
-         *
-         * @return string
-         */
-        public function getName()
-        {
-        }
-        /**
-         * Set the cookie name
-         *
-         * @param string $name Cookie name
-         */
-        public function setName($name)
-        {
-        }
-        /**
-         * Get the cookie value
-         *
-         * @return string
-         */
-        public function getValue()
-        {
-        }
-        /**
-         * Set the cookie value
-         *
-         * @param string $value Cookie value
-         */
-        public function setValue($value)
-        {
-        }
-        /**
-         * Get the domain
-         *
-         * @return string|null
-         */
-        public function getDomain()
-        {
-        }
-        /**
-         * Set the domain of the cookie
-         *
-         * @param string $domain
-         */
-        public function setDomain($domain)
-        {
-        }
-        /**
-         * Get the path
-         *
-         * @return string
-         */
-        public function getPath()
-        {
-        }
-        /**
-         * Set the path of the cookie
-         *
-         * @param string $path Path of the cookie
-         */
-        public function setPath($path)
-        {
-        }
-        /**
-         * Maximum lifetime of the cookie in seconds
-         *
-         * @return int|null
-         */
-        public function getMaxAge()
-        {
-        }
-        /**
-         * Set the max-age of the cookie
-         *
-         * @param int $maxAge Max age of the cookie in seconds
-         */
-        public function setMaxAge($maxAge)
-        {
-        }
-        /**
-         * The UNIX timestamp when the cookie Expires
-         *
-         * @return mixed
-         */
-        public function getExpires()
-        {
-        }
-        /**
-         * Set the unix timestamp for which the cookie will expire
-         *
-         * @param int $timestamp Unix timestamp
-         */
-        public function setExpires($timestamp)
-        {
-        }
-        /**
-         * Get whether or not this is a secure cookie
-         *
-         * @return bool|null
-         */
-        public function getSecure()
-        {
-        }
-        /**
-         * Set whether or not the cookie is secure
-         *
-         * @param bool $secure Set to true or false if secure
-         */
-        public function setSecure($secure)
-        {
-        }
-        /**
-         * Get whether or not this is a session cookie
-         *
-         * @return bool|null
-         */
-        public function getDiscard()
-        {
-        }
-        /**
-         * Set whether or not this is a session cookie
-         *
-         * @param bool $discard Set to true or false if this is a session cookie
-         */
-        public function setDiscard($discard)
-        {
-        }
-        /**
-         * Get whether or not this is an HTTP only cookie
-         *
-         * @return bool
-         */
-        public function getHttpOnly()
-        {
-        }
-        /**
-         * Set whether or not this is an HTTP only cookie
-         *
-         * @param bool $httpOnly Set to true or false if this is HTTP only
-         */
-        public function setHttpOnly($httpOnly)
-        {
-        }
-        /**
-         * Check if the cookie matches a path value.
-         *
-         * A request-path path-matches a given cookie-path if at least one of
-         * the following conditions holds:
-         *
-         * - The cookie-path and the request-path are identical.
-         * - The cookie-path is a prefix of the request-path, and the last
-         *   character of the cookie-path is %x2F ("/").
-         * - The cookie-path is a prefix of the request-path, and the first
-         *   character of the request-path that is not included in the cookie-
-         *   path is a %x2F ("/") character.
-         *
-         * @param string $requestPath Path to check against
-         *
-         * @return bool
-         */
-        public function matchesPath($requestPath)
-        {
-        }
-        /**
-         * Check if the cookie matches a domain value
-         *
-         * @param string $domain Domain to check against
-         *
-         * @return bool
-         */
-        public function matchesDomain($domain)
-        {
-        }
-        /**
-         * Check if the cookie is expired
-         *
-         * @return bool
-         */
-        public function isExpired()
-        {
-        }
-        /**
-         * Check if the cookie is valid according to RFC 6265
-         *
-         * @return bool|string Returns true if valid or an error message if invalid
-         */
-        public function validate()
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Exception {
-    interface GuzzleException extends \Throwable
-    {
-    }
-    class TransferException extends \RuntimeException implements \YoastSEO_Vendor\GuzzleHttp\Exception\GuzzleException
-    {
-    }
-    /**
-     * HTTP Request exception
-     */
-    class RequestException extends \YoastSEO_Vendor\GuzzleHttp\Exception\TransferException
-    {
-        /** @var RequestInterface */
-        private $request;
-        /** @var ResponseInterface|null */
-        private $response;
-        /** @var array */
-        private $handlerContext;
-        public function __construct($message, \YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null, \Exception $previous = null, array $handlerContext = [])
-        {
-        }
-        /**
-         * Wrap non-RequestExceptions with a RequestException
-         *
-         * @param RequestInterface $request
-         * @param \Exception       $e
-         *
-         * @return RequestException
-         */
-        public static function wrapException(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \Exception $e)
-        {
-        }
-        /**
-         * Factory method to create a new exception with a normalized error message
-         *
-         * @param RequestInterface  $request  Request
-         * @param ResponseInterface $response Response received
-         * @param \Exception        $previous Previous exception
-         * @param array             $ctx      Optional handler context.
-         *
-         * @return self
-         */
-        public static function create(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null, \Exception $previous = null, array $ctx = [])
-        {
-        }
-        /**
-         * Get a short summary of the response
-         *
-         * Will return `null` if the response is not printable.
-         *
-         * @param ResponseInterface $response
-         *
-         * @return string|null
-         */
-        public static function getResponseBodySummary(\YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response)
-        {
-        }
-        /**
-         * Obfuscates URI if there is a username and a password present
-         *
-         * @param UriInterface $uri
-         *
-         * @return UriInterface
-         */
-        private static function obfuscateUri(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        /**
-         * Get the request that caused the exception
-         *
-         * @return RequestInterface
-         */
-        public function getRequest()
-        {
-        }
-        /**
-         * Get the associated response
-         *
-         * @return ResponseInterface|null
-         */
-        public function getResponse()
-        {
-        }
-        /**
-         * Check if a response was received
-         *
-         * @return bool
-         */
-        public function hasResponse()
-        {
-        }
-        /**
-         * Get contextual information about the error from the underlying handler.
-         *
-         * The contents of this array will vary depending on which handler you are
-         * using. It may also be just an empty array. Relying on this data will
-         * couple you to a specific handler, but can give more debug information
-         * when needed.
-         *
-         * @return array
-         */
-        public function getHandlerContext()
-        {
-        }
-    }
-    /**
-     * Exception when an HTTP error occurs (4xx or 5xx error)
-     */
-    class BadResponseException extends \YoastSEO_Vendor\GuzzleHttp\Exception\RequestException
-    {
-        public function __construct($message, \YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null, \Exception $previous = null, array $handlerContext = [])
-        {
-        }
-    }
-    /**
-     * Exception when a client error is encountered (4xx codes)
-     */
-    class ClientException extends \YoastSEO_Vendor\GuzzleHttp\Exception\BadResponseException
-    {
-    }
-    /**
-     * Exception thrown when a connection cannot be established.
-     *
-     * Note that no response is present for a ConnectException
-     */
-    class ConnectException extends \YoastSEO_Vendor\GuzzleHttp\Exception\RequestException
-    {
-        public function __construct($message, \YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \Exception $previous = null, array $handlerContext = [])
-        {
-        }
-        /**
-         * @return null
-         */
-        public function getResponse()
-        {
-        }
-        /**
-         * @return bool
-         */
-        public function hasResponse()
-        {
-        }
-    }
-    final class InvalidArgumentException extends \InvalidArgumentException implements \YoastSEO_Vendor\GuzzleHttp\Exception\GuzzleException
-    {
-    }
-    /**
-     * Exception thrown when a seek fails on a stream.
-     */
-    class SeekException extends \RuntimeException implements \YoastSEO_Vendor\GuzzleHttp\Exception\GuzzleException
-    {
-        private $stream;
-        public function __construct(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $pos = 0, $msg = '')
-        {
-        }
-        /**
-         * @return StreamInterface
-         */
-        public function getStream()
-        {
-        }
-    }
-    /**
-     * Exception when a server error is encountered (5xx codes)
-     */
-    class ServerException extends \YoastSEO_Vendor\GuzzleHttp\Exception\BadResponseException
-    {
-    }
-    class TooManyRedirectsException extends \YoastSEO_Vendor\GuzzleHttp\Exception\RequestException
-    {
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Handler {
-    interface CurlFactoryInterface
+    class GenericResourceOwner implements \YoastSEO_Vendor\League\OAuth2\Client\Provider\ResourceOwnerInterface
     {
         /**
-         * Creates a cURL handle resource.
-         *
-         * @param RequestInterface $request Request
-         * @param array            $options Transfer options
-         *
-         * @return EasyHandle
-         * @throws \RuntimeException when an option cannot be applied
+         * @var array
          */
-        public function create(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options);
+        protected $response;
         /**
-         * Release an easy handle, allowing it to be reused or closed.
-         *
-         * This function must call unset on the easy handle's "handle" property.
-         *
-         * @param EasyHandle $easy
-         */
-        public function release(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy);
-    }
-    /**
-     * Creates curl resources from a request
-     */
-    class CurlFactory implements \YoastSEO_Vendor\GuzzleHttp\Handler\CurlFactoryInterface
-    {
-        const CURL_VERSION_STR = 'curl_version';
-        const LOW_CURL_VERSION_NUMBER = '7.21.2';
-        /** @var array */
-        private $handles = [];
-        /** @var int Total number of idle handles to keep in cache */
-        private $maxHandles;
-        /**
-         * @param int $maxHandles Maximum number of idle handles.
-         */
-        public function __construct($maxHandles)
-        {
-        }
-        public function create(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        public function release(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy)
-        {
-        }
-        /**
-         * Completes a cURL transaction, either returning a response promise or a
-         * rejected promise.
-         *
-         * @param callable             $handler
-         * @param EasyHandle           $easy
-         * @param CurlFactoryInterface $factory Dictates how the handle is released
-         *
-         * @return \GuzzleHttp\Promise\PromiseInterface
-         */
-        public static function finish(callable $handler, \YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy, \YoastSEO_Vendor\GuzzleHttp\Handler\CurlFactoryInterface $factory)
-        {
-        }
-        private static function invokeStats(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy)
-        {
-        }
-        private static function finishError(callable $handler, \YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy, \YoastSEO_Vendor\GuzzleHttp\Handler\CurlFactoryInterface $factory)
-        {
-        }
-        private static function createRejection(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy, array $ctx)
-        {
-        }
-        private function getDefaultConf(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy)
-        {
-        }
-        private function applyMethod(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy, array &$conf)
-        {
-        }
-        private function applyBody(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options, array &$conf)
-        {
-        }
-        private function applyHeaders(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy, array &$conf)
-        {
-        }
-        /**
-         * Remove a header from the options array.
-         *
-         * @param string $name    Case-insensitive header to remove
-         * @param array  $options Array of options to modify
-         */
-        private function removeHeader($name, array &$options)
-        {
-        }
-        private function applyHandlerOptions(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy, array &$conf)
-        {
-        }
-        /**
-         * This function ensures that a response was set on a transaction. If one
-         * was not set, then the request is retried if possible. This error
-         * typically means you are sending a payload, curl encountered a
-         * "Connection died, retrying a fresh connect" error, tried to rewind the
-         * stream, and then encountered a "necessary data rewind wasn't possible"
-         * error, causing the request to be sent through curl_multi_info_read()
-         * without an error status.
-         */
-        private static function retryFailedRewind(callable $handler, \YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy, array $ctx)
-        {
-        }
-        private function createHeaderFn(\YoastSEO_Vendor\GuzzleHttp\Handler\EasyHandle $easy)
-        {
-        }
-    }
-    /**
-     * HTTP handler that uses cURL easy handles as a transport layer.
-     *
-     * When using the CurlHandler, custom curl options can be specified as an
-     * associative array of curl option constants mapping to values in the
-     * **curl** key of the "client" key of the request.
-     */
-    class CurlHandler
-    {
-        /** @var CurlFactoryInterface */
-        private $factory;
-        /**
-         * Accepts an associative array of options:
-         *
-         * - factory: Optional curl factory used to create cURL handles.
-         *
-         * @param array $options Array of options to use with the handler
-         */
-        public function __construct(array $options = [])
-        {
-        }
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-    }
-    /**
-     * Returns an asynchronous response using curl_multi_* functions.
-     *
-     * When using the CurlMultiHandler, custom curl options can be specified as an
-     * associative array of curl option constants mapping to values in the
-     * **curl** key of the provided request options.
-     *
-     * @property resource $_mh Internal use only. Lazy loaded multi-handle.
-     */
-    class CurlMultiHandler
-    {
-        /** @var CurlFactoryInterface */
-        private $factory;
-        private $selectTimeout;
-        private $active;
-        private $handles = [];
-        private $delays = [];
-        private $options = [];
-        /**
-         * This handler accepts the following options:
-         *
-         * - handle_factory: An optional factory  used to create curl handles
-         * - select_timeout: Optional timeout (in seconds) to block before timing
-         *   out while selecting curl handles. Defaults to 1 second.
-         * - options: An associative array of CURLMOPT_* options and
-         *   corresponding values for curl_multi_setopt()
-         *
-         * @param array $options
-         */
-        public function __construct(array $options = [])
-        {
-        }
-        public function __get($name)
-        {
-        }
-        public function __destruct()
-        {
-        }
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        /**
-         * Ticks the curl event loop.
-         */
-        public function tick()
-        {
-        }
-        /**
-         * Runs until all outstanding connections have completed.
-         */
-        public function execute()
-        {
-        }
-        private function addRequest(array $entry)
-        {
-        }
-        /**
-         * Cancels a handle from sending and removes references to it.
-         *
-         * @param int $id Handle ID to cancel and remove.
-         *
-         * @return bool True on success, false on failure.
-         */
-        private function cancel($id)
-        {
-        }
-        private function processMessages()
-        {
-        }
-        private function timeToNext()
-        {
-        }
-    }
-    /**
-     * Represents a cURL easy handle and the data it populates.
-     *
-     * @internal
-     */
-    final class EasyHandle
-    {
-        /** @var resource cURL resource */
-        public $handle;
-        /** @var StreamInterface Where data is being written */
-        public $sink;
-        /** @var array Received HTTP headers so far */
-        public $headers = [];
-        /** @var ResponseInterface Received response (if any) */
-        public $response;
-        /** @var RequestInterface Request being sent */
-        public $request;
-        /** @var array Request options */
-        public $options = [];
-        /** @var int cURL error number (if any) */
-        public $errno = 0;
-        /** @var \Exception Exception during on_headers (if any) */
-        public $onHeadersException;
-        /**
-         * Attach a response to the easy handle based on the received headers.
-         *
-         * @throws \RuntimeException if no headers have been received.
-         */
-        public function createResponse()
-        {
-        }
-        public function __get($name)
-        {
-        }
-    }
-    /**
-     * Handler that returns responses or throw exceptions from a queue.
-     */
-    class MockHandler implements \Countable
-    {
-        private $queue = [];
-        private $lastRequest;
-        private $lastOptions;
-        private $onFulfilled;
-        private $onRejected;
-        /**
-         * Creates a new MockHandler that uses the default handler stack list of
-         * middlewares.
-         *
-         * @param array $queue Array of responses, callables, or exceptions.
-         * @param callable $onFulfilled Callback to invoke when the return value is fulfilled.
-         * @param callable $onRejected  Callback to invoke when the return value is rejected.
-         *
-         * @return HandlerStack
-         */
-        public static function createWithMiddleware(array $queue = null, callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        /**
-         * The passed in value must be an array of
-         * {@see Psr7\Http\Message\ResponseInterface} objects, Exceptions,
-         * callables, or Promises.
-         *
-         * @param array $queue
-         * @param callable $onFulfilled Callback to invoke when the return value is fulfilled.
-         * @param callable $onRejected  Callback to invoke when the return value is rejected.
-         */
-        public function __construct(array $queue = null, callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        /**
-         * Adds one or more variadic requests, exceptions, callables, or promises
-         * to the queue.
-         */
-        public function append()
-        {
-        }
-        /**
-         * Get the last received request.
-         *
-         * @return RequestInterface
-         */
-        public function getLastRequest()
-        {
-        }
-        /**
-         * Get the last received request options.
-         *
-         * @return array
-         */
-        public function getLastOptions()
-        {
-        }
-        /**
-         * Returns the number of remaining items in the queue.
-         *
-         * @return int
-         */
-        public function count()
-        {
-        }
-        public function reset()
-        {
-        }
-        private function invokeStats(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null, $reason = null)
-        {
-        }
-    }
-    /**
-     * Provides basic proxies for handlers.
-     */
-    class Proxy
-    {
-        /**
-         * Sends synchronous requests to a specific handler while sending all other
-         * requests to another handler.
-         *
-         * @param callable $default Handler used for normal responses
-         * @param callable $sync    Handler used for synchronous responses.
-         *
-         * @return callable Returns the composed handler.
-         */
-        public static function wrapSync(callable $default, callable $sync)
-        {
-        }
-        /**
-         * Sends streaming requests to a streaming compatible handler while sending
-         * all other requests to a default handler.
-         *
-         * This, for example, could be useful for taking advantage of the
-         * performance benefits of curl while still supporting true streaming
-         * through the StreamHandler.
-         *
-         * @param callable $default   Handler used for non-streaming responses
-         * @param callable $streaming Handler used for streaming responses
-         *
-         * @return callable Returns the composed handler.
-         */
-        public static function wrapStreaming(callable $default, callable $streaming)
-        {
-        }
-    }
-    /**
-     * HTTP handler that uses PHP's HTTP stream wrapper.
-     */
-    class StreamHandler
-    {
-        private $lastHeaders = [];
-        /**
-         * Sends an HTTP request.
-         *
-         * @param RequestInterface $request Request to send.
-         * @param array            $options Request transfer options.
-         *
-         * @return PromiseInterface
-         */
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        private function invokeStats(array $options, \YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, $startTime, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null, $error = null)
-        {
-        }
-        private function createResponse(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options, $stream, $startTime)
-        {
-        }
-        private function createSink(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, array $options)
-        {
-        }
-        private function checkDecode(array $options, array $headers, $stream)
-        {
-        }
-        /**
-         * Drains the source stream into the "sink" client option.
-         *
-         * @param StreamInterface $source
-         * @param StreamInterface $sink
-         * @param string          $contentLength Header specifying the amount of
-         *                                       data to read.
-         *
-         * @return StreamInterface
-         * @throws \RuntimeException when the sink option is invalid.
-         */
-        private function drain(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $source, \YoastSEO_Vendor\Psr\Http\Message\StreamInterface $sink, $contentLength)
-        {
-        }
-        /**
-         * Create a resource and check to ensure it was created successfully
-         *
-         * @param callable $callback Callable that returns stream resource
-         *
-         * @return resource
-         * @throws \RuntimeException on error
-         */
-        private function createResource(callable $callback)
-        {
-        }
-        private function createStream(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        private function resolveHost(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        private function getDefaultContext(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request)
-        {
-        }
-        private function add_proxy(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, &$options, $value, &$params)
-        {
-        }
-        private function add_timeout(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, &$options, $value, &$params)
-        {
-        }
-        private function add_verify(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, &$options, $value, &$params)
-        {
-        }
-        private function add_cert(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, &$options, $value, &$params)
-        {
-        }
-        private function add_progress(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, &$options, $value, &$params)
-        {
-        }
-        private function add_debug(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, &$options, $value, &$params)
-        {
-        }
-        private function addNotification(array &$params, callable $notify)
-        {
-        }
-        private function callArray(array $functions)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp {
-    /**
-     * Creates a composed Guzzle handler function by stacking middlewares on top of
-     * an HTTP handler function.
-     */
-    class HandlerStack
-    {
-        /** @var callable|null */
-        private $handler;
-        /** @var array */
-        private $stack = [];
-        /** @var callable|null */
-        private $cached;
-        /**
-         * Creates a default handler stack that can be used by clients.
-         *
-         * The returned handler will wrap the provided handler or use the most
-         * appropriate default handler for your system. The returned HandlerStack has
-         * support for cookies, redirects, HTTP error exceptions, and preparing a body
-         * before sending.
-         *
-         * The returned handler stack can be passed to a client in the "handler"
-         * option.
-         *
-         * @param callable $handler HTTP handler function to use with the stack. If no
-         *                          handler is provided, the best handler for your
-         *                          system will be utilized.
-         *
-         * @return HandlerStack
-         */
-        public static function create(callable $handler = null)
-        {
-        }
-        /**
-         * @param callable $handler Underlying HTTP handler.
-         */
-        public function __construct(callable $handler = null)
-        {
-        }
-        /**
-         * Invokes the handler stack as a composed handler
-         *
-         * @param RequestInterface $request
-         * @param array            $options
-         *
-         * @return ResponseInterface|PromiseInterface
-         */
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        /**
-         * Dumps a string representation of the stack.
-         *
-         * @return string
-         */
-        public function __toString()
-        {
-        }
-        /**
-         * Set the HTTP handler that actually returns a promise.
-         *
-         * @param callable $handler Accepts a request and array of options and
-         *                          returns a Promise.
-         */
-        public function setHandler(callable $handler)
-        {
-        }
-        /**
-         * Returns true if the builder has a handler.
-         *
-         * @return bool
-         */
-        public function hasHandler()
-        {
-        }
-        /**
-         * Unshift a middleware to the bottom of the stack.
-         *
-         * @param callable $middleware Middleware function
-         * @param string   $name       Name to register for this middleware.
-         */
-        public function unshift(callable $middleware, $name = null)
-        {
-        }
-        /**
-         * Push a middleware to the top of the stack.
-         *
-         * @param callable $middleware Middleware function
-         * @param string   $name       Name to register for this middleware.
-         */
-        public function push(callable $middleware, $name = '')
-        {
-        }
-        /**
-         * Add a middleware before another middleware by name.
-         *
-         * @param string   $findName   Middleware to find
-         * @param callable $middleware Middleware function
-         * @param string   $withName   Name to register for this middleware.
-         */
-        public function before($findName, callable $middleware, $withName = '')
-        {
-        }
-        /**
-         * Add a middleware after another middleware by name.
-         *
-         * @param string   $findName   Middleware to find
-         * @param callable $middleware Middleware function
-         * @param string   $withName   Name to register for this middleware.
-         */
-        public function after($findName, callable $middleware, $withName = '')
-        {
-        }
-        /**
-         * Remove a middleware by instance or name from the stack.
-         *
-         * @param callable|string $remove Middleware to remove by instance or name.
-         */
-        public function remove($remove)
-        {
-        }
-        /**
-         * Compose the middleware and handler into a single callable function.
-         *
-         * @return callable
-         */
-        public function resolve()
-        {
-        }
-        /**
-         * @param string $name
-         * @return int
-         */
-        private function findByName($name)
-        {
-        }
-        /**
-         * Splices a function into the middleware list at a specific position.
-         *
-         * @param string   $findName
-         * @param string   $withName
-         * @param callable $middleware
-         * @param bool     $before
-         */
-        private function splice($findName, $withName, callable $middleware, $before)
-        {
-        }
-        /**
-         * Provides a debug string for a given callable.
-         *
-         * @param array|callable $fn Function to write as a string.
-         *
-         * @return string
-         */
-        private function debugCallable($fn)
-        {
-        }
-    }
-    /**
-     * Formats log messages using variable substitutions for requests, responses,
-     * and other transactional data.
-     *
-     * The following variable substitutions are supported:
-     *
-     * - {request}:        Full HTTP request message
-     * - {response}:       Full HTTP response message
-     * - {ts}:             ISO 8601 date in GMT
-     * - {date_iso_8601}   ISO 8601 date in GMT
-     * - {date_common_log} Apache common log date using the configured timezone.
-     * - {host}:           Host of the request
-     * - {method}:         Method of the request
-     * - {uri}:            URI of the request
-     * - {version}:        Protocol version
-     * - {target}:         Request target of the request (path + query + fragment)
-     * - {hostname}:       Hostname of the machine that sent the request
-     * - {code}:           Status code of the response (if available)
-     * - {phrase}:         Reason phrase of the response  (if available)
-     * - {error}:          Any error messages (if available)
-     * - {req_header_*}:   Replace `*` with the lowercased name of a request header to add to the message
-     * - {res_header_*}:   Replace `*` with the lowercased name of a response header to add to the message
-     * - {req_headers}:    Request headers
-     * - {res_headers}:    Response headers
-     * - {req_body}:       Request body
-     * - {res_body}:       Response body
-     */
-    class MessageFormatter
-    {
-        /**
-         * Apache Common Log Format.
-         * @link http://httpd.apache.org/docs/2.4/logs.html#common
          * @var string
          */
-        const CLF = "{hostname} {req_header_User-Agent} - [{date_common_log}] \"{method} {target} HTTP/{version}\" {code} {res_header_Content-Length}";
-        const DEBUG = ">>>>>>>>\n{request}\n<<<<<<<<\n{response}\n--------\n{error}";
-        const SHORT = '[{ts}] "{method} {target} HTTP/{version}" {code}';
-        /** @var string Template used to format log messages */
-        private $template;
+        protected $resourceOwnerId;
         /**
-         * @param string $template Log message template
+         * @param array $response
+         * @param string $resourceOwnerId
          */
-        public function __construct($template = self::CLF)
+        public function __construct(array $response, $resourceOwnerId)
         {
         }
         /**
-         * Returns a formatted message string.
-         *
-         * @param RequestInterface  $request  Request that was sent
-         * @param ResponseInterface $response Response that was received
-         * @param \Exception        $error    Exception that was received
-         *
-         * @return string
-         */
-        public function format(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null, \Exception $error = null)
-        {
-        }
-        /**
-         * Get headers from message as string
-         *
-         * @return string
-         */
-        private function headers(\YoastSEO_Vendor\Psr\Http\Message\MessageInterface $message)
-        {
-        }
-    }
-    /**
-     * Functions used to create and wrap handlers with handler middleware.
-     */
-    final class Middleware
-    {
-        /**
-         * Middleware that adds cookies to requests.
-         *
-         * The options array must be set to a CookieJarInterface in order to use
-         * cookies. This is typically handled for you by a client.
-         *
-         * @return callable Returns a function that accepts the next handler.
-         */
-        public static function cookies()
-        {
-        }
-        /**
-         * Middleware that throws exceptions for 4xx or 5xx responses when the
-         * "http_error" request option is set to true.
-         *
-         * @return callable Returns a function that accepts the next handler.
-         */
-        public static function httpErrors()
-        {
-        }
-        /**
-         * Middleware that pushes history data to an ArrayAccess container.
-         *
-         * @param array|\ArrayAccess $container Container to hold the history (by reference).
-         *
-         * @return callable Returns a function that accepts the next handler.
-         * @throws \InvalidArgumentException if container is not an array or ArrayAccess.
-         */
-        public static function history(&$container)
-        {
-        }
-        /**
-         * Middleware that invokes a callback before and after sending a request.
-         *
-         * The provided listener cannot modify or alter the response. It simply
-         * "taps" into the chain to be notified before returning the promise. The
-         * before listener accepts a request and options array, and the after
-         * listener accepts a request, options array, and response promise.
-         *
-         * @param callable $before Function to invoke before forwarding the request.
-         * @param callable $after  Function invoked after forwarding.
-         *
-         * @return callable Returns a function that accepts the next handler.
-         */
-        public static function tap(callable $before = null, callable $after = null)
-        {
-        }
-        /**
-         * Middleware that handles request redirects.
-         *
-         * @return callable Returns a function that accepts the next handler.
-         */
-        public static function redirect()
-        {
-        }
-        /**
-         * Middleware that retries requests based on the boolean result of
-         * invoking the provided "decider" function.
-         *
-         * If no delay function is provided, a simple implementation of exponential
-         * backoff will be utilized.
-         *
-         * @param callable $decider Function that accepts the number of retries,
-         *                          a request, [response], and [exception] and
-         *                          returns true if the request is to be retried.
-         * @param callable $delay   Function that accepts the number of retries and
-         *                          returns the number of milliseconds to delay.
-         *
-         * @return callable Returns a function that accepts the next handler.
-         */
-        public static function retry(callable $decider, callable $delay = null)
-        {
-        }
-        /**
-         * Middleware that logs requests, responses, and errors using a message
-         * formatter.
-         *
-         * @param LoggerInterface  $logger Logs messages.
-         * @param MessageFormatter $formatter Formatter used to create message strings.
-         * @param string           $logLevel Level at which to log requests.
-         *
-         * @return callable Returns a function that accepts the next handler.
-         */
-        public static function log(\YoastSEO_Vendor\Psr\Log\LoggerInterface $logger, \YoastSEO_Vendor\GuzzleHttp\MessageFormatter $formatter, $logLevel = 'info')
-        {
-        }
-        /**
-         * This middleware adds a default content-type if possible, a default
-         * content-length or transfer-encoding header, and the expect header.
-         *
-         * @return callable
-         */
-        public static function prepareBody()
-        {
-        }
-        /**
-         * Middleware that applies a map function to the request before passing to
-         * the next handler.
-         *
-         * @param callable $fn Function that accepts a RequestInterface and returns
-         *                     a RequestInterface.
-         * @return callable
-         */
-        public static function mapRequest(callable $fn)
-        {
-        }
-        /**
-         * Middleware that applies a map function to the resolved promise's
-         * response.
-         *
-         * @param callable $fn Function that accepts a ResponseInterface and
-         *                     returns a ResponseInterface.
-         * @return callable
-         */
-        public static function mapResponse(callable $fn)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Promise {
-    /**
-     * Interface used with classes that return a promise.
-     */
-    interface PromisorInterface
-    {
-        /**
-         * Returns a promise.
-         *
-         * @return PromiseInterface
-         */
-        public function promise();
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp {
-    /**
-     * Sends an iterator of requests concurrently using a capped pool size.
-     *
-     * The pool will read from an iterator until it is cancelled or until the
-     * iterator is consumed. When a request is yielded, the request is sent after
-     * applying the "request_options" request options (if provided in the ctor).
-     *
-     * When a function is yielded by the iterator, the function is provided the
-     * "request_options" array that should be merged on top of any existing
-     * options, and the function MUST then return a wait-able promise.
-     */
-    class Pool implements \YoastSEO_Vendor\GuzzleHttp\Promise\PromisorInterface
-    {
-        /** @var EachPromise */
-        private $each;
-        /**
-         * @param ClientInterface $client   Client used to send the requests.
-         * @param array|\Iterator $requests Requests or functions that return
-         *                                  requests to send concurrently.
-         * @param array           $config   Associative array of options
-         *     - concurrency: (int) Maximum number of requests to send concurrently
-         *     - options: Array of request options to apply to each request.
-         *     - fulfilled: (callable) Function to invoke when a request completes.
-         *     - rejected: (callable) Function to invoke when a request is rejected.
-         */
-        public function __construct(\YoastSEO_Vendor\GuzzleHttp\ClientInterface $client, $requests, array $config = [])
-        {
-        }
-        /**
-         * Get promise
-         *
-         * @return PromiseInterface
-         */
-        public function promise()
-        {
-        }
-        /**
-         * Sends multiple requests concurrently and returns an array of responses
-         * and exceptions that uses the same ordering as the provided requests.
-         *
-         * IMPORTANT: This method keeps every request and response in memory, and
-         * as such, is NOT recommended when sending a large number or an
-         * indeterminate number of requests concurrently.
-         *
-         * @param ClientInterface $client   Client used to send the requests
-         * @param array|\Iterator $requests Requests to send concurrently.
-         * @param array           $options  Passes through the options available in
-         *                                  {@see GuzzleHttp\Pool::__construct}
-         *
-         * @return array Returns an array containing the response or an exception
-         *               in the same order that the requests were sent.
-         * @throws \InvalidArgumentException if the event format is incorrect.
-         */
-        public static function batch(\YoastSEO_Vendor\GuzzleHttp\ClientInterface $client, $requests, array $options = [])
-        {
-        }
-        /**
-         * Execute callback(s)
-         *
-         * @return void
-         */
-        private static function cmpCallback(array &$options, $name, array &$results)
-        {
-        }
-    }
-    /**
-     * Prepares requests that contain a body, adding the Content-Length,
-     * Content-Type, and Expect headers.
-     */
-    class PrepareBodyMiddleware
-    {
-        /** @var callable  */
-        private $nextHandler;
-        /**
-         * @param callable $nextHandler Next handler to invoke.
-         */
-        public function __construct(callable $nextHandler)
-        {
-        }
-        /**
-         * @param RequestInterface $request
-         * @param array            $options
-         *
-         * @return PromiseInterface
-         */
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        /**
-         * Add expect header
-         *
-         * @return void
-         */
-        private function addExpectHeader(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options, array &$modify)
-        {
-        }
-    }
-    /**
-     * Request redirect middleware.
-     *
-     * Apply this middleware like other middleware using
-     * {@see \GuzzleHttp\Middleware::redirect()}.
-     */
-    class RedirectMiddleware
-    {
-        const HISTORY_HEADER = 'X-Guzzle-Redirect-History';
-        const STATUS_HISTORY_HEADER = 'X-Guzzle-Redirect-Status-History';
-        public static $defaultSettings = ['max' => 5, 'protocols' => ['http', 'https'], 'strict' => \false, 'referer' => \false, 'track_redirects' => \false];
-        /** @var callable  */
-        private $nextHandler;
-        /**
-         * @param callable $nextHandler Next handler to invoke.
-         */
-        public function __construct(callable $nextHandler)
-        {
-        }
-        /**
-         * @param RequestInterface $request
-         * @param array            $options
-         *
-         * @return PromiseInterface
-         */
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        /**
-         * @param RequestInterface  $request
-         * @param array             $options
-         * @param ResponseInterface $response
-         *
-         * @return ResponseInterface|PromiseInterface
-         */
-        public function checkRedirect(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response)
-        {
-        }
-        /**
-         * Enable tracking on promise.
-         *
-         * @return PromiseInterface
-         */
-        private function withTracking(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise, $uri, $statusCode)
-        {
-        }
-        /**
-         * Check for too many redirects.
-         *
-         * @return void
-         *
-         * @throws TooManyRedirectsException Too many redirects.
-         */
-        private function guardMax(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array &$options)
-        {
-        }
-        /**
-         * @param RequestInterface  $request
-         * @param array             $options
-         * @param ResponseInterface $response
-         *
-         * @return RequestInterface
-         */
-        public function modifyRequest(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response)
-        {
-        }
-        /**
-         * Set the appropriate URL on the request based on the location header.
-         *
-         * @param RequestInterface  $request
-         * @param ResponseInterface $response
-         * @param array             $protocols
-         *
-         * @return UriInterface
-         */
-        private static function redirectUri(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response, array $protocols)
-        {
-        }
-    }
-    /**
-     * This class contains a list of built-in Guzzle request options.
-     *
-     * More documentation for each option can be found at http://guzzlephp.org/.
-     *
-     * @link http://docs.guzzlephp.org/en/v6/request-options.html
-     */
-    final class RequestOptions
-    {
-        /**
-         * allow_redirects: (bool|array) Controls redirect behavior. Pass false
-         * to disable redirects, pass true to enable redirects, pass an
-         * associative to provide custom redirect settings. Defaults to "false".
-         * This option only works if your handler has the RedirectMiddleware. When
-         * passing an associative array, you can provide the following key value
-         * pairs:
-         *
-         * - max: (int, default=5) maximum number of allowed redirects.
-         * - strict: (bool, default=false) Set to true to use strict redirects
-         *   meaning redirect POST requests with POST requests vs. doing what most
-         *   browsers do which is redirect POST requests with GET requests
-         * - referer: (bool, default=false) Set to true to enable the Referer
-         *   header.
-         * - protocols: (array, default=['http', 'https']) Allowed redirect
-         *   protocols.
-         * - on_redirect: (callable) PHP callable that is invoked when a redirect
-         *   is encountered. The callable is invoked with the request, the redirect
-         *   response that was received, and the effective URI. Any return value
-         *   from the on_redirect function is ignored.
-         */
-        const ALLOW_REDIRECTS = 'allow_redirects';
-        /**
-         * auth: (array) Pass an array of HTTP authentication parameters to use
-         * with the request. The array must contain the username in index [0],
-         * the password in index [1], and you can optionally provide a built-in
-         * authentication type in index [2]. Pass null to disable authentication
-         * for a request.
-         */
-        const AUTH = 'auth';
-        /**
-         * body: (resource|string|null|int|float|StreamInterface|callable|\Iterator)
-         * Body to send in the request.
-         */
-        const BODY = 'body';
-        /**
-         * cert: (string|array) Set to a string to specify the path to a file
-         * containing a PEM formatted SSL client side certificate. If a password
-         * is required, then set cert to an array containing the path to the PEM
-         * file in the first array element followed by the certificate password
-         * in the second array element.
-         */
-        const CERT = 'cert';
-        /**
-         * cookies: (bool|GuzzleHttp\Cookie\CookieJarInterface, default=false)
-         * Specifies whether or not cookies are used in a request or what cookie
-         * jar to use or what cookies to send. This option only works if your
-         * handler has the `cookie` middleware. Valid values are `false` and
-         * an instance of {@see GuzzleHttp\Cookie\CookieJarInterface}.
-         */
-        const COOKIES = 'cookies';
-        /**
-         * connect_timeout: (float, default=0) Float describing the number of
-         * seconds to wait while trying to connect to a server. Use 0 to wait
-         * indefinitely (the default behavior).
-         */
-        const CONNECT_TIMEOUT = 'connect_timeout';
-        /**
-         * debug: (bool|resource) Set to true or set to a PHP stream returned by
-         * fopen()  enable debug output with the HTTP handler used to send a
-         * request.
-         */
-        const DEBUG = 'debug';
-        /**
-         * decode_content: (bool, default=true) Specify whether or not
-         * Content-Encoding responses (gzip, deflate, etc.) are automatically
-         * decoded.
-         */
-        const DECODE_CONTENT = 'decode_content';
-        /**
-         * delay: (int) The amount of time to delay before sending in milliseconds.
-         */
-        const DELAY = 'delay';
-        /**
-         * expect: (bool|integer) Controls the behavior of the
-         * "Expect: 100-Continue" header.
-         *
-         * Set to `true` to enable the "Expect: 100-Continue" header for all
-         * requests that sends a body. Set to `false` to disable the
-         * "Expect: 100-Continue" header for all requests. Set to a number so that
-         * the size of the payload must be greater than the number in order to send
-         * the Expect header. Setting to a number will send the Expect header for
-         * all requests in which the size of the payload cannot be determined or
-         * where the body is not rewindable.
-         *
-         * By default, Guzzle will add the "Expect: 100-Continue" header when the
-         * size of the body of a request is greater than 1 MB and a request is
-         * using HTTP/1.1.
-         */
-        const EXPECT = 'expect';
-        /**
-         * form_params: (array) Associative array of form field names to values
-         * where each value is a string or array of strings. Sets the Content-Type
-         * header to application/x-www-form-urlencoded when no Content-Type header
-         * is already present.
-         */
-        const FORM_PARAMS = 'form_params';
-        /**
-         * headers: (array) Associative array of HTTP headers. Each value MUST be
-         * a string or array of strings.
-         */
-        const HEADERS = 'headers';
-        /**
-         * http_errors: (bool, default=true) Set to false to disable exceptions
-         * when a non- successful HTTP response is received. By default,
-         * exceptions will be thrown for 4xx and 5xx responses. This option only
-         * works if your handler has the `httpErrors` middleware.
-         */
-        const HTTP_ERRORS = 'http_errors';
-        /**
-         * idn: (bool|int, default=true) A combination of IDNA_* constants for
-         * idn_to_ascii() PHP's function (see "options" parameter). Set to false to
-         * disable IDN support completely, or to true to use the default
-         * configuration (IDNA_DEFAULT constant).
-         */
-        const IDN_CONVERSION = 'idn_conversion';
-        /**
-         * json: (mixed) Adds JSON data to a request. The provided value is JSON
-         * encoded and a Content-Type header of application/json will be added to
-         * the request if no Content-Type header is already present.
-         */
-        const JSON = 'json';
-        /**
-         * multipart: (array) Array of associative arrays, each containing a
-         * required "name" key mapping to the form field, name, a required
-         * "contents" key mapping to a StreamInterface|resource|string, an
-         * optional "headers" associative array of custom headers, and an
-         * optional "filename" key mapping to a string to send as the filename in
-         * the part. If no "filename" key is present, then no "filename" attribute
-         * will be added to the part.
-         */
-        const MULTIPART = 'multipart';
-        /**
-         * on_headers: (callable) A callable that is invoked when the HTTP headers
-         * of the response have been received but the body has not yet begun to
-         * download.
-         */
-        const ON_HEADERS = 'on_headers';
-        /**
-         * on_stats: (callable) allows you to get access to transfer statistics of
-         * a request and access the lower level transfer details of the handler
-         * associated with your client. ``on_stats`` is a callable that is invoked
-         * when a handler has finished sending a request. The callback is invoked
-         * with transfer statistics about the request, the response received, or
-         * the error encountered. Included in the data is the total amount of time
-         * taken to send the request.
-         */
-        const ON_STATS = 'on_stats';
-        /**
-         * progress: (callable) Defines a function to invoke when transfer
-         * progress is made. The function accepts the following positional
-         * arguments: the total number of bytes expected to be downloaded, the
-         * number of bytes downloaded so far, the number of bytes expected to be
-         * uploaded, the number of bytes uploaded so far.
-         */
-        const PROGRESS = 'progress';
-        /**
-         * proxy: (string|array) Pass a string to specify an HTTP proxy, or an
-         * array to specify different proxies for different protocols (where the
-         * key is the protocol and the value is a proxy string).
-         */
-        const PROXY = 'proxy';
-        /**
-         * query: (array|string) Associative array of query string values to add
-         * to the request. This option uses PHP's http_build_query() to create
-         * the string representation. Pass a string value if you need more
-         * control than what this method provides
-         */
-        const QUERY = 'query';
-        /**
-         * sink: (resource|string|StreamInterface) Where the data of the
-         * response is written to. Defaults to a PHP temp stream. Providing a
-         * string will write data to a file by the given name.
-         */
-        const SINK = 'sink';
-        /**
-         * synchronous: (bool) Set to true to inform HTTP handlers that you intend
-         * on waiting on the response. This can be useful for optimizations. Note
-         * that a promise is still returned if you are using one of the async
-         * client methods.
-         */
-        const SYNCHRONOUS = 'synchronous';
-        /**
-         * ssl_key: (array|string) Specify the path to a file containing a private
-         * SSL key in PEM format. If a password is required, then set to an array
-         * containing the path to the SSL key in the first array element followed
-         * by the password required for the certificate in the second element.
-         */
-        const SSL_KEY = 'ssl_key';
-        /**
-         * stream: Set to true to attempt to stream a response rather than
-         * download it all up-front.
-         */
-        const STREAM = 'stream';
-        /**
-         * verify: (bool|string, default=true) Describes the SSL certificate
-         * verification behavior of a request. Set to true to enable SSL
-         * certificate verification using the system CA bundle when available
-         * (the default). Set to false to disable certificate verification (this
-         * is insecure!). Set to a string to provide the path to a CA bundle on
-         * disk to enable verification using a custom certificate.
-         */
-        const VERIFY = 'verify';
-        /**
-         * timeout: (float, default=0) Float describing the timeout of the
-         * request in seconds. Use 0 to wait indefinitely (the default behavior).
-         */
-        const TIMEOUT = 'timeout';
-        /**
-         * read_timeout: (float, default=default_socket_timeout ini setting) Float describing
-         * the body read timeout, for stream requests.
-         */
-        const READ_TIMEOUT = 'read_timeout';
-        /**
-         * version: (float) Specifies the HTTP protocol version to attempt to use.
-         */
-        const VERSION = 'version';
-        /**
-         * force_ip_resolve: (bool) Force client to use only ipv4 or ipv6 protocol
-         */
-        const FORCE_IP_RESOLVE = 'force_ip_resolve';
-    }
-    /**
-     * Middleware that retries requests based on the boolean result of
-     * invoking the provided "decider" function.
-     */
-    class RetryMiddleware
-    {
-        /** @var callable  */
-        private $nextHandler;
-        /** @var callable */
-        private $decider;
-        /** @var callable */
-        private $delay;
-        /**
-         * @param callable $decider     Function that accepts the number of retries,
-         *                              a request, [response], and [exception] and
-         *                              returns true if the request is to be
-         *                              retried.
-         * @param callable $nextHandler Next handler to invoke.
-         * @param callable $delay       Function that accepts the number of retries
-         *                              and [response] and returns the number of
-         *                              milliseconds to delay.
-         */
-        public function __construct(callable $decider, callable $nextHandler, callable $delay = null)
-        {
-        }
-        /**
-         * Default exponential backoff delay function.
-         *
-         * @param int $retries
-         *
-         * @return int milliseconds.
-         */
-        public static function exponentialDelay($retries)
-        {
-        }
-        /**
-         * @param RequestInterface $request
-         * @param array            $options
-         *
-         * @return PromiseInterface
-         */
-        public function __invoke(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options)
-        {
-        }
-        /**
-         * Execute fulfilled closure
+         * Returns the identifier of the authorized resource owner.
          *
          * @return mixed
          */
-        private function onFulfilled(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $req, array $options)
+        public function getId()
         {
         }
         /**
-         * Execute rejected closure
-         *
-         * @return callable
-         */
-        private function onRejected(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $req, array $options)
-        {
-        }
-        /**
-         * @return self
-         */
-        private function doRetry(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $options, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null)
-        {
-        }
-    }
-    /**
-     * Represents data at the point after it was transferred either successfully
-     * or after a network error.
-     */
-    final class TransferStats
-    {
-        private $request;
-        private $response;
-        private $transferTime;
-        private $handlerStats;
-        private $handlerErrorData;
-        /**
-         * @param RequestInterface       $request          Request that was sent.
-         * @param ResponseInterface|null $response         Response received (if any)
-         * @param float|null             $transferTime     Total handler transfer time.
-         * @param mixed                  $handlerErrorData Handler error data.
-         * @param array                  $handlerStats     Handler specific stats.
-         */
-        public function __construct(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response = null, $transferTime = null, $handlerErrorData = null, $handlerStats = [])
-        {
-        }
-        /**
-         * @return RequestInterface
-         */
-        public function getRequest()
-        {
-        }
-        /**
-         * Returns the response that was received (if any).
-         *
-         * @return ResponseInterface|null
-         */
-        public function getResponse()
-        {
-        }
-        /**
-         * Returns true if a response was received.
-         *
-         * @return bool
-         */
-        public function hasResponse()
-        {
-        }
-        /**
-         * Gets handler specific error data.
-         *
-         * This might be an exception, a integer representing an error code, or
-         * anything else. Relying on this value assumes that you know what handler
-         * you are using.
-         *
-         * @return mixed
-         */
-        public function getHandlerErrorData()
-        {
-        }
-        /**
-         * Get the effective URI the request was sent to.
-         *
-         * @return UriInterface
-         */
-        public function getEffectiveUri()
-        {
-        }
-        /**
-         * Get the estimated time the request was being transferred by the handler.
-         *
-         * @return float|null Time in seconds.
-         */
-        public function getTransferTime()
-        {
-        }
-        /**
-         * Gets an array of all of the handler specific transfer data.
+         * Returns the raw resource owner response.
          *
          * @return array
          */
-        public function getHandlerStats()
-        {
-        }
-        /**
-         * Get a specific handler statistic from the handler by name.
-         *
-         * @param string $stat Handler specific transfer stat to retrieve.
-         *
-         * @return mixed|null
-         */
-        public function getHandlerStat($stat)
+        public function toArray()
         {
         }
     }
+}
+namespace YoastSEO_Vendor\League\OAuth2\Client\Tool {
     /**
-     * Expands URI templates. Userland implementation of PECL uri_template.
+     * Enables `MAC` header authorization for providers.
      *
-     * @link http://tools.ietf.org/html/rfc6570
+     * @link http://tools.ietf.org/html/draft-ietf-oauth-v2-http-mac-05 Message Authentication Code (MAC) Tokens
      */
-    class UriTemplate
+    trait MacAuthorizationTrait
     {
-        /** @var string URI template */
-        private $template;
-        /** @var array Variables to use in the template expansion */
-        private $variables;
-        /** @var array Hash for quick operator lookups */
-        private static $operatorHash = ['' => ['prefix' => '', 'joiner' => ',', 'query' => \false], '+' => ['prefix' => '', 'joiner' => ',', 'query' => \false], '#' => ['prefix' => '#', 'joiner' => ',', 'query' => \false], '.' => ['prefix' => '.', 'joiner' => '.', 'query' => \false], '/' => ['prefix' => '/', 'joiner' => '/', 'query' => \false], ';' => ['prefix' => ';', 'joiner' => ';', 'query' => \true], '?' => ['prefix' => '?', 'joiner' => '&', 'query' => \true], '&' => ['prefix' => '&', 'joiner' => '&', 'query' => \true]];
-        /** @var array Delimiters */
-        private static $delims = [':', '/', '?', '#', '[', ']', '@', '!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '='];
-        /** @var array Percent encoded delimiters */
-        private static $delimsPct = ['%3A', '%2F', '%3F', '%23', '%5B', '%5D', '%40', '%21', '%24', '%26', '%27', '%28', '%29', '%2A', '%2B', '%2C', '%3B', '%3D'];
-        public function expand($template, array $variables)
-        {
-        }
         /**
-         * Parse an expression into parts
+         * Returns the id of this token for MAC generation.
          *
-         * @param string $expression Expression to parse
-         *
-         * @return array Returns an associative array of parts
-         */
-        private function parseExpression($expression)
-        {
-        }
-        /**
-         * Process an expansion
-         *
-         * @param array $matches Matches met in the preg_replace_callback
-         *
-         * @return string Returns the replacement string
-         */
-        private function expandMatch(array $matches)
-        {
-        }
-        /**
-         * Determines if an array is associative.
-         *
-         * This makes the assumption that input arrays are sequences or hashes.
-         * This assumption is a tradeoff for accuracy in favor of speed, but it
-         * should work in almost every case where input is supplied for a URI
-         * template.
-         *
-         * @param array $array Array to check
-         *
-         * @return bool
-         */
-        private function isAssoc(array $array)
-        {
-        }
-        /**
-         * Removes percent encoding on reserved characters (used with + and #
-         * modifiers).
-         *
-         * @param string $string String to fix
-         *
+         * @param  AccessToken $token
          * @return string
          */
-        private function decodeReserved($string)
+        protected abstract function getTokenId(\YoastSEO_Vendor\League\OAuth2\Client\Token\AccessToken $token);
+        /**
+         * Returns the MAC signature for the current request.
+         *
+         * @param  string $id
+         * @param  integer $ts
+         * @param  string $nonce
+         * @return string
+         */
+        protected abstract function getMacSignature($id, $ts, $nonce);
+        /**
+         * Returns a new random string to use as the state parameter in an
+         * authorization flow.
+         *
+         * @param  int $length Length of the random string to be generated.
+         * @return string
+         */
+        protected abstract function getRandomState($length = 32);
+        /**
+         * Returns the authorization headers for the 'mac' grant.
+         *
+         * @param  AccessTokenInterface|string|null $token Either a string or an access token instance
+         * @return array
+         * @codeCoverageIgnore
+         *
+         * @todo This is currently untested and provided only as an example. If you
+         * complete the implementation, please create a pull request for
+         * https://github.com/thephpleague/oauth2-client
+         */
+        protected function getAuthorizationHeaders($token = null)
         {
         }
     }
-    final class Utils
+    trait ProviderRedirectTrait
     {
         /**
-         * Wrapper for the hrtime() or microtime() functions
-         * (depending on the PHP version, one of the two is used)
+         * Maximum number of times to follow provider initiated redirects
          *
-         * @return float|mixed UNIX timestamp
-         *
-         * @internal
+         * @var integer
          */
-        public static function currentTime()
+        protected $redirectLimit = 2;
+        /**
+         * Retrieves a response for a given request and retrieves subsequent
+         * responses, with authorization headers, if a redirect is detected.
+         *
+         * @param  RequestInterface $request
+         * @return ResponseInterface
+         * @throws BadResponseException
+         */
+        protected function followRequestRedirects(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request)
         {
         }
         /**
-         * @param int $options
+         * Returns the HTTP client instance.
          *
-         * @return UriInterface
+         * @return GuzzleHttp\ClientInterface
+         */
+        public abstract function getHttpClient();
+        /**
+         * Retrieves current redirect limit.
+         *
+         * @return integer
+         */
+        public function getRedirectLimit()
+        {
+        }
+        /**
+         * Determines if a given response is a redirect.
+         *
+         * @param  ResponseInterface  $response
+         *
+         * @return boolean
+         */
+        protected function isRedirect(\YoastSEO_Vendor\Psr\Http\Message\ResponseInterface $response)
+        {
+        }
+        /**
+         * Sends a request instance and returns a response instance.
+         *
+         * WARNING: This method does not attempt to catch exceptions caused by HTTP
+         * errors! It is recommended to wrap this method in a try/catch block.
+         *
+         * @param  RequestInterface $request
+         * @return ResponseInterface
+         */
+        public function getResponse(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * Updates the redirect limit.
+         *
+         * @param integer $limit
+         * @return League\OAuth2\Client\Provider\AbstractProvider
          * @throws InvalidArgumentException
-         *
-         * @internal
          */
-        public static function idnUriConvert(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, $options = 0)
-        {
-        }
-        /**
-         * @param string $domain
-         * @param int    $options
-         * @param array  $info
-         *
-         * @return string|false
-         */
-        private static function idnToAsci($domain, $options, &$info = [])
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Promise {
-    /**
-     * A special exception that is thrown when waiting on a rejected promise.
-     *
-     * The reason value is available via the getReason() method.
-     */
-    class RejectionException extends \RuntimeException
-    {
-        /** @var mixed Rejection reason. */
-        private $reason;
-        /**
-         * @param mixed  $reason      Rejection reason.
-         * @param string $description Optional description
-         */
-        public function __construct($reason, $description = null)
-        {
-        }
-        /**
-         * Returns the rejection reason.
-         *
-         * @return mixed
-         */
-        public function getReason()
+        public function setRedirectLimit($limit)
         {
         }
     }
     /**
-     * Exception thrown when too many errors occur in the some() or any() methods.
+     * Used to produce PSR-7 Request instances.
+     *
+     * @link https://github.com/guzzle/guzzle/pull/1101
      */
-    class AggregateException extends \YoastSEO_Vendor\GuzzleHttp\Promise\RejectionException
-    {
-        public function __construct($msg, array $reasons)
-        {
-        }
-    }
-    /**
-     * Exception that is set as the reason for a promise that has been cancelled.
-     */
-    class CancellationException extends \YoastSEO_Vendor\GuzzleHttp\Promise\RejectionException
-    {
-    }
-    /**
-     * A promise represents the eventual result of an asynchronous operation.
-     *
-     * The primary way of interacting with a promise is through its then method,
-     * which registers callbacks to receive either a promise’s eventual value or
-     * the reason why the promise cannot be fulfilled.
-     *
-     * @link https://promisesaplus.com/
-     */
-    interface PromiseInterface
-    {
-        const PENDING = 'pending';
-        const FULFILLED = 'fulfilled';
-        const REJECTED = 'rejected';
-        /**
-         * Appends fulfillment and rejection handlers to the promise, and returns
-         * a new promise resolving to the return value of the called handler.
-         *
-         * @param callable $onFulfilled Invoked when the promise fulfills.
-         * @param callable $onRejected  Invoked when the promise is rejected.
-         *
-         * @return PromiseInterface
-         */
-        public function then(callable $onFulfilled = null, callable $onRejected = null);
-        /**
-         * Appends a rejection handler callback to the promise, and returns a new
-         * promise resolving to the return value of the callback if it is called,
-         * or to its original fulfillment value if the promise is instead
-         * fulfilled.
-         *
-         * @param callable $onRejected Invoked when the promise is rejected.
-         *
-         * @return PromiseInterface
-         */
-        public function otherwise(callable $onRejected);
-        /**
-         * Get the state of the promise ("pending", "rejected", or "fulfilled").
-         *
-         * The three states can be checked against the constants defined on
-         * PromiseInterface: PENDING, FULFILLED, and REJECTED.
-         *
-         * @return string
-         */
-        public function getState();
-        /**
-         * Resolve the promise with the given value.
-         *
-         * @param mixed $value
-         *
-         * @throws \RuntimeException if the promise is already resolved.
-         */
-        public function resolve($value);
-        /**
-         * Reject the promise with the given reason.
-         *
-         * @param mixed $reason
-         *
-         * @throws \RuntimeException if the promise is already resolved.
-         */
-        public function reject($reason);
-        /**
-         * Cancels the promise if possible.
-         *
-         * @link https://github.com/promises-aplus/cancellation-spec/issues/7
-         */
-        public function cancel();
-        /**
-         * Waits until the promise completes if possible.
-         *
-         * Pass $unwrap as true to unwrap the result of the promise, either
-         * returning the resolved value or throwing the rejected exception.
-         *
-         * If the promise cannot be waited on, then the promise will be rejected.
-         *
-         * @param bool $unwrap
-         *
-         * @return mixed
-         *
-         * @throws \LogicException if the promise has no wait function or if the
-         *                         promise does not settle after waiting.
-         */
-        public function wait($unwrap = \true);
-    }
-    /**
-     * Creates a promise that is resolved using a generator that yields values or
-     * promises (somewhat similar to C#'s async keyword).
-     *
-     * When called, the Coroutine::of method will start an instance of the generator
-     * and returns a promise that is fulfilled with its final yielded value.
-     *
-     * Control is returned back to the generator when the yielded promise settles.
-     * This can lead to less verbose code when doing lots of sequential async calls
-     * with minimal processing in between.
-     *
-     *     use GuzzleHttp\Promise;
-     *
-     *     function createPromise($value) {
-     *         return new Promise\FulfilledPromise($value);
-     *     }
-     *
-     *     $promise = Promise\Coroutine::of(function () {
-     *         $value = (yield createPromise('a'));
-     *         try {
-     *             $value = (yield createPromise($value . 'b'));
-     *         } catch (\Exception $e) {
-     *             // The promise was rejected.
-     *         }
-     *         yield $value . 'c';
-     *     });
-     *
-     *     // Outputs "abc"
-     *     $promise->then(function ($v) { echo $v; });
-     *
-     * @param callable $generatorFn Generator function to wrap into a promise.
-     *
-     * @return Promise
-     *
-     * @link https://github.com/petkaantonov/bluebird/blob/master/API.md#generators inspiration
-     */
-    final class Coroutine implements \YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface
+    class RequestFactory
     {
         /**
-         * @var PromiseInterface|null
-         */
-        private $currentPromise;
-        /**
-         * @var Generator
-         */
-        private $generator;
-        /**
-         * @var Promise
-         */
-        private $result;
-        public function __construct(callable $generatorFn)
-        {
-        }
-        /**
-         * Create a new coroutine.
-         *
-         * @return self
-         */
-        public static function of(callable $generatorFn)
-        {
-        }
-        public function then(callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        public function otherwise(callable $onRejected)
-        {
-        }
-        public function wait($unwrap = \true)
-        {
-        }
-        public function getState()
-        {
-        }
-        public function resolve($value)
-        {
-        }
-        public function reject($reason)
-        {
-        }
-        public function cancel()
-        {
-        }
-        private function nextCoroutine($yielded)
-        {
-        }
-        /**
-         * @internal
-         */
-        public function _handleSuccess($value)
-        {
-        }
-        /**
-         * @internal
-         */
-        public function _handleFailure($reason)
-        {
-        }
-    }
-    final class Create
-    {
-        /**
-         * Creates a promise for a value if the value is not a promise.
-         *
-         * @param mixed $value Promise or value.
-         *
-         * @return PromiseInterface
-         */
-        public static function promiseFor($value)
-        {
-        }
-        /**
-         * Creates a rejected promise for a reason if the reason is not a promise.
-         * If the provided reason is a promise, then it is returned as-is.
-         *
-         * @param mixed $reason Promise or reason.
-         *
-         * @return PromiseInterface
-         */
-        public static function rejectionFor($reason)
-        {
-        }
-        /**
-         * Create an exception for a rejected promise value.
-         *
-         * @param mixed $reason
-         *
-         * @return \Exception|\Throwable
-         */
-        public static function exceptionFor($reason)
-        {
-        }
-        /**
-         * Returns an iterator for the given value.
-         *
-         * @param mixed $value
-         *
-         * @return \Iterator
-         */
-        public static function iterFor($value)
-        {
-        }
-    }
-    final class Each
-    {
-        /**
-         * Given an iterator that yields promises or values, returns a promise that
-         * is fulfilled with a null value when the iterator has been consumed or
-         * the aggregate promise has been fulfilled or rejected.
-         *
-         * $onFulfilled is a function that accepts the fulfilled value, iterator
-         * index, and the aggregate promise. The callback can invoke any necessary
-         * side effects and choose to resolve or reject the aggregate if needed.
-         *
-         * $onRejected is a function that accepts the rejection reason, iterator
-         * index, and the aggregate promise. The callback can invoke any necessary
-         * side effects and choose to resolve or reject the aggregate if needed.
-         *
-         * @param mixed    $iterable    Iterator or array to iterate over.
-         * @param callable $onFulfilled
-         * @param callable $onRejected
-         *
-         * @return PromiseInterface
-         */
-        public static function of($iterable, callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        /**
-         * Like of, but only allows a certain number of outstanding promises at any
-         * given time.
-         *
-         * $concurrency may be an integer or a function that accepts the number of
-         * pending promises and returns a numeric concurrency limit value to allow
-         * for dynamic a concurrency size.
-         *
-         * @param mixed        $iterable
-         * @param int|callable $concurrency
-         * @param callable     $onFulfilled
-         * @param callable     $onRejected
-         *
-         * @return PromiseInterface
-         */
-        public static function ofLimit($iterable, $concurrency, callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        /**
-         * Like limit, but ensures that no promise in the given $iterable argument
-         * is rejected. If any promise is rejected, then the aggregate promise is
-         * rejected with the encountered rejection.
-         *
-         * @param mixed        $iterable
-         * @param int|callable $concurrency
-         * @param callable     $onFulfilled
-         *
-         * @return PromiseInterface
-         */
-        public static function ofLimitAll($iterable, $concurrency, callable $onFulfilled = null)
-        {
-        }
-    }
-    /**
-     * Represents a promise that iterates over many promises and invokes
-     * side-effect functions in the process.
-     */
-    class EachPromise implements \YoastSEO_Vendor\GuzzleHttp\Promise\PromisorInterface
-    {
-        private $pending = [];
-        private $nextPendingIndex = 0;
-        /** @var \Iterator|null */
-        private $iterable;
-        /** @var callable|int|null */
-        private $concurrency;
-        /** @var callable|null */
-        private $onFulfilled;
-        /** @var callable|null */
-        private $onRejected;
-        /** @var Promise|null */
-        private $aggregate;
-        /** @var bool|null */
-        private $mutex;
-        /**
-         * Configuration hash can include the following key value pairs:
-         *
-         * - fulfilled: (callable) Invoked when a promise fulfills. The function
-         *   is invoked with three arguments: the fulfillment value, the index
-         *   position from the iterable list of the promise, and the aggregate
-         *   promise that manages all of the promises. The aggregate promise may
-         *   be resolved from within the callback to short-circuit the promise.
-         * - rejected: (callable) Invoked when a promise is rejected. The
-         *   function is invoked with three arguments: the rejection reason, the
-         *   index position from the iterable list of the promise, and the
-         *   aggregate promise that manages all of the promises. The aggregate
-         *   promise may be resolved from within the callback to short-circuit
-         *   the promise.
-         * - concurrency: (integer) Pass this configuration option to limit the
-         *   allowed number of outstanding concurrently executing promises,
-         *   creating a capped pool of promises. There is no limit by default.
-         *
-         * @param mixed $iterable Promises or values to iterate.
-         * @param array $config   Configuration options
-         */
-        public function __construct($iterable, array $config = [])
-        {
-        }
-        /** @psalm-suppress InvalidNullableReturnType */
-        public function promise()
-        {
-        }
-        private function createPromise()
-        {
-        }
-        private function refillPending()
-        {
-        }
-        private function addPending()
-        {
-        }
-        private function advanceIterator()
-        {
-        }
-        private function step($idx)
-        {
-        }
-        private function checkIfFinished()
-        {
-        }
-    }
-    /**
-     * A promise that has been fulfilled.
-     *
-     * Thenning off of this promise will invoke the onFulfilled callback
-     * immediately and ignore other callbacks.
-     */
-    class FulfilledPromise implements \YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface
-    {
-        private $value;
-        public function __construct($value)
-        {
-        }
-        public function then(callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        public function otherwise(callable $onRejected)
-        {
-        }
-        public function wait($unwrap = \true, $defaultDelivery = null)
-        {
-        }
-        public function getState()
-        {
-        }
-        public function resolve($value)
-        {
-        }
-        public function reject($reason)
-        {
-        }
-        public function cancel()
-        {
-        }
-    }
-    final class Is
-    {
-        /**
-         * Returns true if a promise is pending.
-         *
-         * @return bool
-         */
-        public static function pending(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-        {
-        }
-        /**
-         * Returns true if a promise is fulfilled or rejected.
-         *
-         * @return bool
-         */
-        public static function settled(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-        {
-        }
-        /**
-         * Returns true if a promise is fulfilled.
-         *
-         * @return bool
-         */
-        public static function fulfilled(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-        {
-        }
-        /**
-         * Returns true if a promise is rejected.
-         *
-         * @return bool
-         */
-        public static function rejected(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-        {
-        }
-    }
-    /**
-     * Promises/A+ implementation that avoids recursion when possible.
-     *
-     * @link https://promisesaplus.com/
-     */
-    class Promise implements \YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface
-    {
-        private $state = self::PENDING;
-        private $result;
-        private $cancelFn;
-        private $waitFn;
-        private $waitList;
-        private $handlers = [];
-        /**
-         * @param callable $waitFn   Fn that when invoked resolves the promise.
-         * @param callable $cancelFn Fn that when invoked cancels the promise.
-         */
-        public function __construct(callable $waitFn = null, callable $cancelFn = null)
-        {
-        }
-        public function then(callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        public function otherwise(callable $onRejected)
-        {
-        }
-        public function wait($unwrap = \true)
-        {
-        }
-        public function getState()
-        {
-        }
-        public function cancel()
-        {
-        }
-        public function resolve($value)
-        {
-        }
-        public function reject($reason)
-        {
-        }
-        private function settle($state, $value)
-        {
-        }
-        /**
-         * Call a stack of handlers using a specific callback index and value.
-         *
-         * @param int   $index   1 (resolve) or 2 (reject).
-         * @param mixed $value   Value to pass to the callback.
-         * @param array $handler Array of handler data (promise and callbacks).
-         */
-        private static function callHandler($index, $value, array $handler)
-        {
-        }
-        private function waitIfPending()
-        {
-        }
-        private function invokeWaitFn()
-        {
-        }
-        private function invokeWaitList()
-        {
-        }
-    }
-    /**
-     * A promise that has been rejected.
-     *
-     * Thenning off of this promise will invoke the onRejected callback
-     * immediately and ignore other callbacks.
-     */
-    class RejectedPromise implements \YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface
-    {
-        private $reason;
-        public function __construct($reason)
-        {
-        }
-        public function then(callable $onFulfilled = null, callable $onRejected = null)
-        {
-        }
-        public function otherwise(callable $onRejected)
-        {
-        }
-        public function wait($unwrap = \true, $defaultDelivery = null)
-        {
-        }
-        public function getState()
-        {
-        }
-        public function resolve($value)
-        {
-        }
-        public function reject($reason)
-        {
-        }
-        public function cancel()
-        {
-        }
-    }
-    interface TaskQueueInterface
-    {
-        /**
-         * Returns true if the queue is empty.
-         *
-         * @return bool
-         */
-        public function isEmpty();
-        /**
-         * Adds a task to the queue that will be executed the next time run is
-         * called.
-         */
-        public function add(callable $task);
-        /**
-         * Execute all of the pending task in the queue.
-         */
-        public function run();
-    }
-    /**
-     * A task queue that executes tasks in a FIFO order.
-     *
-     * This task queue class is used to settle promises asynchronously and
-     * maintains a constant stack size. You can use the task queue asynchronously
-     * by calling the `run()` function of the global task queue in an event loop.
-     *
-     *     GuzzleHttp\Promise\Utils::queue()->run();
-     */
-    class TaskQueue implements \YoastSEO_Vendor\GuzzleHttp\Promise\TaskQueueInterface
-    {
-        private $enableShutdown = \true;
-        private $queue = [];
-        public function __construct($withShutdown = \true)
-        {
-        }
-        public function isEmpty()
-        {
-        }
-        public function add(callable $task)
-        {
-        }
-        public function run()
-        {
-        }
-        /**
-         * The task queue will be run and exhausted by default when the process
-         * exits IFF the exit is not the result of a PHP E_ERROR error.
-         *
-         * You can disable running the automatic shutdown of the queue by calling
-         * this function. If you disable the task queue shutdown process, then you
-         * MUST either run the task queue (as a result of running your event loop
-         * or manually using the run() method) or wait on each outstanding promise.
-         *
-         * Note: This shutdown will occur before any destructors are triggered.
-         */
-        public function disableShutdown()
-        {
-        }
-    }
-    final class Utils
-    {
-        /**
-         * Get the global task queue used for promise resolution.
-         *
-         * This task queue MUST be run in an event loop in order for promises to be
-         * settled asynchronously. It will be automatically run when synchronously
-         * waiting on a promise.
-         *
-         * <code>
-         * while ($eventLoop->isRunning()) {
-         *     GuzzleHttp\Promise\Utils::queue()->run();
-         * }
-         * </code>
-         *
-         * @param TaskQueueInterface $assign Optionally specify a new queue instance.
-         *
-         * @return TaskQueueInterface
-         */
-        public static function queue(\YoastSEO_Vendor\GuzzleHttp\Promise\TaskQueueInterface $assign = null)
-        {
-        }
-        /**
-         * Adds a function to run in the task queue when it is next `run()` and
-         * returns a promise that is fulfilled or rejected with the result.
-         *
-         * @param callable $task Task function to run.
-         *
-         * @return PromiseInterface
-         */
-        public static function task(callable $task)
-        {
-        }
-        /**
-         * Synchronously waits on a promise to resolve and returns an inspection
-         * state array.
-         *
-         * Returns a state associative array containing a "state" key mapping to a
-         * valid promise state. If the state of the promise is "fulfilled", the
-         * array will contain a "value" key mapping to the fulfilled value of the
-         * promise. If the promise is rejected, the array will contain a "reason"
-         * key mapping to the rejection reason of the promise.
-         *
-         * @param PromiseInterface $promise Promise or value.
-         *
-         * @return array
-         */
-        public static function inspect(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-        {
-        }
-        /**
-         * Waits on all of the provided promises, but does not unwrap rejected
-         * promises as thrown exception.
-         *
-         * Returns an array of inspection state arrays.
-         *
-         * @see inspect for the inspection state array format.
-         *
-         * @param PromiseInterface[] $promises Traversable of promises to wait upon.
-         *
-         * @return array
-         */
-        public static function inspectAll($promises)
-        {
-        }
-        /**
-         * Waits on all of the provided promises and returns the fulfilled values.
-         *
-         * Returns an array that contains the value of each promise (in the same
-         * order the promises were provided). An exception is thrown if any of the
-         * promises are rejected.
-         *
-         * @param iterable<PromiseInterface> $promises Iterable of PromiseInterface objects to wait on.
-         *
-         * @return array
-         *
-         * @throws \Exception on error
-         * @throws \Throwable on error in PHP >=7
-         */
-        public static function unwrap($promises)
-        {
-        }
-        /**
-         * Given an array of promises, return a promise that is fulfilled when all
-         * the items in the array are fulfilled.
-         *
-         * The promise's fulfillment value is an array with fulfillment values at
-         * respective positions to the original array. If any promise in the array
-         * rejects, the returned promise is rejected with the rejection reason.
-         *
-         * @param mixed $promises  Promises or values.
-         * @param bool  $recursive If true, resolves new promises that might have been added to the stack during its own resolution.
-         *
-         * @return PromiseInterface
-         */
-        public static function all($promises, $recursive = \false)
-        {
-        }
-        /**
-         * Initiate a competitive race between multiple promises or values (values
-         * will become immediately fulfilled promises).
-         *
-         * When count amount of promises have been fulfilled, the returned promise
-         * is fulfilled with an array that contains the fulfillment values of the
-         * winners in order of resolution.
-         *
-         * This promise is rejected with a {@see AggregateException} if the number
-         * of fulfilled promises is less than the desired $count.
-         *
-         * @param int   $count    Total number of promises.
-         * @param mixed $promises Promises or values.
-         *
-         * @return PromiseInterface
-         */
-        public static function some($count, $promises)
-        {
-        }
-        /**
-         * Like some(), with 1 as count. However, if the promise fulfills, the
-         * fulfillment value is not an array of 1 but the value directly.
-         *
-         * @param mixed $promises Promises or values.
-         *
-         * @return PromiseInterface
-         */
-        public static function any($promises)
-        {
-        }
-        /**
-         * Returns a promise that is fulfilled when all of the provided promises have
-         * been fulfilled or rejected.
-         *
-         * The returned promise is fulfilled with an array of inspection state arrays.
-         *
-         * @see inspect for the inspection state array format.
-         *
-         * @param mixed $promises Promises or values.
-         *
-         * @return PromiseInterface
-         */
-        public static function settle($promises)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\Psr\Http\Message {
-    /**
-     * Describes a data stream.
-     *
-     * Typically, an instance will wrap a PHP stream; this interface provides
-     * a wrapper around the most common operations, including serialization of
-     * the entire stream to a string.
-     */
-    interface StreamInterface
-    {
-        /**
-         * Reads all data from the stream into a string, from the beginning to end.
-         *
-         * This method MUST attempt to seek to the beginning of the stream before
-         * reading data and read the stream until the end is reached.
-         *
-         * Warning: This could attempt to load a large amount of data into memory.
-         *
-         * This method MUST NOT raise an exception in order to conform with PHP's
-         * string casting operations.
-         *
-         * @see http://php.net/manual/en/language.oop5.magic.php#object.tostring
-         * @return string
-         */
-        public function __toString();
-        /**
-         * Closes the stream and any underlying resources.
-         *
-         * @return void
-         */
-        public function close();
-        /**
-         * Separates any underlying resources from the stream.
-         *
-         * After the stream has been detached, the stream is in an unusable state.
-         *
-         * @return resource|null Underlying PHP stream, if any
-         */
-        public function detach();
-        /**
-         * Get the size of the stream if known.
-         *
-         * @return int|null Returns the size in bytes if known, or null if unknown.
-         */
-        public function getSize();
-        /**
-         * Returns the current position of the file read/write pointer
-         *
-         * @return int Position of the file pointer
-         * @throws \RuntimeException on error.
-         */
-        public function tell();
-        /**
-         * Returns true if the stream is at the end of the stream.
-         *
-         * @return bool
-         */
-        public function eof();
-        /**
-         * Returns whether or not the stream is seekable.
-         *
-         * @return bool
-         */
-        public function isSeekable();
-        /**
-         * Seek to a position in the stream.
-         *
-         * @link http://www.php.net/manual/en/function.fseek.php
-         * @param int $offset Stream offset
-         * @param int $whence Specifies how the cursor position will be calculated
-         *     based on the seek offset. Valid values are identical to the built-in
-         *     PHP $whence values for `fseek()`.  SEEK_SET: Set position equal to
-         *     offset bytes SEEK_CUR: Set position to current location plus offset
-         *     SEEK_END: Set position to end-of-stream plus offset.
-         * @throws \RuntimeException on failure.
-         */
-        public function seek($offset, $whence = \SEEK_SET);
-        /**
-         * Seek to the beginning of the stream.
-         *
-         * If the stream is not seekable, this method will raise an exception;
-         * otherwise, it will perform a seek(0).
-         *
-         * @see seek()
-         * @link http://www.php.net/manual/en/function.fseek.php
-         * @throws \RuntimeException on failure.
-         */
-        public function rewind();
-        /**
-         * Returns whether or not the stream is writable.
-         *
-         * @return bool
-         */
-        public function isWritable();
-        /**
-         * Write data to the stream.
-         *
-         * @param string $string The string that is to be written.
-         * @return int Returns the number of bytes written to the stream.
-         * @throws \RuntimeException on failure.
-         */
-        public function write($string);
-        /**
-         * Returns whether or not the stream is readable.
-         *
-         * @return bool
-         */
-        public function isReadable();
-        /**
-         * Read data from the stream.
-         *
-         * @param int $length Read up to $length bytes from the object and return
-         *     them. Fewer than $length bytes may be returned if underlying stream
-         *     call returns fewer bytes.
-         * @return string Returns the data read from the stream, or an empty string
-         *     if no bytes are available.
-         * @throws \RuntimeException if an error occurs.
-         */
-        public function read($length);
-        /**
-         * Returns the remaining contents in a string
-         *
-         * @return string
-         * @throws \RuntimeException if unable to read or an error occurs while
-         *     reading.
-         */
-        public function getContents();
-        /**
-         * Get stream metadata as an associative array or retrieve a specific key.
-         *
-         * The keys returned are identical to the keys returned from PHP's
-         * stream_get_meta_data() function.
-         *
-         * @link http://php.net/manual/en/function.stream-get-meta-data.php
-         * @param string $key Specific metadata to retrieve.
-         * @return array|mixed|null Returns an associative array if no key is
-         *     provided. Returns a specific key value if a key is provided and the
-         *     value is found, or null if the key is not found.
-         */
-        public function getMetadata($key = null);
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Psr7 {
-    /**
-     * Reads from multiple streams, one after the other.
-     *
-     * This is a read-only stream decorator.
-     *
-     * @final
-     */
-    class AppendStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        /** @var StreamInterface[] Streams being decorated */
-        private $streams = [];
-        private $seekable = \true;
-        private $current = 0;
-        private $pos = 0;
-        /**
-         * @param StreamInterface[] $streams Streams to decorate. Each stream must
-         *                                   be readable.
-         */
-        public function __construct(array $streams = [])
-        {
-        }
-        public function __toString()
-        {
-        }
-        /**
-         * Add a stream to the AppendStream
-         *
-         * @param StreamInterface $stream Stream to append. Must be readable.
-         *
-         * @throws \InvalidArgumentException if the stream is not readable
-         */
-        public function addStream(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream)
-        {
-        }
-        public function getContents()
-        {
-        }
-        /**
-         * Closes each attached stream.
-         *
-         * {@inheritdoc}
-         */
-        public function close()
-        {
-        }
-        /**
-         * Detaches each attached stream.
-         *
-         * Returns null as it's not clear which underlying stream resource to return.
-         *
-         * {@inheritdoc}
-         */
-        public function detach()
-        {
-        }
-        public function tell()
-        {
-        }
-        /**
-         * Tries to calculate the size by adding the size of each stream.
-         *
-         * If any of the streams do not return a valid number, then the size of the
-         * append stream cannot be determined and null is returned.
-         *
-         * {@inheritdoc}
-         */
-        public function getSize()
-        {
-        }
-        public function eof()
-        {
-        }
-        public function rewind()
-        {
-        }
-        /**
-         * Attempts to seek to the given position. Only supports SEEK_SET.
-         *
-         * {@inheritdoc}
-         */
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        /**
-         * Reads from all of the appended streams until the length is met or EOF.
-         *
-         * {@inheritdoc}
-         */
-        public function read($length)
-        {
-        }
-        public function isReadable()
-        {
-        }
-        public function isWritable()
-        {
-        }
-        public function isSeekable()
-        {
-        }
-        public function write($string)
-        {
-        }
-        public function getMetadata($key = null)
-        {
-        }
-    }
-    /**
-     * Provides a buffer stream that can be written to to fill a buffer, and read
-     * from to remove bytes from the buffer.
-     *
-     * This stream returns a "hwm" metadata value that tells upstream consumers
-     * what the configured high water mark of the stream is, or the maximum
-     * preferred size of the buffer.
-     *
-     * @final
-     */
-    class BufferStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        private $hwm;
-        private $buffer = '';
-        /**
-         * @param int $hwm High water mark, representing the preferred maximum
-         *                 buffer size. If the size of the buffer exceeds the high
-         *                 water mark, then calls to write will continue to succeed
-         *                 but will return false to inform writers to slow down
-         *                 until the buffer has been drained by reading from it.
-         */
-        public function __construct($hwm = 16384)
-        {
-        }
-        public function __toString()
-        {
-        }
-        public function getContents()
-        {
-        }
-        public function close()
-        {
-        }
-        public function detach()
-        {
-        }
-        public function getSize()
-        {
-        }
-        public function isReadable()
-        {
-        }
-        public function isWritable()
-        {
-        }
-        public function isSeekable()
-        {
-        }
-        public function rewind()
-        {
-        }
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        public function eof()
-        {
-        }
-        public function tell()
-        {
-        }
-        /**
-         * Reads data from the buffer.
-         */
-        public function read($length)
-        {
-        }
-        /**
-         * Writes data to the buffer.
-         */
-        public function write($string)
-        {
-        }
-        public function getMetadata($key = null)
-        {
-        }
-    }
-    /**
-     * Stream decorator trait
-     *
-     * @property StreamInterface stream
-     */
-    trait StreamDecoratorTrait
-    {
-        /**
-         * @param StreamInterface $stream Stream to decorate
-         */
-        public function __construct(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream)
-        {
-        }
-        /**
-         * Magic method used to create a new stream if streams are not added in
-         * the constructor of a decorator (e.g., LazyOpenStream).
-         *
-         * @param string $name Name of the property (allows "stream" only).
-         *
-         * @return StreamInterface
-         */
-        public function __get($name)
-        {
-        }
-        public function __toString()
-        {
-        }
-        public function getContents()
-        {
-        }
-        /**
-         * Allow decorators to implement custom methods
-         *
-         * @param string $method Missing method name
-         * @param array  $args   Method arguments
-         *
-         * @return mixed
-         */
-        public function __call($method, array $args)
-        {
-        }
-        public function close()
-        {
-        }
-        public function getMetadata($key = null)
-        {
-        }
-        public function detach()
-        {
-        }
-        public function getSize()
-        {
-        }
-        public function eof()
-        {
-        }
-        public function tell()
-        {
-        }
-        public function isReadable()
-        {
-        }
-        public function isWritable()
-        {
-        }
-        public function isSeekable()
-        {
-        }
-        public function rewind()
-        {
-        }
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        public function read($length)
-        {
-        }
-        public function write($string)
-        {
-        }
-        /**
-         * Implement in subclasses to dynamically create streams when requested.
-         *
-         * @return StreamInterface
-         *
-         * @throws \BadMethodCallException
-         */
-        protected function createStream()
-        {
-        }
-    }
-    /**
-     * Stream decorator that can cache previously read bytes from a sequentially
-     * read stream.
-     *
-     * @final
-     */
-    class CachingStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\StreamDecoratorTrait;
-        /** @var StreamInterface Stream being wrapped */
-        private $remoteStream;
-        /** @var int Number of bytes to skip reading due to a write on the buffer */
-        private $skipReadBytes = 0;
-        /**
-         * We will treat the buffer object as the body of the stream
-         *
-         * @param StreamInterface $stream Stream to cache. The cursor is assumed to be at the beginning of the stream.
-         * @param StreamInterface $target Optionally specify where data is cached
-         */
-        public function __construct(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, \YoastSEO_Vendor\Psr\Http\Message\StreamInterface $target = null)
-        {
-        }
-        public function getSize()
-        {
-        }
-        public function rewind()
-        {
-        }
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        public function read($length)
-        {
-        }
-        public function write($string)
-        {
-        }
-        public function eof()
-        {
-        }
-        /**
-         * Close both the remote stream and buffer stream
-         */
-        public function close()
-        {
-        }
-        private function cacheEntireStream()
-        {
-        }
-    }
-    /**
-     * Stream decorator that begins dropping data once the size of the underlying
-     * stream becomes too full.
-     *
-     * @final
-     */
-    class DroppingStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\StreamDecoratorTrait;
-        private $maxLength;
-        /**
-         * @param StreamInterface $stream    Underlying stream to decorate.
-         * @param int             $maxLength Maximum size before dropping data.
-         */
-        public function __construct(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $maxLength)
-        {
-        }
-        public function write($string)
-        {
-        }
-    }
-    /**
-     * Compose stream implementations based on a hash of functions.
-     *
-     * Allows for easy testing and extension of a provided stream without needing
-     * to create a concrete class for a simple extension point.
-     *
-     * @final
-     */
-    class FnStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        /** @var array */
-        private $methods;
-        /** @var array Methods that must be implemented in the given array */
-        private static $slots = ['__toString', 'close', 'detach', 'rewind', 'getSize', 'tell', 'eof', 'isSeekable', 'seek', 'isWritable', 'write', 'isReadable', 'read', 'getContents', 'getMetadata'];
-        /**
-         * @param array $methods Hash of method name to a callable.
-         */
-        public function __construct(array $methods)
-        {
-        }
-        /**
-         * Lazily determine which methods are not implemented.
-         *
-         * @throws \BadMethodCallException
-         */
-        public function __get($name)
-        {
-        }
-        /**
-         * The close method is called on the underlying stream only if possible.
-         */
-        public function __destruct()
-        {
-        }
-        /**
-         * An unserialize would allow the __destruct to run when the unserialized value goes out of scope.
-         *
-         * @throws \LogicException
-         */
-        public function __wakeup()
-        {
-        }
-        /**
-         * Adds custom functionality to an underlying stream by intercepting
-         * specific method calls.
-         *
-         * @param StreamInterface $stream  Stream to decorate
-         * @param array           $methods Hash of method name to a closure
-         *
-         * @return FnStream
-         */
-        public static function decorate(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, array $methods)
-        {
-        }
-        public function __toString()
-        {
-        }
-        public function close()
-        {
-        }
-        public function detach()
-        {
-        }
-        public function getSize()
-        {
-        }
-        public function tell()
-        {
-        }
-        public function eof()
-        {
-        }
-        public function isSeekable()
-        {
-        }
-        public function rewind()
-        {
-        }
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        public function isWritable()
-        {
-        }
-        public function write($string)
-        {
-        }
-        public function isReadable()
-        {
-        }
-        public function read($length)
-        {
-        }
-        public function getContents()
-        {
-        }
-        public function getMetadata($key = null)
-        {
-        }
-    }
-    final class Header
-    {
-        /**
-         * Parse an array of header values containing ";" separated data into an
-         * array of associative arrays representing the header key value pair data
-         * of the header. When a parameter does not contain a value, but just
-         * contains a key, this function will inject a key with a '' string value.
-         *
-         * @param string|array $header Header to parse into components.
-         *
-         * @return array Returns the parsed header values.
-         */
-        public static function parse($header)
-        {
-        }
-        /**
-         * Converts an array of header values that may contain comma separated
-         * headers into an array of headers with no comma separated values.
-         *
-         * @param string|array $header Header to normalize.
-         *
-         * @return array Returns the normalized header field values.
-         */
-        public static function normalize($header)
-        {
-        }
-    }
-    /**
-     * Uses PHP's zlib.inflate filter to inflate deflate or gzipped content.
-     *
-     * This stream decorator skips the first 10 bytes of the given stream to remove
-     * the gzip header, converts the provided stream to a PHP stream resource,
-     * then appends the zlib.inflate filter. The stream is then converted back
-     * to a Guzzle stream resource to be used as a Guzzle stream.
-     *
-     * @link http://tools.ietf.org/html/rfc1952
-     * @link http://php.net/manual/en/filters.compression.php
-     *
-     * @final
-     */
-    class InflateStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\StreamDecoratorTrait;
-        public function __construct(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream)
-        {
-        }
-        /**
-         * @param StreamInterface $stream
-         * @param $header
-         *
-         * @return int
-         */
-        private function getLengthOfPossibleFilenameHeader(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $header)
-        {
-        }
-    }
-    /**
-     * Lazily reads or writes to a file that is opened only after an IO operation
-     * take place on the stream.
-     *
-     * @final
-     */
-    class LazyOpenStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\StreamDecoratorTrait;
-        /** @var string File to open */
-        private $filename;
-        /** @var string */
-        private $mode;
-        /**
-         * @param string $filename File to lazily open
-         * @param string $mode     fopen mode to use when opening the stream
-         */
-        public function __construct($filename, $mode)
-        {
-        }
-        /**
-         * Creates the underlying stream lazily when required.
-         *
-         * @return StreamInterface
-         */
-        protected function createStream()
-        {
-        }
-    }
-    /**
-     * Decorator used to return only a subset of a stream.
-     *
-     * @final
-     */
-    class LimitStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\StreamDecoratorTrait;
-        /** @var int Offset to start reading from */
-        private $offset;
-        /** @var int Limit the number of bytes that can be read */
-        private $limit;
-        /**
-         * @param StreamInterface $stream Stream to wrap
-         * @param int             $limit  Total number of bytes to allow to be read
-         *                                from the stream. Pass -1 for no limit.
-         * @param int             $offset Position to seek to before reading (only
-         *                                works on seekable streams).
-         */
-        public function __construct(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $limit = -1, $offset = 0)
-        {
-        }
-        public function eof()
-        {
-        }
-        /**
-         * Returns the size of the limited subset of data
-         * {@inheritdoc}
-         */
-        public function getSize()
-        {
-        }
-        /**
-         * Allow for a bounded seek on the read limited stream
-         * {@inheritdoc}
-         */
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        /**
-         * Give a relative tell()
-         * {@inheritdoc}
-         */
-        public function tell()
-        {
-        }
-        /**
-         * Set the offset to start limiting from
-         *
-         * @param int $offset Offset to seek to and begin byte limiting from
-         *
-         * @throws \RuntimeException if the stream cannot be seeked.
-         */
-        public function setOffset($offset)
-        {
-        }
-        /**
-         * Set the limit of bytes that the decorator allows to be read from the
-         * stream.
-         *
-         * @param int $limit Number of bytes to allow to be read from the stream.
-         *                   Use -1 for no limit.
-         */
-        public function setLimit($limit)
-        {
-        }
-        public function read($length)
-        {
-        }
-    }
-    final class Message
-    {
-        /**
-         * Returns the string representation of an HTTP message.
-         *
-         * @param MessageInterface $message Message to convert to a string.
-         *
-         * @return string
-         */
-        public static function toString(\YoastSEO_Vendor\Psr\Http\Message\MessageInterface $message)
-        {
-        }
-        /**
-         * Get a short summary of the message body.
-         *
-         * Will return `null` if the response is not printable.
-         *
-         * @param MessageInterface $message    The message to get the body summary
-         * @param int              $truncateAt The maximum allowed size of the summary
-         *
-         * @return string|null
-         */
-        public static function bodySummary(\YoastSEO_Vendor\Psr\Http\Message\MessageInterface $message, $truncateAt = 120)
-        {
-        }
-        /**
-         * Attempts to rewind a message body and throws an exception on failure.
-         *
-         * The body of the message will only be rewound if a call to `tell()`
-         * returns a value other than `0`.
-         *
-         * @param MessageInterface $message Message to rewind
-         *
-         * @throws \RuntimeException
-         */
-        public static function rewindBody(\YoastSEO_Vendor\Psr\Http\Message\MessageInterface $message)
-        {
-        }
-        /**
-         * Parses an HTTP message into an associative array.
-         *
-         * The array contains the "start-line" key containing the start line of
-         * the message, "headers" key containing an associative array of header
-         * array values, and a "body" key containing the body of the message.
-         *
-         * @param string $message HTTP request or response to parse.
-         *
-         * @return array
-         */
-        public static function parseMessage($message)
-        {
-        }
-        /**
-         * Constructs a URI for an HTTP request message.
-         *
-         * @param string $path    Path from the start-line
-         * @param array  $headers Array of headers (each value an array).
-         *
-         * @return string
-         */
-        public static function parseRequestUri($path, array $headers)
-        {
-        }
-        /**
-         * Parses a request message string into a request object.
-         *
-         * @param string $message Request message string.
+         * Creates a PSR-7 Request instance.
+         *
+         * @param  null|string $method HTTP method for the request.
+         * @param  null|string $uri URI for the request.
+         * @param  array $headers Headers for the message.
+         * @param  string|resource|StreamInterface $body Message body.
+         * @param  string $version HTTP protocol version.
          *
          * @return Request
          */
-        public static function parseRequest($message)
+        public function getRequest($method, $uri, array $headers = [], $body = null, $version = '1.1')
         {
         }
         /**
-         * Parses a response message string into a response object.
+         * Parses simplified options.
          *
-         * @param string $message Response message string.
+         * @param array $options Simplified options.
          *
-         * @return Response
+         * @return array Extended options for use with getRequest.
          */
-        public static function parseResponse($message)
+        protected function parseOptions(array $options)
+        {
+        }
+        /**
+         * Creates a request using a simplified array of options.
+         *
+         * @param  null|string $method
+         * @param  null|string $uri
+         * @param  array $options
+         *
+         * @return Request
+         */
+        public function getRequestWithOptions($method, $uri, array $options = [])
         {
         }
     }
     /**
-     * Trait implementing functionality common to requests and responses.
+     * Provides functionality to check for required parameters.
      */
-    trait MessageTrait
+    trait RequiredParameterTrait
     {
-        /** @var array Map of all registered headers, as original name => array of values */
-        private $headers = [];
-        /** @var array Map of lowercase header name => original name at registration */
-        private $headerNames = [];
-        /** @var string */
-        private $protocol = '1.1';
-        /** @var StreamInterface|null */
-        private $stream;
-        public function getProtocolVersion()
-        {
-        }
-        public function withProtocolVersion($version)
-        {
-        }
-        public function getHeaders()
-        {
-        }
-        public function hasHeader($header)
-        {
-        }
-        public function getHeader($header)
-        {
-        }
-        public function getHeaderLine($header)
-        {
-        }
-        public function withHeader($header, $value)
-        {
-        }
-        public function withAddedHeader($header, $value)
-        {
-        }
-        public function withoutHeader($header)
-        {
-        }
-        public function getBody()
-        {
-        }
-        public function withBody(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $body)
-        {
-        }
-        private function setHeaders(array $headers)
-        {
-        }
         /**
-         * @param mixed $value
+         * Checks for a required parameter in a hash.
          *
-         * @return string[]
-         */
-        private function normalizeHeaderValue($value)
-        {
-        }
-        /**
-         * Trims whitespace from the header values.
-         *
-         * Spaces and tabs ought to be excluded by parsers when extracting the field value from a header field.
-         *
-         * header-field = field-name ":" OWS field-value OWS
-         * OWS          = *( SP / HTAB )
-         *
-         * @param mixed[] $values Header values
-         *
-         * @return string[] Trimmed header values
-         *
-         * @see https://tools.ietf.org/html/rfc7230#section-3.2.4
-         */
-        private function trimAndValidateHeaderValues(array $values)
-        {
-        }
-        /**
-         * @see https://tools.ietf.org/html/rfc7230#section-3.2
-         *
-         * @param mixed $header
-         *
+         * @throws BadMethodCallException
+         * @param  string $name
+         * @param  array  $params
          * @return void
          */
-        private function assertHeader($header)
+        private function checkRequiredParameter($name, array $params)
         {
         }
         /**
-         * @param string $value
+         * Checks for multiple required parameters in a hash.
          *
+         * @throws InvalidArgumentException
+         * @param  array $names
+         * @param  array $params
          * @return void
-         *
-         * @see https://tools.ietf.org/html/rfc7230#section-3.2
-         *
-         * field-value    = *( field-content / obs-fold )
-         * field-content  = field-vchar [ 1*( SP / HTAB ) field-vchar ]
-         * field-vchar    = VCHAR / obs-text
-         * VCHAR          = %x21-7E
-         * obs-text       = %x80-FF
-         * obs-fold       = CRLF 1*( SP / HTAB )
          */
-        private function assertValue($value)
-        {
-        }
-    }
-    final class MimeType
-    {
-        /**
-         * Determines the mimetype of a file by looking at its extension.
-         *
-         * @param string $filename
-         *
-         * @return string|null
-         */
-        public static function fromFilename($filename)
-        {
-        }
-        /**
-         * Maps a file extensions to a mimetype.
-         *
-         * @param string $extension string The file extension.
-         *
-         * @return string|null
-         *
-         * @link http://svn.apache.org/repos/asf/httpd/httpd/branches/1.3.x/conf/mime.types
-         */
-        public static function fromExtension($extension)
-        {
-        }
-    }
-    /**
-     * Stream that when read returns bytes for a streaming multipart or
-     * multipart/form-data stream.
-     *
-     * @final
-     */
-    class MultipartStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\StreamDecoratorTrait;
-        private $boundary;
-        /**
-         * @param array  $elements Array of associative arrays, each containing a
-         *                         required "name" key mapping to the form field,
-         *                         name, a required "contents" key mapping to a
-         *                         StreamInterface/resource/string, an optional
-         *                         "headers" associative array of custom headers,
-         *                         and an optional "filename" key mapping to a
-         *                         string to send as the filename in the part.
-         * @param string $boundary You can optionally provide a specific boundary
-         *
-         * @throws \InvalidArgumentException
-         */
-        public function __construct(array $elements = [], $boundary = null)
-        {
-        }
-        /**
-         * Get the boundary
-         *
-         * @return string
-         */
-        public function getBoundary()
-        {
-        }
-        public function isWritable()
-        {
-        }
-        /**
-         * Get the headers needed before transferring the content of a POST file
-         */
-        private function getHeaders(array $headers)
-        {
-        }
-        /**
-         * Create the aggregate stream that will be used to upload the POST data
-         */
-        protected function createStream(array $elements)
-        {
-        }
-        private function addElement(\YoastSEO_Vendor\GuzzleHttp\Psr7\AppendStream $stream, array $element)
-        {
-        }
-        /**
-         * @return array
-         */
-        private function createElement($name, \YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $filename, array $headers)
-        {
-        }
-        private function getHeader(array $headers, $key)
-        {
-        }
-    }
-    /**
-     * Stream decorator that prevents a stream from being seeked.
-     *
-     * @final
-     */
-    class NoSeekStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\StreamDecoratorTrait;
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        public function isSeekable()
-        {
-        }
-    }
-    /**
-     * Provides a read only stream that pumps data from a PHP callable.
-     *
-     * When invoking the provided callable, the PumpStream will pass the amount of
-     * data requested to read to the callable. The callable can choose to ignore
-     * this value and return fewer or more bytes than requested. Any extra data
-     * returned by the provided callable is buffered internally until drained using
-     * the read() function of the PumpStream. The provided callable MUST return
-     * false when there is no more data to read.
-     *
-     * @final
-     */
-    class PumpStream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        /** @var callable */
-        private $source;
-        /** @var int */
-        private $size;
-        /** @var int */
-        private $tellPos = 0;
-        /** @var array */
-        private $metadata;
-        /** @var BufferStream */
-        private $buffer;
-        /**
-         * @param callable $source  Source of the stream data. The callable MAY
-         *                          accept an integer argument used to control the
-         *                          amount of data to return. The callable MUST
-         *                          return a string when called, or false on error
-         *                          or EOF.
-         * @param array    $options Stream options:
-         *                          - metadata: Hash of metadata to use with stream.
-         *                          - size: Size of the stream, if known.
-         */
-        public function __construct(callable $source, array $options = [])
-        {
-        }
-        public function __toString()
-        {
-        }
-        public function close()
-        {
-        }
-        public function detach()
-        {
-        }
-        public function getSize()
-        {
-        }
-        public function tell()
-        {
-        }
-        public function eof()
-        {
-        }
-        public function isSeekable()
-        {
-        }
-        public function rewind()
-        {
-        }
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        public function isWritable()
-        {
-        }
-        public function write($string)
-        {
-        }
-        public function isReadable()
-        {
-        }
-        public function read($length)
-        {
-        }
-        public function getContents()
-        {
-        }
-        public function getMetadata($key = null)
-        {
-        }
-        private function pump($length)
-        {
-        }
-    }
-    final class Query
-    {
-        /**
-         * Parse a query string into an associative array.
-         *
-         * If multiple values are found for the same key, the value of that key
-         * value pair will become an array. This function does not parse nested
-         * PHP style arrays into an associative array (e.g., `foo[a]=1&foo[b]=2`
-         * will be parsed into `['foo[a]' => '1', 'foo[b]' => '2'])`.
-         *
-         * @param string   $str         Query string to parse
-         * @param int|bool $urlEncoding How the query string is encoded
-         *
-         * @return array
-         */
-        public static function parse($str, $urlEncoding = \true)
-        {
-        }
-        /**
-         * Build a query string from an array of key value pairs.
-         *
-         * This function can use the return value of `parse()` to build a query
-         * string. This function does not modify the provided keys when an array is
-         * encountered (like `http_build_query()` would).
-         *
-         * @param array     $params   Query string parameters.
-         * @param int|false $encoding Set to false to not encode, PHP_QUERY_RFC3986
-         *                            to encode using RFC3986, or PHP_QUERY_RFC1738
-         *                            to encode using RFC1738.
-         *
-         * @return string
-         */
-        public static function build(array $params, $encoding = \PHP_QUERY_RFC3986)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\Psr\Http\Message {
-    /**
-     * HTTP messages consist of requests from a client to a server and responses
-     * from a server to a client. This interface defines the methods common to
-     * each.
-     *
-     * Messages are considered immutable; all methods that might change state MUST
-     * be implemented such that they retain the internal state of the current
-     * message and return an instance that contains the changed state.
-     *
-     * @link http://www.ietf.org/rfc/rfc7230.txt
-     * @link http://www.ietf.org/rfc/rfc7231.txt
-     */
-    interface MessageInterface
-    {
-        /**
-         * Retrieves the HTTP protocol version as a string.
-         *
-         * The string MUST contain only the HTTP version number (e.g., "1.1", "1.0").
-         *
-         * @return string HTTP protocol version.
-         */
-        public function getProtocolVersion();
-        /**
-         * Return an instance with the specified HTTP protocol version.
-         *
-         * The version string MUST contain only the HTTP version number (e.g.,
-         * "1.1", "1.0").
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * new protocol version.
-         *
-         * @param string $version HTTP protocol version
-         * @return static
-         */
-        public function withProtocolVersion($version);
-        /**
-         * Retrieves all message header values.
-         *
-         * The keys represent the header name as it will be sent over the wire, and
-         * each value is an array of strings associated with the header.
-         *
-         *     // Represent the headers as a string
-         *     foreach ($message->getHeaders() as $name => $values) {
-         *         echo $name . ": " . implode(", ", $values);
-         *     }
-         *
-         *     // Emit headers iteratively:
-         *     foreach ($message->getHeaders() as $name => $values) {
-         *         foreach ($values as $value) {
-         *             header(sprintf('%s: %s', $name, $value), false);
-         *         }
-         *     }
-         *
-         * While header names are not case-sensitive, getHeaders() will preserve the
-         * exact case in which headers were originally specified.
-         *
-         * @return string[][] Returns an associative array of the message's headers. Each
-         *     key MUST be a header name, and each value MUST be an array of strings
-         *     for that header.
-         */
-        public function getHeaders();
-        /**
-         * Checks if a header exists by the given case-insensitive name.
-         *
-         * @param string $name Case-insensitive header field name.
-         * @return bool Returns true if any header names match the given header
-         *     name using a case-insensitive string comparison. Returns false if
-         *     no matching header name is found in the message.
-         */
-        public function hasHeader($name);
-        /**
-         * Retrieves a message header value by the given case-insensitive name.
-         *
-         * This method returns an array of all the header values of the given
-         * case-insensitive header name.
-         *
-         * If the header does not appear in the message, this method MUST return an
-         * empty array.
-         *
-         * @param string $name Case-insensitive header field name.
-         * @return string[] An array of string values as provided for the given
-         *    header. If the header does not appear in the message, this method MUST
-         *    return an empty array.
-         */
-        public function getHeader($name);
-        /**
-         * Retrieves a comma-separated string of the values for a single header.
-         *
-         * This method returns all of the header values of the given
-         * case-insensitive header name as a string concatenated together using
-         * a comma.
-         *
-         * NOTE: Not all header values may be appropriately represented using
-         * comma concatenation. For such headers, use getHeader() instead
-         * and supply your own delimiter when concatenating.
-         *
-         * If the header does not appear in the message, this method MUST return
-         * an empty string.
-         *
-         * @param string $name Case-insensitive header field name.
-         * @return string A string of values as provided for the given header
-         *    concatenated together using a comma. If the header does not appear in
-         *    the message, this method MUST return an empty string.
-         */
-        public function getHeaderLine($name);
-        /**
-         * Return an instance with the provided value replacing the specified header.
-         *
-         * While header names are case-insensitive, the casing of the header will
-         * be preserved by this function, and returned from getHeaders().
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * new and/or updated header and value.
-         *
-         * @param string $name Case-insensitive header field name.
-         * @param string|string[] $value Header value(s).
-         * @return static
-         * @throws \InvalidArgumentException for invalid header names or values.
-         */
-        public function withHeader($name, $value);
-        /**
-         * Return an instance with the specified header appended with the given value.
-         *
-         * Existing values for the specified header will be maintained. The new
-         * value(s) will be appended to the existing list. If the header did not
-         * exist previously, it will be added.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * new header and/or value.
-         *
-         * @param string $name Case-insensitive header field name to add.
-         * @param string|string[] $value Header value(s).
-         * @return static
-         * @throws \InvalidArgumentException for invalid header names or values.
-         */
-        public function withAddedHeader($name, $value);
-        /**
-         * Return an instance without the specified header.
-         *
-         * Header resolution MUST be done without case-sensitivity.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that removes
-         * the named header.
-         *
-         * @param string $name Case-insensitive header field name to remove.
-         * @return static
-         */
-        public function withoutHeader($name);
-        /**
-         * Gets the body of the message.
-         *
-         * @return StreamInterface Returns the body as a stream.
-         */
-        public function getBody();
-        /**
-         * Return an instance with the specified message body.
-         *
-         * The body MUST be a StreamInterface object.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return a new instance that has the
-         * new body stream.
-         *
-         * @param StreamInterface $body Body.
-         * @return static
-         * @throws \InvalidArgumentException When the body is not valid.
-         */
-        public function withBody(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $body);
-    }
-    /**
-     * Representation of an outgoing, client-side request.
-     *
-     * Per the HTTP specification, this interface includes properties for
-     * each of the following:
-     *
-     * - Protocol version
-     * - HTTP method
-     * - URI
-     * - Headers
-     * - Message body
-     *
-     * During construction, implementations MUST attempt to set the Host header from
-     * a provided URI if no Host header is provided.
-     *
-     * Requests are considered immutable; all methods that might change state MUST
-     * be implemented such that they retain the internal state of the current
-     * message and return an instance that contains the changed state.
-     */
-    interface RequestInterface extends \YoastSEO_Vendor\Psr\Http\Message\MessageInterface
-    {
-        /**
-         * Retrieves the message's request target.
-         *
-         * Retrieves the message's request-target either as it will appear (for
-         * clients), as it appeared at request (for servers), or as it was
-         * specified for the instance (see withRequestTarget()).
-         *
-         * In most cases, this will be the origin-form of the composed URI,
-         * unless a value was provided to the concrete implementation (see
-         * withRequestTarget() below).
-         *
-         * If no URI is available, and no request-target has been specifically
-         * provided, this method MUST return the string "/".
-         *
-         * @return string
-         */
-        public function getRequestTarget();
-        /**
-         * Return an instance with the specific request-target.
-         *
-         * If the request needs a non-origin-form request-target — e.g., for
-         * specifying an absolute-form, authority-form, or asterisk-form —
-         * this method may be used to create an instance with the specified
-         * request-target, verbatim.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * changed request target.
-         *
-         * @link http://tools.ietf.org/html/rfc7230#section-5.3 (for the various
-         *     request-target forms allowed in request messages)
-         * @param mixed $requestTarget
-         * @return static
-         */
-        public function withRequestTarget($requestTarget);
-        /**
-         * Retrieves the HTTP method of the request.
-         *
-         * @return string Returns the request method.
-         */
-        public function getMethod();
-        /**
-         * Return an instance with the provided HTTP method.
-         *
-         * While HTTP method names are typically all uppercase characters, HTTP
-         * method names are case-sensitive and thus implementations SHOULD NOT
-         * modify the given string.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * changed request method.
-         *
-         * @param string $method Case-sensitive method.
-         * @return static
-         * @throws \InvalidArgumentException for invalid HTTP methods.
-         */
-        public function withMethod($method);
-        /**
-         * Retrieves the URI instance.
-         *
-         * This method MUST return a UriInterface instance.
-         *
-         * @link http://tools.ietf.org/html/rfc3986#section-4.3
-         * @return UriInterface Returns a UriInterface instance
-         *     representing the URI of the request.
-         */
-        public function getUri();
-        /**
-         * Returns an instance with the provided URI.
-         *
-         * This method MUST update the Host header of the returned request by
-         * default if the URI contains a host component. If the URI does not
-         * contain a host component, any pre-existing Host header MUST be carried
-         * over to the returned request.
-         *
-         * You can opt-in to preserving the original state of the Host header by
-         * setting `$preserveHost` to `true`. When `$preserveHost` is set to
-         * `true`, this method interacts with the Host header in the following ways:
-         *
-         * - If the Host header is missing or empty, and the new URI contains
-         *   a host component, this method MUST update the Host header in the returned
-         *   request.
-         * - If the Host header is missing or empty, and the new URI does not contain a
-         *   host component, this method MUST NOT update the Host header in the returned
-         *   request.
-         * - If a Host header is present and non-empty, this method MUST NOT update
-         *   the Host header in the returned request.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * new UriInterface instance.
-         *
-         * @link http://tools.ietf.org/html/rfc3986#section-4.3
-         * @param UriInterface $uri New request URI to use.
-         * @param bool $preserveHost Preserve the original state of the Host header.
-         * @return static
-         */
-        public function withUri(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, $preserveHost = \false);
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Psr7 {
-    /**
-     * PSR-7 request implementation.
-     */
-    class Request implements \YoastSEO_Vendor\Psr\Http\Message\RequestInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\MessageTrait;
-        /** @var string */
-        private $method;
-        /** @var string|null */
-        private $requestTarget;
-        /** @var UriInterface */
-        private $uri;
-        /**
-         * @param string                               $method  HTTP method
-         * @param string|UriInterface                  $uri     URI
-         * @param array                                $headers Request headers
-         * @param string|resource|StreamInterface|null $body    Request body
-         * @param string                               $version Protocol version
-         */
-        public function __construct($method, $uri, array $headers = [], $body = null, $version = '1.1')
-        {
-        }
-        public function getRequestTarget()
-        {
-        }
-        public function withRequestTarget($requestTarget)
-        {
-        }
-        public function getMethod()
-        {
-        }
-        public function withMethod($method)
-        {
-        }
-        public function getUri()
-        {
-        }
-        public function withUri(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, $preserveHost = \false)
-        {
-        }
-        private function updateHostFromUri()
-        {
-        }
-        private function assertMethod($method)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\Psr\Http\Message {
-    /**
-     * Representation of an outgoing, server-side response.
-     *
-     * Per the HTTP specification, this interface includes properties for
-     * each of the following:
-     *
-     * - Protocol version
-     * - Status code and reason phrase
-     * - Headers
-     * - Message body
-     *
-     * Responses are considered immutable; all methods that might change state MUST
-     * be implemented such that they retain the internal state of the current
-     * message and return an instance that contains the changed state.
-     */
-    interface ResponseInterface extends \YoastSEO_Vendor\Psr\Http\Message\MessageInterface
-    {
-        /**
-         * Gets the response status code.
-         *
-         * The status code is a 3-digit integer result code of the server's attempt
-         * to understand and satisfy the request.
-         *
-         * @return int Status code.
-         */
-        public function getStatusCode();
-        /**
-         * Return an instance with the specified status code and, optionally, reason phrase.
-         *
-         * If no reason phrase is specified, implementations MAY choose to default
-         * to the RFC 7231 or IANA recommended reason phrase for the response's
-         * status code.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * updated status and reason phrase.
-         *
-         * @link http://tools.ietf.org/html/rfc7231#section-6
-         * @link http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
-         * @param int $code The 3-digit integer result code to set.
-         * @param string $reasonPhrase The reason phrase to use with the
-         *     provided status code; if none is provided, implementations MAY
-         *     use the defaults as suggested in the HTTP specification.
-         * @return static
-         * @throws \InvalidArgumentException For invalid status code arguments.
-         */
-        public function withStatus($code, $reasonPhrase = '');
-        /**
-         * Gets the response reason phrase associated with the status code.
-         *
-         * Because a reason phrase is not a required element in a response
-         * status line, the reason phrase value MAY be null. Implementations MAY
-         * choose to return the default RFC 7231 recommended reason phrase (or those
-         * listed in the IANA HTTP Status Code Registry) for the response's
-         * status code.
-         *
-         * @link http://tools.ietf.org/html/rfc7231#section-6
-         * @link http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
-         * @return string Reason phrase; must return an empty string if none present.
-         */
-        public function getReasonPhrase();
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Psr7 {
-    /**
-     * PSR-7 response implementation.
-     */
-    class Response implements \YoastSEO_Vendor\Psr\Http\Message\ResponseInterface
-    {
-        use \YoastSEO_Vendor\GuzzleHttp\Psr7\MessageTrait;
-        /** @var array Map of standard HTTP status code/reason phrases */
-        private static $phrases = [100 => 'Continue', 101 => 'Switching Protocols', 102 => 'Processing', 200 => 'OK', 201 => 'Created', 202 => 'Accepted', 203 => 'Non-Authoritative Information', 204 => 'No Content', 205 => 'Reset Content', 206 => 'Partial Content', 207 => 'Multi-status', 208 => 'Already Reported', 300 => 'Multiple Choices', 301 => 'Moved Permanently', 302 => 'Found', 303 => 'See Other', 304 => 'Not Modified', 305 => 'Use Proxy', 306 => 'Switch Proxy', 307 => 'Temporary Redirect', 400 => 'Bad Request', 401 => 'Unauthorized', 402 => 'Payment Required', 403 => 'Forbidden', 404 => 'Not Found', 405 => 'Method Not Allowed', 406 => 'Not Acceptable', 407 => 'Proxy Authentication Required', 408 => 'Request Time-out', 409 => 'Conflict', 410 => 'Gone', 411 => 'Length Required', 412 => 'Precondition Failed', 413 => 'Request Entity Too Large', 414 => 'Request-URI Too Large', 415 => 'Unsupported Media Type', 416 => 'Requested range not satisfiable', 417 => 'Expectation Failed', 418 => 'I\'m a teapot', 422 => 'Unprocessable Entity', 423 => 'Locked', 424 => 'Failed Dependency', 425 => 'Unordered Collection', 426 => 'Upgrade Required', 428 => 'Precondition Required', 429 => 'Too Many Requests', 431 => 'Request Header Fields Too Large', 451 => 'Unavailable For Legal Reasons', 500 => 'Internal Server Error', 501 => 'Not Implemented', 502 => 'Bad Gateway', 503 => 'Service Unavailable', 504 => 'Gateway Time-out', 505 => 'HTTP Version not supported', 506 => 'Variant Also Negotiates', 507 => 'Insufficient Storage', 508 => 'Loop Detected', 511 => 'Network Authentication Required'];
-        /** @var string */
-        private $reasonPhrase = '';
-        /** @var int */
-        private $statusCode = 200;
-        /**
-         * @param int                                  $status  Status code
-         * @param array                                $headers Response headers
-         * @param string|resource|StreamInterface|null $body    Response body
-         * @param string                               $version Protocol version
-         * @param string|null                          $reason  Reason phrase (when empty a default will be used based on the status code)
-         */
-        public function __construct($status = 200, array $headers = [], $body = null, $version = '1.1', $reason = null)
-        {
-        }
-        public function getStatusCode()
-        {
-        }
-        public function getReasonPhrase()
-        {
-        }
-        public function withStatus($code, $reasonPhrase = '')
-        {
-        }
-        private function assertStatusCodeIsInteger($statusCode)
-        {
-        }
-        private function assertStatusCodeRange($statusCode)
-        {
-        }
-    }
-    final class Rfc7230
-    {
-        /**
-         * Header related regular expressions (copied from amphp/http package)
-         * (Note: once we require PHP 7.x we could just depend on the upstream package)
-         *
-         * Note: header delimiter (\r\n) is modified to \r?\n to accept line feed only delimiters for BC reasons.
-         *
-         * @link    https://github.com/amphp/http/blob/v1.0.1/src/Rfc7230.php#L12-L15
-         *
-         * @license https://github.com/amphp/http/blob/v1.0.1/LICENSE
-         */
-        const HEADER_REGEX = "(^([^()<>@,;:\\\"/[\\]?={}\1- ]++):[ \t]*+((?:[ \t]*+[!-~�-�]++)*+)[ \t]*+\r?\n)m";
-        const HEADER_FOLD_REGEX = "(\r?\n[ \t]++)";
-    }
-}
-namespace YoastSEO_Vendor\Psr\Http\Message {
-    /**
-     * Representation of an incoming, server-side HTTP request.
-     *
-     * Per the HTTP specification, this interface includes properties for
-     * each of the following:
-     *
-     * - Protocol version
-     * - HTTP method
-     * - URI
-     * - Headers
-     * - Message body
-     *
-     * Additionally, it encapsulates all data as it has arrived to the
-     * application from the CGI and/or PHP environment, including:
-     *
-     * - The values represented in $_SERVER.
-     * - Any cookies provided (generally via $_COOKIE)
-     * - Query string arguments (generally via $_GET, or as parsed via parse_str())
-     * - Upload files, if any (as represented by $_FILES)
-     * - Deserialized body parameters (generally from $_POST)
-     *
-     * $_SERVER values MUST be treated as immutable, as they represent application
-     * state at the time of request; as such, no methods are provided to allow
-     * modification of those values. The other values provide such methods, as they
-     * can be restored from $_SERVER or the request body, and may need treatment
-     * during the application (e.g., body parameters may be deserialized based on
-     * content type).
-     *
-     * Additionally, this interface recognizes the utility of introspecting a
-     * request to derive and match additional parameters (e.g., via URI path
-     * matching, decrypting cookie values, deserializing non-form-encoded body
-     * content, matching authorization headers to users, etc). These parameters
-     * are stored in an "attributes" property.
-     *
-     * Requests are considered immutable; all methods that might change state MUST
-     * be implemented such that they retain the internal state of the current
-     * message and return an instance that contains the changed state.
-     */
-    interface ServerRequestInterface extends \YoastSEO_Vendor\Psr\Http\Message\RequestInterface
-    {
-        /**
-         * Retrieve server parameters.
-         *
-         * Retrieves data related to the incoming request environment,
-         * typically derived from PHP's $_SERVER superglobal. The data IS NOT
-         * REQUIRED to originate from $_SERVER.
-         *
-         * @return array
-         */
-        public function getServerParams();
-        /**
-         * Retrieve cookies.
-         *
-         * Retrieves cookies sent by the client to the server.
-         *
-         * The data MUST be compatible with the structure of the $_COOKIE
-         * superglobal.
-         *
-         * @return array
-         */
-        public function getCookieParams();
-        /**
-         * Return an instance with the specified cookies.
-         *
-         * The data IS NOT REQUIRED to come from the $_COOKIE superglobal, but MUST
-         * be compatible with the structure of $_COOKIE. Typically, this data will
-         * be injected at instantiation.
-         *
-         * This method MUST NOT update the related Cookie header of the request
-         * instance, nor related values in the server params.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * updated cookie values.
-         *
-         * @param array $cookies Array of key/value pairs representing cookies.
-         * @return static
-         */
-        public function withCookieParams(array $cookies);
-        /**
-         * Retrieve query string arguments.
-         *
-         * Retrieves the deserialized query string arguments, if any.
-         *
-         * Note: the query params might not be in sync with the URI or server
-         * params. If you need to ensure you are only getting the original
-         * values, you may need to parse the query string from `getUri()->getQuery()`
-         * or from the `QUERY_STRING` server param.
-         *
-         * @return array
-         */
-        public function getQueryParams();
-        /**
-         * Return an instance with the specified query string arguments.
-         *
-         * These values SHOULD remain immutable over the course of the incoming
-         * request. They MAY be injected during instantiation, such as from PHP's
-         * $_GET superglobal, or MAY be derived from some other value such as the
-         * URI. In cases where the arguments are parsed from the URI, the data
-         * MUST be compatible with what PHP's parse_str() would return for
-         * purposes of how duplicate query parameters are handled, and how nested
-         * sets are handled.
-         *
-         * Setting query string arguments MUST NOT change the URI stored by the
-         * request, nor the values in the server params.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * updated query string arguments.
-         *
-         * @param array $query Array of query string arguments, typically from
-         *     $_GET.
-         * @return static
-         */
-        public function withQueryParams(array $query);
-        /**
-         * Retrieve normalized file upload data.
-         *
-         * This method returns upload metadata in a normalized tree, with each leaf
-         * an instance of Psr\Http\Message\UploadedFileInterface.
-         *
-         * These values MAY be prepared from $_FILES or the message body during
-         * instantiation, or MAY be injected via withUploadedFiles().
-         *
-         * @return array An array tree of UploadedFileInterface instances; an empty
-         *     array MUST be returned if no data is present.
-         */
-        public function getUploadedFiles();
-        /**
-         * Create a new instance with the specified uploaded files.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * updated body parameters.
-         *
-         * @param array $uploadedFiles An array tree of UploadedFileInterface instances.
-         * @return static
-         * @throws \InvalidArgumentException if an invalid structure is provided.
-         */
-        public function withUploadedFiles(array $uploadedFiles);
-        /**
-         * Retrieve any parameters provided in the request body.
-         *
-         * If the request Content-Type is either application/x-www-form-urlencoded
-         * or multipart/form-data, and the request method is POST, this method MUST
-         * return the contents of $_POST.
-         *
-         * Otherwise, this method may return any results of deserializing
-         * the request body content; as parsing returns structured content, the
-         * potential types MUST be arrays or objects only. A null value indicates
-         * the absence of body content.
-         *
-         * @return null|array|object The deserialized body parameters, if any.
-         *     These will typically be an array or object.
-         */
-        public function getParsedBody();
-        /**
-         * Return an instance with the specified body parameters.
-         *
-         * These MAY be injected during instantiation.
-         *
-         * If the request Content-Type is either application/x-www-form-urlencoded
-         * or multipart/form-data, and the request method is POST, use this method
-         * ONLY to inject the contents of $_POST.
-         *
-         * The data IS NOT REQUIRED to come from $_POST, but MUST be the results of
-         * deserializing the request body content. Deserialization/parsing returns
-         * structured data, and, as such, this method ONLY accepts arrays or objects,
-         * or a null value if nothing was available to parse.
-         *
-         * As an example, if content negotiation determines that the request data
-         * is a JSON payload, this method could be used to create a request
-         * instance with the deserialized parameters.
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * updated body parameters.
-         *
-         * @param null|array|object $data The deserialized body data. This will
-         *     typically be in an array or object.
-         * @return static
-         * @throws \InvalidArgumentException if an unsupported argument type is
-         *     provided.
-         */
-        public function withParsedBody($data);
-        /**
-         * Retrieve attributes derived from the request.
-         *
-         * The request "attributes" may be used to allow injection of any
-         * parameters derived from the request: e.g., the results of path
-         * match operations; the results of decrypting cookies; the results of
-         * deserializing non-form-encoded message bodies; etc. Attributes
-         * will be application and request specific, and CAN be mutable.
-         *
-         * @return array Attributes derived from the request.
-         */
-        public function getAttributes();
-        /**
-         * Retrieve a single derived request attribute.
-         *
-         * Retrieves a single derived request attribute as described in
-         * getAttributes(). If the attribute has not been previously set, returns
-         * the default value as provided.
-         *
-         * This method obviates the need for a hasAttribute() method, as it allows
-         * specifying a default value to return if the attribute is not found.
-         *
-         * @see getAttributes()
-         * @param string $name The attribute name.
-         * @param mixed $default Default value to return if the attribute does not exist.
-         * @return mixed
-         */
-        public function getAttribute($name, $default = null);
-        /**
-         * Return an instance with the specified derived request attribute.
-         *
-         * This method allows setting a single derived request attribute as
-         * described in getAttributes().
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that has the
-         * updated attribute.
-         *
-         * @see getAttributes()
-         * @param string $name The attribute name.
-         * @param mixed $value The value of the attribute.
-         * @return static
-         */
-        public function withAttribute($name, $value);
-        /**
-         * Return an instance that removes the specified derived request attribute.
-         *
-         * This method allows removing a single derived request attribute as
-         * described in getAttributes().
-         *
-         * This method MUST be implemented in such a way as to retain the
-         * immutability of the message, and MUST return an instance that removes
-         * the attribute.
-         *
-         * @see getAttributes()
-         * @param string $name The attribute name.
-         * @return static
-         */
-        public function withoutAttribute($name);
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Psr7 {
-    /**
-     * Server-side HTTP request
-     *
-     * Extends the Request definition to add methods for accessing incoming data,
-     * specifically server parameters, cookies, matched path parameters, query
-     * string arguments, body parameters, and upload file information.
-     *
-     * "Attributes" are discovered via decomposing the request (and usually
-     * specifically the URI path), and typically will be injected by the application.
-     *
-     * Requests are considered immutable; all methods that might change state are
-     * implemented such that they retain the internal state of the current
-     * message and return a new instance that contains the changed state.
-     */
-    class ServerRequest extends \YoastSEO_Vendor\GuzzleHttp\Psr7\Request implements \YoastSEO_Vendor\Psr\Http\Message\ServerRequestInterface
-    {
-        /**
-         * @var array
-         */
-        private $attributes = [];
-        /**
-         * @var array
-         */
-        private $cookieParams = [];
-        /**
-         * @var array|object|null
-         */
-        private $parsedBody;
-        /**
-         * @var array
-         */
-        private $queryParams = [];
-        /**
-         * @var array
-         */
-        private $serverParams;
-        /**
-         * @var array
-         */
-        private $uploadedFiles = [];
-        /**
-         * @param string                               $method       HTTP method
-         * @param string|UriInterface                  $uri          URI
-         * @param array                                $headers      Request headers
-         * @param string|resource|StreamInterface|null $body         Request body
-         * @param string                               $version      Protocol version
-         * @param array                                $serverParams Typically the $_SERVER superglobal
-         */
-        public function __construct($method, $uri, array $headers = [], $body = null, $version = '1.1', array $serverParams = [])
-        {
-        }
-        /**
-         * Return an UploadedFile instance array.
-         *
-         * @param array $files A array which respect $_FILES structure
-         *
-         * @return array
-         *
-         * @throws InvalidArgumentException for unrecognized values
-         */
-        public static function normalizeFiles(array $files)
-        {
-        }
-        /**
-         * Create and return an UploadedFile instance from a $_FILES specification.
-         *
-         * If the specification represents an array of values, this method will
-         * delegate to normalizeNestedFileSpec() and return that return value.
-         *
-         * @param array $value $_FILES struct
-         *
-         * @return array|UploadedFileInterface
-         */
-        private static function createUploadedFileFromSpec(array $value)
-        {
-        }
-        /**
-         * Normalize an array of file specifications.
-         *
-         * Loops through all nested files and returns a normalized array of
-         * UploadedFileInterface instances.
-         *
-         * @param array $files
-         *
-         * @return UploadedFileInterface[]
-         */
-        private static function normalizeNestedFileSpec(array $files = [])
-        {
-        }
-        /**
-         * Return a ServerRequest populated with superglobals:
-         * $_GET
-         * $_POST
-         * $_COOKIE
-         * $_FILES
-         * $_SERVER
-         *
-         * @return ServerRequestInterface
-         */
-        public static function fromGlobals()
-        {
-        }
-        private static function extractHostAndPortFromAuthority($authority)
-        {
-        }
-        /**
-         * Get a Uri populated with values from $_SERVER.
-         *
-         * @return UriInterface
-         */
-        public static function getUriFromGlobals()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getServerParams()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getUploadedFiles()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function withUploadedFiles(array $uploadedFiles)
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getCookieParams()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function withCookieParams(array $cookies)
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getQueryParams()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function withQueryParams(array $query)
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getParsedBody()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function withParsedBody($data)
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getAttributes()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getAttribute($attribute, $default = null)
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function withAttribute($attribute, $value)
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function withoutAttribute($attribute)
-        {
-        }
-    }
-    /**
-     * PHP stream implementation.
-     *
-     * @var $stream
-     */
-    class Stream implements \YoastSEO_Vendor\Psr\Http\Message\StreamInterface
-    {
-        /**
-         * Resource modes.
-         *
-         * @var string
-         *
-         * @see http://php.net/manual/function.fopen.php
-         * @see http://php.net/manual/en/function.gzopen.php
-         */
-        const READABLE_MODES = '/r|a\\+|ab\\+|w\\+|wb\\+|x\\+|xb\\+|c\\+|cb\\+/';
-        const WRITABLE_MODES = '/a|w|r\\+|rb\\+|rw|x|c/';
-        private $stream;
-        private $size;
-        private $seekable;
-        private $readable;
-        private $writable;
-        private $uri;
-        private $customMetadata;
-        /**
-         * This constructor accepts an associative array of options.
-         *
-         * - size: (int) If a read stream would otherwise have an indeterminate
-         *   size, but the size is known due to foreknowledge, then you can
-         *   provide that size, in bytes.
-         * - metadata: (array) Any additional metadata to return when the metadata
-         *   of the stream is accessed.
-         *
-         * @param resource $stream  Stream resource to wrap.
-         * @param array    $options Associative array of options.
-         *
-         * @throws \InvalidArgumentException if the stream is not a stream resource
-         */
-        public function __construct($stream, $options = [])
-        {
-        }
-        /**
-         * Closes the stream when the destructed
-         */
-        public function __destruct()
-        {
-        }
-        public function __toString()
-        {
-        }
-        public function getContents()
-        {
-        }
-        public function close()
-        {
-        }
-        public function detach()
-        {
-        }
-        public function getSize()
-        {
-        }
-        public function isReadable()
-        {
-        }
-        public function isWritable()
-        {
-        }
-        public function isSeekable()
-        {
-        }
-        public function eof()
-        {
-        }
-        public function tell()
-        {
-        }
-        public function rewind()
-        {
-        }
-        public function seek($offset, $whence = \SEEK_SET)
-        {
-        }
-        public function read($length)
-        {
-        }
-        public function write($string)
-        {
-        }
-        public function getMetadata($key = null)
-        {
-        }
-    }
-    /**
-     * Converts Guzzle streams into PHP stream resources.
-     *
-     * @final
-     */
-    class StreamWrapper
-    {
-        /** @var resource */
-        public $context;
-        /** @var StreamInterface */
-        private $stream;
-        /** @var string r, r+, or w */
-        private $mode;
-        /**
-         * Returns a resource representing the stream.
-         *
-         * @param StreamInterface $stream The stream to get a resource for
-         *
-         * @return resource
-         *
-         * @throws \InvalidArgumentException if stream is not readable or writable
-         */
-        public static function getResource(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream)
-        {
-        }
-        /**
-         * Creates a stream context that can be used to open a stream as a php stream resource.
-         *
-         * @param StreamInterface $stream
-         *
-         * @return resource
-         */
-        public static function createStreamContext(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream)
-        {
-        }
-        /**
-         * Registers the stream wrapper if needed
-         */
-        public static function register()
-        {
-        }
-        public function stream_open($path, $mode, $options, &$opened_path)
-        {
-        }
-        public function stream_read($count)
-        {
-        }
-        public function stream_write($data)
-        {
-        }
-        public function stream_tell()
-        {
-        }
-        public function stream_eof()
-        {
-        }
-        public function stream_seek($offset, $whence)
-        {
-        }
-        public function stream_cast($cast_as)
-        {
-        }
-        public function stream_stat()
-        {
-        }
-        public function url_stat($path, $flags)
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\Psr\Http\Message {
-    /**
-     * Value object representing a file uploaded through an HTTP request.
-     *
-     * Instances of this interface are considered immutable; all methods that
-     * might change state MUST be implemented such that they retain the internal
-     * state of the current instance and return an instance that contains the
-     * changed state.
-     */
-    interface UploadedFileInterface
-    {
-        /**
-         * Retrieve a stream representing the uploaded file.
-         *
-         * This method MUST return a StreamInterface instance, representing the
-         * uploaded file. The purpose of this method is to allow utilizing native PHP
-         * stream functionality to manipulate the file upload, such as
-         * stream_copy_to_stream() (though the result will need to be decorated in a
-         * native PHP stream wrapper to work with such functions).
-         *
-         * If the moveTo() method has been called previously, this method MUST raise
-         * an exception.
-         *
-         * @return StreamInterface Stream representation of the uploaded file.
-         * @throws \RuntimeException in cases when no stream is available or can be
-         *     created.
-         */
-        public function getStream();
-        /**
-         * Move the uploaded file to a new location.
-         *
-         * Use this method as an alternative to move_uploaded_file(). This method is
-         * guaranteed to work in both SAPI and non-SAPI environments.
-         * Implementations must determine which environment they are in, and use the
-         * appropriate method (move_uploaded_file(), rename(), or a stream
-         * operation) to perform the operation.
-         *
-         * $targetPath may be an absolute path, or a relative path. If it is a
-         * relative path, resolution should be the same as used by PHP's rename()
-         * function.
-         *
-         * The original file or stream MUST be removed on completion.
-         *
-         * If this method is called more than once, any subsequent calls MUST raise
-         * an exception.
-         *
-         * When used in an SAPI environment where $_FILES is populated, when writing
-         * files via moveTo(), is_uploaded_file() and move_uploaded_file() SHOULD be
-         * used to ensure permissions and upload status are verified correctly.
-         *
-         * If you wish to move to a stream, use getStream(), as SAPI operations
-         * cannot guarantee writing to stream destinations.
-         *
-         * @see http://php.net/is_uploaded_file
-         * @see http://php.net/move_uploaded_file
-         * @param string $targetPath Path to which to move the uploaded file.
-         * @throws \InvalidArgumentException if the $targetPath specified is invalid.
-         * @throws \RuntimeException on any error during the move operation, or on
-         *     the second or subsequent call to the method.
-         */
-        public function moveTo($targetPath);
-        /**
-         * Retrieve the file size.
-         *
-         * Implementations SHOULD return the value stored in the "size" key of
-         * the file in the $_FILES array if available, as PHP calculates this based
-         * on the actual size transmitted.
-         *
-         * @return int|null The file size in bytes or null if unknown.
-         */
-        public function getSize();
-        /**
-         * Retrieve the error associated with the uploaded file.
-         *
-         * The return value MUST be one of PHP's UPLOAD_ERR_XXX constants.
-         *
-         * If the file was uploaded successfully, this method MUST return
-         * UPLOAD_ERR_OK.
-         *
-         * Implementations SHOULD return the value stored in the "error" key of
-         * the file in the $_FILES array.
-         *
-         * @see http://php.net/manual/en/features.file-upload.errors.php
-         * @return int One of PHP's UPLOAD_ERR_XXX constants.
-         */
-        public function getError();
-        /**
-         * Retrieve the filename sent by the client.
-         *
-         * Do not trust the value returned by this method. A client could send
-         * a malicious filename with the intention to corrupt or hack your
-         * application.
-         *
-         * Implementations SHOULD return the value stored in the "name" key of
-         * the file in the $_FILES array.
-         *
-         * @return string|null The filename sent by the client or null if none
-         *     was provided.
-         */
-        public function getClientFilename();
-        /**
-         * Retrieve the media type sent by the client.
-         *
-         * Do not trust the value returned by this method. A client could send
-         * a malicious media type with the intention to corrupt or hack your
-         * application.
-         *
-         * Implementations SHOULD return the value stored in the "type" key of
-         * the file in the $_FILES array.
-         *
-         * @return string|null The media type sent by the client or null if none
-         *     was provided.
-         */
-        public function getClientMediaType();
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Psr7 {
-    class UploadedFile implements \YoastSEO_Vendor\Psr\Http\Message\UploadedFileInterface
-    {
-        /**
-         * @var int[]
-         */
-        private static $errors = [\UPLOAD_ERR_OK, \UPLOAD_ERR_INI_SIZE, \UPLOAD_ERR_FORM_SIZE, \UPLOAD_ERR_PARTIAL, \UPLOAD_ERR_NO_FILE, \UPLOAD_ERR_NO_TMP_DIR, \UPLOAD_ERR_CANT_WRITE, \UPLOAD_ERR_EXTENSION];
-        /**
-         * @var string
-         */
-        private $clientFilename;
-        /**
-         * @var string
-         */
-        private $clientMediaType;
-        /**
-         * @var int
-         */
-        private $error;
-        /**
-         * @var string|null
-         */
-        private $file;
-        /**
-         * @var bool
-         */
-        private $moved = \false;
-        /**
-         * @var int
-         */
-        private $size;
-        /**
-         * @var StreamInterface|null
-         */
-        private $stream;
-        /**
-         * @param StreamInterface|string|resource $streamOrFile
-         * @param int                             $size
-         * @param int                             $errorStatus
-         * @param string|null                     $clientFilename
-         * @param string|null                     $clientMediaType
-         */
-        public function __construct($streamOrFile, $size, $errorStatus, $clientFilename = null, $clientMediaType = null)
-        {
-        }
-        /**
-         * Depending on the value set file or stream variable
-         *
-         * @param mixed $streamOrFile
-         *
-         * @throws InvalidArgumentException
-         */
-        private function setStreamOrFile($streamOrFile)
-        {
-        }
-        /**
-         * @param int $error
-         *
-         * @throws InvalidArgumentException
-         */
-        private function setError($error)
-        {
-        }
-        /**
-         * @param int $size
-         *
-         * @throws InvalidArgumentException
-         */
-        private function setSize($size)
-        {
-        }
-        /**
-         * @param mixed $param
-         *
-         * @return bool
-         */
-        private function isStringOrNull($param)
-        {
-        }
-        /**
-         * @param mixed $param
-         *
-         * @return bool
-         */
-        private function isStringNotEmpty($param)
-        {
-        }
-        /**
-         * @param string|null $clientFilename
-         *
-         * @throws InvalidArgumentException
-         */
-        private function setClientFilename($clientFilename)
-        {
-        }
-        /**
-         * @param string|null $clientMediaType
-         *
-         * @throws InvalidArgumentException
-         */
-        private function setClientMediaType($clientMediaType)
-        {
-        }
-        /**
-         * Return true if there is no upload error
-         *
-         * @return bool
-         */
-        private function isOk()
-        {
-        }
-        /**
-         * @return bool
-         */
-        public function isMoved()
-        {
-        }
-        /**
-         * @throws RuntimeException if is moved or not ok
-         */
-        private function validateActive()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         *
-         * @throws RuntimeException if the upload was not successful.
-         */
-        public function getStream()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         *
-         * @see http://php.net/is_uploaded_file
-         * @see http://php.net/move_uploaded_file
-         *
-         * @param string $targetPath Path to which to move the uploaded file.
-         *
-         * @throws RuntimeException         if the upload was not successful.
-         * @throws InvalidArgumentException if the $path specified is invalid.
-         * @throws RuntimeException         on any error during the move operation, or on
-         *                                  the second or subsequent call to the method.
-         */
-        public function moveTo($targetPath)
-        {
-        }
-        /**
-         * {@inheritdoc}
-         *
-         * @return int|null The file size in bytes or null if unknown.
-         */
-        public function getSize()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         *
-         * @see http://php.net/manual/en/features.file-upload.errors.php
-         *
-         * @return int One of PHP's UPLOAD_ERR_XXX constants.
-         */
-        public function getError()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         *
-         * @return string|null The filename sent by the client or null if none
-         *                     was provided.
-         */
-        public function getClientFilename()
-        {
-        }
-        /**
-         * {@inheritdoc}
-         */
-        public function getClientMediaType()
-        {
-        }
-    }
-}
-namespace YoastSEO_Vendor\Psr\Http\Message {
-    /**
-     * Value object representing a URI.
-     *
-     * This interface is meant to represent URIs according to RFC 3986 and to
-     * provide methods for most common operations. Additional functionality for
-     * working with URIs can be provided on top of the interface or externally.
-     * Its primary use is for HTTP requests, but may also be used in other
-     * contexts.
-     *
-     * Instances of this interface are considered immutable; all methods that
-     * might change state MUST be implemented such that they retain the internal
-     * state of the current instance and return an instance that contains the
-     * changed state.
-     *
-     * Typically the Host header will be also be present in the request message.
-     * For server-side requests, the scheme will typically be discoverable in the
-     * server parameters.
-     *
-     * @link http://tools.ietf.org/html/rfc3986 (the URI specification)
-     */
-    interface UriInterface
-    {
-        /**
-         * Retrieve the scheme component of the URI.
-         *
-         * If no scheme is present, this method MUST return an empty string.
-         *
-         * The value returned MUST be normalized to lowercase, per RFC 3986
-         * Section 3.1.
-         *
-         * The trailing ":" character is not part of the scheme and MUST NOT be
-         * added.
-         *
-         * @see https://tools.ietf.org/html/rfc3986#section-3.1
-         * @return string The URI scheme.
-         */
-        public function getScheme();
-        /**
-         * Retrieve the authority component of the URI.
-         *
-         * If no authority information is present, this method MUST return an empty
-         * string.
-         *
-         * The authority syntax of the URI is:
-         *
-         * <pre>
-         * [user-info@]host[:port]
-         * </pre>
-         *
-         * If the port component is not set or is the standard port for the current
-         * scheme, it SHOULD NOT be included.
-         *
-         * @see https://tools.ietf.org/html/rfc3986#section-3.2
-         * @return string The URI authority, in "[user-info@]host[:port]" format.
-         */
-        public function getAuthority();
-        /**
-         * Retrieve the user information component of the URI.
-         *
-         * If no user information is present, this method MUST return an empty
-         * string.
-         *
-         * If a user is present in the URI, this will return that value;
-         * additionally, if the password is also present, it will be appended to the
-         * user value, with a colon (":") separating the values.
-         *
-         * The trailing "@" character is not part of the user information and MUST
-         * NOT be added.
-         *
-         * @return string The URI user information, in "username[:password]" format.
-         */
-        public function getUserInfo();
-        /**
-         * Retrieve the host component of the URI.
-         *
-         * If no host is present, this method MUST return an empty string.
-         *
-         * The value returned MUST be normalized to lowercase, per RFC 3986
-         * Section 3.2.2.
-         *
-         * @see http://tools.ietf.org/html/rfc3986#section-3.2.2
-         * @return string The URI host.
-         */
-        public function getHost();
-        /**
-         * Retrieve the port component of the URI.
-         *
-         * If a port is present, and it is non-standard for the current scheme,
-         * this method MUST return it as an integer. If the port is the standard port
-         * used with the current scheme, this method SHOULD return null.
-         *
-         * If no port is present, and no scheme is present, this method MUST return
-         * a null value.
-         *
-         * If no port is present, but a scheme is present, this method MAY return
-         * the standard port for that scheme, but SHOULD return null.
-         *
-         * @return null|int The URI port.
-         */
-        public function getPort();
-        /**
-         * Retrieve the path component of the URI.
-         *
-         * The path can either be empty or absolute (starting with a slash) or
-         * rootless (not starting with a slash). Implementations MUST support all
-         * three syntaxes.
-         *
-         * Normally, the empty path "" and absolute path "/" are considered equal as
-         * defined in RFC 7230 Section 2.7.3. But this method MUST NOT automatically
-         * do this normalization because in contexts with a trimmed base path, e.g.
-         * the front controller, this difference becomes significant. It's the task
-         * of the user to handle both "" and "/".
-         *
-         * The value returned MUST be percent-encoded, but MUST NOT double-encode
-         * any characters. To determine what characters to encode, please refer to
-         * RFC 3986, Sections 2 and 3.3.
-         *
-         * As an example, if the value should include a slash ("/") not intended as
-         * delimiter between path segments, that value MUST be passed in encoded
-         * form (e.g., "%2F") to the instance.
-         *
-         * @see https://tools.ietf.org/html/rfc3986#section-2
-         * @see https://tools.ietf.org/html/rfc3986#section-3.3
-         * @return string The URI path.
-         */
-        public function getPath();
-        /**
-         * Retrieve the query string of the URI.
-         *
-         * If no query string is present, this method MUST return an empty string.
-         *
-         * The leading "?" character is not part of the query and MUST NOT be
-         * added.
-         *
-         * The value returned MUST be percent-encoded, but MUST NOT double-encode
-         * any characters. To determine what characters to encode, please refer to
-         * RFC 3986, Sections 2 and 3.4.
-         *
-         * As an example, if a value in a key/value pair of the query string should
-         * include an ampersand ("&") not intended as a delimiter between values,
-         * that value MUST be passed in encoded form (e.g., "%26") to the instance.
-         *
-         * @see https://tools.ietf.org/html/rfc3986#section-2
-         * @see https://tools.ietf.org/html/rfc3986#section-3.4
-         * @return string The URI query string.
-         */
-        public function getQuery();
-        /**
-         * Retrieve the fragment component of the URI.
-         *
-         * If no fragment is present, this method MUST return an empty string.
-         *
-         * The leading "#" character is not part of the fragment and MUST NOT be
-         * added.
-         *
-         * The value returned MUST be percent-encoded, but MUST NOT double-encode
-         * any characters. To determine what characters to encode, please refer to
-         * RFC 3986, Sections 2 and 3.5.
-         *
-         * @see https://tools.ietf.org/html/rfc3986#section-2
-         * @see https://tools.ietf.org/html/rfc3986#section-3.5
-         * @return string The URI fragment.
-         */
-        public function getFragment();
-        /**
-         * Return an instance with the specified scheme.
-         *
-         * This method MUST retain the state of the current instance, and return
-         * an instance that contains the specified scheme.
-         *
-         * Implementations MUST support the schemes "http" and "https" case
-         * insensitively, and MAY accommodate other schemes if required.
-         *
-         * An empty scheme is equivalent to removing the scheme.
-         *
-         * @param string $scheme The scheme to use with the new instance.
-         * @return static A new instance with the specified scheme.
-         * @throws \InvalidArgumentException for invalid or unsupported schemes.
-         */
-        public function withScheme($scheme);
-        /**
-         * Return an instance with the specified user information.
-         *
-         * This method MUST retain the state of the current instance, and return
-         * an instance that contains the specified user information.
-         *
-         * Password is optional, but the user information MUST include the
-         * user; an empty string for the user is equivalent to removing user
-         * information.
-         *
-         * @param string $user The user name to use for authority.
-         * @param null|string $password The password associated with $user.
-         * @return static A new instance with the specified user information.
-         */
-        public function withUserInfo($user, $password = null);
-        /**
-         * Return an instance with the specified host.
-         *
-         * This method MUST retain the state of the current instance, and return
-         * an instance that contains the specified host.
-         *
-         * An empty host value is equivalent to removing the host.
-         *
-         * @param string $host The hostname to use with the new instance.
-         * @return static A new instance with the specified host.
-         * @throws \InvalidArgumentException for invalid hostnames.
-         */
-        public function withHost($host);
-        /**
-         * Return an instance with the specified port.
-         *
-         * This method MUST retain the state of the current instance, and return
-         * an instance that contains the specified port.
-         *
-         * Implementations MUST raise an exception for ports outside the
-         * established TCP and UDP port ranges.
-         *
-         * A null value provided for the port is equivalent to removing the port
-         * information.
-         *
-         * @param null|int $port The port to use with the new instance; a null value
-         *     removes the port information.
-         * @return static A new instance with the specified port.
-         * @throws \InvalidArgumentException for invalid ports.
-         */
-        public function withPort($port);
-        /**
-         * Return an instance with the specified path.
-         *
-         * This method MUST retain the state of the current instance, and return
-         * an instance that contains the specified path.
-         *
-         * The path can either be empty or absolute (starting with a slash) or
-         * rootless (not starting with a slash). Implementations MUST support all
-         * three syntaxes.
-         *
-         * If the path is intended to be domain-relative rather than path relative then
-         * it must begin with a slash ("/"). Paths not starting with a slash ("/")
-         * are assumed to be relative to some base path known to the application or
-         * consumer.
-         *
-         * Users can provide both encoded and decoded path characters.
-         * Implementations ensure the correct encoding as outlined in getPath().
-         *
-         * @param string $path The path to use with the new instance.
-         * @return static A new instance with the specified path.
-         * @throws \InvalidArgumentException for invalid paths.
-         */
-        public function withPath($path);
-        /**
-         * Return an instance with the specified query string.
-         *
-         * This method MUST retain the state of the current instance, and return
-         * an instance that contains the specified query string.
-         *
-         * Users can provide both encoded and decoded query characters.
-         * Implementations ensure the correct encoding as outlined in getQuery().
-         *
-         * An empty query string value is equivalent to removing the query string.
-         *
-         * @param string $query The query string to use with the new instance.
-         * @return static A new instance with the specified query string.
-         * @throws \InvalidArgumentException for invalid query strings.
-         */
-        public function withQuery($query);
-        /**
-         * Return an instance with the specified URI fragment.
-         *
-         * This method MUST retain the state of the current instance, and return
-         * an instance that contains the specified URI fragment.
-         *
-         * Users can provide both encoded and decoded fragment characters.
-         * Implementations ensure the correct encoding as outlined in getFragment().
-         *
-         * An empty fragment value is equivalent to removing the fragment.
-         *
-         * @param string $fragment The fragment to use with the new instance.
-         * @return static A new instance with the specified fragment.
-         */
-        public function withFragment($fragment);
-        /**
-         * Return the string representation as a URI reference.
-         *
-         * Depending on which components of the URI are present, the resulting
-         * string is either a full URI or relative reference according to RFC 3986,
-         * Section 4.1. The method concatenates the various components of the URI,
-         * using the appropriate delimiters:
-         *
-         * - If a scheme is present, it MUST be suffixed by ":".
-         * - If an authority is present, it MUST be prefixed by "//".
-         * - The path can be concatenated without delimiters. But there are two
-         *   cases where the path has to be adjusted to make the URI reference
-         *   valid as PHP does not allow to throw an exception in __toString():
-         *     - If the path is rootless and an authority is present, the path MUST
-         *       be prefixed by "/".
-         *     - If the path is starting with more than one "/" and no authority is
-         *       present, the starting slashes MUST be reduced to one.
-         * - If a query is present, it MUST be prefixed by "?".
-         * - If a fragment is present, it MUST be prefixed by "#".
-         *
-         * @see http://tools.ietf.org/html/rfc3986#section-4.1
-         * @return string
-         */
-        public function __toString();
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Psr7 {
-    /**
-     * PSR-7 URI implementation.
-     *
-     * @author Michael Dowling
-     * @author Tobias Schultze
-     * @author Matthew Weier O'Phinney
-     */
-    class Uri implements \YoastSEO_Vendor\Psr\Http\Message\UriInterface
-    {
-        /**
-         * Absolute http and https URIs require a host per RFC 7230 Section 2.7
-         * but in generic URIs the host can be empty. So for http(s) URIs
-         * we apply this default host when no host is given yet to form a
-         * valid URI.
-         */
-        const HTTP_DEFAULT_HOST = 'localhost';
-        private static $defaultPorts = ['http' => 80, 'https' => 443, 'ftp' => 21, 'gopher' => 70, 'nntp' => 119, 'news' => 119, 'telnet' => 23, 'tn3270' => 23, 'imap' => 143, 'pop' => 110, 'ldap' => 389];
-        private static $charUnreserved = 'a-zA-Z0-9_\\-\\.~';
-        private static $charSubDelims = '!\\$&\'\\(\\)\\*\\+,;=';
-        private static $replaceQuery = ['=' => '%3D', '&' => '%26'];
-        /** @var string Uri scheme. */
-        private $scheme = '';
-        /** @var string Uri user info. */
-        private $userInfo = '';
-        /** @var string Uri host. */
-        private $host = '';
-        /** @var int|null Uri port. */
-        private $port;
-        /** @var string Uri path. */
-        private $path = '';
-        /** @var string Uri query string. */
-        private $query = '';
-        /** @var string Uri fragment. */
-        private $fragment = '';
-        /**
-         * @param string $uri URI to parse
-         */
-        public function __construct($uri = '')
-        {
-        }
-        /**
-         * UTF-8 aware \parse_url() replacement.
-         *
-         * The internal function produces broken output for non ASCII domain names
-         * (IDN) when used with locales other than "C".
-         *
-         * On the other hand, cURL understands IDN correctly only when UTF-8 locale
-         * is configured ("C.UTF-8", "en_US.UTF-8", etc.).
-         *
-         * @see https://bugs.php.net/bug.php?id=52923
-         * @see https://www.php.net/manual/en/function.parse-url.php#114817
-         * @see https://curl.haxx.se/libcurl/c/CURLOPT_URL.html#ENCODING
-         *
-         * @param string $url
-         *
-         * @return array|false
-         */
-        private static function parse($url)
-        {
-        }
-        public function __toString()
-        {
-        }
-        /**
-         * Composes a URI reference string from its various components.
-         *
-         * Usually this method does not need to be called manually but instead is used indirectly via
-         * `Psr\Http\Message\UriInterface::__toString`.
-         *
-         * PSR-7 UriInterface treats an empty component the same as a missing component as
-         * getQuery(), getFragment() etc. always return a string. This explains the slight
-         * difference to RFC 3986 Section 5.3.
-         *
-         * Another adjustment is that the authority separator is added even when the authority is missing/empty
-         * for the "file" scheme. This is because PHP stream functions like `file_get_contents` only work with
-         * `file:///myfile` but not with `file:/myfile` although they are equivalent according to RFC 3986. But
-         * `file:///` is the more common syntax for the file scheme anyway (Chrome for example redirects to
-         * that format).
-         *
-         * @param string $scheme
-         * @param string $authority
-         * @param string $path
-         * @param string $query
-         * @param string $fragment
-         *
-         * @return string
-         *
-         * @link https://tools.ietf.org/html/rfc3986#section-5.3
-         */
-        public static function composeComponents($scheme, $authority, $path, $query, $fragment)
-        {
-        }
-        /**
-         * Whether the URI has the default port of the current scheme.
-         *
-         * `Psr\Http\Message\UriInterface::getPort` may return null or the standard port. This method can be used
-         * independently of the implementation.
-         *
-         * @param UriInterface $uri
-         *
-         * @return bool
-         */
-        public static function isDefaultPort(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        /**
-         * Whether the URI is absolute, i.e. it has a scheme.
-         *
-         * An instance of UriInterface can either be an absolute URI or a relative reference. This method returns true
-         * if it is the former. An absolute URI has a scheme. A relative reference is used to express a URI relative
-         * to another URI, the base URI. Relative references can be divided into several forms:
-         * - network-path references, e.g. '//example.com/path'
-         * - absolute-path references, e.g. '/path'
-         * - relative-path references, e.g. 'subpath'
-         *
-         * @param UriInterface $uri
-         *
-         * @return bool
-         *
-         * @see Uri::isNetworkPathReference
-         * @see Uri::isAbsolutePathReference
-         * @see Uri::isRelativePathReference
-         * @link https://tools.ietf.org/html/rfc3986#section-4
-         */
-        public static function isAbsolute(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        /**
-         * Whether the URI is a network-path reference.
-         *
-         * A relative reference that begins with two slash characters is termed an network-path reference.
-         *
-         * @param UriInterface $uri
-         *
-         * @return bool
-         *
-         * @link https://tools.ietf.org/html/rfc3986#section-4.2
-         */
-        public static function isNetworkPathReference(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        /**
-         * Whether the URI is a absolute-path reference.
-         *
-         * A relative reference that begins with a single slash character is termed an absolute-path reference.
-         *
-         * @param UriInterface $uri
-         *
-         * @return bool
-         *
-         * @link https://tools.ietf.org/html/rfc3986#section-4.2
-         */
-        public static function isAbsolutePathReference(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        /**
-         * Whether the URI is a relative-path reference.
-         *
-         * A relative reference that does not begin with a slash character is termed a relative-path reference.
-         *
-         * @param UriInterface $uri
-         *
-         * @return bool
-         *
-         * @link https://tools.ietf.org/html/rfc3986#section-4.2
-         */
-        public static function isRelativePathReference(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        /**
-         * Whether the URI is a same-document reference.
-         *
-         * A same-document reference refers to a URI that is, aside from its fragment
-         * component, identical to the base URI. When no base URI is given, only an empty
-         * URI reference (apart from its fragment) is considered a same-document reference.
-         *
-         * @param UriInterface      $uri  The URI to check
-         * @param UriInterface|null $base An optional base URI to compare against
-         *
-         * @return bool
-         *
-         * @link https://tools.ietf.org/html/rfc3986#section-4.4
-         */
-        public static function isSameDocumentReference(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, \YoastSEO_Vendor\Psr\Http\Message\UriInterface $base = null)
-        {
-        }
-        /**
-         * Removes dot segments from a path and returns the new path.
-         *
-         * @param string $path
-         *
-         * @return string
-         *
-         * @deprecated since version 1.4. Use UriResolver::removeDotSegments instead.
-         * @see UriResolver::removeDotSegments
-         */
-        public static function removeDotSegments($path)
-        {
-        }
-        /**
-         * Converts the relative URI into a new URI that is resolved against the base URI.
-         *
-         * @param UriInterface        $base Base URI
-         * @param string|UriInterface $rel  Relative URI
-         *
-         * @return UriInterface
-         *
-         * @deprecated since version 1.4. Use UriResolver::resolve instead.
-         * @see UriResolver::resolve
-         */
-        public static function resolve(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $base, $rel)
-        {
-        }
-        /**
-         * Creates a new URI with a specific query string value removed.
-         *
-         * Any existing query string values that exactly match the provided key are
-         * removed.
-         *
-         * @param UriInterface $uri URI to use as a base.
-         * @param string       $key Query string key to remove.
-         *
-         * @return UriInterface
-         */
-        public static function withoutQueryValue(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, $key)
-        {
-        }
-        /**
-         * Creates a new URI with a specific query string value.
-         *
-         * Any existing query string values that exactly match the provided key are
-         * removed and replaced with the given key value pair.
-         *
-         * A value of null will set the query string key without a value, e.g. "key"
-         * instead of "key=value".
-         *
-         * @param UriInterface $uri   URI to use as a base.
-         * @param string       $key   Key to set.
-         * @param string|null  $value Value to set
-         *
-         * @return UriInterface
-         */
-        public static function withQueryValue(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, $key, $value)
-        {
-        }
-        /**
-         * Creates a new URI with multiple specific query string values.
-         *
-         * It has the same behavior as withQueryValue() but for an associative array of key => value.
-         *
-         * @param UriInterface $uri           URI to use as a base.
-         * @param array        $keyValueArray Associative array of key and values
-         *
-         * @return UriInterface
-         */
-        public static function withQueryValues(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, array $keyValueArray)
-        {
-        }
-        /**
-         * Creates a URI from a hash of `parse_url` components.
-         *
-         * @param array $parts
-         *
-         * @return UriInterface
-         *
-         * @link http://php.net/manual/en/function.parse-url.php
-         *
-         * @throws \InvalidArgumentException If the components do not form a valid URI.
-         */
-        public static function fromParts(array $parts)
-        {
-        }
-        public function getScheme()
-        {
-        }
-        public function getAuthority()
-        {
-        }
-        public function getUserInfo()
-        {
-        }
-        public function getHost()
-        {
-        }
-        public function getPort()
-        {
-        }
-        public function getPath()
-        {
-        }
-        public function getQuery()
-        {
-        }
-        public function getFragment()
-        {
-        }
-        public function withScheme($scheme)
-        {
-        }
-        public function withUserInfo($user, $password = null)
-        {
-        }
-        public function withHost($host)
-        {
-        }
-        public function withPort($port)
-        {
-        }
-        public function withPath($path)
-        {
-        }
-        public function withQuery($query)
-        {
-        }
-        public function withFragment($fragment)
-        {
-        }
-        /**
-         * Apply parse_url parts to a URI.
-         *
-         * @param array $parts Array of parse_url parts to apply.
-         */
-        private function applyParts(array $parts)
-        {
-        }
-        /**
-         * @param string $scheme
-         *
-         * @return string
-         *
-         * @throws \InvalidArgumentException If the scheme is invalid.
-         */
-        private function filterScheme($scheme)
-        {
-        }
-        /**
-         * @param string $component
-         *
-         * @return string
-         *
-         * @throws \InvalidArgumentException If the user info is invalid.
-         */
-        private function filterUserInfoComponent($component)
-        {
-        }
-        /**
-         * @param string $host
-         *
-         * @return string
-         *
-         * @throws \InvalidArgumentException If the host is invalid.
-         */
-        private function filterHost($host)
-        {
-        }
-        /**
-         * @param int|null $port
-         *
-         * @return int|null
-         *
-         * @throws \InvalidArgumentException If the port is invalid.
-         */
-        private function filterPort($port)
-        {
-        }
-        /**
-         * @param UriInterface $uri
-         * @param array        $keys
-         *
-         * @return array
-         */
-        private static function getFilteredQueryString(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, array $keys)
-        {
-        }
-        /**
-         * @param string      $key
-         * @param string|null $value
-         *
-         * @return string
-         */
-        private static function generateQueryString($key, $value)
-        {
-        }
-        private function removeDefaultPort()
-        {
-        }
-        /**
-         * Filters the path of a URI
-         *
-         * @param string $path
-         *
-         * @return string
-         *
-         * @throws \InvalidArgumentException If the path is invalid.
-         */
-        private function filterPath($path)
-        {
-        }
-        /**
-         * Filters the query string or fragment of a URI.
-         *
-         * @param string $str
-         *
-         * @return string
-         *
-         * @throws \InvalidArgumentException If the query or fragment is invalid.
-         */
-        private function filterQueryAndFragment($str)
-        {
-        }
-        private function rawurlencodeMatchZero(array $match)
-        {
-        }
-        private function validateState()
-        {
-        }
-    }
-    /**
-     * Provides methods to determine if a modified URL should be considered cross-origin.
-     *
-     * @author Graham Campbell
-     */
-    final class UriComparator
-    {
-        /**
-         * Determines if a modified URL should be considered cross-origin with
-         * respect to an original URL.
-         *
-         * @return bool
-         */
-        public static function isCrossOrigin(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $original, \YoastSEO_Vendor\Psr\Http\Message\UriInterface $modified)
-        {
-        }
-        /**
-         * @return int
-         */
-        private static function computePort(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        private function __construct()
-        {
-        }
-    }
-    /**
-     * Provides methods to normalize and compare URIs.
-     *
-     * @author Tobias Schultze
-     *
-     * @link https://tools.ietf.org/html/rfc3986#section-6
-     */
-    final class UriNormalizer
-    {
-        /**
-         * Default normalizations which only include the ones that preserve semantics.
-         *
-         * self::CAPITALIZE_PERCENT_ENCODING | self::DECODE_UNRESERVED_CHARACTERS | self::CONVERT_EMPTY_PATH |
-         * self::REMOVE_DEFAULT_HOST | self::REMOVE_DEFAULT_PORT | self::REMOVE_DOT_SEGMENTS
-         */
-        const PRESERVING_NORMALIZATIONS = 63;
-        /**
-         * All letters within a percent-encoding triplet (e.g., "%3A") are case-insensitive, and should be capitalized.
-         *
-         * Example: http://example.org/a%c2%b1b → http://example.org/a%C2%B1b
-         */
-        const CAPITALIZE_PERCENT_ENCODING = 1;
-        /**
-         * Decodes percent-encoded octets of unreserved characters.
-         *
-         * For consistency, percent-encoded octets in the ranges of ALPHA (%41–%5A and %61–%7A), DIGIT (%30–%39),
-         * hyphen (%2D), period (%2E), underscore (%5F), or tilde (%7E) should not be created by URI producers and,
-         * when found in a URI, should be decoded to their corresponding unreserved characters by URI normalizers.
-         *
-         * Example: http://example.org/%7Eusern%61me/ → http://example.org/~username/
-         */
-        const DECODE_UNRESERVED_CHARACTERS = 2;
-        /**
-         * Converts the empty path to "/" for http and https URIs.
-         *
-         * Example: http://example.org → http://example.org/
-         */
-        const CONVERT_EMPTY_PATH = 4;
-        /**
-         * Removes the default host of the given URI scheme from the URI.
-         *
-         * Only the "file" scheme defines the default host "localhost".
-         * All of `file:/myfile`, `file:///myfile`, and `file://localhost/myfile`
-         * are equivalent according to RFC 3986. The first format is not accepted
-         * by PHPs stream functions and thus already normalized implicitly to the
-         * second format in the Uri class. See `GuzzleHttp\Psr7\Uri::composeComponents`.
-         *
-         * Example: file://localhost/myfile → file:///myfile
-         */
-        const REMOVE_DEFAULT_HOST = 8;
-        /**
-         * Removes the default port of the given URI scheme from the URI.
-         *
-         * Example: http://example.org:80/ → http://example.org/
-         */
-        const REMOVE_DEFAULT_PORT = 16;
-        /**
-         * Removes unnecessary dot-segments.
-         *
-         * Dot-segments in relative-path references are not removed as it would
-         * change the semantics of the URI reference.
-         *
-         * Example: http://example.org/../a/b/../c/./d.html → http://example.org/a/c/d.html
-         */
-        const REMOVE_DOT_SEGMENTS = 32;
-        /**
-         * Paths which include two or more adjacent slashes are converted to one.
-         *
-         * Webservers usually ignore duplicate slashes and treat those URIs equivalent.
-         * But in theory those URIs do not need to be equivalent. So this normalization
-         * may change the semantics. Encoded slashes (%2F) are not removed.
-         *
-         * Example: http://example.org//foo///bar.html → http://example.org/foo/bar.html
-         */
-        const REMOVE_DUPLICATE_SLASHES = 64;
-        /**
-         * Sort query parameters with their values in alphabetical order.
-         *
-         * However, the order of parameters in a URI may be significant (this is not defined by the standard).
-         * So this normalization is not safe and may change the semantics of the URI.
-         *
-         * Example: ?lang=en&article=fred → ?article=fred&lang=en
-         *
-         * Note: The sorting is neither locale nor Unicode aware (the URI query does not get decoded at all) as the
-         * purpose is to be able to compare URIs in a reproducible way, not to have the params sorted perfectly.
-         */
-        const SORT_QUERY_PARAMETERS = 128;
-        /**
-         * Returns a normalized URI.
-         *
-         * The scheme and host component are already normalized to lowercase per PSR-7 UriInterface.
-         * This methods adds additional normalizations that can be configured with the $flags parameter.
-         *
-         * PSR-7 UriInterface cannot distinguish between an empty component and a missing component as
-         * getQuery(), getFragment() etc. always return a string. This means the URIs "/?#" and "/" are
-         * treated equivalent which is not necessarily true according to RFC 3986. But that difference
-         * is highly uncommon in reality. So this potential normalization is implied in PSR-7 as well.
-         *
-         * @param UriInterface $uri   The URI to normalize
-         * @param int          $flags A bitmask of normalizations to apply, see constants
-         *
-         * @return UriInterface The normalized URI
-         *
-         * @link https://tools.ietf.org/html/rfc3986#section-6.2
-         */
-        public static function normalize(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri, $flags = self::PRESERVING_NORMALIZATIONS)
-        {
-        }
-        /**
-         * Whether two URIs can be considered equivalent.
-         *
-         * Both URIs are normalized automatically before comparison with the given $normalizations bitmask. The method also
-         * accepts relative URI references and returns true when they are equivalent. This of course assumes they will be
-         * resolved against the same base URI. If this is not the case, determination of equivalence or difference of
-         * relative references does not mean anything.
-         *
-         * @param UriInterface $uri1           An URI to compare
-         * @param UriInterface $uri2           An URI to compare
-         * @param int          $normalizations A bitmask of normalizations to apply, see constants
-         *
-         * @return bool
-         *
-         * @link https://tools.ietf.org/html/rfc3986#section-6.1
-         */
-        public static function isEquivalent(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri1, \YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri2, $normalizations = self::PRESERVING_NORMALIZATIONS)
-        {
-        }
-        private static function capitalizePercentEncoding(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        private static function decodeUnreservedCharacters(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $uri)
-        {
-        }
-        private function __construct()
-        {
-        }
-    }
-    /**
-     * Resolves a URI reference in the context of a base URI and the opposite way.
-     *
-     * @author Tobias Schultze
-     *
-     * @link https://tools.ietf.org/html/rfc3986#section-5
-     */
-    final class UriResolver
-    {
-        /**
-         * Removes dot segments from a path and returns the new path.
-         *
-         * @param string $path
-         *
-         * @return string
-         *
-         * @link http://tools.ietf.org/html/rfc3986#section-5.2.4
-         */
-        public static function removeDotSegments($path)
-        {
-        }
-        /**
-         * Converts the relative URI into a new URI that is resolved against the base URI.
-         *
-         * @param UriInterface $base Base URI
-         * @param UriInterface $rel  Relative URI
-         *
-         * @return UriInterface
-         *
-         * @link http://tools.ietf.org/html/rfc3986#section-5.2
-         */
-        public static function resolve(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $base, \YoastSEO_Vendor\Psr\Http\Message\UriInterface $rel)
-        {
-        }
-        /**
-         * Returns the target URI as a relative reference from the base URI.
-         *
-         * This method is the counterpart to resolve():
-         *
-         *    (string) $target === (string) UriResolver::resolve($base, UriResolver::relativize($base, $target))
-         *
-         * One use-case is to use the current request URI as base URI and then generate relative links in your documents
-         * to reduce the document size or offer self-contained downloadable document archives.
-         *
-         *    $base = new Uri('http://example.com/a/b/');
-         *    echo UriResolver::relativize($base, new Uri('http://example.com/a/b/c'));  // prints 'c'.
-         *    echo UriResolver::relativize($base, new Uri('http://example.com/a/x/y'));  // prints '../x/y'.
-         *    echo UriResolver::relativize($base, new Uri('http://example.com/a/b/?q')); // prints '?q'.
-         *    echo UriResolver::relativize($base, new Uri('http://example.org/a/b/'));   // prints '//example.org/a/b/'.
-         *
-         * This method also accepts a target that is already relative and will try to relativize it further. Only a
-         * relative-path reference will be returned as-is.
-         *
-         *    echo UriResolver::relativize($base, new Uri('/a/b/c'));  // prints 'c' as well
-         *
-         * @param UriInterface $base   Base URI
-         * @param UriInterface $target Target URI
-         *
-         * @return UriInterface The relative URI reference
-         */
-        public static function relativize(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $base, \YoastSEO_Vendor\Psr\Http\Message\UriInterface $target)
-        {
-        }
-        private static function getRelativePath(\YoastSEO_Vendor\Psr\Http\Message\UriInterface $base, \YoastSEO_Vendor\Psr\Http\Message\UriInterface $target)
-        {
-        }
-        private function __construct()
-        {
-        }
-    }
-    final class Utils
-    {
-        /**
-         * Remove the items given by the keys, case insensitively from the data.
-         *
-         * @param iterable<string> $keys
-         *
-         * @return array
-         */
-        public static function caselessRemove($keys, array $data)
-        {
-        }
-        /**
-         * Copy the contents of a stream into another stream until the given number
-         * of bytes have been read.
-         *
-         * @param StreamInterface $source Stream to read from
-         * @param StreamInterface $dest   Stream to write to
-         * @param int             $maxLen Maximum number of bytes to read. Pass -1
-         *                                to read the entire stream.
-         *
-         * @throws \RuntimeException on error.
-         */
-        public static function copyToStream(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $source, \YoastSEO_Vendor\Psr\Http\Message\StreamInterface $dest, $maxLen = -1)
-        {
-        }
-        /**
-         * Copy the contents of a stream into a string until the given number of
-         * bytes have been read.
-         *
-         * @param StreamInterface $stream Stream to read
-         * @param int             $maxLen Maximum number of bytes to read. Pass -1
-         *                                to read the entire stream.
-         *
-         * @return string
-         *
-         * @throws \RuntimeException on error.
-         */
-        public static function copyToString(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $maxLen = -1)
-        {
-        }
-        /**
-         * Calculate a hash of a stream.
-         *
-         * This method reads the entire stream to calculate a rolling hash, based
-         * on PHP's `hash_init` functions.
-         *
-         * @param StreamInterface $stream    Stream to calculate the hash for
-         * @param string          $algo      Hash algorithm (e.g. md5, crc32, etc)
-         * @param bool            $rawOutput Whether or not to use raw output
-         *
-         * @return string Returns the hash of the stream
-         *
-         * @throws \RuntimeException on error.
-         */
-        public static function hash(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $algo, $rawOutput = \false)
-        {
-        }
-        /**
-         * Clone and modify a request with the given changes.
-         *
-         * This method is useful for reducing the number of clones needed to mutate
-         * a message.
-         *
-         * The changes can be one of:
-         * - method: (string) Changes the HTTP method.
-         * - set_headers: (array) Sets the given headers.
-         * - remove_headers: (array) Remove the given headers.
-         * - body: (mixed) Sets the given body.
-         * - uri: (UriInterface) Set the URI.
-         * - query: (string) Set the query string value of the URI.
-         * - version: (string) Set the protocol version.
-         *
-         * @param RequestInterface $request Request to clone and modify.
-         * @param array            $changes Changes to apply.
-         *
-         * @return RequestInterface
-         */
-        public static function modifyRequest(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $changes)
-        {
-        }
-        /**
-         * Read a line from the stream up to the maximum allowed buffer length.
-         *
-         * @param StreamInterface $stream    Stream to read from
-         * @param int|null        $maxLength Maximum buffer length
-         *
-         * @return string
-         */
-        public static function readLine(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $maxLength = null)
-        {
-        }
-        /**
-         * Create a new stream based on the input type.
-         *
-         * Options is an associative array that can contain the following keys:
-         * - metadata: Array of custom metadata.
-         * - size: Size of the stream.
-         *
-         * This method accepts the following `$resource` types:
-         * - `Psr\Http\Message\StreamInterface`: Returns the value as-is.
-         * - `string`: Creates a stream object that uses the given string as the contents.
-         * - `resource`: Creates a stream object that wraps the given PHP stream resource.
-         * - `Iterator`: If the provided value implements `Iterator`, then a read-only
-         *   stream object will be created that wraps the given iterable. Each time the
-         *   stream is read from, data from the iterator will fill a buffer and will be
-         *   continuously called until the buffer is equal to the requested read size.
-         *   Subsequent read calls will first read from the buffer and then call `next`
-         *   on the underlying iterator until it is exhausted.
-         * - `object` with `__toString()`: If the object has the `__toString()` method,
-         *   the object will be cast to a string and then a stream will be returned that
-         *   uses the string value.
-         * - `NULL`: When `null` is passed, an empty stream object is returned.
-         * - `callable` When a callable is passed, a read-only stream object will be
-         *   created that invokes the given callable. The callable is invoked with the
-         *   number of suggested bytes to read. The callable can return any number of
-         *   bytes, but MUST return `false` when there is no more data to return. The
-         *   stream object that wraps the callable will invoke the callable until the
-         *   number of requested bytes are available. Any additional bytes will be
-         *   buffered and used in subsequent reads.
-         *
-         * @param resource|string|int|float|bool|StreamInterface|callable|\Iterator|null $resource Entity body data
-         * @param array                                                                  $options  Additional options
-         *
-         * @return StreamInterface
-         *
-         * @throws \InvalidArgumentException if the $resource arg is not valid.
-         */
-        public static function streamFor($resource = '', array $options = [])
-        {
-        }
-        /**
-         * Safely opens a PHP stream resource using a filename.
-         *
-         * When fopen fails, PHP normally raises a warning. This function adds an
-         * error handler that checks for errors and throws an exception instead.
-         *
-         * @param string $filename File to open
-         * @param string $mode     Mode used to open the file
-         *
-         * @return resource
-         *
-         * @throws \RuntimeException if the file cannot be opened
-         */
-        public static function tryFopen($filename, $mode)
-        {
-        }
-        /**
-         * Returns a UriInterface for the given value.
-         *
-         * This function accepts a string or UriInterface and returns a
-         * UriInterface for the given value. If the value is already a
-         * UriInterface, it is returned as-is.
-         *
-         * @param string|UriInterface $uri
-         *
-         * @return UriInterface
-         *
-         * @throws \InvalidArgumentException
-         */
-        public static function uriFor($uri)
+        private function checkRequiredParameters(array $names, array $params)
         {
         }
     }
@@ -65209,833 +59671,6 @@ namespace YoastSEO_Vendor\WordProof\SDK {
         }
     }
 }
-namespace YoastSEO_Vendor\GuzzleHttp {
-    /**
-     * Expands a URI template
-     *
-     * @param string $template  URI template
-     * @param array  $variables Template variables
-     *
-     * @return string
-     */
-    function uri_template($template, array $variables)
-    {
-    }
-    /**
-     * Debug function used to describe the provided value type and class.
-     *
-     * @param mixed $input
-     *
-     * @return string Returns a string containing the type of the variable and
-     *                if a class is provided, the class name.
-     */
-    function describe_type($input)
-    {
-    }
-    /**
-     * Parses an array of header lines into an associative array of headers.
-     *
-     * @param iterable $lines Header lines array of strings in the following
-     *                     format: "Name: Value"
-     * @return array
-     */
-    function headers_from_lines($lines)
-    {
-    }
-    /**
-     * Returns a debug stream based on the provided variable.
-     *
-     * @param mixed $value Optional value
-     *
-     * @return resource
-     */
-    function debug_resource($value = null)
-    {
-    }
-    /**
-     * Chooses and creates a default handler to use based on the environment.
-     *
-     * The returned handler is not wrapped by any default middlewares.
-     *
-     * @return callable Returns the best handler for the given system.
-     * @throws \RuntimeException if no viable Handler is available.
-     */
-    function choose_handler()
-    {
-    }
-    /**
-     * Get the default User-Agent string to use with Guzzle
-     *
-     * @return string
-     */
-    function default_user_agent()
-    {
-    }
-    /**
-     * Returns the default cacert bundle for the current system.
-     *
-     * First, the openssl.cafile and curl.cainfo php.ini settings are checked.
-     * If those settings are not configured, then the common locations for
-     * bundles found on Red Hat, CentOS, Fedora, Ubuntu, Debian, FreeBSD, OS X
-     * and Windows are checked. If any of these file locations are found on
-     * disk, they will be utilized.
-     *
-     * Note: the result of this function is cached for subsequent calls.
-     *
-     * @return string
-     * @throws \RuntimeException if no bundle can be found.
-     */
-    function default_ca_bundle()
-    {
-    }
-    /**
-     * Creates an associative array of lowercase header names to the actual
-     * header casing.
-     *
-     * @param array $headers
-     *
-     * @return array
-     */
-    function normalize_header_keys(array $headers)
-    {
-    }
-    /**
-     * Returns true if the provided host matches any of the no proxy areas.
-     *
-     * This method will strip a port from the host if it is present. Each pattern
-     * can be matched with an exact match (e.g., "foo.com" == "foo.com") or a
-     * partial match: (e.g., "foo.com" == "baz.foo.com" and ".foo.com" ==
-     * "baz.foo.com", but ".foo.com" != "foo.com").
-     *
-     * Areas are matched in the following cases:
-     * 1. "*" (without quotes) always matches any hosts.
-     * 2. An exact match.
-     * 3. The area starts with "." and the area is the last part of the host. e.g.
-     *    '.mit.edu' will match any host that ends with '.mit.edu'.
-     *
-     * @param string $host         Host to check against the patterns.
-     * @param array  $noProxyArray An array of host patterns.
-     *
-     * @return bool
-     */
-    function is_host_in_noproxy($host, array $noProxyArray)
-    {
-    }
-    /**
-     * Wrapper for json_decode that throws when an error occurs.
-     *
-     * @param string $json    JSON data to parse
-     * @param bool $assoc     When true, returned objects will be converted
-     *                        into associative arrays.
-     * @param int    $depth   User specified recursion depth.
-     * @param int    $options Bitmask of JSON decode options.
-     *
-     * @return mixed
-     * @throws Exception\InvalidArgumentException if the JSON cannot be decoded.
-     * @link http://www.php.net/manual/en/function.json-decode.php
-     */
-    function json_decode($json, $assoc = \false, $depth = 512, $options = 0)
-    {
-    }
-    /**
-     * Wrapper for JSON encoding that throws when an error occurs.
-     *
-     * @param mixed $value   The value being encoded
-     * @param int    $options JSON encode option bitmask
-     * @param int    $depth   Set the maximum depth. Must be greater than zero.
-     *
-     * @return string
-     * @throws Exception\InvalidArgumentException if the JSON cannot be encoded.
-     * @link http://www.php.net/manual/en/function.json-encode.php
-     */
-    function json_encode($value, $options = 0, $depth = 512)
-    {
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Promise {
-    /**
-     * Get the global task queue used for promise resolution.
-     *
-     * This task queue MUST be run in an event loop in order for promises to be
-     * settled asynchronously. It will be automatically run when synchronously
-     * waiting on a promise.
-     *
-     * <code>
-     * while ($eventLoop->isRunning()) {
-     *     GuzzleHttp\Promise\queue()->run();
-     * }
-     * </code>
-     *
-     * @param TaskQueueInterface $assign Optionally specify a new queue instance.
-     *
-     * @return TaskQueueInterface
-     *
-     * @deprecated queue will be removed in guzzlehttp/promises:2.0. Use Utils::queue instead.
-     */
-    function queue(\YoastSEO_Vendor\GuzzleHttp\Promise\TaskQueueInterface $assign = null)
-    {
-    }
-    /**
-     * Adds a function to run in the task queue when it is next `run()` and returns
-     * a promise that is fulfilled or rejected with the result.
-     *
-     * @param callable $task Task function to run.
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated task will be removed in guzzlehttp/promises:2.0. Use Utils::task instead.
-     */
-    function task(callable $task)
-    {
-    }
-    /**
-     * Creates a promise for a value if the value is not a promise.
-     *
-     * @param mixed $value Promise or value.
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated promise_for will be removed in guzzlehttp/promises:2.0. Use Create::promiseFor instead.
-     */
-    function promise_for($value)
-    {
-    }
-    /**
-     * Creates a rejected promise for a reason if the reason is not a promise. If
-     * the provided reason is a promise, then it is returned as-is.
-     *
-     * @param mixed $reason Promise or reason.
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated rejection_for will be removed in guzzlehttp/promises:2.0. Use Create::rejectionFor instead.
-     */
-    function rejection_for($reason)
-    {
-    }
-    /**
-     * Create an exception for a rejected promise value.
-     *
-     * @param mixed $reason
-     *
-     * @return \Exception|\Throwable
-     *
-     * @deprecated exception_for will be removed in guzzlehttp/promises:2.0. Use Create::exceptionFor instead.
-     */
-    function exception_for($reason)
-    {
-    }
-    /**
-     * Returns an iterator for the given value.
-     *
-     * @param mixed $value
-     *
-     * @return \Iterator
-     *
-     * @deprecated iter_for will be removed in guzzlehttp/promises:2.0. Use Create::iterFor instead.
-     */
-    function iter_for($value)
-    {
-    }
-    /**
-     * Synchronously waits on a promise to resolve and returns an inspection state
-     * array.
-     *
-     * Returns a state associative array containing a "state" key mapping to a
-     * valid promise state. If the state of the promise is "fulfilled", the array
-     * will contain a "value" key mapping to the fulfilled value of the promise. If
-     * the promise is rejected, the array will contain a "reason" key mapping to
-     * the rejection reason of the promise.
-     *
-     * @param PromiseInterface $promise Promise or value.
-     *
-     * @return array
-     *
-     * @deprecated inspect will be removed in guzzlehttp/promises:2.0. Use Utils::inspect instead.
-     */
-    function inspect(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-    {
-    }
-    /**
-     * Waits on all of the provided promises, but does not unwrap rejected promises
-     * as thrown exception.
-     *
-     * Returns an array of inspection state arrays.
-     *
-     * @see inspect for the inspection state array format.
-     *
-     * @param PromiseInterface[] $promises Traversable of promises to wait upon.
-     *
-     * @return array
-     *
-     * @deprecated inspect will be removed in guzzlehttp/promises:2.0. Use Utils::inspectAll instead.
-     */
-    function inspect_all($promises)
-    {
-    }
-    /**
-     * Waits on all of the provided promises and returns the fulfilled values.
-     *
-     * Returns an array that contains the value of each promise (in the same order
-     * the promises were provided). An exception is thrown if any of the promises
-     * are rejected.
-     *
-     * @param iterable<PromiseInterface> $promises Iterable of PromiseInterface objects to wait on.
-     *
-     * @return array
-     *
-     * @throws \Exception on error
-     * @throws \Throwable on error in PHP >=7
-     *
-     * @deprecated unwrap will be removed in guzzlehttp/promises:2.0. Use Utils::unwrap instead.
-     */
-    function unwrap($promises)
-    {
-    }
-    /**
-     * Given an array of promises, return a promise that is fulfilled when all the
-     * items in the array are fulfilled.
-     *
-     * The promise's fulfillment value is an array with fulfillment values at
-     * respective positions to the original array. If any promise in the array
-     * rejects, the returned promise is rejected with the rejection reason.
-     *
-     * @param mixed $promises  Promises or values.
-     * @param bool  $recursive If true, resolves new promises that might have been added to the stack during its own resolution.
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated all will be removed in guzzlehttp/promises:2.0. Use Utils::all instead.
-     */
-    function all($promises, $recursive = \false)
-    {
-    }
-    /**
-     * Initiate a competitive race between multiple promises or values (values will
-     * become immediately fulfilled promises).
-     *
-     * When count amount of promises have been fulfilled, the returned promise is
-     * fulfilled with an array that contains the fulfillment values of the winners
-     * in order of resolution.
-     *
-     * This promise is rejected with a {@see AggregateException} if the number of
-     * fulfilled promises is less than the desired $count.
-     *
-     * @param int   $count    Total number of promises.
-     * @param mixed $promises Promises or values.
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated some will be removed in guzzlehttp/promises:2.0. Use Utils::some instead.
-     */
-    function some($count, $promises)
-    {
-    }
-    /**
-     * Like some(), with 1 as count. However, if the promise fulfills, the
-     * fulfillment value is not an array of 1 but the value directly.
-     *
-     * @param mixed $promises Promises or values.
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated any will be removed in guzzlehttp/promises:2.0. Use Utils::any instead.
-     */
-    function any($promises)
-    {
-    }
-    /**
-     * Returns a promise that is fulfilled when all of the provided promises have
-     * been fulfilled or rejected.
-     *
-     * The returned promise is fulfilled with an array of inspection state arrays.
-     *
-     * @see inspect for the inspection state array format.
-     *
-     * @param mixed $promises Promises or values.
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated settle will be removed in guzzlehttp/promises:2.0. Use Utils::settle instead.
-     */
-    function settle($promises)
-    {
-    }
-    /**
-     * Given an iterator that yields promises or values, returns a promise that is
-     * fulfilled with a null value when the iterator has been consumed or the
-     * aggregate promise has been fulfilled or rejected.
-     *
-     * $onFulfilled is a function that accepts the fulfilled value, iterator index,
-     * and the aggregate promise. The callback can invoke any necessary side
-     * effects and choose to resolve or reject the aggregate if needed.
-     *
-     * $onRejected is a function that accepts the rejection reason, iterator index,
-     * and the aggregate promise. The callback can invoke any necessary side
-     * effects and choose to resolve or reject the aggregate if needed.
-     *
-     * @param mixed    $iterable    Iterator or array to iterate over.
-     * @param callable $onFulfilled
-     * @param callable $onRejected
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated each will be removed in guzzlehttp/promises:2.0. Use Each::of instead.
-     */
-    function each($iterable, callable $onFulfilled = null, callable $onRejected = null)
-    {
-    }
-    /**
-     * Like each, but only allows a certain number of outstanding promises at any
-     * given time.
-     *
-     * $concurrency may be an integer or a function that accepts the number of
-     * pending promises and returns a numeric concurrency limit value to allow for
-     * dynamic a concurrency size.
-     *
-     * @param mixed        $iterable
-     * @param int|callable $concurrency
-     * @param callable     $onFulfilled
-     * @param callable     $onRejected
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated each_limit will be removed in guzzlehttp/promises:2.0. Use Each::ofLimit instead.
-     */
-    function each_limit($iterable, $concurrency, callable $onFulfilled = null, callable $onRejected = null)
-    {
-    }
-    /**
-     * Like each_limit, but ensures that no promise in the given $iterable argument
-     * is rejected. If any promise is rejected, then the aggregate promise is
-     * rejected with the encountered rejection.
-     *
-     * @param mixed        $iterable
-     * @param int|callable $concurrency
-     * @param callable     $onFulfilled
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated each_limit_all will be removed in guzzlehttp/promises:2.0. Use Each::ofLimitAll instead.
-     */
-    function each_limit_all($iterable, $concurrency, callable $onFulfilled = null)
-    {
-    }
-    /**
-     * Returns true if a promise is fulfilled.
-     *
-     * @return bool
-     *
-     * @deprecated is_fulfilled will be removed in guzzlehttp/promises:2.0. Use Is::fulfilled instead.
-     */
-    function is_fulfilled(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-    {
-    }
-    /**
-     * Returns true if a promise is rejected.
-     *
-     * @return bool
-     *
-     * @deprecated is_rejected will be removed in guzzlehttp/promises:2.0. Use Is::rejected instead.
-     */
-    function is_rejected(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-    {
-    }
-    /**
-     * Returns true if a promise is fulfilled or rejected.
-     *
-     * @return bool
-     *
-     * @deprecated is_settled will be removed in guzzlehttp/promises:2.0. Use Is::settled instead.
-     */
-    function is_settled(\YoastSEO_Vendor\GuzzleHttp\Promise\PromiseInterface $promise)
-    {
-    }
-    /**
-     * Create a new coroutine.
-     *
-     * @see Coroutine
-     *
-     * @return PromiseInterface
-     *
-     * @deprecated coroutine will be removed in guzzlehttp/promises:2.0. Use Coroutine::of instead.
-     */
-    function coroutine(callable $generatorFn)
-    {
-    }
-}
-namespace YoastSEO_Vendor\GuzzleHttp\Psr7 {
-    /**
-     * Returns the string representation of an HTTP message.
-     *
-     * @param MessageInterface $message Message to convert to a string.
-     *
-     * @return string
-     *
-     * @deprecated str will be removed in guzzlehttp/psr7:2.0. Use Message::toString instead.
-     */
-    function str(\YoastSEO_Vendor\Psr\Http\Message\MessageInterface $message)
-    {
-    }
-    /**
-     * Returns a UriInterface for the given value.
-     *
-     * This function accepts a string or UriInterface and returns a
-     * UriInterface for the given value. If the value is already a
-     * UriInterface, it is returned as-is.
-     *
-     * @param string|UriInterface $uri
-     *
-     * @return UriInterface
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @deprecated uri_for will be removed in guzzlehttp/psr7:2.0. Use Utils::uriFor instead.
-     */
-    function uri_for($uri)
-    {
-    }
-    /**
-     * Create a new stream based on the input type.
-     *
-     * Options is an associative array that can contain the following keys:
-     * - metadata: Array of custom metadata.
-     * - size: Size of the stream.
-     *
-     * This method accepts the following `$resource` types:
-     * - `Psr\Http\Message\StreamInterface`: Returns the value as-is.
-     * - `string`: Creates a stream object that uses the given string as the contents.
-     * - `resource`: Creates a stream object that wraps the given PHP stream resource.
-     * - `Iterator`: If the provided value implements `Iterator`, then a read-only
-     *   stream object will be created that wraps the given iterable. Each time the
-     *   stream is read from, data from the iterator will fill a buffer and will be
-     *   continuously called until the buffer is equal to the requested read size.
-     *   Subsequent read calls will first read from the buffer and then call `next`
-     *   on the underlying iterator until it is exhausted.
-     * - `object` with `__toString()`: If the object has the `__toString()` method,
-     *   the object will be cast to a string and then a stream will be returned that
-     *   uses the string value.
-     * - `NULL`: When `null` is passed, an empty stream object is returned.
-     * - `callable` When a callable is passed, a read-only stream object will be
-     *   created that invokes the given callable. The callable is invoked with the
-     *   number of suggested bytes to read. The callable can return any number of
-     *   bytes, but MUST return `false` when there is no more data to return. The
-     *   stream object that wraps the callable will invoke the callable until the
-     *   number of requested bytes are available. Any additional bytes will be
-     *   buffered and used in subsequent reads.
-     *
-     * @param resource|string|int|float|bool|StreamInterface|callable|\Iterator|null $resource Entity body data
-     * @param array                                                                  $options  Additional options
-     *
-     * @return StreamInterface
-     *
-     * @throws \InvalidArgumentException if the $resource arg is not valid.
-     *
-     * @deprecated stream_for will be removed in guzzlehttp/psr7:2.0. Use Utils::streamFor instead.
-     */
-    function stream_for($resource = '', array $options = [])
-    {
-    }
-    /**
-     * Parse an array of header values containing ";" separated data into an
-     * array of associative arrays representing the header key value pair data
-     * of the header. When a parameter does not contain a value, but just
-     * contains a key, this function will inject a key with a '' string value.
-     *
-     * @param string|array $header Header to parse into components.
-     *
-     * @return array Returns the parsed header values.
-     *
-     * @deprecated parse_header will be removed in guzzlehttp/psr7:2.0. Use Header::parse instead.
-     */
-    function parse_header($header)
-    {
-    }
-    /**
-     * Converts an array of header values that may contain comma separated
-     * headers into an array of headers with no comma separated values.
-     *
-     * @param string|array $header Header to normalize.
-     *
-     * @return array Returns the normalized header field values.
-     *
-     * @deprecated normalize_header will be removed in guzzlehttp/psr7:2.0. Use Header::normalize instead.
-     */
-    function normalize_header($header)
-    {
-    }
-    /**
-     * Clone and modify a request with the given changes.
-     *
-     * This method is useful for reducing the number of clones needed to mutate a
-     * message.
-     *
-     * The changes can be one of:
-     * - method: (string) Changes the HTTP method.
-     * - set_headers: (array) Sets the given headers.
-     * - remove_headers: (array) Remove the given headers.
-     * - body: (mixed) Sets the given body.
-     * - uri: (UriInterface) Set the URI.
-     * - query: (string) Set the query string value of the URI.
-     * - version: (string) Set the protocol version.
-     *
-     * @param RequestInterface $request Request to clone and modify.
-     * @param array            $changes Changes to apply.
-     *
-     * @return RequestInterface
-     *
-     * @deprecated modify_request will be removed in guzzlehttp/psr7:2.0. Use Utils::modifyRequest instead.
-     */
-    function modify_request(\YoastSEO_Vendor\Psr\Http\Message\RequestInterface $request, array $changes)
-    {
-    }
-    /**
-     * Attempts to rewind a message body and throws an exception on failure.
-     *
-     * The body of the message will only be rewound if a call to `tell()` returns a
-     * value other than `0`.
-     *
-     * @param MessageInterface $message Message to rewind
-     *
-     * @throws \RuntimeException
-     *
-     * @deprecated rewind_body will be removed in guzzlehttp/psr7:2.0. Use Message::rewindBody instead.
-     */
-    function rewind_body(\YoastSEO_Vendor\Psr\Http\Message\MessageInterface $message)
-    {
-    }
-    /**
-     * Safely opens a PHP stream resource using a filename.
-     *
-     * When fopen fails, PHP normally raises a warning. This function adds an
-     * error handler that checks for errors and throws an exception instead.
-     *
-     * @param string $filename File to open
-     * @param string $mode     Mode used to open the file
-     *
-     * @return resource
-     *
-     * @throws \RuntimeException if the file cannot be opened
-     *
-     * @deprecated try_fopen will be removed in guzzlehttp/psr7:2.0. Use Utils::tryFopen instead.
-     */
-    function try_fopen($filename, $mode)
-    {
-    }
-    /**
-     * Copy the contents of a stream into a string until the given number of
-     * bytes have been read.
-     *
-     * @param StreamInterface $stream Stream to read
-     * @param int             $maxLen Maximum number of bytes to read. Pass -1
-     *                                to read the entire stream.
-     *
-     * @return string
-     *
-     * @throws \RuntimeException on error.
-     *
-     * @deprecated copy_to_string will be removed in guzzlehttp/psr7:2.0. Use Utils::copyToString instead.
-     */
-    function copy_to_string(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $maxLen = -1)
-    {
-    }
-    /**
-     * Copy the contents of a stream into another stream until the given number
-     * of bytes have been read.
-     *
-     * @param StreamInterface $source Stream to read from
-     * @param StreamInterface $dest   Stream to write to
-     * @param int             $maxLen Maximum number of bytes to read. Pass -1
-     *                                to read the entire stream.
-     *
-     * @throws \RuntimeException on error.
-     *
-     * @deprecated copy_to_stream will be removed in guzzlehttp/psr7:2.0. Use Utils::copyToStream instead.
-     */
-    function copy_to_stream(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $source, \YoastSEO_Vendor\Psr\Http\Message\StreamInterface $dest, $maxLen = -1)
-    {
-    }
-    /**
-     * Calculate a hash of a stream.
-     *
-     * This method reads the entire stream to calculate a rolling hash, based on
-     * PHP's `hash_init` functions.
-     *
-     * @param StreamInterface $stream    Stream to calculate the hash for
-     * @param string          $algo      Hash algorithm (e.g. md5, crc32, etc)
-     * @param bool            $rawOutput Whether or not to use raw output
-     *
-     * @return string Returns the hash of the stream
-     *
-     * @throws \RuntimeException on error.
-     *
-     * @deprecated hash will be removed in guzzlehttp/psr7:2.0. Use Utils::hash instead.
-     */
-    function hash(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $algo, $rawOutput = \false)
-    {
-    }
-    /**
-     * Read a line from the stream up to the maximum allowed buffer length.
-     *
-     * @param StreamInterface $stream    Stream to read from
-     * @param int|null        $maxLength Maximum buffer length
-     *
-     * @return string
-     *
-     * @deprecated readline will be removed in guzzlehttp/psr7:2.0. Use Utils::readLine instead.
-     */
-    function readline(\YoastSEO_Vendor\Psr\Http\Message\StreamInterface $stream, $maxLength = null)
-    {
-    }
-    /**
-     * Parses a request message string into a request object.
-     *
-     * @param string $message Request message string.
-     *
-     * @return Request
-     *
-     * @deprecated parse_request will be removed in guzzlehttp/psr7:2.0. Use Message::parseRequest instead.
-     */
-    function parse_request($message)
-    {
-    }
-    /**
-     * Parses a response message string into a response object.
-     *
-     * @param string $message Response message string.
-     *
-     * @return Response
-     *
-     * @deprecated parse_response will be removed in guzzlehttp/psr7:2.0. Use Message::parseResponse instead.
-     */
-    function parse_response($message)
-    {
-    }
-    /**
-     * Parse a query string into an associative array.
-     *
-     * If multiple values are found for the same key, the value of that key value
-     * pair will become an array. This function does not parse nested PHP style
-     * arrays into an associative array (e.g., `foo[a]=1&foo[b]=2` will be parsed
-     * into `['foo[a]' => '1', 'foo[b]' => '2'])`.
-     *
-     * @param string   $str         Query string to parse
-     * @param int|bool $urlEncoding How the query string is encoded
-     *
-     * @return array
-     *
-     * @deprecated parse_query will be removed in guzzlehttp/psr7:2.0. Use Query::parse instead.
-     */
-    function parse_query($str, $urlEncoding = \true)
-    {
-    }
-    /**
-     * Build a query string from an array of key value pairs.
-     *
-     * This function can use the return value of `parse_query()` to build a query
-     * string. This function does not modify the provided keys when an array is
-     * encountered (like `http_build_query()` would).
-     *
-     * @param array     $params   Query string parameters.
-     * @param int|false $encoding Set to false to not encode, PHP_QUERY_RFC3986
-     *                            to encode using RFC3986, or PHP_QUERY_RFC1738
-     *                            to encode using RFC1738.
-     *
-     * @return string
-     *
-     * @deprecated build_query will be removed in guzzlehttp/psr7:2.0. Use Query::build instead.
-     */
-    function build_query(array $params, $encoding = \PHP_QUERY_RFC3986)
-    {
-    }
-    /**
-     * Determines the mimetype of a file by looking at its extension.
-     *
-     * @param string $filename
-     *
-     * @return string|null
-     *
-     * @deprecated mimetype_from_filename will be removed in guzzlehttp/psr7:2.0. Use MimeType::fromFilename instead.
-     */
-    function mimetype_from_filename($filename)
-    {
-    }
-    /**
-     * Maps a file extensions to a mimetype.
-     *
-     * @param $extension string The file extension.
-     *
-     * @return string|null
-     *
-     * @link http://svn.apache.org/repos/asf/httpd/httpd/branches/1.3.x/conf/mime.types
-     * @deprecated mimetype_from_extension will be removed in guzzlehttp/psr7:2.0. Use MimeType::fromExtension instead.
-     */
-    function mimetype_from_extension($extension)
-    {
-    }
-    /**
-     * Parses an HTTP message into an associative array.
-     *
-     * The array contains the "start-line" key containing the start line of
-     * the message, "headers" key containing an associative array of header
-     * array values, and a "body" key containing the body of the message.
-     *
-     * @param string $message HTTP request or response to parse.
-     *
-     * @return array
-     *
-     * @internal
-     *
-     * @deprecated _parse_message will be removed in guzzlehttp/psr7:2.0. Use Message::parseMessage instead.
-     */
-    function _parse_message($message)
-    {
-    }
-    /**
-     * Constructs a URI for an HTTP request message.
-     *
-     * @param string $path    Path from the start-line
-     * @param array  $headers Array of headers (each value an array).
-     *
-     * @return string
-     *
-     * @internal
-     *
-     * @deprecated _parse_request_uri will be removed in guzzlehttp/psr7:2.0. Use Message::parseRequestUri instead.
-     */
-    function _parse_request_uri($path, array $headers)
-    {
-    }
-    /**
-     * Get a short summary of the message body.
-     *
-     * Will return `null` if the response is not printable.
-     *
-     * @param MessageInterface $message    The message to get the body summary
-     * @param int              $truncateAt The maximum allowed size of the summary
-     *
-     * @return string|null
-     *
-     * @deprecated get_message_body_summary will be removed in guzzlehttp/psr7:2.0. Use Message::bodySummary instead.
-     */
-    function get_message_body_summary(\YoastSEO_Vendor\Psr\Http\Message\MessageInterface $message, $truncateAt = 120)
-    {
-    }
-    /**
-     * Remove the items given by the keys, case insensitively from the data.
-     *
-     * @param iterable<string> $keys
-     *
-     * @return array
-     *
-     * @internal
-     *
-     * @deprecated _caseless_remove will be removed in guzzlehttp/psr7:2.0. Use Utils::caselessRemove instead.
-     */
-    function _caseless_remove($keys, array $data)
-    {
-    }
-}
 namespace {
     /**
      * Convenience function to JSON encode and echo results and then die.
@@ -66087,7 +59722,7 @@ namespace {
      * @param string $meta_key        Meta key string.
      * @param string $return_key      Return key string to use in results.
      *
-     * @return string
+     * @return array
      */
     function wpseo_upsert_meta($post_id, $new_meta_value, $orig_meta_value, $meta_key, $return_key)
     {
@@ -66126,9 +59761,9 @@ namespace {
     {
     }
     /**
-     * Retrieves the keyword for the keyword doubles.
+     * Retrieves the post ids where the keyword is used before as well as the types of those posts.
      */
-    function ajax_get_keyword_usage()
+    function ajax_get_keyword_usage_and_post_types()
     {
     }
     /**
@@ -66147,12 +59782,9 @@ namespace {
     }
     /* ********************* DEPRECATED FUNCTIONS ********************* */
     /**
-     * Hides the default tagline notice for a specific user.
-     *
-     * @deprecated 13.2
-     * @codeCoverageIgnore
+     * Retrieves the keyword for the keyword doubles.
      */
-    function wpseo_dismiss_tagline_notice()
+    function ajax_get_keyword_usage()
     {
     }
     /**
@@ -66304,18 +59936,6 @@ namespace {
     {
     }
     /**
-     * Yoast SEO breadcrumb shortcode.
-     * [wpseo_breadcrumb]
-     *
-     * @deprecated 14.0
-     * @codeCoverageIgnore
-     *
-     * @return string
-     */
-    function wpseo_shortcode_yoast_breadcrumb()
-    {
-    }
-    /**
      * Makes sure the taxonomy meta is updated when a taxonomy term is split.
      *
      * @link https://make.wordpress.org/core/2015/02/16/taxonomy-term-splitting-in-4-2-a-developer-guide/ Article explaining the taxonomy term splitting in WP 4.2.
@@ -66335,23 +59955,6 @@ namespace {
      * @return array
      */
     function wpseo_get_capabilities()
-    {
-    }
-    /**
-     * Retrieves the current environment type.
-     *
-     * The type can be set via the `WP_ENVIRONMENT_TYPE` global system variable,
-     * or a constant of the same name.
-     *
-     * Possible values include 'local', 'development', 'staging', 'production'.
-     * If not set, the type defaults to 'production'.
-     *
-     * Backfill for `wp_get_environment_type()` introduced in WordPress 5.5. Code
-     * is adapted to the Yoast PHP coding standards.
-     *
-     * @return string The current environment type.
-     */
-    function wp_get_environment_type()
     {
     }
     /**
@@ -66472,16 +60075,6 @@ namespace {
     {
     }
     /**
-     * Initialize the WP-CLI integration.
-     *
-     * The WP-CLI integration needs PHP 5.3 support, which should be automatically
-     * enforced by the check for the WP_CLI constant. As WP-CLI itself only runs
-     * on PHP 5.3+, the constant should only be set when requirements are met.
-     */
-    function wpseo_cli_init()
-    {
-    }
-    /**
      * Wraps for notifications center class.
      */
     function load_yoast_notifications()
@@ -66545,25 +60138,6 @@ namespace {
      * The method will deactivate the plugin, but only once, done by the static $is_deactivated.
      */
     function yoast_wpseo_self_deactivate()
-    {
-    }
-    /* ********************* DEPRECATED METHODS ********************* */
-    /**
-     * Instantiate the different social classes on the frontend.
-     *
-     * @deprecated 14.0
-     * @codeCoverageIgnore
-     */
-    function wpseo_frontend_head_init()
-    {
-    }
-    /**
-     * Used to load the required files on the plugins_loaded hook, instead of immediately.
-     *
-     * @deprecated 14.0
-     * @codeCoverageIgnore
-     */
-    function wpseo_frontend_init()
     {
     }
 }
