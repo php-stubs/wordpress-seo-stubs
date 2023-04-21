@@ -59891,7 +59891,7 @@ namespace {
      *
      * Example code:
      * <code>
-     * <?php
+     *
      * function retrieve_var1_replacement( $var1 ) {
      *        return 'your replacement value';
      * }
@@ -59901,7 +59901,7 @@ namespace {
      *        wpseo_register_var_replacement( 'myvar2', array( 'class', 'method_name' ), 'basic', 'this is a help text for myvar2' );
      * }
      * add_action( 'wpseo_register_extra_replacements', 'register_my_plugin_extra_replacements' );
-     * ?>
+     *
      * </code>
      *
      * @since 1.5.4
